@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- ========================================================================================= -->
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<!-- ========================================================================================= -->
+
+	<!-- CDN -->
+
+	<bean id="thirdPartyCdnOk" class="com.dynatrace.easytravel.thirdparty.UnhealthyThirdPartyService">
+		<property name="name" value="UnhealthyThirdPartyService-CDN-01-Healthy" />
+		<property name="compatibility" value="Classic" />
+		<property name="groupName" value="UI related plugin" />
+		<property name="extensionPoint" value="frontend.page.*" />
+		<property name="description" value="Plugin to include third party content from a CDN (easyTravel's Third Party Content Server). PLEASE NOTE: This plugin has to be used mutually exclusive with both 'UnhealthyThirdPartyService-CDN-02-Unhealthy-LimitedAvailability' and 'UnhealthyThirdPartyService-CDN-03-Unhealthy-Outage'." />
+		<!-- custom properties -->
+		<property name="cdnOutage" value="false" />
+		<property name="cdnLimited" value="false" />
+		<property name="cdnEnabled" value="true" />
+	</bean>
+	<bean id="thirdPartyCdnLimited" class="com.dynatrace.easytravel.thirdparty.UnhealthyThirdPartyService">
+		<property name="name" value="UnhealthyThirdPartyService-CDN-02-Unhealthy-LimitedAvailability" />
+		<property name="compatibility" value="Classic" />
+		<property name="groupName" value="UI related plugin" />
+		<property name="extensionPoint" value="frontend.page.*" />
+		<property name="description" value="Plugin to include third party content from a CDN (easyTravel's Third Party Content Server). There is a limitation of the CDN simulated when accessing the resources and therefore the resources get delievered with a delay. PLEASE NOTE: This plugin has to be used mutually exclusive with both 'UnhealthyThirdPartyService-CDN-01-Healthy' and 'UnhealthyThirdPartyService-CDN-03-Unhealthy-Outage'." />
+		<!-- custom properties -->
+		<property name="cdnOutage" value="false" />
+		<property name="cdnLimited" value="true" />
+		<property name="cdnEnabled" value="true" />
+	</bean>
+	<bean id="thirdPartyCdnOutage" class="com.dynatrace.easytravel.thirdparty.UnhealthyThirdPartyService">
+		<property name="name" value="UnhealthyThirdPartyService-CDN-03-Unhealthy-Outage" />
+		<property name="compatibility" value="Classic" />
+		<property name="groupName" value="UI related plugin" />
+		<property name="extensionPoint" value="frontend.page.*" />
+		<property name="description" value="Plugin to include third party content from a CDN (easyTravel's Third Party Content Server). There is an outage of the CDN simulated when accessing the resources and therefore the resources do not get delievered at all. PLEASE NOTE: This plugin has to be used mutually exclusive with both 'UnhealthyThirdPartyService-CDN-01-Healthy' and 'UnhealthyThirdPartyService-CDN-02-Unhealthy-LimitedAvailability'." />
+		<!-- custom properties -->
+		<property name="cdnOutage" value="true" />
+		<property name="cdnLimited" value="false" />
+		<property name="cdnEnabled" value="true" />
+	</bean>
+
+	<!-- Social Media -->
+
+	<bean id="thirdPartySocialMediaOk" class="com.dynatrace.easytravel.thirdparty.UnhealthyThirdPartyService">
+		<property name="name" value="UnhealthyThirdPartyService-SocialMedia-01-Healthy" />
+		<property name="compatibility" value="Classic" />
+		<property name="groupName" value="UI related plugin" />
+		<property name="extensionPoint" value="frontend.page.*" />
+		<property name="description" value="Plugin to include third party content from a Social Media Provider (easyTravel's Third Party Content Server). PLEASE NOTE: This plugin has to be used mutually exclusive with both 'UnhealthyThirdPartyService-SocialMedia-02-Unhealthy-LimitedAvailability' and 'UnhealthyThirdPartyService-SocialMedia-03-Unhealthy-Outage'." />
+		<!-- custom properties -->
+		<property name="socialMediaOutage" value="false" />
+		<property name="socialMediaLimited" value="false" />
+		<property name="socialMediaEnabled" value="true" />
+	</bean>
+	<bean id="thirdPartySocialMediaLimited" class="com.dynatrace.easytravel.thirdparty.UnhealthyThirdPartyService">
+		<property name="name" value="UnhealthyThirdPartyService-SocialMedia-02-Unhealthy-LimitedAvailability" />
+		<property name="compatibility" value="Classic" />
+		<property name="groupName" value="UI related plugin" />
+		<property name="extensionPoint" value="frontend.page.*" />
+		<property name="description" value="Plugin to include third party content from a Social Media Provider (easyTravel's Third Party Content Server). There is a limitation of the Social Media Provider simulated when accessing the resources and therefore the resources get delivered with a delay. PLEASE NOTE: This plugin has to be used mutually exclusive with both 'UnhealthyThirdPartyService-SocialMedia-01-Healthy' and 'UnhealthyThirdPartyService-SocialMedia-03-Unhealthy-Outage'." />
+		<!-- custom properties -->
+		<property name="socialMediaOutage" value="false" />
+		<property name="socialMediaLimited" value="true" />
+		<property name="socialMediaEnabled" value="true" />
+	</bean>
+	<bean id="thirdPartySocialMediaOutage" class="com.dynatrace.easytravel.thirdparty.UnhealthyThirdPartyService">
+		<property name="name" value="UnhealthyThirdPartyService-SocialMedia-03-Unhealthy-Outage" />
+		<property name="compatibility" value="Classic" />
+		<property name="groupName" value="UI related plugin" />
+		<property name="extensionPoint" value="frontend.page.*" />
+		<property name="description" value="Plugin to include third party content from a Social Media Provider (easyTravel's Third Party Content Server). There is an outage of the Social Media Provider simulated when accessing the resources and therefore the resources do not get delievered at all. PLEASE NOTE: This plugin has to be used mutually exclusive with both 'UnhealthyThirdPartyService-SocialMedia-01-Healthy' and 'UnhealthyThirdPartyService-SocialMedia-02-Unhealthy-LimitedAvailability'." />
+		<!-- custom properties -->
+		<property name="socialMediaOutage" value="true" />
+		<property name="socialMediaLimited" value="false" />
+		<property name="socialMediaEnabled" value="true" />
+	</bean>
+
+	<!-- ========================================================================================= -->
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<!-- ========================================================================================= -->
+
+	<!-- CDN -->
+
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="thirdPartyCdnOk" />
+	</bean>
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="thirdPartyCdnLimited" />
+	</bean>
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="thirdPartyCdnOutage" />
+	</bean>
+
+	<!-- Social Media -->
+
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="thirdPartySocialMediaOk" />
+	</bean>
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="thirdPartySocialMediaLimited" />
+	</bean>
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="thirdPartySocialMediaOutage" />
+	</bean>
+</beans>

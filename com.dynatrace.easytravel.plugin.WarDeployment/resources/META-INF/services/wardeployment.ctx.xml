@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="webApplicationDeployment" class="com.dynatrace.easytravel.WarDeploymentPlugin">
+		<property name="name" value="WebApplicationDeployment" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Tomcat" />
+		<property name="extensionPoint" value="periodic.*,lifecycle.plugin.*,lifecycle.backend.*,dataaccess.query.intercept" />
+		<property name="description" value="Plugin simulates upgrade of the web application by deployment of the new 'war' file. New .war file is deployed each time plugin is started." />
+	</bean>
+
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="webApplicationDeployment" />
+	</bean>
+</beans>

@@ -1,0 +1,97 @@
+<html>
+	<head><title>TestPlugin123</title></head>
+	<body>
+		<h3>This is the #{name}</h3>
+		<div style="float: right"><img src="sitelogo.png" /></div>
+		<ul>
+			<li><a href="..">Go back</a></li>
+		</ul>		
+		
+		<!--  testing some multi-line if statements with nested variables -->
+		
+		#{if (loadjQueryUI) 
+			<p>jQuery UI gets loaded <strong style="color:green">#{loadjQueryUI}</strong>
+			<br/><a href="execute?loadjQueryUI=false">Turn it off!</a></p>
+		}
+		#{if (!loadjQueryUI) 
+			<p>jQuery UI gets loaded <strong style="color:red">#{loadjQueryUI}</strong>
+			<br/><a href="execute?loadjQueryUI=true">Turn it on!</a></p>
+		}
+
+		#{if (simulate400s) 
+			<p>Simulate HTTP 400s <strong style="color:green">#{simulate400s}</strong>
+			<br/><a href="execute?simulate400s=false">Turn it off!</a></p>
+		}
+		#{if (!simulate400s) 
+			<p>Simulate HTTP 400s <strong style="color:red">#{simulate400s}</strong>
+			<br/><a href="execute?simulate400s=true">Turn it on!</a></p>
+		}
+
+		#{if (loadOptimized) 
+			<p>Load Content Optimized <strong style="color:green">#{loadOptimized}</strong>
+			<br/><a href="execute?loadOptimized=false">Turn it off!</a></p>
+		}
+		#{if (!loadOptimized) 
+			<p>Load Content Optimized <strong style="color:red">#{loadOptimized}</strong>
+			<br/><a href="execute?loadOptimized=true">Turn it on!</a></p>
+		}
+		
+		#{if (loadMinimized) 
+			<p>Load Content Minimized <strong style="color:green">#{loadMinimized}</strong>
+			<br/><a href="execute?loadMinimized=false">Turn it off!</a></p>
+		}
+		#{if (!loadMinimized) 
+			<p>Load Content Minimized <strong style="color:red">#{loadMinimized}</strong>
+			<br/><a href="execute?loadMinimized=true">Turn it on!</a></p>
+		}
+		
+		#{if (enableCache) 
+			<p>Enable Caching <strong style="color:green">#{enableCache}</strong>
+			<br/><a href="execute?enableCache=false">Turn it off!</a></p>
+		}
+		#{if (!enableCache) 
+			<p>Enable Caching <strong style="color:red">#{enableCache}</strong>
+			<br/><a href="execute?enableCache=true">Turn it on!</a></p>
+		}	
+		
+		<!-- <form action="execute" method="post">
+		
+			<input type="hidden" name="default.showFooter" value="false" >
+			<input type="hidden" name="default.scriptInjection" value="false">
+		
+			<table>
+				<tr>
+					<td>First Name: </td>
+					<td><input type="text" name="firstName" value="#{firstName}"/></td>
+				</tr>
+				<tr>
+					<td>Last Name:</td>
+					<td><input type="text" name="lastName" value="#{lastName}"/></td>
+				</tr>
+				<tr>
+					<td>Age: </td>
+					<td><input type="text" name="age" value="#{age}"></td>
+				</tr>
+				<tr>
+					<td>Script Injection:</td>
+					<td><input type="checkbox" name="scriptInjection" value="true" #{if(scriptInjection)checked="checked"}></td>
+				</tr>
+				<tr>
+					<td>Show Footer:</td>
+					<td><input type="checkbox" name="showFooter" value="true" #{if(showFooter)checked="checked"}></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Execute the plugin" ></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Execute the plugin and show other page" name="showResultPage"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Execute the plugin and download a file" name="downloadFile"></td>
+				</tr>
+			</table>
+		</form>
+		
+		-->
+	</body>
+</html>

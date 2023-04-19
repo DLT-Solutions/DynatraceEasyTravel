@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="worldMapRegionDNSFailsAsiaPlugin" class="com.dynatrace.easytravel.WorldMapRegionFailsPlugin">
+		<property name="name" value="WorldMapDNSFailsAsia" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Javascript" />
+		<property name="extensionPoint" value="extension.point.uem.load.worldmap" />
+		<property name="description" value="This plugin causes a significant slowdown of the DNS lookup in Asia." />
+	</bean>
+	
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+		<property name="propertyName" value="plugins" />
+		<property name="pluginBeanName" value="worldMapRegionDNSFailsAsiaPlugin" />
+	</bean>
+	
+	
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="worldMapRegionDNSFailsEuropePlugin" class="com.dynatrace.easytravel.WorldMapRegionFailsPlugin">
+		<property name="name" value="WorldMapDNSFailsEurope" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Javascript" />
+		<property name="extensionPoint" value="extension.point.uem.load.worldmap" />
+		<property name="description" value="This plugin causes a significant slowdown of the DNS lookup in Europe." />
+	</bean>
+	
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+		<property name="propertyName" value="plugins" />
+		<property name="pluginBeanName" value="worldMapRegionDNSFailsEuropePlugin" />
+	</bean>
+	
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="worldMapRegionDNSFailsUnitedStatesPlugin" class="com.dynatrace.easytravel.WorldMapRegionFailsPlugin">
+		<property name="name" value="WorldMapDNSFailsUnitedStates" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Javascript" />
+		<property name="extensionPoint" value="extension.point.uem.load.worldmap" />
+		<property name="description" value="This plugin causes a significant slowdown of the DNS lookup in the United States" />
+	</bean>
+	
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+		<property name="propertyName" value="plugins" />
+		<property name="pluginBeanName" value="worldMapRegionDNSFailsUnitedStatesPlugin" />
+	</bean>
+	
+</beans>

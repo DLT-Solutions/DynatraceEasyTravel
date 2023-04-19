@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="thirdPartyAdvertisements" class="com.dynatrace.easytravel.ThirdPartyAdvertisements">
+		<property name="name" value="ThirdPartyAdvertisements" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="UI related plugin" />
+		<property name="extensionPoint" value="frontend.adserver" />
+		<property name="description" value="Plugin to include third party advertisements banner loaded from a third party server. The ad banner is loaded from easyTravel's Third Party Content Server. This plugin conflicts with plugin ThirdPartySlowAdvertisements. If all are enabled the loaded third party banner is determined by the plugin last executed. " />
+		<!-- sub path of image to load from third party content server -->
+		<property name="imagePrefix" value="image" />
+	</bean>
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="slowthirdPartyAdvertisements" class="com.dynatrace.easytravel.ThirdPartyAdvertisements">
+		<property name="name" value="ThirdPartySlowAdvertisements" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="UI related plugin" />
+		<property name="extensionPoint" value="frontend.adserver" />
+		<property name="description" value="Enable this plugin to include third party advertisements banner loading from a slow third party server (easyTravel's Third Party Content Server). This plugin conflicts with plugin ThirdPartyAdvertisements. If all are enabled the loaded third party banner is determined by the plugin last executed. " />
+
+		<!-- sub path of image to load from third party content server -->
+		<property name="imagePrefix" value="static/image" />
+	</bean>
+
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="thirdPartyAdvertisements" />
+	</bean>
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="slowthirdPartyAdvertisements" />
+	</bean>
+
+</beans>
