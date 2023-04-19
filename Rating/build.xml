@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Rating" default="link">
+	<description>
+		Demo Application - PHP Rating Application
+	</description>
+	
+	<import file="../Distribution/ant-includes.xml" />
+	
+	<target name="link" depends="copyRatingApp">
+		<echo>Copying PHP</echo>
+		<copy todir="${dir.dist.php}">
+		    <fileset dir="${PHP_HOME}">
+		    	<exclude name="**/*.lib"/>
+		    </fileset>
+		</copy>
+		<echo>Copying MySQL</echo>
+		<copy todir="${dir.dist.mysql}">
+		    <fileset dir="${MYSQL_HOME}"/>
+		</copy>
+		<chmod dir="${dir.dist.mysql}" perm="ug+x" includes="Linux*/bin/*"/>
+	</target>
+	
+	<target name="copyRatingApp">
+		<echo>Copying Rating App</echo>
+		<copy todir="${dir.dist.rating}">
+		    <fileset dir="${dir.src}"/>
+		</copy>
+	</target>
+</project>

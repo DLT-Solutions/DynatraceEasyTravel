@@ -1,0 +1,301 @@
+<project name="Selenium Test Execution" default="runAllTestsOnce" basedir=".">
+	<description>
+		This Ant script demonstrates a simple CI Scenario with dynaTrace and Selenium.
+	</description>
+
+	<description>dynaTrace sample test script.</description>
+	<property file="./build.properties" />
+
+	<property name="dir.dist" value="." />
+	<property name="jar.name" value="com.dynatrace.easytravel.selenium" />
+	<property name="jar.location" location="${dir.dist}/${jar.name}.jar" />
+
+	<property name="dir.lib" value="../lib" />
+	<dirname property="dir.buildnumber" file="${test.build.number}"/>
+
+	<!-- import dynaTrace tasks -->
+	<property name="dtBaseDir" value="${dir.lib}/dynaTrace" />
+	<import file="${dtBaseDir}/dtTaskDefs.xml" />
+
+
+  <property name="visits.wait.time" value="5" /> <!-- in minutes -->
+
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+		<classpath>
+			<pathelement location="../lib/ant-contrib-0.6.jar"/>
+		</classpath>
+	</taskdef>
+
+	<path id="lib.selenium.test">
+		<fileset dir="${libraries.home}">
+			<include name="hamcrest*.jar"/>
+			<include name="junit*.jar"/>
+			<include name="commons-logging-*.jar"/>
+			<include name="selenium-*.jar"/>
+			<include name="commons-exec-*.jar"/>
+		</fileset>
+	</path>
+
+	<!-- all project jars needed by this project -->
+	<path id="required.projects">
+		<fileset dir="..">
+			<include name="com.dynatrace.easytravel.commons.jar" />
+		</fileset>
+	</path>
+
+	<property name="dynatrace.server.url" value="http://${dynatrace.server.name}}:${dynatrace.server.port}" />
+	<property name="dynatrace.profile" value="easyTravel" />
+	<property name="customerFrontendHost" value="localhost" />
+	<property name="customerFrontendPort" value="8080" />
+	<property name="b2bFrontendHost" value="localhost" />
+	<property name="b2bFrontendPort" value="9000" />
+	<property name="paymentBackendHost" value="localhost" />
+	<property name="paymentBackendPort" value="9010" />
+
+	<tstamp>
+		<format property="NOW_SEC" pattern="yyMMddHHmmss"/>
+	</tstamp>
+	
+	<condition property="isWindows">
+	        <os family="windows" />
+	</condition>
+
+	<!-- Prepares the test environment, runs the tests and creates a report -->
+	<target name="runAllTestsWithoutReports" >
+		<echo message="Waiting for Customer Frontend at ${customerFrontendHost}:${customerFrontendPort}..." level="info" />
+		<waitfor maxwait="60" maxwaitunit="second">
+			<socket server="${customerFrontendHost}" port="${customerFrontendPort}"/>
+		</waitfor>
+
+		<echo message="Waiting for Payment Backend at ${paymentBackendHost}:${paymentBackendPort}..." level="info" />
+		<waitfor maxwait="60" maxwaitunit="second">
+			<socket server="${paymentBackendHost}" port="${paymentBackendPort}"/>
+		</waitfor>
+
+		<echo message="Waiting for B2B Frontend at ${b2bFrontendHost}:${b2bFrontendPort}..." level="info" />
+		<waitfor maxwait="60" maxwaitunit="second">
+			<socket server="${b2bFrontendHost}" port="${b2bFrontendPort}"/>
+		</waitfor>
+
+		<!-- prepare environment -->
+		<runtarget target="DtStartTest" />
+
+		<!-- run tests -->
+		<runtarget target="runTestsWithDefaultBrowser" />
+		<runtarget target="runTestsWithAllBrowsers" />
+	</target>
+
+	<target name="waitUntilVisitsFinishedAndStopSessionRecording" >
+	    <echo message="Waiting ${visits.wait.time} [min] to allow visits to finish..." level="info" />
+		<sleep minutes="${visits.wait.time}"/>
+
+		<!-- stop recording -->
+		<runtarget target="stopDynaTraceSessionRecording" />
+	</target>
+
+	<!-- Prepares the test environment, runs the tests and creates a report -->
+	<target name="runAllTestsOnce" depends="cleanReport, init, dtStartSessionRecording, setHostNameAsServerName">
+		<antcall target="runAllTestsWithoutReports" />
+		<antcall target="stopDynaTraceSessionRecording" />
+		<!-- create test report -->
+		<antcall target="dtReport" />
+		<antcall target="generateHtmlReport" />
+	</target>
+
+	<!-- Prepares the test environment, runs the tests and creates a report -->
+	<target name="runAllTests" depends="cleanReport, init, dtStartSessionRecording, setHostNameAsServerName">
+       
+		<echo message="Running Selenium Tests: @{runid}" />
+		<antcall target="runAllTestsWithoutReports" />
+		<sleep seconds="30" />
+		
+		<antcall target="waitUntilVisitsFinishedAndStopSessionRecording" />
+		<!-- create test report -->
+		<antcall target="dtReport" />
+		<antcall target="generateHtmlReport" />
+	</target>
+
+	<!-- retrieves the name of localhost -->
+	<target name="setHostNameAsServerName">
+		<property environment="env"/>
+		<property name="env.HOSTNAME" value="${env.COMPUTERNAME}"/>
+		<echo message="hostname = ${env.HOSTNAME}" />
+	</target>
+
+	<!-- Cleans the report directory -->
+	<target name="cleanReport">
+		<delete dir="${test.report}" />
+		<mkdir dir="${test.report}" />
+	</target>
+
+	<!-- Cleans the temp directory -->
+	<target name="cleanTemp">
+		<delete dir="${test.temp}" />
+		<mkdir dir="${test.temp}" />
+	</target>
+
+	<!-- Creates a new build number                                                   -->
+	<target name="init">
+		<echo message="Calling dynaTrace REST services at ${dynatrace.server.url}, using system profile ${dynatrace.profile}" />
+		<mkdir dir="${dir.buildnumber}"/>
+		<buildnumber file="${test.build.number}"/>
+		<echo message="Using buildnumber: ${build.number}, stored in file: ${test.build.number}"/>
+		<echo message="Value of test.session.recording.skip property : ${test.session.recording.skip}"/>
+	</target>
+
+	<!-- Starts session recording on dynaTrace server with dynaTrace Ant integration  -->
+	<!-- A property named testrun.session will be set which contains the session name -->
+	<!-- Session recording will not be started if test.session.recording.skip property is set. -->
+	<target name="dtStartSessionRecording" unless="test.session.recording.skip">
+		<trycatch>
+			<try>
+				<DtStartRecording username="${dynatrace.server.user}" password="${dynatrace.server.pass}" serverurl="${dynatrace.server.url}" profilename="${dynatrace.profile}" sessionname="${dynatrace.profile}__BrowserTests_Build_${build.number}" description="Session recorded during dynaTrace selenium demo for Build ${build.number}" recordingoption="all" sessionnameproperty="testrun.session" appendtimestamp="false" />
+				<echo message="dynaTrace server (${dynatrace.server.name}) is now recording session: ${testrun.session}" />
+			</try>
+			<catch>
+				<echo message="Could not start session recording. ATTENTION: You can ignore this error message if continuous session recording is activated on the dynaTrace server." />
+			</catch>
+		</trycatch>
+	</target>
+
+	<!-- Stops session recording on dynaTrace server with dynaTrace Ant integration -->
+	<!-- Session recording will not be stopped if test.session.recording.skip property is set. -->
+	<target name="stopDynaTraceSessionRecording" unless="test.session.recording.skip">
+		<trycatch>
+			<try>
+				<DtStopRecording username="${dynatrace.server.user}" password="${dynatrace.server.pass}" serverurl="${dynatrace.server.url}" profilename="${dynatrace.profile}" />
+			</try>
+			<catch>
+				<echo message="Could not stop session recording. ATTENTION: You can ignore this error message if continuous session recording is activated on the dynaTrace server." />
+			</catch>
+		</trycatch>
+	</target>
+
+	<!-- Sends meta data about the test to the dynaTrace server via REST interface -->
+	<target name="DtStartTest">
+		<tstamp>
+			<format property="NOW_SEC" pattern="yyMMddHHmmss"/>
+		</tstamp>
+
+		<trycatch>
+			<try>
+				<DtStartTest versionMajor="${test.metadata.major}"
+					versionMinor="${test.metadata.minor}"
+					versionRevision="${test.metadata.revision}"
+					versionMilestone="${test.metadata.milestone}"
+					versionBuild="${build.number}"
+					marker="integrationMarker"
+					profilename="${dynatrace.profile}"
+					username="${dynatrace.server.user}" password="${dynatrace.server.pass}" serverurl="${dynatrace.server.url}"
+					category="uidriven" debug="true">
+				  	<customproperty key="testset" value="alltests" />
+					<customproperty key="subversion_id" value="${NOW_SEC}" />
+					<customproperty key="committer" value="hans, peter, martin" />
+				</DtStartTest>
+
+				<echo level="info" message="Set Test Information: subversion_id: ${NOW_SEC} with testrunID ''${dtTestrunID}''" />
+
+				<antcall target="writeBrowserPrefFile" />
+			</try>
+			<catch>
+				<echo message="Could not set test information. ATTENTION: You can ignore this error message if continuous session recording is activated on the dynaTrace server or the dynaTrace Server is not available." />
+			</catch>
+		</trycatch>
+	</target>
+
+	<!-- Use dynaTraceReport Ant task to export a dashlet with browser metrics -->
+	<target name="dtReport">
+		<!-- Generate the report -->
+		<DtReport username="${dynatrace.server.user}" password="${dynatrace.server.pass}" serverurl="${dynatrace.server.url}" dashboardname="${dynatrace.dashboard}" createhtml="false" xmltofile="${dynatrace.report}" source="stored:${testrun.session}" />
+	</target>
+
+	<!-- Runs all WebDriver tests (excluding the Extended Tests)-->
+	<target name="runTests" depends="cleanTemp">
+		<!-- First run Selenium Tests                -->
+		<!-- * All tests that end with *SeleniumTest -->
+		<echo level="info" message="Test Information: testrunID ''${dtTestrunID}''" />
+		<junit showoutput="true" fork="true" haltonerror="false" haltonfailure="false" printsummary="yes" tempdir="${test.temp}">
+
+			<formatter type="xml" />
+			<classpath>
+				<path refid="lib.selenium.test" />
+				<path refid="required.projects" />
+				<pathelement location="${jar.location}" />
+			</classpath>
+
+			<jvmarg value="-DtestRunId=${dtTestrunID}" />
+			<jvmarg value="-Ddefaultbrowser=${webdriver.browser.default}" />
+			<jvmarg value="-DenableTimerNames=true" />
+			<jvmarg value="-Dwebdriver.ie.driver=${webdriver.ie.driver}" />
+			<jvmarg value="-Dwebdriver.ff.driver.win=${webdriver.ff.driver.win}" />
+			<jvmarg value="-Dwebdriver.ff.driver.linux=${webdriver.ff.driver.linux}" />
+			<syspropertyset>
+				<propertyref prefix="dynatrace.server" />
+			</syspropertyset>
+			<sysproperty key="customerFrontendHost" value="${customerFrontendHost}" />
+			<sysproperty key="customerFrontendPort" value="${customerFrontendPort}" />
+			<sysproperty key="b2bFrontendHost" value="${b2bFrontendHost}" />
+			<sysproperty key="b2bFrontendPort" value="${b2bFrontendPort}" />
+			<batchtest todir="${test.report}" haltonerror="false" haltonfailure="false">
+				<zipfileset src="${jar.location}">
+					<include name="**/EasyTravelWebDriverExtendedTest.class" />
+					<include name="**/EasyTravelWebDriverTest.class" />
+					<include name="**/EasyTravelAdminWebDriverTest.class" if="isWindows"/>
+				</zipfileset>
+			</batchtest>
+		</junit>
+	</target>
+
+	<!-- Runs tests for the default browser -->
+	<target name="runTestsWithDefaultBrowser" unless="webdriver.runallbrowsers">
+		<!-- First run Tests for Default Browser -->
+		<echo message="Run with default browser" level="info" />
+		<antcall target="runTests">
+		</antcall>
+	</target>
+
+	<!-- Runs tests for all browsers -->
+	<target name="runTestsWithAllBrowsers" if="webdriver.runallbrowsers">
+		<!-- First run Tests for Internet Explorer -->
+		<echo message="Run with IE browser" level="info" />
+		<antcall target="runTests">
+			<param name="webdriver.browser.default" value="ie"/>
+		</antcall>
+
+		<!-- Then run Tests for Firefox -->
+		<echo message="Run with Firefox browser" level="info" />
+		<antcall target="runTests">
+			<param name="webdriver.browser.default" value="ff"/>
+		</antcall>
+	</target>
+
+	<!-- Generate a html report from JUnit xml results and dynaTrace xml report -->
+	<target name="generateHtmlReport">
+		<property environment="env"/>
+		<property name="servername" value="${env.HOSTNAME}" />
+		<!-- if server is different to localhost, use the following servername -->
+		<!-- <property name="servername" value="${dynatrace.server.name}" /> -->
+		<property name="dynatrace.report.absolute" location="${dynatrace.report}" />
+		<junitreport todir="${test.report}">
+			<fileset dir="${test.report}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report todir="${test.report}" format="frames" styledir="${test.report.xsl}">
+				<param name="dtReport" expression="${dynatrace.report.absolute}" />
+				<param name="dtSessionName" expression="${testrun.session}" />
+				<param name="dtServerUrl" expression="${dynatrace.server.url}" />
+				<param name="dtServerName" expression="${servername}" />
+				<param name="TITLE" expression="easyTravel Tests powered by dynaTrace" />
+			</report>
+		</junitreport>
+	</target>
+
+	<target name="writeBrowserPrefFile">
+		<delete file="${test.browserpref}" failonerror="false" />
+
+		<echo file="${test.browserpref}">DT_AGENTACTIVE true
+DT_TESTRUN_ID ${dtTestrunID}
+		</echo>
+	</target>
+
+</project>

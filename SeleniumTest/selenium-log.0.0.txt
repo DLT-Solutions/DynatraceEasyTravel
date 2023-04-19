@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2013-04-10T10:09:27</date>
+  <millis>1365581367231</millis>
+  <sequence>0</sequence>
+  <logger>org.apache.http.impl.client.DefaultHttpClient</logger>
+  <level>INFO</level>
+  <class>org.apache.http.impl.client.DefaultRequestDirector</class>
+  <method>tryExecute</method>
+  <thread>10</thread>
+  <message>I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed</message>
+</record>
+<record>
+  <date>2013-04-10T10:09:27</date>
+  <millis>1365581367237</millis>
+  <sequence>1</sequence>
+  <logger>org.apache.http.impl.client.DefaultHttpClient</logger>
+  <level>INFO</level>
+  <class>org.apache.http.impl.client.DefaultRequestDirector</class>
+  <method>tryExecute</method>
+  <thread>10</thread>
+  <message>Retrying request</message>
+</record>
+</log>
+10.04.2013 10:13:58 org.apache.http.impl.client.DefaultRequestDirector tryExecute
+INFO: I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+10.04.2013 10:13:58 org.apache.http.impl.client.DefaultRequestDirector tryExecute
+INFO: Retrying request

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Third Party Content Server" default="all">
+	<description>
+		Demo Application - Third Party Content Server
+	</description>
+
+	<import file="../Distribution/ant-includes.xml" />
+
+	<property name="jar.name" value="com.dynatrace.easytravel.thirdpartycontent.server" />
+	<property name="jar.location" location="${dir.dist}/${jar.name}.jar" />
+	
+	<property file="built.properties" />
+
+	<property name="dir.webapp" location="webapp" />
+	<property name="dist.webapp" location="${dir.dist}/thirdparty/webapp" />
+
+	
+	<!-- all lib jars needed by this project -->
+	<path id="required.libs">
+		<path refid="lib.commons" />
+		<path refid="lib.tomcat" />
+	</path>
+
+	<!-- all project jars needed by this project -->
+	<path id="required.projects">
+		<fileset dir="${dir.dist}">
+			<include name="${jar.name.commons}.jar"/>
+		</fileset>
+	</path>
+	
+	<!-- ================================= 
+          target: buildLibrary              
+         ================================= -->
+	<target name="all" depends="init, compile, link" unless="built" description="Diagnostics Agent">
+		<echo>Done</echo>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: init                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="init" depends="" unless="built">
+		<mkdir dir="${dir.build}" />
+		<mkdir dir="${dir.webapp}" />
+		<mkdir dir="${dist.webapp}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clean                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clean" depends="clearBuiltProperty" description="clean up">
+		<delete dir="${dir.build}" failonerror="no" />
+		<delete dir="build" />
+		<delete dir="${dir.thirdpartycontent.classes}" />		
+		<delete dir="${dist.webapp}" />
+		<delete dir="${dir.dist}/thirdparty" />
+		<delete failonerror="false">
+			<fileset dir="${dir.webapp}/WEB-INF/lib/">
+				<include name="*.jar"/>
+			</fileset>
+		</delete>
+		
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clearBuiltProperty                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clearBuiltProperty" description="update without build">
+		<delete file="built.properties" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: compile                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="compile" depends="init" unless="built">
+		<echo>Third Party Content</echo>
+
+		<ant dir="../commons-demo" inheritAll="false" />
+
+		<javac source="1.8" target="1.8" deprecation="no" nowarn="${compiler.nowarn}" destdir="${dir.build}" debug="true">
+			<src location="${dir.src}" />
+			<classpath>
+				<path refid="required.libs" />
+				<path refid="required.projects" />
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: link                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="link" depends="compile, copy-classes" unless="built">
+		
+		<copy toDir="${dist.webapp}">
+			<fileset dir="webapp" />
+		</copy>
+
+		<delete failonerror="no">
+			<fileset dir="${dir.dist}" includes="${jar.name}.jar" />
+		</delete>
+		
+		<createClasspathAttribute property="classpath" libs="required.libs" projects="required.projects" />
+				
+		<mkdir dir="${dir.build}/META-INF" />
+		<manifest file="${dir.build}/META-INF/MANIFEST.MF">
+			<attribute name="Built-By" value="${user.name}" />
+			<attribute name="Bundle-Vendor" value="${version.company}" />
+			<attribute name="Bundle-Version" value="${version}" />
+			<attribute name="Implementation-Version" value="${version}" />
+			
+			<attribute name="Main-Class" value="com.dynatrace.easytravel.thirdpartycontent.RunThirdPartyContentTomcat" />
+			<attribute name="Class-Path" value="${classpath}" />
+		</manifest>
+
+		<jar jarfile="${jar.location}" manifest="${dir.build}/META-INF/MANIFEST.MF">
+			<fileset dir="${dir.build}">
+				<include name="**" />
+			</fileset>
+		</jar>
+		
+		<copyLibToDistribution sourcepath="required.libs" />
+		
+		<echo file="built.properties" append="false">built</echo>
+	</target>
+
+	<target name="copy-classes" unless="built">
+		<!-- copy resulting classes into webapp -->
+		<copy toDir="${dir.thirdpartycontent.classes}">
+			<fileset dir="${dir.build}"/>
+		</copy>
+	</target>
+	
+	<target name="prepare-war" description="">
+		<path id="required.projects.libs">
+			<path refid="lib.commons" />
+			<path refid="lib.tomcat" />
+			<path refid="lib.spring" />
+			<path refid="lib.logging" />
+		</path>
+		<copyLibToWebAppLibDirectory sourcepath="required.projects.libs" webappdir="${dir.webapp}"/>
+		
+		<copy toDir="${dir.webapp}/WEB-INF/lib">
+			<fileset file="${dir.dist}/${jar.name.commons}.jar" />
+		</copy>
+		
+		<mkdir dir="${dir.webapp}/WEB-INF/classes" />
+		<copy toDir="${dir.webapp}/WEB-INF/classes">
+			<fileset file="../commons-demo/resources/easyTravel*.properties" />
+			<fileset dir="../com.dynatrace.easytravel.plugin.SlowImages\build\ant">
+				<include name="**/*.class"/>
+			</fileset>
+			<fileset file="../commons-demo/resources/logback.xml" />
+		</copy>
+		
+		<!-- add console appender to the root logger -->
+		<replace file="${dir.webapp}/WEB-INF/classes/logback.xml">
+			<replacetoken><![CDATA[<root level="warn"/>]]></replacetoken>
+			<replacevalue><![CDATA[<root level="warn"><appender-ref ref="CONSOLE" /></root>]]></replacevalue>
+		</replace>
+		<!-- restore config file from template -->					
+		<copy file="../commons-demo/resources/easyTravelWarConfig.properties.template" tofile="${dir.webapp}/WEB-INF/classes/easyTravelWarConfig.properties"/>			
+	</target>
+
+	<target name="war" description="" depends="prepare-war">
+		<war destfile="${dir.dist}/thirdparty/content.war">
+			<fileset dir="webapp" />
+		</war>
+		<!-- clean up -->
+		<delete file="${dir.webapp}/WEB-INF/classes/logback.xml" />
+		<delete file="${dir.webapp}/WEB-INF/classes/easyTravelWarConfig.properties" />
+	</target>
+	
+</project>

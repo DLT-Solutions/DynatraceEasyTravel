@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Plugin Service" default="all">
+	<description>
+		Demo Application - Plugin Service
+	</description>
+
+	<import file="../Distribution/ant-includes.xml" />
+
+	<property name="jar.name" value="${jar.name.pluginservice}" />
+	<property name="jar.location" location="${dir.dist}/${jar.name}.jar" />
+	
+	<property name="dir.webapp" location="webapp" />
+	
+	<!-- all lib jars needed by this project -->
+	<path id="required.libs">
+		<path refid="lib.commons" />
+		<path refid="lib.jersey" />
+		<path refid="lib.tomcat" />
+		<path refid="lib.jaxb" />
+		<path refid="lib.jax-ws" />
+	</path>
+
+	<!-- all project jars needed by this project -->
+	<path id="required.projects">
+		<fileset dir="${dir.dist}">
+			<include name="${jar.name.commons}.jar"/>
+		</fileset>
+	</path>
+
+	<!-- ================================= 
+          target: buildLibrary              
+         ================================= -->
+	<target name="all" depends="init, compile, link" unless="built" description="Plugin Service">
+		<echo>Done</echo>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: init                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="init" depends="" unless="built">
+		<mkdir dir="${dir.build}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clean                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clean" depends="clearBuiltProperty" description="clean up">
+		<delete dir="${dir.build}" failonerror="no" />
+		<delete dir="build" />
+
+		<delete dir="${dir.dist}/pluginservice" />
+		<delete failonerror="false" dir="${dir.webapp}" />
+
+		<ant dir="../commons-demo" inheritAll="false" target="clean" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clearBuiltProperty                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clearBuiltProperty" description="update without build">
+		<delete file="built.properties" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: compile                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="compile" depends="init" unless="built">
+		<echo>Plugin Service</echo>
+
+		<ant dir="../commons-demo" inheritAll="false" />
+
+		<javac source="1.8" target="1.8" deprecation="no" nowarn="${compiler.nowarn}" destdir="${dir.build}" debug="true">
+			<src location="${dir.src}" />
+			<classpath>
+				<path refid="required.libs"/>
+				<path refid="required.projects" />
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: link                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="link" depends="compile" unless="built">		
+		<delete failonerror="no">
+			<fileset dir="${dir.dist}" includes="${jar.name}.jar" />
+		</delete>
+		
+		<createClasspathAttribute property="classpath" libs="required.libs" projects="required.projects" />
+		
+		<mkdir dir="${dir.build}/META-INF" />
+		<manifest file="${dir.build}/META-INF/MANIFEST.MF">
+			<attribute name="Built-By" value="${user.name}" />
+			<attribute name="Bundle-Vendor" value="${version.company}" />
+			<attribute name="Bundle-Version" value="${version}" />
+			<attribute name="Implementation-Version" value="${version}" />
+
+			<attribute name="Main-Class" value="com.dynatrace.easytravel.plugins.PluginService" />
+			<attribute name="Class-Path" value="${classpath}" />
+		</manifest>
+
+		<jar jarfile="${jar.location}" manifest="${dir.build}/META-INF/MANIFEST.MF">
+			<fileset dir="${dir.build}">
+				<include name="**" />
+			</fileset>
+		</jar>
+
+		<copyLibToDistribution sourcepath="required.libs" />
+		
+		<echo file="built.properties" append="false">built</echo>
+	</target>
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: prepare-war                    
+         - - - - - - - - - - - - - - - - - -->
+	<target name="prepare-war" description="">
+		<mkdir dir="${dir.webapp}" />		
+		
+		<mkdir dir="${dir.webapp}/WEB-INF/classes" />
+		<copy toDir="${dir.webapp}/WEB-INF/classes">
+			<fileset dir="${dir.build}"/>
+		</copy>
+		
+		<!-- put our web.xml in place -->
+		<copy toDir="${dir.webapp}/WEB-INF">
+			<fileset dir="${dir.resources}/WEB-INF" />
+		</copy>
+				
+		<path id="required.projects.libs">
+			<path refid="lib.logging" />
+			<path refid="lib.mvel" />
+			<path refid="lib.jersey" />
+			<path refid="lib.jackson" />
+			<path refid="lib.guava" />
+			<path refid="lib.commons" />
+			<path refid="lib.httputils" />
+			<path refid="lib.jackson" />
+			<path refid="lib.jaxb" />
+			<path refid="lib.jax-ws" />
+		</path>
+		<copyLibToWebAppLibDirectory sourcepath="required.projects.libs" webappdir="${dir.webapp}"/>
+		
+		<copy toDir="${dir.webapp}/WEB-INF/lib">
+			<fileset file="${dir.dist}/${jar.name.commons}.jar" />
+		</copy>
+		
+		<mkdir dir="${dir.webapp}/WEB-INF/classes" />
+		<copy toDir="${dir.webapp}/WEB-INF/classes">
+			<fileset file="../commons-demo/resources/easyTravelConfig.properties" />
+			<fileset file="../commons-demo/resources/easyTravel.properties" />
+			<fileset file="../commons-demo/resources/logback.xml" />
+		</copy>
+		
+		<!-- add console appender to the root logger -->
+		<replace file="${dir.webapp}/WEB-INF/classes/logback.xml">
+			<replacetoken><![CDATA[<root level="warn"/>]]></replacetoken>
+			<replacevalue><![CDATA[<root level="warn"><appender-ref ref="CONSOLE" /></root>]]></replacevalue>
+		</replace>
+		<!-- restore config file from template -->
+		<copy file="../commons-demo/resources/easyTravelWarConfig.properties.template" tofile="${dir.webapp}/WEB-INF/classes/easyTravelWarConfig.properties"/>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: war                    
+         - - - - - - - - - - - - - - - - - -->
+	<target name="war" description="create war file" depends="prepare-war">
+		<war destfile="${dir.dist}/pluginservice/PluginService.war">
+			<fileset dir="webapp" />
+		</war>
+		<!-- clean up -->
+		<delete file="${dir.webapp}/WEB-INF/classes/easyTravelWarConfig.properties" />
+		<delete file="${dir.webapp}/WEB-INF/classes/logback.xml" />
+	</target>
+
+	<property name="deploy.dir" value="d:\\work\\apache-tomcat-7.0.39\\webapps"/>
+	<target name="deploy" depends="compile, war">
+		<delete file="${deploy.dir}\\PluginService.war" />
+		<copy file="${dir.dist}/pluginservice/pluginservice.war" tofile="${deploy.dir}\\PluginService.war" />
+	</target>
+</project>
