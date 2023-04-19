@@ -1,0 +1,81 @@
+worker_processes  1;
+daemon  off;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    access_log off;
+
+    include       "${nginxMimeTypes}/mime.types";
+    default_type  application/octet-stream;
+
+    access_log  "${nginxAccessLogPath}/nginx_access.log";
+
+    sendfile        on;
+
+    keepalive_timeout  65;
+
+    upstream frontendbalancer {
+        server ${nginxCustomerFrontendHostPort};
+    }
+
+    server {
+        listen       ${nginxWebServerPort};
+        server_name  ${nginxWebServerHost};
+
+        location / {
+            proxy_set_header X-Forwarded-Host $host;
+            proxy_pass http://frontendbalancer;
+        }
+
+        # add Content-Type header for the ICEfaces elements
+        # because the ICEfaces images requests for instance /icefaces/resource/LTQ5NzQyNzg3OA==/ has no Content-Type header
+
+        location /icefaces/resource/ {
+            proxy_set_header X-Forwarded-Host $host;
+            add_header Content-Type "image/jpeg";
+            proxy_pass http://frontendbalancer;
+        }
+
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            proxy_set_header X-Forwarded-Host $host;
+            root   html;
+        }
+    }
+	
+	upstream b2bbalancer {
+    # change the Customer Frontend server ip address for your environment
+        server ${nginxB2bHostPort};
+    }
+
+    server {
+        listen       ${nginxWebServerB2bPort};
+        server_name  ${nginxWebServerB2bHost};
+
+        location / {
+            proxy_pass http://b2bbalancer;
+        }
+    }
+    
+    upstream angularbalancer {
+    	server ${nginxAngularHostPort};
+    }
+    
+    server {
+        listen       ${nginxWebServerAngularPort};
+        server_name  ${nginxWebServerAngularHost};
+
+        location / {
+            proxy_pass http://angularbalancer;
+        }
+    }
+
+}
+
+error_log   "${nginxErrorLogPath}/nginx_error.log" error;
+pid        "${nginxPidFilePath}/nginx.pid";
+
+user nobody;

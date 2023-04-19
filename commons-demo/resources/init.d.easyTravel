@@ -1,0 +1,54 @@
+#!/bin/sh
+### easyTravel start/stop script for /etc/init.d/easyTravel
+#
+# Start/Stop easyTravel Web/Cmd Launcher and pass properties
+#
+# Copyright 2009 dynaTrace Software 
+# All rights reserved.
+# This software is provided under the  dynaTrace BSD License.
+# A copy of this license is available from dynaTrace Software.
+#
+#
+### BEGIN INIT INFO
+# Provides:
+# Required-Start: $network
+# Required-Stop: $network
+# X-UnitedLinux-Should-Start:
+# Default-Start: 3 5
+# Default-Stop: 0 1 2 6
+# Description: Start easyTravel
+### END INIT INFO
+
+ET_HOME="/opt/dynatrace/easytravel-2.0.0"
+ET_USERNAME=dynatrace
+
+##################################################
+# NOTE: Adjust the following to match your setup!! 
+##################################################
+DT_HOME=/opt/dynatrace/dynatrace-4.1.0
+dynaTraceServer=localhost
+
+case "$1" in
+'start')
+	# dynaTrace-only: set correct server-address for ws-agent
+	sed -i -e 's/Server [a-z0-9.-]*/Server '${dynaTraceServer}'/g' ${DT_HOME}/agent/conf/dtwsagent.ini
+	
+	# ruxit-only: set correct server-address for broker
+	#sed -i -e 's/Server [a-z0-9.-]*/Server '${dynaTraceServer}'/g' ${DT_HOME}/agent/conf/ruxbroker.ini
+
+	# use the following to map port 8094 to port 80 to make it accessible on machines on the internet 
+	#iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8094
+
+	# 
+	nohup su - $ET_USERNAME -c "cd $ET_HOME/;./startDistributed.sh" &
+    ;;
+'stop')
+	# trigger the REST interface for shutdown
+	curl http://localhost:1697/shutdown
+	
+	# todo: watch the pid and wait for it to actually stop?
+    ;;
+*)
+    echo "usage: $0 {start|stop}"
+    ;;
+esac

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job-scheduling-data xmlns="http://www.quartz-scheduler.org/xml/JobSchedulingData"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xsi:schemaLocation="http://www.quartz-scheduler.org/xml/JobSchedulingData http://www.quartz-scheduler.org/xml/job_scheduling_data_2_0.xsd"
+                     version="2.0">
+
+    <schedule>
+        <!-- Plugin start job definition -->
+        <job>
+            <name>LoginEnhancerStart</name>
+            <group>PluginJob</group>
+            <description>Login Enhancer - plugin start job</description>
+            <job-class>com.dynatrace.easytravel.pluginscheduler.PluginJob</job-class>
+            <durability>true</durability>
+            <recover>false</recover>
+            <job-data-map>
+                <entry>
+                    <key>pluginName</key>
+                    <value>LoginEnhancer</value>
+                </entry>
+                <entry>
+                    <key>pluginAction</key>
+                    <value>start</value>
+                </entry>
+            </job-data-map>
+        </job>
+
+        <!-- Plugin stop job definition -->
+        <job>
+            <name>LoginEnhancerStop</name>
+            <group>PluginJob</group>
+            <description>Login Enhancer - plugin stop job</description>
+            <job-class>com.dynatrace.easytravel.pluginscheduler.PluginJob</job-class>
+            <durability>true</durability>
+            <recover>false</recover>
+            <job-data-map>
+                <entry>
+                    <key>pluginName</key>
+                    <value>LoginEnhancer</value>
+                </entry>
+                <entry>
+                    <key>pluginAction</key>
+                    <value>stop</value>
+                </entry>
+            </job-data-map>
+        </job>
+
+        <!-- Trigger definition. It contains chainJob parameters -->
+        <trigger>
+            <cron>
+                <name>LoginEnhancerTrigger</name>
+                <job-name>LoginEnhancerStart</job-name>
+                <job-group>PluginJob</job-group>
+                <job-data-map>
+                    <entry>
+                        <!-- name of the job that should be executed after this job -->
+                        <key>chainJobName</key>
+                        <value>LoginEnhancerStop</value>
+                    </entry>
+                    <entry>
+                        <!-- name of the job group that should be executed after this job -->
+                        <key>chainJobGroup</key>
+                        <value>PluginJob</value>
+                    </entry>
+                    <entry>
+                        <!-- Delay of the chain job, in seconds -->
+                        <key>chainJobDelay</key>
+                        <value>20</value>
+                    </entry>
+                </job-data-map>
+                <!-- It will run every 1 minutes-->
+                <cron-expression>0 0/1 * * * ?</cron-expression>
+            </cron>
+        </trigger>
+    </schedule>
+</job-scheduling-data>
