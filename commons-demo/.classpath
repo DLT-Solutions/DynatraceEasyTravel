@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.beans-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.core-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.web-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.context-3.0.5.RELEASE.jar" sourcepath="C:/devtools/sources/spring/org.springframework.context-sources-3.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Codehaus/MVEL/mvel2-2.0.19.jar"/>
+	<classpathentry kind="lib" path="resources"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-coyote.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jersey/jersey-client-1.19.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jersey/jersey-core-1.19.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jersey/jersey-server-1.19.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jersey/jsr311-api-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-lang3-3.3.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Google/Guava/guava-23.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-classic-1.2.3.jar" sourcepath="/ThirdPartyLibraries/Logging/logback-classic-1.2.3-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-core-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/jul-to-slf4j-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-jackson-0.1.5.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-json-classic-0.1.5.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-json-core-0.1.5.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Artemis/artemis-commons-2.6.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Artemis/artemis-core-client-2.6.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Artemis/artemis-jdbc-store-2.6.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Artemis/artemis-jms-client-2.6.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Artemis/artemis-jms-server-2.6.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Artemis/artemis-journal-2.6.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Artemis/artemis-native-2.6.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Artemis/artemis-selector-2.6.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Artemis/artemis-server-2.6.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Artemis/artemis-service-extensions-2.6.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Artemis/geronimo-jms_2.0_spec-1.0-alpha-2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Artemis/geronimo-json_1.0_spec-1.0-alpha-1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Artemis/geronimo-jta_1.1_spec-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Artemis/jboss-logging-3.3.1.Final.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Artemis/jgroups-3.6.13.Final.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Artemis/johnzon-core-0.9.5.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-beanutils-1.9.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Netty/netty-all-4.1.56.Final.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-juli.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-httpclient-3.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-logging-1.2.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-logging-1.2-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Metrics/metrics-core-4.0.7.jar" sourcepath="/ThirdPartyLibraries/Metrics/metrics-core-4.0.7-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Metrics/metrics-jvm-4.0.7.jar" sourcepath="/ThirdPartyLibraries/Metrics/metrics-jvm-4.0.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Metrics/metrics-servlets-4.0.7.jar" sourcepath="/ThirdPartyLibraries/Metrics/metrics-servlets-4.0.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jackson/jackson-annotations-2.9.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jackson/jackson-core-2.9.9.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jackson/jackson-databind-2.9.9.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/HttpUtils/httpclient-4.5.10.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/HttpUtils/httpcore-4.4.12.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/HttpUtils/httpmime-4.5.10.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
