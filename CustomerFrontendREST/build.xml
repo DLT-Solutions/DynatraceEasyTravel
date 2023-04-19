@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Customer Frontend REST" default="all">
+	<description>
+		Demo Application - Customer Frontend REST Service
+	</description>
+
+	<import file="../Distribution/ant-includes.xml" />
+
+	<property name="jar.name" value="com.dynatrace.easytravel.customer.frontend.rest" />
+	<property name="jar.location" location="${dir.dist}/${jar.name}.jar" />
+	<property name="dir.customer.frontend.lib.classes" location="../CustomerFrontendLib/build/ant" />
+
+	<property file="built.properties" />
+
+	<property name="dir.webapp" location="webapp" />
+	<property name="dist.webapp" location="${dir.dist}/angular/webapp" />
+
+	<!-- all lib jars needed by this project -->
+	<path id="required.libs">
+		<path refid="lib.commons" />
+		<path refid="lib.tomcat" />
+		<path refid="lib.spring" />
+		<path refid="lib.jersey" />
+		<path refid="lib.jackson" />
+	</path>
+
+	<!-- all project jars needed by this project -->
+	<path id="required.projects">
+		<fileset dir="${dir.dist}">
+			<include name="${jar.name.commons}.jar"/>
+			<include name="${jar.name.customer.client}.jar"/>
+		</fileset>
+	</path>
+
+	<!-- =================================
+          target: buildLibrary
+         ================================= -->
+	<target name="all" depends="init, compile, link" unless="built" description="Diagnostics Agent">
+		<echo>Done</echo>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+	          target: init
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="init" depends="" unless="built">
+		<mkdir dir="${dir.build}" />
+		<mkdir dir="${dir.webapp}" />
+		<mkdir dir="${dist.webapp}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+	          target: clean
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clean" depends="clearBuiltProperty" description="clean up">
+		<delete dir="${dir.build}" failonerror="no" />
+		<delete dir="build" />
+		<delete dir="${dist.webapp}" />
+		<delete dir="${dir.dist}/angular" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+	          target: clearBuiltProperty
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clearBuiltProperty" description="update without build">
+		<delete file="built.properties" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+          target: compile
+         - - - - - - - - - - - - - - - - - -->
+	<target name="compile" depends="init" unless="built">
+		<echo>Customer Frontend REST</echo>
+
+		<ant dir="../commons-demo" inheritAll="false" />
+		<ant dir="../CustomerFrontendLib" inheritAll="false" />
+		<ant dir="../CustomerClient" inheritAll="false" />
+
+		<javac source="1.8" target="1.8" deprecation="no" nowarn="${compiler.nowarn}" destdir="${dir.build}" debug="true">
+			<src location="${dir.src}" />
+			<classpath>
+				<path refid="required.libs" />
+				<path refid="required.projects" />
+				<path path="${dir.customer.frontend.lib.classes}"/>
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+          target: link
+         - - - - - - - - - - - - - - - - - -->
+	<target name="link" depends="compile" unless="built">
+		<copy toDir="${dist.webapp}">
+			<fileset dir="webapp" />
+		</copy>
+
+		<delete failonerror="no">
+			<fileset dir="${dir.dist}" includes="${jar.name}.jar" />
+		</delete>
+
+		<createClasspathAttribute property="classpath" libs="required.libs" projects="required.projects" />
+
+		<mkdir dir="${dir.build}/META-INF" />
+		<manifest file="${dir.build}/META-INF/MANIFEST.MF">
+			<attribute name="Built-By" value="${user.name}" />
+			<attribute name="Bundle-Vendor" value="${version.company}" />
+			<attribute name="Bundle-Version" value="${version}" />
+			<attribute name="Implementation-Version" value="${version}" />
+
+			<attribute name="Main-Class" value="com.dynatrace.easytravel.rest.tomcat.RunFrontendRESTTomcat" />
+			<attribute name="Plugin-Path" value="../plugins-frontend ../plugins-shared" />
+			<attribute name="Class-Path" value="${classpath}" />
+		</manifest>
+
+		<jar jarfile="${jar.location}" manifest="${dir.build}/META-INF/MANIFEST.MF">
+			<fileset dir="${dir.build}">
+				<include name="**" />
+			</fileset>
+			<fileset dir="${dir.customer.frontend.lib.classes}">
+				<include name="**/User.class"/>
+				<include name="**/CustomerFrontendUtil.class"/>
+				<include name="**/RequestProxy.class"/>
+				<include name="**/ShutdownListener.class"/>
+				<include name="**/FrontendTomcatStarter.class"/>
+				<include name="**/InvalidTravellerCostItemException.class"/>
+				<include name="**/JourneyBean.class"/>
+			</fileset>
+		</jar>
+
+		<copyLibToDistribution sourcepath="required.libs" />
+
+		<echo file="built.properties" append="false">built</echo>
+	</target>
+	
+	<target name="prepare-war" description="">
+		<path id="required.projects.libs">
+			<path refid="lib.spring" />
+			<!-- commons demo -->
+			<path refid="lib.commons" />
+			<path refid="lib.guava" />
+			<path refid="lib.jersey" />
+			<path refid="lib.mvel" />
+			<path refid="lib.metrics" />
+			<path refid="lib.jackson" />
+			<!-- customer client -->
+			<path refid="lib.axis2.client" />
+			<path refid="lib.jaxb" />
+			<path refid="lib.httputils" />
+			<path refid="lib.json" />
+			<!-- logging -->
+			<path refid="lib.logging" />
+		</path>
+		<copyLibToWebAppLibDirectory sourcepath="required.projects.libs" webappdir="${dir.webapp}"/>
+
+		<copy toDir="${dir.webapp}/WEB-INF/lib">
+			<fileset file="${dir.dist}/${jar.name.webservice.client}.jar" />
+			<fileset file="${dir.dist}/${jar.name.customer.client}.jar" />
+			<fileset file="${dir.dist}/${jar.name.commons}.jar" />
+			<fileset file="${dir.dist}/com.dynatrace.easytravel.customer.frontend.rest.jar" />
+		</copy>
+
+
+		<mkdir dir="${dir.webapp}/WEB-INF/classes" />
+		<copy toDir="${dir.webapp}/WEB-INF/classes">
+			<fileset file="../commons-demo/resources/easyTravel*.properties" />
+			<fileset file="../commons-demo/resources/logback.xml" />
+		</copy>
+		
+		<copy toDir="${dir.webapp}">
+			<fileset dir="../easytravel-angular/last-build" />
+		</copy>
+			
+		<!-- add console appender to the root logger -->
+		<replace file="${dir.webapp}/WEB-INF/classes/logback.xml">
+			<replacetoken><![CDATA[<root level="warn"/>]]></replacetoken>
+			<replacevalue><![CDATA[<root level="warn"><appender-ref ref="CONSOLE" /></root>]]></replacevalue>
+		</replace>	
+		<!-- restore config file from template -->
+		<copy file="../commons-demo/resources/easyTravelWarConfig.properties.template" tofile="${dir.webapp}/WEB-INF/classes/easyTravelWarConfig.properties"/>
+		
+	</target>
+
+	<target name="war" description="" depends="prepare-war">
+		<war destfile="${dir.dist}/angular/angularFrontend.war">
+			<fileset dir="webapp" />
+		</war>
+		<!-- clean up -->
+		<delete file="${dir.webapp}/WEB-INF/classes/easyTravelWarConfig.properties" />
+		<delete file="${dir.webapp}/WEB-INF/classes/logback.xml" />
+	</target>
+
+</project>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Customer Frontend Lib" default="all">
+	<description>
+		Demo Application - Customer Frontend Library
+	</description>
+
+	<import file="../Distribution/ant-includes.xml" />
+
+	<property file="built.properties" />
+
+	<!-- all lib jars needed by this project -->
+	<path id="required.libs">
+		<!-- note: these libs are not copied over here, this is done as part of the CustomerFrontend project -->		
+		<path refid="lib.commons" />
+		<path refid="lib.guava" />
+		<path refid="lib.jsf-api" />
+		<path refid="lib.icefaces" />
+		<path refid="lib.json" />
+	</path>
+
+	<!-- all project jars needed by this project -->
+	<path id="required.projects">
+		<fileset dir="${dir.dist}">
+			<include name="${jar.name.commons}.jar"/>
+			<include name="${jar.name.customer.client}.jar"/>
+			<include name="${jar.name.couchdb.common}.jar"/>
+		</fileset>
+	</path>
+	
+	<property name="dir.customer.classes" location="../CustomerFrontend/webapp/WEB-INF/classes" />
+
+	<!-- ================================= 
+          target: buildLibrary              
+         ================================= -->
+	<target name="all" depends="init, compile, copy-classes" unless="built" description="Diagnostics Agent">
+		<echo>Done</echo>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: init                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="init" depends="" unless="built">
+		<mkdir dir="${dir.build}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clean                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clean" depends="clearBuiltProperty" description="clean up">
+		<delete dir="${dir.build}" failonerror="no" />
+
+		<ant dir="../commons-demo" inheritAll="false" target="clean" />
+		<ant dir="../BusinessWebserviceClient" inheritAll="false" target="clean" />
+		<ant dir="../CustomerClient" inheritAll="false" target="clean" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clearBuiltProperty                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clearBuiltProperty" description="update without build">
+		<delete file="built.properties" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: compile                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="compile" depends="init" unless="built">
+		<echo>Customer Frontend Lib</echo>
+
+		<ant dir="../commons-demo" inheritAll="false" />
+		<ant dir="../BusinessWebserviceClient" inheritAll="false" />
+		<ant dir="../CustomerClient" inheritAll="false" />
+
+		<javac source="1.8" target="1.8" deprecation="no" nowarn="${compiler.nowarn}" destdir="${dir.build}" debug="true">
+			<src location="${dir.src}" />
+			<classpath>
+				<path refid="required.libs" />
+				<path refid="required.projects" />
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: link                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="copy-classes" unless="built">
+		<!-- copy resulting classes into webapp -->
+		<copy toDir="${dir.customer.classes}">
+			<fileset dir="${dir.build}"/>
+		</copy>
+	</target>
+</project>
