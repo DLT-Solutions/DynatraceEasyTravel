@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Blog" default="copyWpBlogApp">
+	<description>
+		Demo Application - PHP WpBlog Application
+	</description>
+	
+	<import file="../Distribution/ant-includes.xml" />
+	
+	<target name="copyWpBlogApp">
+		<echo>Copying BLog App</echo>
+		<mkdir dir="${dir.src}"/>
+		<copy todir="${dir.dist.wpblog}">
+		    <fileset dir="${dir.src}">
+		    	<exclude name="**/journeys.csv"/>
+			</fileset>
+		</copy>
+	</target>
+</project>

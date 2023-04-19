@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Tests that are executed to show CI as part of easyTravel demo application" default="runWebApiTestsWithSession">
+	<description>
+		Tests that are executed to show CI as part of easyTravel demo application
+	</description>
+
+	<property file="./build.properties" />
+	<property name="dir.build" value="build/ant"/>
+
+    <!-- set this here or via system properties when starting ant!
+    Sample content:
+	-agentpath:C:\Program Files (x86)\dynaTrace\dynaTrace 4.0.0\agent\lib\dtagent.dll=name=Ant_easyTravel,server=localhost,wait=5
+	-->
+	<property name="dtagent" value="" />
+
+	<condition property="report" value="${test.report}" else="report">
+		<isset property="test.report" />
+	</condition>
+
+	<!-- all lib jars needed by this project -->
+	<path id="required.libs">
+		<pathelement location="../lib/*"/>
+	</path>
+
+	<!-- all project jars needed by this project -->
+	<path id="required.projects">
+		<fileset dir="..">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="../plugins-frontend"> <!--also include the frontend plugins -->
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="../plugins-backend"> <!--also include the frontend plugins -->
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="../plugins-shared"> <!--also include the shared plugins -->
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	<path id="path.additional">
+		<path location="../resources" />
+	</path>
+
+	<dirname property="dir.buildnumber" file="${test.build.number}"/>
+
+	<!-- Setting defaults for Test Automation -->
+	<property name="dtVersionMajor" value="2" />
+	<property name="dtVersionMinor" value="3" />
+	<property name="dtVersionRevision" value="0" />
+	<property name="dtVersionMilestone" value="Milestone 2" />
+
+	<tstamp>
+		<format property="NOW_SEC" pattern="yyMMddHHmmss"/>
+	</tstamp>
+
+	<property name="dtAgentGroup" value="Test" />
+	<property name="dtTestCategory" value="unit" />
+	<!-- <property name="dtPlatform" value="Windows" /> -->
+
+	<property name="dynatrace.profile" value="easyTravel" />
+	<property name="dynatrace.server.proto" value="http" />
+	<property name="dynatrace.server.url" value="${dynatrace.server.proto}://${dynatrace.server.name}:${dynatrace.server.port}" />
+	<property name="dtProfile" value="${dynatrace.profile}" />
+	<property name="customerFrontendHost" value="localhost" />
+	<property name="customerFrontendPort" value="8080" />
+	<property name="paymentBackendHost" value="localhost" />
+	<property name="paymentBackendPort" value="9001" />
+
+    <!-- Import the dynaTrace Automation Tasks -->
+	<property name="dtBaseDir" value="../lib/dynaTrace" />
+	<import file="${dtBaseDir}/dtTaskDefs.xml"/>
+
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+	  <classpath>
+	    <pathelement location="../lib/ant-contrib-0.6.jar"/>
+	  </classpath>
+	</taskdef>
+
+	<!-- =================================
+          target: buildLibrary
+         ================================= -->
+
+	<!-- Prepares the test environment, runs the tests and creates a report -->
+	<target name="runWebApiTestsWithSession" depends="init,StartRecording,WebApiTests,StopRecording">
+	</target>
+	<target name="runWebApiTestsWithoutSession" depends="init,WebApiTests">
+	</target>
+	<!-- - - - - - - - - - - - - - - - - -
+	          target: init
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="init" depends="">
+		<echo message="Calling dynaTrace REST services at ${dynatrace.server.url}, using system profile ${dynatrace.profile}" />
+		<echo message="Customer Frontend at ${customerFrontendHost}:${customerFrontendPort}" />
+		<echo message="Payment Backend at ${paymentBackendHost}:${paymentBackendPort}" />
+
+		<mkdir dir="${dir.buildnumber}"/>
+		<buildnumber file="${test.build.number}"/>
+		<echo message="Using buildnumber: ${build.number}, stored in file: ${test.build.number}"/>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+	          target: clean
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clean" depends="" description="clean up">
+		<delete dir="report" />
+	</target>
+
+	<!-- Start Recording a new dynaTrace Session
+		The actual session name will be stored in the Ant Property "SessionName" which can later be used as input for other tasks, e.g.: ReanalyzeSession
+	-->
+	<target name="StartRecording" depends="init">
+		<trycatch>
+			<try>
+				<DtStartRecording username="${dynatrace.server.user}"
+				password="${dynatrace.server.pass}"
+				serverurl="${dynatrace.server.url}"
+				profileName="${dynatrace.profile}"
+				sessionNameProperty="SessionName"
+				sessionName="${dynatrace.profile}__WebAPITests_Build_${build.number}"
+				sessionDescription="This Session is triggered by an Ant Task"  />
+        		<echo message="Start Recording SessionName: ${SessionName}" level="info" />
+			</try>
+			<catch>
+				<echo message="Could not start session recording. ATTENTION: You can ignore this error message if continuous session recording is activated on the dynaTrace server." level="info"/>
+			</catch>
+		</trycatch>
+	</target>
+
+	<!-- Stops current recording
+	The actual session name will be stored in the Ant Property "SessionName" which can later be used as input for other tasks, e.g.: ReanalyzeSession
+	-->
+	<target name="StopRecording">
+		<trycatch>
+			<try>
+				<!-- The sleep is in there so that you can manually create some purepaths in the meantime that end up in the session -->
+				<sleep seconds="10"/>
+
+				<DtStopRecording
+				username="${dynatrace.server.user}"
+				password="${dynatrace.server.pass}"
+				serverurl="${dynatrace.server.url}"
+				profileName="${dynatrace.profile}"
+				sessionNameProperty="SessionName" />
+				<echo message="Stopped Recording SessionName: ${SessionName}" />
+			</try>
+			<catch>
+				<echo message="Could not stop session recording. ATTENTION: You can ignore this error message if continuous session recording is activated on the dynaTrace server." />
+			</catch>
+		</trycatch>
+    </target>
+
+
+ <!-- WebAPI tests -->
+			<!-- Run WebApiTests - also requires the Test Run Id   -->
+
+				<target name="WebApiTests" depends="init">
+					<mkdir dir="${report}"/>
+
+					<!--  DtStartTest - add parameter "platform="${dtPlatform}"" id needed-->
+					<DtStartTest
+							versionMajor="${dtVersionMajor}"
+							versionMinor="${dtVersionMinor}"
+							versionRevision="${dtVersionRevision}"
+							versionMilestone="${dtVersionMilestone}"
+							versionBuild="${build.number}"
+							profilename="${dynatrace.profile}"
+							username="${dynatrace.server.user}" password="${dynatrace.server.pass}" serverurl="${dynatrace.server.url}"
+							category="webAPI" testrunname="TestRun1" >
+						<customproperty key="testset" value="alltests" />
+						<customproperty key="subversion_id" value="${NOW_SEC}" />
+						<customproperty key="committer" value="hans, peter, martin" />
+					</DtStartTest>
+
+					<echo message=">> Test1_SearchJourney >>"/>
+					 <java classname="com.dynatrace.easytravel.webapi.WebAPITest">
+					 	<arg value="Test1_SearchJourney" /> <!--TN-->
+					 	<arg value="200" /> <!--RC-->
+					 	<arg value="http://${customerFrontendHost}:${customerFrontendPort}/services/JourneyService/findJourneys?destination=New%20York&amp;fromDate=1406282400000&amp;toDate=1437818400000" /> <!--url-->
+						 <arg value="${dtTestrunID}" />
+					 	<classpath>
+							<pathelement location="../webapi/com.dynatrace.easytravel.webapi.jar"/>
+					     </classpath>
+					 </java>
+
+					<echo message=">> Test2_SearchFail >>"/>
+					 <java classname="com.dynatrace.easytravel.webapi.WebAPITest">
+					 	<arg value="Test2_SearchFail" /> <!--TN-->
+					 	<arg value="500" /> <!--RC-->
+					 	<arg value="http://${customerFrontendHost}:${customerFrontendPort}/services/JourneyService/findJourneys?destination=New%20York&amp;fromDate=1406282400000&amp;toDate=" /> <!--url-->
+						 <arg value="${dtTestrunID}" />
+					 	 <classpath>
+							<pathelement location="../webapi/com.dynatrace.easytravel.webapi.jar"/>
+					     </classpath>
+					 </java>
+
+				   <echo message=">> Test3_StartPage >>"/>
+					<java classname="com.dynatrace.easytravel.webapi.WebAPITest">
+					 	<arg value="Test3_StartPage" /> <!--TN-->
+					 	<arg value="200" /> <!--RC-->
+					 	<arg value="http://${customerFrontendHost}:${customerFrontendPort}/orange.jsf" /> <!--url-->
+						<arg value="${dtTestrunID}" />
+						  <classpath>
+						    <pathelement location="../webapi/com.dynatrace.easytravel.webapi.jar"/>
+						  </classpath>
+					</java>
+
+				   <echo message=">> Test4_JourneyVisit >>"/>
+					<java classname="com.dynatrace.easytravel.webapi.WebAPITest">
+					 	<arg value="Test4_JourneyVisit" /> <!--TN-->
+					 	<arg value="200" /> <!--RC-->
+					 	<arg value="http://${customerFrontendHost}:${customerFrontendPort}/orange-trip-details.jsf?journeyId=877" /> <!--url-->
+						<arg value="${dtTestrunID}" />
+						  <classpath>
+						  	<pathelement location="../webapi/com.dynatrace.easytravel.webapi.jar"/>
+						  </classpath>
+					</java>
+				</target>
+
+</project>

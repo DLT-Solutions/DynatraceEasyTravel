@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Web Launcher" default="all">
+	<description>
+		Demo Application - Web Launcher Project using Eclipse RAP
+	</description>
+
+	<import file="../Distribution/ant-includes.xml" />
+
+	<property name="jar.name" value="${jar.name.weblauncher}" />
+	<property name="jar.location" location="${dir.dist}/${jar.name}.jar" />
+
+	<property name="dir.webapp" location="webapp" />
+	<property name="dist.weblauncher" location="${dir.dist}/weblauncher" />
+	<property name="dist.webapp" location="${dist.weblauncher}/webapp" />
+	<property name="dist.webapplib" location="${dist.webapp}/WEB-INF/lib" />
+
+	<!-- all lib jars needed by this project -->
+	<path id="required.libs">
+		<path refid="lib.commons" />
+		<path refid="lib.hibernate" />
+		<path refid="lib.tomcat" />
+		<path refid="lib.rap" />
+		<path refid="lib.metrics" />
+	</path>
+
+	<!-- all project jars needed by this project -->
+	<path id="required.projects">
+		<fileset dir="${dir.dist}">
+			<include name="${jar.name.commons}.jar" />
+			<include name="${jar.name.database}.jar" />
+			<include name="${jar.name.launcher}.jar" />
+		</fileset>
+	</path>
+
+	<!-- ================================= 
+          target: buildLibrary              
+         ================================= -->
+	<target name="all" depends="init, compile, link" unless="built" description="Diagnostics Agent">
+		<echo>Done</echo>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: init                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="init" depends="" unless="built">
+		<mkdir dir="${dir.build}" />
+		<mkdir dir="${dir.webapp}" />
+        <mkdir dir="${dist.webapp}" />
+        <mkdir dir="${dist.webapplib}" />
+    </target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clean                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clean" depends="clearBuiltProperty" description="clean up">
+		<delete dir="${dir.build}" failonerror="no" />
+		<delete dir="build" />
+
+		<!-- AXIS app which is built from scratch and put in place -->
+		<delete dir="${dist.webapp}" />
+		<delete dir="${dir.dist}/weblauncher" />
+		<delete file="${dir.dist}/${jar.name}.jar" />
+
+		<ant dir="../commons-demo" inheritAll="false" target="clean" />
+		<ant dir="../DatabaseLayer" inheritAll="false" target="clean" />
+		<ant dir="../Launcher" inheritAll="false" target="clean" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clearBuiltProperty                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clearBuiltProperty" description="update without build">
+		<delete file="built.properties" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: compile                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="compile" depends="init" unless="built">
+		<echo>Web Launcher</echo>
+
+		<ant dir="../commons-demo" inheritAll="false" />
+		<ant dir="../DatabaseLayer" inheritAll="false" />
+		<ant dir="../Launcher" inheritAll="false" />
+		
+		<javac source="1.8" target="1.8" deprecation="no" nowarn="${compiler.nowarn}" destdir="${dir.build}" debug="true">
+			<src location="${dir.src}" />
+			<classpath>
+				<path refid="required.libs" />
+				<path refid="required.projects" />
+				<!--path path="${dir.dist}/${jar.name.launcher}.jar" /-->
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: link                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="link" depends="compile" unless="built">
+		<echo message="Copying webapp in place" />
+
+		<!-- copy webapp itself -->
+		<copy toDir="${dist.webapp}">
+			<fileset dir="webapp" />
+		</copy>
+
+		<!-- copy start scripts for testing -->
+		<copy toDir="${dist.weblauncher}">
+			<fileset file="weblauncher.sh"/>
+			<fileset file="weblauncher.cmd"/>
+		</copy>
+
+        <copy todir="${dist.webapplib}">
+            <fileset file="${JSTL_HOME}/jstl*.jar" />
+        </copy>
+
+		<chmod dir="${dist.weblauncher}" perm="a+x" includes="*.sh"/>
+
+		<delete failonerror="no">
+			<fileset dir="${dir.dist}" includes="${jar.name}.jar" />
+		</delete>
+
+		<createClasspathAttribute property="classpath" libs="required.libs" projects="required.projects" />
+
+		<!-- create additional lib classpath because we need to ensure that RAP libraries are listed 
+		before SWT libraries which are included via the standard Launcher jar -->
+		<pathconvert property="rap.classpath" pathsep=" " dirsep="/">
+			<path refid="lib.rap" />
+			<chainedmapper>
+				<!-- remove prepending directories -->
+				<flattenmapper />
+				<!-- prepend main lib directory -->
+				<globmapper from="*" to="${dir.lib}/*" />
+			</chainedmapper>
+		</pathconvert>
+		
+		<mkdir dir="${dir.build}/META-INF" />
+		<manifest file="${dir.build}/META-INF/MANIFEST.MF">
+			<attribute name="Built-By" value="${user.name}" />
+			<attribute name="Bundle-Vendor" value="${version.company}" />
+			<attribute name="Bundle-Version" value="${version}" />
+			<attribute name="Implementation-Version" value="${version}" />
+
+			<attribute name="Main-Class" value="com.dynatrace.easytravel.weblauncher.RunLauncherTomcat" />
+			<!--attribute name="Plugin-Path" value="../plugins-backend ../plugins-shared" /-->
+			<attribute name="Class-Path" value="${rap.classpath} ${classpath}" />
+		</manifest>
+
+		<jar jarfile="${jar.location}" manifest="${dir.build}/META-INF/MANIFEST.MF">
+			<fileset dir="${dir.build}">
+				<include name="**" />
+			</fileset>
+			<!--fileset dir="${dir.resources}">
+				<include name="**" />
+				<exclude name="commons-logging.properties" />
+				<exclude name="logging.properties" />
+
+				< do not include these in the jar-file, rather load them from the plugin-classpath above
+				in order to have them outside of the jar-file to give people easier access to them >
+				<exclude name="**/spring/**" />
+				<exclude name="**/web.xml" />
+			</fileset-->
+		</jar>
+
+		<copyLibToDistribution sourcepath="required.libs" />
+
+		<echo file="built.properties" append="false">built</echo>
+	</target>
+</project>

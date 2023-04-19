@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="WebApi Tests" default="all">
+	<description>
+		Demo Application - WebApi Tests
+	</description>
+
+	<import file="../Distribution/ant-includes.xml" />
+
+	<property name="dir.dist.webapi" value="${dir.dist}/webapi" />
+
+	<property name="jar.name" value="com.dynatrace.easytravel.webapi" />
+	<property name="jar.location" location="${dir.dist.webapi}/${jar.name}.jar" />
+
+	<!-- all lib jars needed by this project -->
+	<path id="required.libs">
+		<path refid="lib.commons" />
+		<path refid="lib.ant" />
+		<path refid="lib.httputils" />
+		<path refid="lib.adk" />
+	</path>
+
+		<!-- all project jars needed by this project -->
+	<path id="required.projects">
+	</path>
+
+	<!-- =================================
+	          target: buildLibrary
+	         ================================= -->
+	<target name="all" depends="init, compile, link" unless="built" description="WebAPI Tests">
+		<echo>Done</echo>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+		          target: init
+		         - - - - - - - - - - - - - - - - - -->
+	<target name="init" depends="" unless="built">
+		<mkdir dir="${dir.build}" />
+		<mkdir dir="${dir.dist.webapi}" />
+		<echo message="${dir.dist.webapi}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+		          target: clean
+		         - - - - - - - - - - - - - - - - - -->
+	<target name="clean" depends="clearBuiltProperty" description="clean up">
+		<delete dir="${dir.build}" failonerror="no" />
+		<delete file="${jar.location}" />
+		<delete file="derby.log" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+		          target: clearBuiltProperty
+		         - - - - - - - - - - - - - - - - - -->
+	<target name="clearBuiltProperty" description="update without build">
+		<delete file="built.properties" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+	          target: compile
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="compile" depends="init" unless="built">
+		<echo>WebAPI Tests</echo>
+				<!-- compile additional features -->
+		<javac source="1.8" target="1.8" deprecation="no" nowarn="${compiler.nowarn}" destdir="${dir.build}" debug="true">
+			<src location="${dir.src}" />
+			<classpath>
+				<path refid="required.libs" />
+				<path refid="required.projects" />
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+	          target: link
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="link" depends="compile" unless="built">
+		<delete failonerror="no">
+			<fileset dir="${dir.dist.webapi}" includes="${jar.name}.jar" />
+		</delete>
+
+		<createClasspathAttribute property="classpath" libs="required.libs" projects="required.projects" />
+
+		<mkdir dir="${dir.build}/META-INF" />
+		<manifest file="${dir.build}/META-INF/MANIFEST.MF">
+			<attribute name="Built-By" value="${user.name}" />
+			<attribute name="Bundle-Vendor" value="${version.company}" />
+			<attribute name="Bundle-Version" value="${version}" />
+			<attribute name="Implementation-Version" value="${version}" />
+
+			<attribute name="Main-Class" value="com.dynatrace.easytravel.webapi.WebAPITest" />
+			<attribute name="Class-Path" value="${classpath}" />
+		</manifest>
+
+		<jar jarfile="${jar.location}" manifest="${dir.build}/META-INF/MANIFEST.MF">
+			<fileset dir="${dir.build}">
+				<include name="**" />
+			</fileset>
+		</jar>
+
+		<copyLibToDistribution sourcepath="required.libs" />
+
+		<!-- copy some more stuff -->
+		<copy todir="${dir.dist.webapi}" verbose="true">
+			<fileset dir=".">
+				<include name="runtest.xml"/>
+				<include name="build.properties"/>
+			</fileset>
+		</copy>
+
+		<copy todir="${dir.dist}">
+			<fileset dir=".">
+	          	<include name="lib/**"/>
+			</fileset>
+		</copy>
+
+		<!-- use correct location of lib-file in distribution file-layout -->
+		<replace
+			file="${dir.dist.webapi}/build.properties"
+			token="../ThirdPartyLibraries"
+			value="../lib"/>
+
+		<echo file="built.properties" append="false">built</echo>
+	</target>
+</project>

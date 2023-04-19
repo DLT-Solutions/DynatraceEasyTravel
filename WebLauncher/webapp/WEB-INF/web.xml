@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+  <display-name>Web Launcher</display-name>
+  <description>Web application that starts the SWT based Launcher as web application using Eclipse RAP.</description>
+ 
+  <context-param>
+    <param-name>org.eclipse.rap.applicationConfiguration</param-name>
+    <param-value>com.dynatrace.easytravel.weblauncher.WebLauncherConfiguration</param-value>
+  </context-param>
+  
+  <filter>
+    <filter-name>HttpRequestFilter</filter-name>
+    <filter-class>com.dynatrace.easytravel.weblauncher.HttpRequestOriginFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>HttpRequestFilter</filter-name>
+    <url-pattern>/main</url-pattern>
+  </filter-mapping>
+ 
+  <listener>
+    <listener-class>org.eclipse.rap.rwt.engine.RWTServletContextListener</listener-class>
+  </listener>
+  
+  <listener>
+    <listener-class>
+        com.dynatrace.easytravel.metrics.MetricsServletInit
+    </listener-class>
+  </listener>
+ 
+  <!--  the RWT main servlet -->
+  <servlet>
+    <servlet-name>main</servlet-name>
+    <servlet-class>org.eclipse.rap.rwt.engine.RWTServlet</servlet-class>
+  </servlet>
+  
+  <!--  the servlet to start/stop scenarios and get log files -->
+  <servlet>
+    <servlet-name>scenario</servlet-name>
+    <servlet-class>com.dynatrace.easytravel.weblauncher.ScenarioServlet</servlet-class>
+  </servlet>
+ 
+  <!--  a common purpose download servlet -->
+  <servlet>
+    <servlet-name>download</servlet-name>
+    <servlet-class>com.dynatrace.easytravel.weblauncher.DownloadServlet</servlet-class>
+  </servlet>
+
+  <!-- Metrics provider --> 
+  <servlet>
+    <servlet-name>metrics</servlet-name>
+    <servlet-class>com.codahale.metrics.servlets.MetricsServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>threads</servlet-name>
+    <servlet-class>com.codahale.metrics.servlets.ThreadDumpServlet</servlet-class>
+  </servlet>  
+  
+  <servlet-mapping>
+    <servlet-name>main</servlet-name>
+    <url-pattern>/main</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>scenario</servlet-name>
+    <url-pattern>/scenario/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>download</servlet-name>
+    <url-pattern>/download</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>metrics</servlet-name>
+    <url-pattern>/metrics</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>threads</servlet-name>
+    <url-pattern>/threads</url-pattern>
+  </servlet-mapping>
+
+  <error-page>
+    <error-code>500</error-code> 
+    <location>/error500.jsp</location> 
+  </error-page>
+
+   <error-page>
+    <error-code>401</error-code>
+    <location>/error401.jsp</location>
+  </error-page>
+
+</web-app>
