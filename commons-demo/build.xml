@@ -1,1 +1,226 @@
-czxczx
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Common Utility Classes" default="all">
+	<description>
+		Demo Application - Utility Classes
+	</description>
+
+	<import file="../Distribution/ant-includes.xml"/>
+
+	<property file="built.properties" />
+
+	<property name="jar.name" value="${jar.name.commons}" />
+	<property name="jar.location" location="${dir.dist}/${jar.name}.jar" />
+	<property name="chromeForWindows" value="chrome-win32" />
+	<property name="chromeForLinux" value="chrome-lin64" />
+	<property name="chromeDriverForWindows" value="chromedriver_windows32.exe" />
+	<property name="chromeDriverForLinux" value="chromedriver_linux64" />
+	
+	<!-- all lib jars needed by this project -->
+	<path id="required.libs">
+		<path refid="lib.commons" />
+		<path refid="lib.tomcat" />
+		<path refid="lib.guava" />
+		<path refid="lib.cassandra" />
+		<path refid="lib.jersey" />
+		<fileset dir="${SPRING_HOME}">
+			<include name="*.beans-*.jar" />
+			<include name="*.core-*.jar" />
+			<include name="*.web-*.jar" />
+			<include name="*.context-*.jar" />
+			<include name="*.transaction-*.jar" />
+		</fileset>
+		<path refid="lib.mvel" />
+		<path refid="lib.metrics" />
+		<path refid="lib.jackson" />
+		<path refid="lib.httputils" />
+		<path refid="lib.artemis" />
+		<path refid="lib.netty" />
+		<path refid="lib.logging" />
+	</path>
+	<!-- all project jars needed by this project -->
+	<path id="required.projects">
+		<!-- no other project required -->
+	</path>
+	<path id="coverage.libs">
+		<path location="${coverage.classpath}"/>
+	</path>
+
+	<!-- ================================= 
+          target: buildLibrary              
+         ================================= -->
+	<target name="all" depends="init, compile, link, copyCoverageLibs" unless="built" description="Diagnostics Agent">
+		<echo>Done</echo>
+	</target>
+
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: init                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="init" depends="" unless="built">
+		<mkdir dir="${dir.build}" />
+		<mkdir dir="${dir.dist}" />
+		
+		<antcall target="copySwtJarsFromThirdPartyLibs" />
+		
+		<antcall target="expandChromeForWindows" />
+		<antcall target="expandChromeForLinux" />
+		
+		<condition property="hasCoverageLibs">
+			<not>
+				<equals arg1="${coverage.classpath}" arg2=""/>
+			</not>
+		</condition>
+		
+		<echo message="Found coverage libs: ${hasCoverageLibs}"/>
+	</target>
+	
+	<target name="copySwtJarsFromThirdPartyLibs" description="Copy SWT libs for building installer purpose">
+		<echo> Copping SWT libs </echo>	
+		<copy todir="${dir.dist}/swt">
+			<fileset dir="${dir.thirdparty}/SWT"/>
+		</copy>
+	</target>
+	
+	<target name="expandChromeForWindows" description="Expands Chrome for Windows">
+		<echo> Unzip chrome-win32.zip </echo>
+		<unzip src="${dir.thirdparty}/Google/${chromeForWindows}.zip" dest="${dir.dist}/${chromeForWindows}"></unzip>
+		<copy file="${dir.thirdparty}/Google/ChromeDriver/${chromeDriverForWindows}" todir="${dir.dist}/${chromeForWindows}/driver"></copy>
+	</target>
+	
+	<target name="expandChromeForLinux" description="Expands Chrome for Linux">
+		<echo> Unzip chrome-lin64.zip </echo>
+		<unzip src="${dir.thirdparty}/Google/${chromeForLinux}.zip" dest="${dir.dist}/${chromeForLinux}"></unzip>
+		<copy file="${dir.thirdparty}/Google/ChromeDriver/${chromeDriverForLinux}" todir="${dir.dist}/${chromeForLinux}/driver"></copy>
+		<copy file="resources/installChromeDepsAWSLnx.sh" todir="${dir.dist}/${chromeForLinux}"></copy>
+		<copy file="resources/installChromeDeps.sh" todir="${dir.dist}/${chromeForLinux}"></copy>
+		<antcall target="adjustChromeFilesPermissions"/>
+	</target>
+	
+	<target name="adjustChromeFilesPermissions">
+		<chmod file="${dir.dist}/${chromeForLinux}/chrome" perm="ugo+rx"/>
+		<chmod file="${dir.dist}/${chromeForLinux}/chrome_sandbox" perm="ugo+rx"/>
+		<chmod file="${dir.dist}/${chromeForLinux}/libclearkeycdm.so" perm="ugo+rx"/>
+		<chmod file="${dir.dist}/${chromeForLinux}/libEGL.so" perm="ugo+rx"/>
+		<chmod file="${dir.dist}/${chromeForLinux}/libGLESv2.so" perm="ugo+rx"/>
+		<chmod file="${dir.dist}/${chromeForLinux}/xdg-mime" perm="ugo+rx"/>
+		<chmod file="${dir.dist}/${chromeForLinux}/xdg-settings" perm="ugo+rx"/>
+		<chmod file="${dir.dist}/${chromeForLinux}/driver/${chromeDriverForLinux}" perm="ugo+rx"/>
+		<chmod file="${dir.dist}/${chromeForLinux}/installChromeDepsAWSLnx.sh" perm="ugo+rx"/>
+		<echo>${dir.dist}/${chromeForLinux}/driver/${chromeDriverForLinux}</echo>
+		<exec executable="/bin/sh">
+  			<arg value="-c" />
+  			<arg value="ls -l ${dir.dist}/${chromeForLinux}/driver/${chromeDriverForLinux}" />
+		</exec>
+	</target>
+
+	<target name="updateEasyTravelProperties" depends="">
+		<!-- run the ant timestamp task -->
+		<tstamp/>
+		
+		<propertyfile file="${file.commons.easyTravel.build.properties}">
+			<entry key="version.builddate" type="date" value="now" pattern="yyyy-MM-dd HH:mm:ss"/>
+		</propertyfile>
+	</target>
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clean                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clean" depends="clearBuiltProperty" description="clean up">
+		<delete dir="build" />
+		<delete file="${jar.location}"/>
+		<delete failonerror="false">
+			<fileset dir="${dir.dist}">
+				<include name="resources/easyTravel*.properties"/>
+			</fileset>
+		</delete>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clearBuiltProperty                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clearBuiltProperty" description="update without build">
+		<delete file="built.properties" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: compile                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="compile" depends="init" unless="built">
+		<!-- update the property-file only once here during compilation, not in init -->
+		<antcall target="updateEasyTravelProperties"/>
+
+		<echo>commons-demo - utility classes for the Demo Apps</echo>
+
+		<javac source="1.8" target="1.8" deprecation="no" nowarn="${compiler.nowarn}" destdir="${dir.build}" debug="true">
+			<src location="${dir.src}" />
+			<classpath>
+				<path refid="required.libs" />
+				<path refid="required.projects" />
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: link                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="link" depends="compile" unless="built">
+		<delete failonerror="no">
+			<fileset dir="${dir.dist}" includes="${jar.name}.jar"/>
+		</delete>
+
+		<createClasspathAttribute property="classpath" libs="required.libs" projects="required.projects" />
+		
+		<mkdir dir="${dir.build}/META-INF"/>
+        <manifest file="${dir.build}/META-INF/MANIFEST.MF">
+            <attribute name="Built-By" value="${user.name}" />
+            <attribute name="Bundle-Vendor" value="${version.company}" />
+            <attribute name="Bundle-Version" value="${version}"/>
+            <attribute name="Implementation-Version" value="${version}"/>
+        	<attribute name="Class-Path" value="${classpath} ${dir.resources}/" />
+        </manifest>
+		
+		<jar jarfile="${jar.location}" manifest="${dir.build}/META-INF/MANIFEST.MF">
+			<fileset dir="${dir.build}">
+				<include name="**" />
+			</fileset>
+			<fileset dir="${dir.resources}">
+				<include name="*.ico" />
+			</fileset>
+		</jar>
+		
+		<copyLibToDistribution sourcepath="required.libs" />
+		
+		<mkdir dir="${dir.dist.resources}" />
+		<copy todir="${dir.dist.resources}" flatten="true" failonerror="true">
+			<fileset dir="${dir.resources}">
+				<include name="**/*"/>
+				
+				<!-- exclude some files that are not needed as part of the release -->
+				<exclude name="easyTravel.*.properties" />
+				<exclude name="easyTravelBuild.properties" />
+				<exclude name="easyTravelWarConfig.properties" />
+				<exclude name="installChromeDepsAWSLnx.sh" />
+				<exclude name="*.ico" />
+			</fileset>
+		</copy>
+		
+		<tstamp>
+		      <format property="version.builddatetime" pattern="yyyy-MM-dd HH:mm:ss" />
+		</tstamp>
+		
+		<!-- store the version info again as it might be provided via the CI build scripts here -->
+		<propertyfile file="${dir.dist.resources}/easyTravel.properties">
+			<entry key="version.major" value="${version.major}"/>
+			<entry key="version.minor" value="${version.minor}"/>
+			<entry key="version.revision" value="${version.revision}"/>
+			<entry key="version.buildnumber" value="${version.buildnumber}"/>
+			<entry key="version.builddate" value="${version.builddatetime}"/>
+		</propertyfile>
+
+		<echo file="built.properties" append="false">built</echo>
+	</target>
+		
+	<target name="copyCoverageLibs" depends="init" if="hasCoverageLibs">
+		<copyLibToDistribution sourcepath="coverage.libs" />
+	</target>
+</project>
