@@ -1,0 +1,19 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<!-- ehcache-config used for testing, this has maxElementsInMemory set much higher to avoid problems with elements being evicted too early -->
+
+    <diskStore path="java.io.tmpdir"/>
+    
+	<!--  the EasyTravel caches -->
+	<cache name="org.hibernate.cache.UpdateTimestampsCache" maxElementsInMemory="100000" eternal="false" timeToIdleSeconds="100" timeToLiveSeconds="100" overflowToDisk="false" />
+	<cache name="org.hibernate.cache.StandardQueryCache" maxElementsInMemory="100000" eternal="false" timeToIdleSeconds="100" timeToLiveSeconds="100" overflowToDisk="false" />
+	<cache name="com.dynatrace.easytravel.jpa.business.Booking" maxElementsInMemory="100000" eternal="false" timeToIdleSeconds="100" timeToLiveSeconds="100" overflowToDisk="false" />
+	<cache name="com.dynatrace.easytravel.jpa.business.Journey" maxElementsInMemory="100000" eternal="false" timeToIdleSeconds="100" timeToLiveSeconds="100" overflowToDisk="false" />
+	<cache name="com.dynatrace.easytravel.jpa.business.Location" maxElementsInMemory="100000" eternal="false" timeToIdleSeconds="100" timeToLiveSeconds="100" overflowToDisk="false" />
+	<cache name="com.dynatrace.easytravel.jpa.business.LoginHistory" maxElementsInMemory="100000" eternal="false" timeToIdleSeconds="100" timeToLiveSeconds="100" overflowToDisk="false" />
+	<cache name="com.dynatrace.easytravel.jpa.business.Schedule" maxElementsInMemory="100000" eternal="false" timeToIdleSeconds="100" timeToLiveSeconds="100" overflowToDisk="false" />
+	<cache name="com.dynatrace.easytravel.jpa.business.Tenant" maxElementsInMemory="100000" eternal="false" timeToIdleSeconds="100" timeToLiveSeconds="100" overflowToDisk="false" />
+	<cache name="com.dynatrace.easytravel.jpa.business.User" maxElementsInMemory="100000" eternal="false" timeToIdleSeconds="100" timeToLiveSeconds="100" overflowToDisk="false" />
+	<cache name="com.dynatrace.easytravel.jpa.business.UserRole" maxElementsInMemory="100000" eternal="false" timeToIdleSeconds="100" timeToLiveSeconds="100" overflowToDisk="false" />
+	
+    <defaultCache maxElementsInMemory="100000" eternal="false" timeToIdleSeconds="120" timeToLiveSeconds="120" overflowToDisk="true" maxElementsOnDisk="10000000" diskPersistent="false" diskExpiryThreadIntervalSeconds="120" memoryStoreEvictionPolicy="LRU" />
+</ehcache>
