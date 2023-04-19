@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="namedpipenativeapplication" class="com.dynatrace.easytravel.ipc.NamedPipeNativeApplication">
+		<property name="name" value="NamedPipeNativeApplication" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Native Application" />
+		<property name="description" value="Sends the entered credit card number for 'validation' to the native application via named pipes interprocess communication. This is usually enabled by default. Disable this and enable the 'DummyNativeApplication' if you would like to run without the native application." />
+
+		<!-- default name of the Named Pipe -->
+		<property name="channel" value="easyTravelPipe"/>
+	</bean>
+	
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="namedpipenativeapplication" />
+	</bean>
+	
+</beans>

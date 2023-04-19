@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="scalemicrojourneyservice" class="com.dynatrace.easytravel.ScaleMicroJourneyService">
+		<property name="name" value="ScaleMicroJourneyService" />
+		<property name="compatibility" value="APM" />
+		<property name="groupName" value="Internal" />
+ 		<property name="extensionPoint" value="lifecycle.*" />
+		<property name="description" value="Plugin increases number of microservice instances. It would not work by default as it requires Mesos and Marathon to be properly configured and to contain required applications.  " />
+	</bean>
+	
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="scalemicrojourneyservice" />
+	</bean>
+</beans>

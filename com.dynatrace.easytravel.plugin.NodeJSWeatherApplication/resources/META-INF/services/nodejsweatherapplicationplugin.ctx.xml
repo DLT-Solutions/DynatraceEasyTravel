@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="NodeJSWeatherApplication" class="com.dynatrace.easytravel.NodeJSWeatherApplication">
+		<property name="name" value="NodeJSWeatherApplication" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="UI related plugin, Angular" />
+		<property name="extensionPoint" value="frontend.tripdetails.page,frontend.tripdetails.page.weatherforecast,frontend.results.before" />
+		<property name="description" value="This plugin includes the current weather of the destination into the results page and the weather forecast for the trip duration into the trip details page." />
+	</bean>
+
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+		<property name="propertyName" value="plugins" />
+		<property name="pluginBeanName" value="NodeJSWeatherApplication" />
+	</bean>
+
+</beans>

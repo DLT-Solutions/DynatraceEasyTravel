@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="simpleMemoryCache" class="com.dynatrace.easytravel.SimpleMemoryCache">
+		<property name="name" value="SimpleMemoryCache" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Memory" />
+		<property name="description" value="Uses a simple memory cache to keep results of searches for Locations and Journeys in the Customer Frontend application, this can be used to show much less webservice/database calls when enabled and can simulate a performance improvement that is implemented in a new version." />
+	</bean>
+		
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="simpleMemoryCache" />
+	</bean>
+	
+</beans>

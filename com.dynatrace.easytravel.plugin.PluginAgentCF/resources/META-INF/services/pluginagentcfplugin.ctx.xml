@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="PluginAgentCFPlugin" class="com.dynatrace.easytravel.pluginagentcf.PluginAgentCF">
+		<property name="name" value="PluginAgentCF" />
+		<property name="compatibility" value="APM" />
+		<property name="groupName" value="UI related plugin" />
+		<property name="extensionPoint" value="frontend.search.journey.page,lifecycle.plugin.*"/>
+		<property name="description" value="This plugin is used to demonstrate plugin agents. It generates traffic from Customer Frontend to an external process on a Vagrant box. Note: the Vagrant box must be configured manually" />
+	</bean>
+	
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="PluginAgentCFPlugin" />
+	</bean>
+</beans>

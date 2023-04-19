@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="starvingdummynativeapplication" class="com.dynatrace.easytravel.StarvingDummyNativeApplication">
+		<property name="name" value="StarvingDummyNativeApplication" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Native Application" />
+		<property name="description" value="Simulates a legacy credit card validator that can only be accessed single-threaded and takes a long time, starving concurrent callers. Any string consisting of ten digits will match. Please disable all other native application plugins." />
+	</bean>
+	
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="starvingdummynativeapplication" />
+	</bean>
+</beans>

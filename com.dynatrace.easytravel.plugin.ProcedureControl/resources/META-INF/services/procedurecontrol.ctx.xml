@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="couchdbcontrol" class="com.dynatrace.easytravel.ProcedureControl">
+		<property name="name" value="CrashCouchDB" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Problems" />
+		<property name="extensionPoint" value="lifecycle.*" />
+		<property name="description" value="The plugin will crash the CouchDB Erlang process in such a way as to be observed by Windows Error Reporting. Windows will then display a crash pop-up dialog box. To disable the pop-up, re-configure the Windows Error Reporting settings." />
+	</bean>
+	
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+		<property name="propertyName" value="plugins" />
+		<property name="pluginBeanName" value="couchdbcontrol" />
+	</bean>
+</beans>

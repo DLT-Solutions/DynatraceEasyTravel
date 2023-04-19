@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="slowUserLoginPlugin" class="com.dynatrace.easytravel.UserLoginUtils">
+		<property name="name" value="SlowUserLogin" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Slowdown" />
+		<property name="extensionPoint" value="frontend.loginlogic.login" />
+		<property name="description" value="Simulates a general problem with user logins. When this plugin is enabled, all users will experience login time of over 10 seconds. The Method Hotspots Dashlet will show that we have to wait very long for external data to come in." />
+	</bean>
+	
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="slowUserLoginPlugin" />
+	</bean>
+</beans>

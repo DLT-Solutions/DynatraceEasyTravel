@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="networkpacketdrop" class="com.dynatrace.easytravel.NetworkPacketDrop">
+		<property name="name" value="NetworkPacketDrop" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Internal" />
+ 		<property name="extensionPoint" value="lifecycle.*" />
+		<property name="description" value="Plugin will cause network problems by dropping packets
+		    directed as a response from Customer Frontend to Apache Web Server. Plugin will work when Apache Web Servier
+		    is running on the Linux host only" />
+	</bean>
+	
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="networkpacketdrop" />
+	</bean>
+</beans>

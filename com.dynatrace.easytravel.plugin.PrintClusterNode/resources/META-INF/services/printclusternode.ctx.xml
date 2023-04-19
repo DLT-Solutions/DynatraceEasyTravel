@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="printclusternodeplugin" class="com.dynatrace.easytravel.PrintClusterNode">
+		<property name="name" value="PrintClusterNode" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="UI related plugin" />
+		<property name="extensionPoint" value="frontend.page.footer" />
+		<property name="description" value="Shows the actual port of the instance which received the page request in the footer area of the customer frontend when multiple frontend applications are handling requests via a load balancing server, e.g. via the Apache procedure in some scenarios." />
+	</bean>
+	
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="printclusternodeplugin" />
+	</bean>
+</beans>
