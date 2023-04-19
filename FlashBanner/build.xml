@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="FlashBanner" default="copy-to-problem-pattern">
+	<description>
+		Plugin to include a flash banner in the easyTravel Website
+	</description>
+
+	<import file="../Distribution/ant-includes.xml" />
+
+	<property name="problempattern.name" value="com.dynatrace.easytravel.plugin.FlashBanner" />
+
+	<target name="copy-to-problem-pattern">
+		<!-- <copy file="./bin-debug/framework_4.6.0.23201.swf" tofile="../${problempattern.name}/resources/swf/framework_4.6.0.23201.swf" overwrite="true" />
+		<copy file="./bin-debug/textLayout_2.0.0.232.swf" tofile="../${problempattern.name}/resources/swf/textLayout_2.0.0.232.swf" overwrite="true" />
+		<copy file="./bin-debug/spark_4.6.0.23201.swf" tofile="../${problempattern.name}/resources/swf/spark_4.6.0.23201.swf" overwrite="true" /> -->
+		<copy file="./bin/FlashBanner.swf" tofile="../${problempattern.name}/resources/swf/FlashBanner.swf" overwrite="true" />
+		<copy file="./bin/FlashError.swf" tofile="../${problempattern.name}/resources/swf/FlashError.swf" overwrite="true" />
+		<copy file="./bin/FlashSlowPageAction.swf" tofile="../${problempattern.name}/resources/swf/FlashSlowPageAction.swf" overwrite="true" />
+	</target>
+</project>

@@ -1,0 +1,20 @@
+[
+	{
+		"name" : "Paris",
+		"price" : "$790,30",
+		"permlink" : "/result.jsf?dest=New+York&from=&to=",
+		"detaillink" : "/orange-booking-review.jsf?journeyId=1685"
+	},
+	{
+		"name" : "New York",
+		"price" : "$790,30",
+		"permlink" : "/result.jsf?dest=New+York&from=&to=",
+		"detaillink" : "/orange-booking-review.jsf?journeyId=1685"
+	},
+	{
+		"name" : "London",
+		"price" : "$790,30",
+		"permlink" : "/result.jsf?dest=New+York&from=&to=",
+		"detaillink" : "/orange-booking-review.jsf?journeyId=1685"
+	}
+]

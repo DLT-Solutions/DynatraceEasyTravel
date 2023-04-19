@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="200" height="90"
+		 initialize="doOnInit()">
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+
+	<fx:Script>
+		<![CDATA[
+			import DynaTrace.DynaTraceFlashAdk;
+
+			import flash.net.navigateToURL;
+
+			private var url:String = null;
+			private var dynatraceADK:DynaTraceFlashAdk;
+
+			private function doOnInit():void
+			{
+				dynatraceADK = new DynaTraceFlashAdk();
+				this.addEventListener(MouseEvent.CLICK, clickHandler);
+			}
+
+			public function setTitle(title:String):void
+			{
+				this.title.text = title;
+			}
+
+			public function setPrice(price:String):void
+			{
+				this.price.text = price;
+			}
+
+			public function setUrl(url:String):void
+			{
+				this.url = url;
+			}
+
+			private function clickHandler(e:MouseEvent):void
+			{
+				if (url != null) {
+					trace(getBaseUrl() + url);
+					dynatraceADK.setAutomaticActionDetection(false);
+					dynatraceADK.enterAction("Click on Banner Ad \"" + this.title.text + "\"", "click");
+					var request:URLRequest = dynatraceADK.prepareURLRequest(new URLRequest(getBaseUrl() + url));
+					navigateToURL(request, "_self");
+				}
+				e.stopImmediatePropagation();
+			}
+
+			private function getBaseUrl():String
+			{
+				var url:String = getCurrentUrl();
+				if (url == null) {
+					return "";
+				}
+				var indexOfSeparator:int = url.indexOf("/", 8);
+				if (indexOfSeparator > 0) {
+					url = url.substring(0, indexOfSeparator );
+				}
+				return url;
+			}
+
+			protected function getCurrentUrl():String
+			{
+				return ExternalInterface.call('window.location.href.toString');
+			}
+		]]>
+	</fx:Script>
+
+	<s:RichText width="200" height="30" color="#F69420" fontFamily="Verdana" fontSize="26" text="New York" id="title" verticalAlign="bottom" textAlign="left" />
+	<s:HGroup width="100%" height="25" contentBackgroundColor="#A45D5D">
+		<s:RichText width="60" height="25" fontFamily="Verdana" fontSize="12" paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="0" text="Starting&#13;from" verticalAlign="bottom"/>
+		<s:RichText width="100" height="25" color="#F69420" fontFamily="Verdana" fontSize="20" paddingBottom="5" paddingLeft="0" paddingRight="0" paddingTop="0" text="$ 199,20" textAlign="left" verticalAlign="bottom" id="price"/>
+	</s:HGroup>
+
+</s:Group>

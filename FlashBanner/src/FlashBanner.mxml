@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   width="860" height="70" backgroundColor="#7C7777" initialize="doOnInit()" xmlns:local="*">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import DynaTrace.DynaTraceFlashAdk;
+
+			import mx.core.FlexGlobals;
+			import mx.events.FlexEvent;
+
+			private var loader:URLLoader;
+			private var dynatraceAdk:DynaTraceFlashAdk;
+			private var contentsource:String;
+
+			private function doOnInit(): void
+			{
+				dynatraceAdk = new DynaTraceFlashAdk();
+				this.addEventListener(FlexEvent.APPLICATION_COMPLETE, doOnComplete);
+				loadBannerContent();
+			}
+
+			private function doOnComplete(event:FlexEvent): void
+			{
+				banners.addEventListener(Event.ENTER_FRAME, scroll);
+				contentsource = FlexGlobals.topLevelApplication.parameters["contentsource"];
+			}
+
+			private function loadBannerContent():void
+			{
+				var url:String = getBannerPath();
+				trace("Loading content from " + url);
+				loader = new URLLoader();
+				var request:URLRequest = dynatraceAdk.prepareURLRequest(new URLRequest(url));
+				loader.addEventListener(Event.COMPLETE, bannerContentComplete);
+				loader.addEventListener(IOErrorEvent.IO_ERROR, errorDuringContentRequest);
+				loader.addEventListener(IOErrorEvent.NETWORK_ERROR, errorDuringContentRequest);
+				loader.addEventListener(IOErrorEvent.DISK_ERROR, errorDuringContentRequest);
+				loader.addEventListener(IOErrorEvent.VERIFY_ERROR, errorDuringContentRequest);
+
+				loader.load(request);
+			}
+
+			private function errorDuringContentRequest(e:IOErrorEvent): void
+			{
+				trace("Error loading JSON File");
+				dynatraceAdk.reportError("Error loading Banner Content \"" + e.text + "\"");
+			}
+
+			private function bannerContentComplete(e:Event): void
+			{
+				var bannerContents:Object = JSON.parse(loader.data);
+				trace("Found " + bannerContents.length + " elements in json file!");
+				for each (var bannerContent:Object in bannerContents) {
+					var bannerElement:BannerElement = new BannerElement();
+					bannerElement.setTitle(bannerContent.name);
+					bannerElement.setPrice(bannerContent.price);
+					bannerElement.setUrl(bannerContent.permlink);
+					banners.addElement(bannerElement);
+				}
+			}
+
+			private function getBannerPath():String
+			{
+				if (contentsource != null) {
+					return getBaseUrl() + contentsource;
+				} else {
+					return getBaseUrl() + "/plugins/FlashBanner/swf/bannercontent.json";
+				}
+			}
+
+			private function getBaseUrl():String
+			{
+				var url:String = getCurrentUrl();
+				if (url == null) {
+					return "";
+				}
+				var indexOfSeparator:int = url.indexOf("/", 8);
+				if (indexOfSeparator > 0) {
+					url = url.substring(0, indexOfSeparator);
+				}
+				return url;
+			}
+
+			protected function getCurrentUrl():String
+			{
+				return ExternalInterface.call('window.location.href.toString');
+			}
+
+			private function scroll(event:Event): void
+			{
+				banners.x -= 1;
+				if (banners.x < -banners.width) {
+					banners.x = 860;
+				}
+			}
+
+		]]>
+	</fx:Script>
+	<s:BorderContainer x="0" y="0" width="860" height="70" id="bannercontainer">
+		<s:HGroup width="100%" height="100%" x="860" contentBackgroundColor="#A45D5D" id="banners">
+		</s:HGroup>
+	</s:BorderContainer>
+
+</s:Application>
