@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="journeyUpdateFast" class="com.dynatrace.easytravel.database.JourneyUpdate">
+		<property name="name" value="JourneyUpdateFast" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Database" />
+		<property name="dependencies" value="jpa" />
+		<property name="extensionPoint" value="backend.journeyservice.journey.search" />
+		<property name="description" value="This plugin updates the amount of journeys using batch updates. This allows to show the effect of using JDBC batch updating, which is usually faster than non-batched mode." />
+		
+		<property name="mode" value="fast" />
+	</bean>
+	
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="journeyUpdateSlow" class="com.dynatrace.easytravel.database.JourneyUpdate">
+		<property name="name" value="JourneyUpdateSlow" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Database" />
+		<property name="dependencies" value="jpa" />
+		<property name="extensionPoint" value="backend.journeyservice.journey.search" />
+		<property name="description" value="This plugin updates the amount of journeys one after another. This shows the effect of using non-batched JDBC, which is usually much slower." />
+		
+		<property name="mode" value="slow" />
+	</bean>
+	
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="journeyUpdateFast" />
+	</bean>
+	
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="journeyUpdateSlow" />
+	</bean>
+</beans>

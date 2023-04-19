@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="includesocialmediaplugin" class="com.dynatrace.easytravel.IncludeSocialMedia">
+		<property name="name" value="ThirdPartyIncludeSocialMedia" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="UI related plugin" />
+		<property name="extensionPoint" value="frontend.socialmedia.footer" />
+		<property name="description" value="Shows additional UI elements which use Javascript functionality provided by Facebook and Twitter in the frontends. Note: This requires a working internet connection and will cause problems with web testing frameworks like Selenium and Canoo Webtest." />
+	</bean>
+	
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="includesocialmediaplugin" />
+	</bean>
+</beans>

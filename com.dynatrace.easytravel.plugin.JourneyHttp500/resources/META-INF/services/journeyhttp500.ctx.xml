@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="journeyhttp500" class="com.dynatrace.easytravel.JourneySearchRequestValidator">
+		<property name="name" value="JourneySearchError500" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Http Errors" />
+		<property name="extensionPoint" value="backend.journeyservice.journey.search" />
+		<property name="description" value="Throws an HTTP 500 server error if the journey search parameters are invalid, e.g. toDate is before fromDate" />
+	</bean>
+	
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="journeyhttp500" />
+	</bean>
+</beans>

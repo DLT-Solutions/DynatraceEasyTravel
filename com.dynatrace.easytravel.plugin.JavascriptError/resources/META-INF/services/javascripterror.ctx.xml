@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="javascripterrorplugin" class="com.dynatrace.easytravel.JavascriptError">
+		<property name="name" value="JavascriptErrorOnLabelClick" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Javascript" />
+		<property name="extensionPoint" value="frontend.javascript" />
+		<property name="description" value="When activating this pattern the user can force the generation of a JavaScript error on orange.jsf by clicking on one of the labels of the journey search box." />
+	</bean>
+
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="javascripterrorplugin" />
+	</bean>
+
+
+	<bean id="javascriptincreasederrorcount" class="com.dynatrace.easytravel.JavascriptUemLoadError">
+		<property name="name" value="JavascriptIncreasedErrorCount" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Javascript" />
+		<property name="extensionPoint" value="frontend.javascript" />
+		<property name="description" value="This pattern increases the likelyhood that a page load produces a JavaScript error from 4% to approximately 10%. The execution of the pattern will lead to a base line violation." />
+	</bean>
+
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="javascriptincreasederrorcount" />
+	</bean>
+
+
+	<bean id="javascriptuseractionerror" class="com.dynatrace.easytravel.JavascriptUemLoadError">
+		<property name="name" value="JavascriptUserActionError" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Javascript" />
+		<property name="extensionPoint" value="frontend.javascript" />
+		<property name="description" value="When activating this pattern will add additional generated user actions to the contact page during UemLoad. The action ending with 'Error Button' (Error 1)  is always added whereas the actions ending with 'Error Label' (Error 2) and 'Error Mouseover' (Error 3) are appended on approximately every 5th request. Error 1 adds automatically generated errors on every 10th , Error 2 on every 5th request - depending if Error 2 has been added to the page on base of the previously mentioned probability. The amount of generated errors can be between 1 and 3 and is determined randomly. If Error 3 is added to the page it is always causing an inline javascript error with a random line number." />
+	</bean>
+
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="javascriptuseractionerror" />
+	</bean>
+
+
+	<bean id="javascriptappversionspecificerror" class="com.dynatrace.easytravel.JavascriptUemLoadError">
+		<property name="name" value="JavascriptAppVersionSpecificError" />
+		<property name="compatibility" value="Classic" />
+		<property name="groupName" value="Javascript" />
+		<property name="extensionPoint" value="frontend.javascript" />
+		<property name="description" value="This pattern generates javascript errors that are specific to an application version. Every browser visit with the application version of 1.3 or 1.4 is reporting an error when clicking on the login button! Version 1.7 and 1.8 also generate an error here but this one is different." />
+	</bean>
+
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="javascriptappversionspecificerror" />
+	</bean>
+</beans>
