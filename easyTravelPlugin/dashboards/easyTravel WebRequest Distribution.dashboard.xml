@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ATTENTION - THIS IS AN AUTOMATICALLY GENERATED FILE -->
+<!-- Manual changes can cause severe problems and system instability -->
+<!-- Apply manual changes only if you have received explicit instructions from dynaTrace Support -->
+<dynatrace version="6.0.0.7013" date="10/9/14 3:58 PM">
+  <dashboardconfig memento.version="6.0.0.7013" icon="com.dynatrace.diagnostics.sdk/default_16x16.png" localizationenabled="true" sessiontype="live" locationassource="true" groupname="" authorname="dynaTrace" opendrilldowninnewdashboard="true" sessionid="easyTravel" autoreplacesession="false" modified="2014-10-09T15:50:03+0200" id="52c69ebc-24fd-4cfc-8c79-d4306d76ae4d" revision="00000148-f533-fc5a-b287-548b15166dbf" created="2014-10-09T15:42:01+0200" description="" name="easyTravel WebRequest Distribution" modifiedbyname="dynaTrace" locationascomparesource="false">
+    <reportconfig lines.per.table="100" pagesize="A4" enabled="true" print.legends="true" orientation="portrait" formathtml="com.dynatrace.diagnostics.report.velocity.format.htmlrenderer" optimizeequalcolumns="true" type="HTML" title="" override="false" levels.per.tree="10" description="" formatpdf="com.dynatrace.diagnostics.report.velocity.format.pdfrenderer" print.images="true" />
+    <filter>
+      <criterion completepurepath="true" type="agents" mode="all">
+        <textpattern enabled="true" name="agentname" type="contains" />
+        <textpattern enabled="true" name="agenthost" type="contains" />
+      </criterion>
+      <criterion type="and" />
+      <criterion excludeexternalsubpaths="false" type="api" mode="all" />
+      <criterion type="applications" mode="all" />
+      <criterion showrendering="true" isactive="true" shownetwork="true" showjavascript="true" type="browserpathtype" />
+      <criterion timerenabled="false" pageenabled="false" type="browsersectionfilter">
+        <timername>
+          <stringmatchpattern text="" match="contains" />
+        </timername>
+        <pageurl>
+          <stringmatchpattern text="" match="contains" />
+        </pageurl>
+      </criterion>
+      <criterion type="btm" />
+      <criterion type="casuemdimension" />
+      <criterion filterinterval="false" intervalend="0" type="dcrumdimension" intervalstart="0" />
+      <criterion isactive="true" analyzeserverpath="true" type="enduserpath" analyzeenduserpath="true" />
+      <criterion completepurepath="true" type="hosts" mode="all" />
+      <criterion severities="" statesmode="all" severitiesmode="all" states="" rulesmode="all" type="incident" />
+      <criterion type="or" />
+      <criterion enduser="false" type="purepaths" mode="all" />
+      <criterion showrendering="true" isactive="false" contenttypegroupsmode="all" javascripttriggersmode="all" shownetwork="true" showjavascript="true" type="riapurepathtype" requestcriterion="ALL" />
+      <criterion includemeasurename="true" includetestname="true" type="tests" teststatus="OK" />
+      <criterion enabled="false" filterbyid="false" type="threads" />
+      <criterion type="timeframe">
+        <timeframe type="Last 1h" />
+      </criterion>
+      <criterion type="visits">
+        <visitidset />
+      </criterion>
+      <criterion type="webpage">
+        <textpattern enabled="true" name="timerName" type="contains" />
+        <textpattern enabled="true" name="pageContext" type="contains" />
+      </criterion>
+      <criterion type="webrequest">
+        <filteruripattern>
+          <stringmatchpattern text="" match="contains" />
+        </filteruripattern>
+        <filterquerypattern>
+          <stringmatchpattern text="" match="contains" />
+        </filterquerypattern>
+      </criterion>
+    </filter>
+    <autorefreshconfig unit="MINUTES" enabled="true" time="5" />
+    <designconfig descriptionalignment="CENTER" descriptionfontstyle="NORMAL" namealignment="CENTER" descriptionfontsize="8" nameshow="true" clienttheme="DEFAULT" headertype="DEFAULT" namefontsize="10" descriptionshow="true" autoadjustfontsizes="false" namefontstyle="BOLD" descriptionfontcolor="128,128,128" />
+    <dashboardlayout>
+      <portletfolder relationtype="LEFT" ratio="0.95" folderid="folder" selectionindex="-1" isplaceholder="true" relatedfolderid="DashboardLayout.blankArea" portletconfigorder="" />
+      <portletfolder relationtype="BOTTOM" ratio="0.49203375" folderid="org.eclipse.ui.internal.ViewStack@c1d8f6d" selectionindex="0" relatedfolderid="folder" portletconfigorder="719a1db5-e4eb-44c8-9e20-07ec61616d1b">
+        <designconfig descriptionalignment="CENTER" descriptionfontstyle="NORMAL" headertype="CUSTOM" namealignment="LEFT" inherited="false" namefontsize="12" descriptionfontsize="8" descriptionshow="true" descriptionfontcolor="128,128,128" namefontstyle="BOLD" nameshow="true" />
+      </portletfolder>
+      <portletfolder relationtype="BOTTOM" ratio="0.4907749" folderid="org.eclipse.ui.internal.ViewStack@46e59034" selectionindex="0" relatedfolderid="org.eclipse.ui.internal.ViewStack@c1d8f6d" portletconfigorder="b0dfec74-c735-4f12-96ab-a2bd149337da">
+        <designconfig descriptionalignment="LEFT" descriptionfontstyle="NORMAL" headertype="CUSTOM" namealignment="LEFT" inherited="false" namefontsize="12" descriptionfontsize="8" descriptionshow="true" descriptionfontcolor="128,128,128" namefontstyle="BOLD" nameshow="true" />
+      </portletfolder>
+      <portletfolder relationtype="BOTTOM" ratio="0.49333334" folderid="9a91dc54-2753-4180-9834-e7f6a7fd2c7d" selectionindex="0" relatedfolderid="folder" portletconfigorder="fbed4c0e-6757-4016-a75b-e976f2604aff">
+        <designconfig descriptionalignment="CENTER" descriptionfontstyle="NORMAL" headertype="CUSTOM" namealignment="LEFT" inherited="false" namefontsize="12" descriptionfontsize="8" descriptionshow="true" descriptionfontcolor="128,128,128" namefontstyle="BOLD" nameshow="true" />
+      </portletfolder>
+      <portletfolder relationtype="RIGHT" ratio="0.49789324" folderid="org.eclipse.ui.internal.ViewStack@5e78955a" selectionindex="-1" isplaceholder="true" relatedfolderid="9a91dc54-2753-4180-9834-e7f6a7fd2c7d" portletconfigorder="" />
+      <portletfolder relationtype="BOTTOM" ratio="0.134357" folderid="org.eclipse.ui.internal.ViewStack@3f419f25" selectionindex="-1" isplaceholder="true" relatedfolderid="9a91dc54-2753-4180-9834-e7f6a7fd2c7d" portletconfigorder="" />
+      <portletfolder relationtype="RIGHT" ratio="0.4985955" folderid="org.eclipse.ui.internal.ViewStack@5de01801" selectionindex="0" relatedfolderid="org.eclipse.ui.internal.ViewStack@3f419f25" portletconfigorder="d1063a36-0d0a-4376-bd64-88003b52ebb0">
+        <designconfig descriptionalignment="LEFT" descriptionfontstyle="NORMAL" headertype="CUSTOM" namealignment="LEFT" inherited="false" namefontsize="12" descriptionfontsize="8" descriptionshow="true" descriptionfontcolor="128,128,128" namefontstyle="BOLD" nameshow="true" />
+      </portletfolder>
+      <portletfolder relationtype="RIGHT" ratio="0.93315506" folderid="org.eclipse.ui.internal.ViewStack@248bb2a" selectionindex="0" relatedfolderid="9a91dc54-2753-4180-9834-e7f6a7fd2c7d" portletconfigorder="854fccad-3ced-4b12-96d6-215b26b60e1a">
+        <designconfig descriptionalignment="CENTER" descriptionfontstyle="NORMAL" headertype="CUSTOM" namealignment="CENTER" inherited="false" namefontsize="10" descriptionfontsize="8" descriptionshow="true" descriptionfontcolor="128,128,128" namefontstyle="BOLD" nameshow="true" />
+      </portletfolder>
+    </dashboardlayout>
+    <portletconfig com.dynatrace.diagnostics.portlets.text.textportletconfig.backgroundstyle="center" icon="com.dynatrace.diagnostics.sdk/default.gif" usespecificautorefresh="false" usedashboardsourceforcompare="true" folderid="org.eclipse.ui.internal.ViewStack@248bb2a" locationassource="true" com.dynatrace.diagnostics.portlets.text.textportletconfig.wallpapercolor="RGB(255,255,255,255)" usedashboardsource="true" id="854fccad-3ced-4b12-96d6-215b26b60e1a" addfilterinfo="false" invertcolors="true" com.dynatrace.diagnostics.portlets.text.textportletconfig.alignment="LEFT" com.dynatrace.diagnostics.portlets.text.textportletconfig.text="&#xD;&#xA;" description="" name="" typeid="com.dynatrace.diagnostics.portlets.text.Text" ismaster="false" locationascomparesource="false" com.dynatrace.diagnostics.portlets.text.textportletconfig.defaultforegroundcolor="RGB(0,0,0,255)">
+      <reportconfig lines.per.table="100" print.legends="true" enabled="false" optimizeequalcolumns="true" levels.per.tree="10" override="false" print.images="true" reportposition="20" />
+      <filter>
+        <inheritancemap />
+      </filter>
+      <autorefreshconfig unit="MINUTES" enabled="false" time="5" />
+      <sashconfig weights="1,1" displayoption="CHART_AND_TABLE" />
+      <font height="12" style="NORMAL" name="Arial" />
+      <image length="4788" offset="-1">
+        <chunk data="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" offset="0" />
+      </image>
+    </portletconfig>
+    <portletconfig usespecificautorefresh="false" icon="com.dynatrace.diagnostics.sdk/default_16x16.png" usedashboardsourceforcompare="true" folderid="org.eclipse.ui.internal.ViewStack@46e59034" sessiontype="live" locationassource="true" usedashboardsource="true" sessionid="easyTravel" id="b0dfec74-c735-4f12-96ab-a2bd149337da" addfilterinfo="false" description="shows distribution of serverside webrequests duration by application servers" lastvalue="false" name="" typeid="com.dynatrace.diagnostics.portlets.chart.Chart" ismaster="false" showabsolutevalues="false" locationascomparesource="false">
+      <reportconfig lines.per.table="100" print.legends="true" enabled="true" optimizeequalcolumns="true" levels.per.tree="10" override="false" print.images="true" reportposition="1" />
+      <filter>
+        <criterion completepurepath="true" type="agents" mode="all">
+          <textpattern enabled="true" name="agentname" type="contains" />
+          <textpattern enabled="true" name="agenthost" type="contains" />
+        </criterion>
+        <criterion type="applications" mode="all" />
+        <criterion type="btm" />
+        <criterion completepurepath="true" type="hosts" mode="all" />
+        <criterion type="timeframe">
+          <timeframe type="Last 1h" />
+        </criterion>
+        <criterion type="visits">
+          <visitidset />
+        </criterion>
+        <inheritancemap />
+      </filter>
+      <autorefreshconfig unit="MINUTES" enabled="true" time="5" />
+      <sashconfig weights="500,500" displayoption="CHART" />
+      <datamodelconfig>
+        <chart maxdisplayitems="10" axis.x.title="" legendposition="Bottom" zoomable="true" showtooltips="true" bounds.y.lower="0.0" charttype="StackedAreaChart" resolution="Auto" isentitymarkable="false" title="" showlabels="true" yaxisalignment="0" showname="true" splitcharts="true" bounds.y.enabled="true" axis.y.show="true" orientation="Horizontal" lockyaxis="true" axis.y.title="" axis.y.title.show="true" limititems="false" axis.x.show="true" axis.x.title.show="true" logxaxis="true" showheatfield="false" showvalues="false" showtitle="false" showlegend="false">
+          <legendcomposition splittings="true" host="true" measure="true" agent="true">
+            <pielabelcomposition unit="true" value="true" />
+          </legendcomposition>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="d4c4010d-531b-454d-bb2e-904597db7db2" aggregationtype="Count" uiunit="ms" groupingvalue="" id="837c786a-5395-36dc-86bc-a9c6cf7014be" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="Web Requests - 0s to 1s" sourcecolor="RGB(0,205,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentName" displayrate="10s" unit="count" systemid="easyTravel" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Web Requests - 0s to 1s" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="Web Requests - 0s to 1s" measuretype="TransactionMeasure" metrickeyid="Value" agentname="dtwsagent[Apache 2.2]" metricsimpledisplayname="Value" />
+            <displaysourceinfo agenthost="lnz123675n02" transactionname="Web Requests - 0s to 1s" measureunit="ms" agentname="dtwsagent[Apache 2.2]" agentgroup="Web Server" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="62de1ac7-c861-44bb-9ac4-86fa0e4aac19" aggregationtype="Count" uiunit="ms" groupingvalue="" id="a3791180-2179-3a06-8781-eee3811e85f4" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="Web Requests - 1s to 3s" sourcecolor="RGB(225,225,7,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentName" displayrate="10s" unit="count" systemid="easyTravel" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Web Requests - 1s to 3s" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="Web Requests - 1s to 3s" measuretype="TransactionMeasure" metrickeyid="Value" agentname="dtwsagent[Apache 2.2]" metricsimpledisplayname="Value" />
+            <displaysourceinfo agenthost="lnz123675n02" transactionname="Web Requests - 1s to 3s" measureunit="ms" agentname="dtwsagent[Apache 2.2]" agentgroup="Web Server" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="2" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Count" uiunit="ms" groupingvalue="" id="afa24ce8-0ae5-401c-9a5e-bb2dad9b014c" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="Web Requests - 3s to 10s" sourcecolor="RGB(255,157,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="AgentName" displayrate="10s" unit="ms" systemid="easyTravel" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Web Requests - 3s to 10s" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Web Requests - 3s to 10s" measuretype="TransactionMeasure" metrickeyid="Value" agentname="" metricsimpledisplayname="Value" />
+            <displaysourceinfo agenthost="" transactionname="Web Requests - 3s to 5s" measureunit="ms" agentname="" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="afa24ce8-0ae5-401c-9a5e-bb2dad9b014c" aggregationtype="Count" uiunit="ms" groupingvalue="" id="c7327984-221e-3243-8aca-cb1a0420237e" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="Web Requests - 3s to 5s" sourcecolor="RGB(255,157,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentName" displayrate="10s" unit="count" systemid="easyTravel" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Web Requests - 3s to 5s" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="Web Requests - 3s to 5s" measuretype="TransactionMeasure" metrickeyid="Value" agentname="y-p-apache1-web[Apache 2.2]" metricsimpledisplayname="Value" />
+            <displaysourceinfo agenthost="ip-10-53-43-83" transactionname="Web Requests - 3s to 5s" measureunit="ms" agentname="y-p-apache1-web[Apache 2.2]" agentgroup="WebServer" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="d4c4010d-531b-454d-bb2e-904597db7db2" aggregationtype="Count" uiunit="ms" groupingvalue="" id="cb345cb3-1961-370c-b854-dbd4b2f60a53" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="Web Requests - 0s to 1s" sourcecolor="RGB(0,205,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentName" displayrate="10s" unit="count" systemid="easyTravel" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Web Requests - 0s to 1s" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="Web Requests - 0s to 1s" measuretype="TransactionMeasure" metrickeyid="Value" agentname="y-p-apache1-web[Apache 2.2]" metricsimpledisplayname="Value" />
+            <displaysourceinfo agenthost="ip-10-53-43-83" transactionname="Web Requests - 0s to 1s" measureunit="ms" agentname="y-p-apache1-web[Apache 2.2]" agentgroup="WebServer" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="51f1f7b5-8ffc-4a0f-ab22-c5b258f22519" aggregationtype="Count" uiunit="ms" groupingvalue="" id="d15fb6a0-990f-38f2-bf1f-08d6ef04d365" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="Web Requests - 7s plus" sourcecolor="RGB(216,0,6,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentName" displayrate="10s" unit="count" systemid="easyTravel" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Web Requests - 7s plus" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="Web Requests - 7s plus" measuretype="TransactionMeasure" metrickeyid="Value" agentname="dtwsagent[Apache 2.2]" metricsimpledisplayname="Value" />
+            <displaysourceinfo agenthost="lnz123675n02" transactionname="Web Requests - 7s plus" measureunit="ms" agentname="dtwsagent[Apache 2.2]" agentgroup="Web Server" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="4" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Count" uiunit="ms" groupingvalue="" id="d4c4010d-531b-454d-bb2e-904597db7db2" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="Web Requests - 0s to 1s" sourcecolor="RGB(0,205,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="AgentName" displayrate="10s" unit="ms" systemid="easyTravel" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Web Requests - 0s to 1s" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Web Requests - 0s to 1s" measuretype="TransactionMeasure" metrickeyid="Value" agentname="" metricsimpledisplayname="Value" />
+            <displaysourceinfo agenthost="" transactionname="Web Requests - 0s to 1s" measureunit="ms" agentname="" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="51f1f7b5-8ffc-4a0f-ab22-c5b258f22519" aggregationtype="Count" uiunit="ms" groupingvalue="" id="eee4c20c-8614-3af6-9014-74a48f91fe19" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="Web Requests - 5s plus" sourcecolor="RGB(216,0,6,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentName" displayrate="10s" unit="count" systemid="easyTravel" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Web Requests - 5s plus" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="Web Requests - 5s plus" measuretype="TransactionMeasure" metrickeyid="Value" agentname="dtwsagent[Apache 2.2]" metricsimpledisplayname="Value" />
+            <displaysourceinfo agenthost="lnz123675n02" transactionname="Web Requests - 5s plus" measureunit="ms" agentname="dtwsagent[Apache 2.2]" agentgroup="Web Server" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="1" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Count" uiunit="ms" groupingvalue="" id="51f1f7b5-8ffc-4a0f-ab22-c5b258f22519" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="Web Requests - 10s plus" sourcecolor="RGB(216,0,6,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="AgentName" displayrate="10s" unit="ms" systemid="easyTravel" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Web Requests - 10s plus" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Web Requests - 10s plus" measuretype="TransactionMeasure" metrickeyid="Value" agentname="" metricsimpledisplayname="Value" />
+            <displaysourceinfo agenthost="" transactionname="Web Requests - 7s plus" measureunit="ms" agentname="" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="afa24ce8-0ae5-401c-9a5e-bb2dad9b014c" aggregationtype="Count" uiunit="ms" groupingvalue="" id="5a41cd56-a080-3497-8b76-fb6d247ce5a5" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="Web Requests - 3s to 5s" sourcecolor="RGB(255,157,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentName" displayrate="10s" unit="count" systemid="easyTravel" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Web Requests - 3s to 5s" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="Web Requests - 3s to 5s" measuretype="TransactionMeasure" metrickeyid="Value" agentname="dtwsagent[Apache 2.2]" metricsimpledisplayname="Value" />
+            <displaysourceinfo agenthost="lnz123675n02" transactionname="Web Requests - 3s to 5s" measureunit="ms" agentname="dtwsagent[Apache 2.2]" agentgroup="Web Server" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="3" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Count" uiunit="ms" groupingvalue="" id="62de1ac7-c861-44bb-9ac4-86fa0e4aac19" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="Web Requests - 1s to 3s" sourcecolor="RGB(225,225,7,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="AgentName" displayrate="10s" unit="ms" systemid="easyTravel" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Web Requests - 1s to 3s" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Web Requests - 1s to 3s" measuretype="TransactionMeasure" metrickeyid="Value" agentname="" metricsimpledisplayname="Value" />
+            <displaysourceinfo agenthost="" transactionname="Web Requests - 1s to 3s" measureunit="ms" agentname="" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <splitconfig splitmode="AgentName" splitlayout="Horizontal" />
+        </chart>
+        <table drawcolumn="-1" sortcolumn="16" structuremode="measureHierarchy" columnorder="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19">
+          <column index="0" sort="None" forcevisible="false" hidden="false" width="400" />
+          <column index="1" sort="None" forcevisible="false" hidden="true" width="100" />
+          <column index="2" sort="None" forcevisible="false" hidden="true" width="100" />
+          <column index="3" sort="None" forcevisible="false" hidden="false" width="25" />
+          <column index="4" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="5" sort="None" forcevisible="false" hidden="true" width="100" />
+          <column index="6" sort="None" forcevisible="false" hidden="false" width="50" />
+          <column index="7" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="8" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="9" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="10" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="11" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="12" sort="None" forcevisible="false" hidden="true" width="100" />
+          <column index="13" sort="None" forcevisible="false" hidden="false" width="105" />
+          <column index="14" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="15" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="16" sort="Up" forcevisible="false" hidden="false" width="100" />
+          <column index="17" sort="None" forcevisible="false" hidden="true" width="150" />
+          <column index="18" sort="None" forcevisible="false" hidden="true" width="150" />
+          <column index="19" sort="None" forcevisible="false" hidden="true" width="150" />
+        </table>
+        <heatfieldconfig smartmeasure="true" filterconfirmed="false" smartserver="true" customevents="true" deploymentevents="true">
+          <incidentrules />
+        </heatfieldconfig>
+      </datamodelconfig>
+      <chartcolors />
+    </portletconfig>
+    <portletconfig usespecificautorefresh="false" icon="com.dynatrace.diagnostics.sdk/default_16x16.png" usedashboardsourceforcompare="true" folderid="org.eclipse.ui.internal.ViewStack@5de01801" sessiontype="live" locationassource="true" usedashboardsource="true" sessionid="easyTravel" id="d1063a36-0d0a-4376-bd64-88003b52ebb0" addfilterinfo="false" description="overall distribution numbers of webrequests (red=slow, green=fast)" lastvalue="false" name="" typeid="com.dynatrace.diagnostics.portlets.chart.Chart" ismaster="false" showabsolutevalues="false" locationascomparesource="false">
+      <reportconfig lines.per.table="100" print.legends="true" enabled="true" optimizeequalcolumns="true" levels.per.tree="10" override="false" print.images="true" reportposition="1" />
+      <filter>
+        <criterion completepurepath="true" type="agents" mode="all">
+          <textpattern enabled="true" name="agentname" type="contains" />
+          <textpattern enabled="true" name="agenthost" type="contains" />
+        </criterion>
+        <criterion type="applications" mode="all" />
+        <criterion type="btm" />
+        <criterion completepurepath="true" type="hosts" mode="all" />
+        <criterion type="timeframe">
+          <timeframe type="Last 1h" />
+        </criterion>
+        <criterion type="visits">
+          <visitidset />
+        </criterion>
+        <inheritancemap />
+      </filter>
+      <autorefreshconfig unit="MINUTES" enabled="true" time="5" />
+      <sashconfig weights="500,500" displayoption="CHART" />
+      <datamodelconfig>
+        <chart maxdisplayitems="10" axis.x.title="" legendposition="Bottom" zoomable="true" showtooltips="true" bounds.y.lower="0.0" charttype="StackedAreaChart" resolution="Auto" isentitymarkable="false" title="" showlabels="true" yaxisalignment="0" showname="true" splitcharts="false" bounds.y.enabled="true" axis.y.show="true" orientation="Horizontal" lockyaxis="true" axis.y.title="" axis.y.title.show="true" limititems="false" axis.x.show="true" axis.x.title.show="true" logxaxis="true" showheatfield="false" showvalues="false" showtitle="false" showlegend="false">
+          <legendcomposition splittings="true" host="true" measure="true" agent="true">
+            <pielabelcomposition unit="true" value="true" />
+          </legendcomposition>
+          <chartsource position="1" scale="0" visible="true" sessiontype="live" colorinheritancemode="random" aggregationtype="Count" uiunit="ms" groupingvalue="" id="f7b78bd4-3d1a-41e3-9d54-adfe0bde62ad" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="Web Requests - 10s plus" sourcecolor="RGB(216,0,6,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" displayrate="10s" unit="ms" systemid="easyTravel" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Web Requests - 10s plus" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Web Requests - 10s plus" measuretype="TransactionMeasure" metrickeyid="Value" agentname="" metricsimpledisplayname="Value" />
+            <displaysourceinfo agenthost="" transactionname="Web Requests - 7s plus" measureunit="ms" agentname="" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="4" scale="0" visible="true" sessiontype="live" colorinheritancemode="random" aggregationtype="Count" uiunit="ms" groupingvalue="" id="334e4cb6-d35b-4313-8fb4-e4ff83e6a539" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="Web Requests - 0s to 1s" sourcecolor="RGB(0,205,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" displayrate="10s" unit="ms" systemid="easyTravel" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Web Requests - 0s to 1s" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Web Requests - 0s to 1s" measuretype="TransactionMeasure" metrickeyid="Value" agentname="" metricsimpledisplayname="Value" />
+            <displaysourceinfo agenthost="" transactionname="Web Requests - 0s to 1s" measureunit="ms" agentname="" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="2" scale="0" visible="true" sessiontype="live" colorinheritancemode="random" aggregationtype="Count" uiunit="ms" groupingvalue="" id="338b1074-72a6-49ef-b8e3-6e0ba5c950fc" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="Web Requests - 3s to 10s" sourcecolor="RGB(255,157,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" displayrate="10s" unit="ms" systemid="easyTravel" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Web Requests - 3s to 10s" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Web Requests - 3s to 10s" measuretype="TransactionMeasure" metrickeyid="Value" agentname="" metricsimpledisplayname="Value" />
+            <displaysourceinfo agenthost="" transactionname="Web Requests - 3s to 5s" measureunit="ms" agentname="" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="3" scale="0" visible="true" sessiontype="live" colorinheritancemode="random" aggregationtype="Count" uiunit="ms" groupingvalue="" id="4b41ae2f-7671-4973-8e63-79333cdeab7c" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="Web Requests - 1s to 3s" sourcecolor="RGB(225,225,7,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" displayrate="10s" unit="ms" systemid="easyTravel" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Web Requests - 1s to 3s" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Web Requests - 1s to 3s" measuretype="TransactionMeasure" metrickeyid="Value" agentname="" metricsimpledisplayname="Value" />
+            <displaysourceinfo agenthost="" transactionname="Web Requests - 1s to 3s" measureunit="ms" agentname="" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <splitconfig splitmode="PerSeries" splitlayout="Horizontal" />
+        </chart>
+        <table drawcolumn="-1" sortcolumn="16" structuremode="measureHierarchy" columnorder="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19">
+          <column index="0" sort="None" forcevisible="false" hidden="false" width="400" />
+          <column index="1" sort="None" forcevisible="false" hidden="true" width="100" />
+          <column index="2" sort="None" forcevisible="false" hidden="true" width="100" />
+          <column index="3" sort="None" forcevisible="false" hidden="false" width="25" />
+          <column index="4" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="5" sort="None" forcevisible="false" hidden="true" width="100" />
+          <column index="6" sort="None" forcevisible="false" hidden="false" width="50" />
+          <column index="7" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="8" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="9" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="10" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="11" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="12" sort="None" forcevisible="false" hidden="true" width="100" />
+          <column index="13" sort="None" forcevisible="false" hidden="false" width="105" />
+          <column index="14" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="15" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="16" sort="Up" forcevisible="false" hidden="false" width="100" />
+          <column index="17" sort="None" forcevisible="false" hidden="true" width="150" />
+          <column index="18" sort="None" forcevisible="false" hidden="true" width="150" />
+          <column index="19" sort="None" forcevisible="false" hidden="true" width="150" />
+        </table>
+        <heatfieldconfig smartmeasure="true" filterconfirmed="false" smartserver="true" customevents="true" deploymentevents="true">
+          <incidentrules />
+        </heatfieldconfig>
+      </datamodelconfig>
+      <chartcolors />
+    </portletconfig>
+    <portletconfig com.dynatrace.diagnostics.portlets.text.textportletconfig.backgroundstyle="stretchBoth" icon="com.dynatrace.diagnostics.sdk/default_16x16.png" usespecificautorefresh="false" usedashboardsourceforcompare="true" folderid="9a91dc54-2753-4180-9834-e7f6a7fd2c7d" locationassource="true" com.dynatrace.diagnostics.portlets.text.textportletconfig.wallpapercolor="RGB(255,255,255,255)" usedashboardsource="true" heightmode="UseBackgroundImageHeight" id="fbed4c0e-6757-4016-a75b-e976f2604aff" addfilterinfo="false" invertcolors="true" com.dynatrace.diagnostics.portlets.text.textportletconfig.alignment="LEFT" com.dynatrace.diagnostics.portlets.text.textportletconfig.text="" description="" name="Web Request Response Time Distribution" typeid="com.dynatrace.diagnostics.portlets.text.Text" ismaster="false" locationascomparesource="false" com.dynatrace.diagnostics.portlets.text.textportletconfig.defaultforegroundcolor="RGB(0,0,0,255)">
+      <reportconfig lines.per.table="100" print.legends="true" enabled="true" optimizeequalcolumns="true" levels.per.tree="10" override="false" print.images="true" reportposition="2" />
+      <filter>
+        <inheritancemap />
+      </filter>
+      <autorefreshconfig unit="MINUTES" enabled="false" time="5" />
+      <sashconfig weights="1,1" displayoption="CHART_AND_TABLE" />
+      <font height="12" style="NORMAL" name="Lucida Grande" />
+      <image length="1448" offset="-1">
+        <chunk data="iVBORw0KGgoAAAANSUhEUgAAAoAAAAAFCAYAAADVL11hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QkJEjoe0mgcrgAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAADoElEQVRo3uVaW27cMBAb9hS5UH5z2P3NhXKKsh9ZFK6t4ZDabYEmC2wWsC1ZmgfJGQUvrzfW54f3bx1+a3GNVQXz+eP1bq5qnldrUM9P86z2kYxL1nPef2pn9/2P3nPs7vqGgf8e2Vtq23Pcnu93saBiOLX/YRyrCo79nXxbPZPYMBmz6/8NG0Vrc3Jwx7bPxLJd+1VV/byOIauA9b0Y55xxj8ZNN36K33Td/yqmdznpb/Djjm12Y2O1t3QemJzJjXyfc+LzqQnj6+P9bcUzX+bz47RhiGdx+J2M0s2Hg4Om9ziJBmO8s4/zehnYogsgHL6djWDM7e7LtecqkTAQ6/2ZOBeUUJuuqPWfbbsSdVj4ls28Z2HIJg7Z28byE0+PQcQEjbm5WH9574/XT8Mn6ZyrWKeRYwjIdNoLB/u7doRYBzbmK52Lv39o2Jjmezq7q7iHERvJHjHEebqP6Z0whN11HFu/dxzicpWDlzTv1YB5JlaNXLiKASxiacW9Cu94/6v4qcN5za24rO/iq68u/g4CkA548+JAjsLPAGUqkp4IhgGIOGDBRhB0gPhIImNYA5sxDESSS/o0BChPlxzBAUHgf9oWNhA5751isREXVPE/iXmXmCoUOxSFChYFR0IeMIs3mPuvoUMwxasSYFP+QfgYjciDmAOmvSbchPCbImOExTmD/FeFLoOCYeVbJRYpBIGDry72OU0FBHyD5i4HnHPyOy0yStiwwwQYRQGNoswtqNgU5gyaRa6HT3OSZrEv5/x4f+PL62236fK/CUCUIT7O14+kDQFa0J0hJO7ugtMRaRMQPqPrliRPd6SChqS4sSYF8BwEAM297ojUiTQmm8EALZcIjh0VDCDNxjeJv5M4SgiOgQ0Y5ERt+CnohF7sytCHNcSzEnGJ2JnEYeL3nQLG6b6w8k7sTrzSKLIR7FHlturuT4WCEpRseEqNd5oQguukTxl0CmGIKzyAOc8ofIyC226SBPyCVSHpFKOXNX2jDuBYVewS2VRhKGd1lcUqcSGSFcb6YBCk25p3jrlVNa4qMzZLYenjxEksdV2Sla2dozgMgOJWsa44oQmaDtg64nPnCGqnSzuRpXOs6AK7Y1sIAewe0+12cZKcdjpkj4g0R5yxERbdmri5t67TozrnvJ/6wMARDHgykbxbAKT5VGZ+wcw3p8uedOwg3l+beJXGSiLqGODl9K8qHTY4XUYMBXfiH6MBtbbHy+sN36ED+AuJ1akykfhgcwAAAABJRU5ErkJggg==" offset="0" />
+      </image>
+    </portletconfig>
+    <portletconfig com.dynatrace.diagnostics.portlets.text.textportletconfig.backgroundstyle="stretchBoth" icon="com.dynatrace.diagnostics.sdk/default_16x16.png" usespecificautorefresh="false" usedashboardsourceforcompare="true" folderid="org.eclipse.ui.internal.ViewStack@c1d8f6d" locationassource="true" com.dynatrace.diagnostics.portlets.text.textportletconfig.wallpapercolor="RGB(255,255,255,255)" usedashboardsource="true" heightmode="UseBackgroundImageHeight" id="719a1db5-e4eb-44c8-9e20-07ec61616d1b" addfilterinfo="false" invertcolors="true" com.dynatrace.diagnostics.portlets.text.textportletconfig.alignment="LEFT" com.dynatrace.diagnostics.portlets.text.textportletconfig.text="" description="" name="Web Request Response Time Distribution by Server" typeid="com.dynatrace.diagnostics.portlets.text.Text" ismaster="false" locationascomparesource="false" com.dynatrace.diagnostics.portlets.text.textportletconfig.defaultforegroundcolor="RGB(0,0,0,255)">
+      <reportconfig lines.per.table="100" print.legends="true" enabled="true" optimizeequalcolumns="true" levels.per.tree="10" override="false" print.images="true" reportposition="2" />
+      <filter>
+        <inheritancemap />
+      </filter>
+      <autorefreshconfig unit="MINUTES" enabled="false" time="5" />
+      <sashconfig weights="1,1" displayoption="CHART_AND_TABLE" />
+      <font height="12" style="NORMAL" name="Lucida Grande" />
+      <image length="1448" offset="-1">
+        <chunk data="iVBORw0KGgoAAAANSUhEUgAAAoAAAAAFCAYAAADVL11hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QkJEjoe0mgcrgAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAADoElEQVRo3uVaW27cMBAb9hS5UH5z2P3NhXKKsh9ZFK6t4ZDabYEmC2wWsC1ZmgfJGQUvrzfW54f3bx1+a3GNVQXz+eP1bq5qnldrUM9P86z2kYxL1nPef2pn9/2P3nPs7vqGgf8e2Vtq23Pcnu93saBiOLX/YRyrCo79nXxbPZPYMBmz6/8NG0Vrc3Jwx7bPxLJd+1VV/byOIauA9b0Y55xxj8ZNN36K33Td/yqmdznpb/Djjm12Y2O1t3QemJzJjXyfc+LzqQnj6+P9bcUzX+bz47RhiGdx+J2M0s2Hg4Om9ziJBmO8s4/zehnYogsgHL6djWDM7e7LtecqkTAQ6/2ZOBeUUJuuqPWfbbsSdVj4ls28Z2HIJg7Z28byE0+PQcQEjbm5WH9574/XT8Mn6ZyrWKeRYwjIdNoLB/u7doRYBzbmK52Lv39o2Jjmezq7q7iHERvJHjHEebqP6Z0whN11HFu/dxzicpWDlzTv1YB5JlaNXLiKASxiacW9Cu94/6v4qcN5za24rO/iq68u/g4CkA548+JAjsLPAGUqkp4IhgGIOGDBRhB0gPhIImNYA5sxDESSS/o0BChPlxzBAUHgf9oWNhA5751isREXVPE/iXmXmCoUOxSFChYFR0IeMIs3mPuvoUMwxasSYFP+QfgYjciDmAOmvSbchPCbImOExTmD/FeFLoOCYeVbJRYpBIGDry72OU0FBHyD5i4HnHPyOy0yStiwwwQYRQGNoswtqNgU5gyaRa6HT3OSZrEv5/x4f+PL62236fK/CUCUIT7O14+kDQFa0J0hJO7ugtMRaRMQPqPrliRPd6SChqS4sSYF8BwEAM297ojUiTQmm8EALZcIjh0VDCDNxjeJv5M4SgiOgQ0Y5ERt+CnohF7sytCHNcSzEnGJ2JnEYeL3nQLG6b6w8k7sTrzSKLIR7FHlturuT4WCEpRseEqNd5oQguukTxl0CmGIKzyAOc8ofIyC226SBPyCVSHpFKOXNX2jDuBYVewS2VRhKGd1lcUqcSGSFcb6YBCk25p3jrlVNa4qMzZLYenjxEksdV2Sla2dozgMgOJWsa44oQmaDtg64nPnCGqnSzuRpXOs6AK7Y1sIAewe0+12cZKcdjpkj4g0R5yxERbdmri5t67TozrnvJ/6wMARDHgykbxbAKT5VGZ+wcw3p8uedOwg3l+beJXGSiLqGODl9K8qHTY4XUYMBXfiH6MBtbbHy+sN36ED+AuJ1akykfhgcwAAAABJRU5ErkJggg==" offset="0" />
+      </image>
+    </portletconfig>
+  </dashboardconfig>
+</dynatrace>
+

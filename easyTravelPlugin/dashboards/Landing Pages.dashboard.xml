@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ATTENTION - THIS IS AN AUTOMATICALLY GENERATED FILE -->
+<!-- Manual changes can cause severe problems and system instability -->
+<!-- Apply manual changes only if you have received explicit instructions from dynaTrace Support -->
+<dynatrace version="4.1.0.2876" date="12/1/11 11:27 AM">
+  <dashboardconfig memento.version="4.1.0.2876" icon="com.dynatrace.diagnostics.portlets/icons/transaction.gif" localizationenabled="false" sessiontype="live" locationassource="true" groupname="" authorname="dynaTrace" opendrilldowninnewdashboard="true" sessionid="easyTravel" bgcolor="255,255,255,255" modified="2011-12-01T11:27:28+0100" id="46f73ff2-4406-41d2-a70d-63e74e9e54dd" revision="00000133-f92a-232e-bdc3-f3eb370984ab" created="2011-06-03T08:18:03+0200" description="Take care opf your landing pages. They are the entry to your application" name="Landing Pages" modifiedbyname="dominik.stadler" locationascomparesource="false">
+    <reportconfig lines.per.table="100" enabled="true" print.legends="true" orientation="portrait" pagesize="A4" formathtml="com.dynatrace.diagnostics.report.velocity.format.htmlrenderer" type="HTML" title="" override="false" levels.per.tree="10" description="" print.images="true" formatpdf="com.dynatrace.diagnostics.report.velocity.format.pdfrenderer" />
+    <filter>
+      <criterion completepurepath="true" type="agents" mode="all">
+        <textpattern enabled="true" name="agentname" type="contains" />
+        <textpattern enabled="true" name="agenthost" type="contains" />
+      </criterion>
+      <criterion excludeexternalsubpaths="false" type="api" mode="all" />
+      <criterion type="applications" mode="all" />
+      <criterion showrendering="true" isactive="true" shownetwork="true" showjavascript="true" type="browserpathtype" />
+      <criterion timerenabled="false" pageenabled="false" type="browsersectionfilter">
+        <timername>
+          <stringmatchpattern text="" match="contains" />
+        </timername>
+        <pageurl>
+          <stringmatchpattern text="" match="contains" />
+        </pageurl>
+      </criterion>
+      <criterion type="btm" />
+      <criterion isactive="true" analyzeserverpath="true" type="enduserpath" analyzeenduserpath="true" />
+      <criterion completepurepath="true" type="hosts" mode="all" />
+      <criterion severities="" statesmode="all" severitiesmode="all" states="" rulesmode="all" type="incident" />
+      <criterion type="purepaths" mode="all" />
+      <criterion showrendering="true" isactive="false" shownetwork="true" showjavascript="true" type="riapurepathtype" requestcriterion="ALL" />
+      <criterion includemeasurename="true" includetestname="true" type="tests" teststatus="OK" />
+      <criterion enabled="false" filterbyid="false" type="threads" />
+      <criterion type="timeframe">
+        <timeframe start="0" type="Auto" end="9223372036854775807" />
+      </criterion>
+      <criterion type="visits">
+        <visitidset visitsidsetsize="0" />
+      </criterion>
+      <criterion type="webpage">
+        <textpattern enabled="true" name="timerName" type="contains" />
+        <textpattern enabled="true" name="pageContext" type="contains" />
+      </criterion>
+      <criterion type="webrequest">
+        <filteruripattern>
+          <stringmatchpattern text="" match="contains" />
+        </filteruripattern>
+        <filterquerypattern>
+          <stringmatchpattern text="" match="contains" />
+        </filterquerypattern>
+      </criterion>
+    </filter>
+    <autorefreshconfig unit="MINUTES" enabled="false" time="5" />
+    <designconfig descriptionalignment="LEFT" descriptionfontstyle="NORMAL" namealignment="LEFT" descriptionfontsize="10" nameshow="true" clienttheme="DEFAULT" headertype="CUSTOM" namefontsize="12" descriptionshow="true" autoadjustfontsizes="false" namefontstyle="BOLD" descriptionfontcolor="128,128,128" />
+    <dashboardlayout>
+      <portletfolder relationtype="LEFT" ratio="0.95" folderid="04d0a977-ad8c-46b1-8971-72f7439c5a74" selectionindex="0" relatedfolderid="DashboardLayout.blankArea" portletconfigorder="a9e89495-147a-4456-a7bf-083e87d70ba1">
+        <designconfig descriptionalignment="CENTER" descriptionfontstyle="NORMAL" namealignment="CENTER" inherited="true" descriptionfontsize="8" nameshow="true" headertype="DEFAULT" namefontsize="10" descriptionshow="true" namefontstyle="BOLD" descriptionfontcolor="128,128,128" />
+      </portletfolder>
+    </dashboardlayout>
+    <portletconfig treestructuremode="Hierarchy" icon="com.dynatrace.diagnostics.sdk/default.gif" usespecificautorefresh="false" usedashboardsourceforcompare="true" folderid="04d0a977-ad8c-46b1-8971-72f7439c5a74" sessiontype="live" locationassource="true" usedashboardsource="true" sessionid="easyTravel" bgcolor="236,233,216,255" id="a9e89495-147a-4456-a7bf-083e87d70ba1" addfilterinfo="false" description="Take care of your Landing Pages. They are the entry to your application. See at which Landing Pages you are slower than your competitors or at which Landing Pages you have a lot of bounces. Sort your Landing Pages to find out, where most of your visits land or which have the best conversion.&#xD;&#xA;" name="Landing Pages" typeid="com.dynatrace.diagnostics.portlets.chart.BtHistoricalCompare" ismaster="false" locationascomparesource="false">
+      <reportconfig lines.per.table="100" print.legends="true" enabled="true" levels.per.tree="10" override="false" print.images="true" reportposition="1" />
+      <filter>
+        <criterion completepurepath="true" type="agents" mode="all">
+          <textpattern enabled="true" name="agentname" type="contains" />
+          <textpattern enabled="true" name="agenthost" type="contains" />
+        </criterion>
+        <criterion type="applications" mode="all" />
+        <criterion completepurepath="true" type="hosts" mode="all" />
+        <criterion type="timeframe">
+          <timeframe start="0" type="Auto" end="9223372036854775807" />
+        </criterion>
+        <inheritancemap />
+      </filter>
+      <autorefreshconfig unit="MINUTES" enabled="false" time="5" />
+      <sashconfig weights="1,1" displayoption="CHART_AND_TABLE" />
+      <datamodelconfig sortorder="Up" sortcolumn="0" sorttable="0" columnorder="0,1,2,3,4,5,6,7,8,9,10,11,13,24,12,14,22,15,16,17,18,19,20,21,23">
+        <chartsourceconfigurations>
+          <chartsource position="1" scale="-2147483648" visible="true" sessiontype="live" dynamicconfig="false" sessionid="easyTravel" id="4c5c6395-1f86-44e9-9334-d512d14c8591" displayrate="10s" systemid="easyTravel" overridesource="false" name="" sourcetype="BUSINESS_TRANSACTION" autoscale="true">
+            <businesstransaction transactionconfigkeyid="Visits by Landing Pages" groupingconstant1="BTSP1" parentconfigurationid="ab9a0d2f-0222-4cce-bf46-6e4aaf017320">
+              <sessionreference systemid="easyTravel" techtypes="31" datastarttime="-1" latestmodification="-1" lastmodifiedby="" type="live" />
+              <childsourceconfigs>
+                <chartsource position="-1" scale="-2147483648" visible="true" sessiontype="live" dynamicconfig="false" colorinheritancemode="parent" aggregationtype="Sum" sessionid="easyTravel" uiunit="auto" groupingvalue="" fetchmeasurecolor="false" id="ed0c11f5-bdf2-4f25-aadd-34aa83988f2c" displayrate="10s" systemid="easyTravel" overridesource="false" rate="10s" ratesupported="true" name="Visits by Landing Pages (Bounce Rate;Visits;Bounce Count)" sourcecolor="RGB(0,0,0,255)" measuretype="TransactionMeasure" sourcetype="MEASURE" fetchthreshold="false" fetch.dynamic.measures="true" autoscale="true">
+                  <lightweightuniquemeasureidentifier keyid="Visits by Landing Pages (Bounce Rate;Visits;Bounce Count)" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Visits by Landing Pages (Bounce Rate;Visits;Bounce Count)" metrickeyid="Value" agentname="" />
+                  <displaysourceinfo />
+                </chartsource>
+                <chartsource position="-1" scale="-2147483648" visible="true" sessiontype="live" dynamicconfig="false" colorinheritancemode="parent" aggregationtype="Count" sessionid="easyTravel" uiunit="auto" groupingvalue="" fetchmeasurecolor="false" id="e4b09138-867c-4620-b74c-2bd93745b1b5" displayrate="10s" systemid="easyTravel" overridesource="false" rate="10s" ratesupported="true" name="Visits by Landing Pages (Bounce Rate;Visits;Bounce Count)" sourcecolor="RGB(0,0,0,255)" measuretype="TransactionMeasure" sourcetype="MEASURE" fetchthreshold="false" fetch.dynamic.measures="true" autoscale="true">
+                  <lightweightuniquemeasureidentifier keyid="Visits by Landing Pages (Bounce Rate;Visits;Bounce Count)" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Visits by Landing Pages (Bounce Rate;Visits;Bounce Count)" metrickeyid="Value" agentname="" />
+                  <displaysourceinfo />
+                </chartsource>
+                <chartsource position="-1" scale="-2147483648" visible="true" sessiontype="live" dynamicconfig="false" colorinheritancemode="parent" aggregationtype="Avg" sessionid="easyTravel" uiunit="auto" groupingvalue="" fetchmeasurecolor="false" id="58a87cd0-e127-4695-848e-26f39f0c506a" displayrate="10s" systemid="easyTravel" overridesource="false" rate="10s" ratesupported="true" name="Visits by Landing Pages (Bounce Rate;Visits;Bounce Count)" sourcecolor="RGB(0,0,0,255)" measuretype="TransactionMeasure" sourcetype="MEASURE" fetchthreshold="false" fetch.dynamic.measures="true" autoscale="true">
+                  <lightweightuniquemeasureidentifier keyid="Visits by Landing Pages (Bounce Rate;Visits;Bounce Count)" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Visits by Landing Pages (Bounce Rate;Visits;Bounce Count)" metrickeyid="Value" agentname="" />
+                  <displaysourceinfo />
+                </chartsource>
+                <chartsource position="-1" scale="-2147483648" visible="true" sessiontype="live" dynamicconfig="false" colorinheritancemode="parent" aggregationtype="Sum" sessionid="easyTravel" uiunit="auto" groupingvalue="" fetchmeasurecolor="false" id="6ba6fcd1-bd4f-4317-81e9-579fbbd2afda" displayrate="10s" systemid="easyTravel" overridesource="false" rate="10s" ratesupported="true" name="Visits by Landing Pages (Conversion Rate;Visits;Conversion Count)" sourcecolor="RGB(0,0,0,255)" measuretype="TransactionMeasure" sourcetype="MEASURE" fetchthreshold="false" fetch.dynamic.measures="true" autoscale="true">
+                  <lightweightuniquemeasureidentifier keyid="Visits by Landing Pages (Conversion Rate;Visits;Conversion Count)" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Visits by Landing Pages (Conversion Rate;Visits;Conversion Count)" metrickeyid="Value" agentname="" />
+                  <displaysourceinfo />
+                </chartsource>
+                <chartsource position="-1" scale="-2147483648" visible="true" sessiontype="live" dynamicconfig="false" colorinheritancemode="parent" aggregationtype="Count" sessionid="easyTravel" uiunit="auto" groupingvalue="" fetchmeasurecolor="false" id="39c8d58f-2032-49d1-b614-813ff1baf68f" displayrate="10s" systemid="easyTravel" overridesource="false" rate="10s" ratesupported="true" name="Visits by Landing Pages (Conversion Rate;Visits;Conversion Count)" sourcecolor="RGB(0,0,0,255)" measuretype="TransactionMeasure" sourcetype="MEASURE" fetchthreshold="false" fetch.dynamic.measures="true" autoscale="true">
+                  <lightweightuniquemeasureidentifier keyid="Visits by Landing Pages (Conversion Rate;Visits;Conversion Count)" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Visits by Landing Pages (Conversion Rate;Visits;Conversion Count)" metrickeyid="Value" agentname="" />
+                  <displaysourceinfo />
+                </chartsource>
+                <chartsource position="-1" scale="-2147483648" visible="true" sessiontype="live" dynamicconfig="false" colorinheritancemode="parent" aggregationtype="Avg" sessionid="easyTravel" uiunit="auto" groupingvalue="" fetchmeasurecolor="false" id="618a9618-527c-4b48-996f-ccc521d05c90" displayrate="10s" systemid="easyTravel" overridesource="false" rate="10s" ratesupported="true" name="Visits by Landing Pages (Conversion Rate;Visits;Conversion Count)" sourcecolor="RGB(0,0,0,255)" measuretype="TransactionMeasure" sourcetype="MEASURE" fetchthreshold="false" fetch.dynamic.measures="true" autoscale="true">
+                  <lightweightuniquemeasureidentifier keyid="Visits by Landing Pages (Conversion Rate;Visits;Conversion Count)" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Visits by Landing Pages (Conversion Rate;Visits;Conversion Count)" metrickeyid="Value" agentname="" />
+                  <displaysourceinfo />
+                </chartsource>
+                <chartsource position="-1" scale="-2147483648" visible="true" sessiontype="live" dynamicconfig="false" colorinheritancemode="parent" aggregationtype="Sum" sessionid="easyTravel" uiunit="auto" groupingvalue="" fetchmeasurecolor="false" id="90a8e5ef-3a2b-43a4-ab88-ae9550935d70" displayrate="10s" systemid="easyTravel" overridesource="false" rate="10s" ratesupported="true" name="Visits by Landing Pages (Load Time;Page Actions;Total Time)" sourcecolor="RGB(0,0,0,255)" measuretype="TransactionMeasure" sourcetype="MEASURE" fetchthreshold="false" fetch.dynamic.measures="true" autoscale="true">
+                  <lightweightuniquemeasureidentifier keyid="Visits by Landing Pages (Load Time;Page Actions;Total Time)" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Visits by Landing Pages (Load Time;Page Actions;Total Time)" metrickeyid="Value" agentname="" />
+                  <displaysourceinfo />
+                </chartsource>
+                <chartsource position="-1" scale="-2147483648" visible="true" sessiontype="live" dynamicconfig="false" colorinheritancemode="parent" aggregationtype="Count" sessionid="easyTravel" uiunit="auto" groupingvalue="" fetchmeasurecolor="false" id="69054a8b-da86-4876-9e9d-513ca2ada146" displayrate="10s" systemid="easyTravel" overridesource="false" rate="10s" ratesupported="true" name="Visits by Landing Pages (Load Time;Page Actions;Total Time)" sourcecolor="RGB(0,0,0,255)" measuretype="TransactionMeasure" sourcetype="MEASURE" fetchthreshold="false" fetch.dynamic.measures="true" autoscale="true">
+                  <lightweightuniquemeasureidentifier keyid="Visits by Landing Pages (Load Time;Page Actions;Total Time)" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Visits by Landing Pages (Load Time;Page Actions;Total Time)" metrickeyid="Value" agentname="" />
+                  <displaysourceinfo />
+                </chartsource>
+                <chartsource position="-1" scale="-2147483648" visible="true" sessiontype="live" dynamicconfig="false" colorinheritancemode="parent" aggregationtype="Avg" sessionid="easyTravel" uiunit="auto" groupingvalue="" fetchmeasurecolor="false" id="dac5d1dd-e9aa-4e94-a7e8-2808fa2dd911" displayrate="10s" systemid="easyTravel" overridesource="false" rate="10s" ratesupported="true" name="Visits by Landing Pages (Load Time;Page Actions;Total Time)" sourcecolor="RGB(0,0,0,255)" measuretype="TransactionMeasure" sourcetype="MEASURE" fetchthreshold="false" fetch.dynamic.measures="true" autoscale="true">
+                  <lightweightuniquemeasureidentifier keyid="Visits by Landing Pages (Load Time;Page Actions;Total Time)" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Visits by Landing Pages (Load Time;Page Actions;Total Time)" metrickeyid="Value" agentname="" />
+                  <displaysourceinfo />
+                </chartsource>
+              </childsourceconfigs>
+            </businesstransaction>
+          </chartsource>
+        </chartsourceconfigurations>
+        <columndescriptor id="count" name="Count" special="true">
+          <aggregationtype aggregationtypeid="Max" />
+          <column index="-1" sort="None" forcevisible="false" hidden="false" width="65" tooltip="The number of times this Business Transaction occurred" />
+        </columndescriptor>
+        <columndescriptor id="countPerDay" name="Count per day" special="true">
+          <aggregationtype aggregationtypeid="Max" />
+          <column index="-1" sort="None" forcevisible="false" hidden="true" width="65" tooltip="The number of times this Business Transaction occurred, normalized to a one-day period" />
+        </columndescriptor>
+        <columndescriptor id="incidents" name="Incidents" special="true">
+          <aggregationtype aggregationtypeid="Max" />
+          <column index="-1" sort="None" forcevisible="false" hidden="true" width="65" tooltip="The number of Business Transactions which triggered incidents" />
+        </columndescriptor>
+        <columndescriptor id="incidentsPerDay" name="Incidents per day" special="true">
+          <aggregationtype aggregationtypeid="Max" />
+          <column index="-1" sort="None" forcevisible="false" hidden="true" width="65" tooltip="The number Business Transactions which triggered incidents, normalized to a one-day period" />
+        </columndescriptor>
+        <columndescriptor id="incidentRate" name="Incident rate [%]" special="true">
+          <aggregationtype aggregationtypeid="Max" />
+          <column index="-1" sort="None" forcevisible="false" hidden="false" width="65" tooltip="The number of Business Transactions which triggered incidents, in relation to the number of times this Business Transaction occurred" />
+        </columndescriptor>
+        <columndescriptor id="violations" name="Violations" special="true">
+          <aggregationtype aggregationtypeid="Max" />
+          <column index="-1" sort="None" forcevisible="false" hidden="true" width="65" tooltip="The number of violations of result measures of this Business Transaction" />
+        </columndescriptor>
+        <columndescriptor id="violationsPerDay" name="Violations per day" special="true">
+          <aggregationtype aggregationtypeid="Max" />
+          <column index="-1" sort="None" forcevisible="false" hidden="true" width="20" tooltip="The number of violations of result measures of this Business Transaction, normalized to a one-day period" />
+        </columndescriptor>
+        <columndescriptor id="violationRate" name="Violations per Business Transaction [%]" special="true">
+          <aggregationtype aggregationtypeid="Max" />
+          <column index="-1" sort="None" forcevisible="false" hidden="false" width="65" tooltip="The number of violations of result measures of this Business Transaction, in relation to the number of times this Business Transaction occurred" />
+        </columndescriptor>
+        <columndescriptor id="state" name="" special="true">
+          <aggregationtype aggregationtypeid="Max" />
+          <column index="-1" sort="None" forcevisible="false" hidden="false" width="20" tooltip="The state (ok, warning, error) that has been detected for this Business Transaction" />
+        </columndescriptor>
+        <columndescriptor id="errorPercentage" name="Failed %" special="true">
+          <aggregationtype aggregationtypeid="Max" />
+          <column index="-1" sort="None" forcevisible="false" hidden="false" width="65" tooltip="The percentage of errors that has been detected for this Business Transaction" />
+        </columndescriptor>
+        <columndescriptor id="sotw" name="Compare to SpeedoftheWeb" special="true">
+          <aggregationtype aggregationtypeid="Max" />
+          <column index="-1" sort="Down" forcevisible="false" hidden="true" width="180" tooltip="Compare average Page Load Times to benchmark data powered by www.SpeedOfTheWeb.org" />
+        </columndescriptor>
+        <columndescriptor name="Error Rate [%]" special="true">
+          <aggregationtype aggregationtypeid="Max" />
+          <column index="-1" sort="None" forcevisible="false" hidden="true" width="65" tooltip="The percentage of errors that has been detected for this Business Transaction" />
+        </columndescriptor>
+        <columndescriptor name="Warning Rate [%]" special="true">
+          <aggregationtype aggregationtypeid="Max" />
+          <column index="-1" sort="None" forcevisible="false" hidden="true" width="65" tooltip="The percentage of warnings that has been detected for this Business Transaction" />
+        </columndescriptor>
+        <columndescriptor name="Bounce Rate" special="false">
+          <aggregationtype aggregationtypeid="Sum" />
+          <column index="-1" sort="None" forcevisible="false" hidden="true" width="65" />
+        </columndescriptor>
+        <columndescriptor name="Bounce Rate" special="false">
+          <aggregationtype aggregationtypeid="Avg" />
+          <column index="-1" sort="None" forcevisible="false" hidden="false" width="65" />
+        </columndescriptor>
+        <columndescriptor name="Conversion Rate" special="false">
+          <aggregationtype aggregationtypeid="Sum" />
+          <column index="-1" sort="None" forcevisible="false" hidden="true" width="65" />
+        </columndescriptor>
+        <columndescriptor name="Conversion Rate" special="false">
+          <aggregationtype aggregationtypeid="Avg" />
+          <column index="-1" sort="None" forcevisible="false" hidden="false" width="65" />
+        </columndescriptor>
+        <columndescriptor name="Load Time" special="false">
+          <aggregationtype aggregationtypeid="Sum" />
+          <column index="-1" sort="None" forcevisible="false" hidden="true" width="65" />
+        </columndescriptor>
+        <columndescriptor name="Load Time" special="false">
+          <aggregationtype aggregationtypeid="Avg" />
+          <column index="-1" sort="None" forcevisible="false" hidden="false" width="65" />
+        </columndescriptor>
+        <aggregationtype aggregationtypeid="Sum" />
+        <aggregationtype aggregationtypeid="Avg" />
+        <expandednodes>
+          <expandednode expandednode="Visits by Landing Pages" />
+          <expandednode expandednode="Visits by Landing Pages (split by Landing Page of Visits)" />
+        </expandednodes>
+      </datamodelconfig>
+      <descriptors>
+        <timeframetabledescriptor enabled="false">
+          <timeframe type="Last Week" />
+        </timeframetabledescriptor>
+        <timeframetabledescriptor enabled="false">
+          <timeframe type="Last Month" />
+        </timeframetabledescriptor>
+        <timeframetabledescriptor enabled="false">
+          <timeframe type="Last Year" />
+        </timeframetabledescriptor>
+      </descriptors>
+      <ccontent enabled="both" ratio="0.248" />
+    </portletconfig>
+  </dashboardconfig>
+</dynatrace>
+

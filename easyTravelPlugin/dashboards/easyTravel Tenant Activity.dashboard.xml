@@ -1,0 +1,832 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ATTENTION - THIS IS AN AUTOMATICALLY GENERATED FILE -->
+<!-- Manual changes can cause severe problems and system instability -->
+<!-- Apply manual changes only if you have received explicit instructions from dynaTrace Support -->
+<dynatrace version="4.0.0.2593" date="08.09.11 17:28">
+  <dashboardconfig memento.version="4.0.0.2593" icon="com.dynatrace.diagnostics.sdk/default.gif" sessiontype="live" locationassource="true" authorname="dynaTrace" opendrilldowninnewdashboard="true" sessionid="easyTravel" bgcolor="255,255,255,255" modified="2011-09-08T17:28:16+0200" id="5191eafb-807d-4cce-91f8-c4c19c2b1f6a" revision="00000132-49a7-592f-ac42-b57dcfff357e" created="2011-04-14T10:21:50+0200" description="" name="easyTravel Tenant Activity" modifiedbyname="admin" locationascomparesource="false">
+    <reportconfig lines.per.table="100" enabled="true" print.legends="true" orientation="portrait" pagesize="A4" formathtml="HTML Report" type="HTML" title="" override="false" levels.per.tree="10" description="" print.images="true" formatpdf="PDF Report" />
+    <filter>
+      <criterion completepurepath="true" type="agents" mode="all">
+        <textpattern enabled="true" name="agentname" type="contains" />
+        <textpattern enabled="true" name="agenthost" type="contains" />
+      </criterion>
+      <criterion excludeexternalsubpaths="false" type="api" mode="all" />
+      <criterion type="applications" mode="all" />
+      <criterion showrendering="true" isactive="true" shownetwork="true" showjavascript="true" type="browserpathtype" />
+      <criterion timerenabled="false" pageenabled="false" type="browsersectionfilter">
+        <timername>
+          <stringmatchpattern text="" match="contains" />
+        </timername>
+        <pageurl>
+          <stringmatchpattern text="" match="contains" />
+        </pageurl>
+      </criterion>
+      <criterion type="btm" />
+      <criterion isactive="true" analyzeserverpath="true" type="enduserpath" analyzeenduserpath="true" />
+      <criterion completepurepath="true" type="hosts" mode="all" />
+      <criterion severities="" statesmode="all" severitiesmode="all" states="" rulesmode="all" type="incident" />
+      <criterion type="purepaths" mode="all" />
+      <criterion showrendering="true" isactive="false" shownetwork="true" showjavascript="true" type="riapurepathtype" requestcriterion="ALL" />
+      <criterion includemeasurename="true" includetestname="true" type="tests" teststatus="OK" />
+      <criterion enabled="false" filterbyid="false" type="threads" />
+      <criterion type="timeframe">
+        <timeframe type="Last 30min" />
+      </criterion>
+      <criterion type="visits">
+        <visitidset visitsidsetsize="0" />
+      </criterion>
+      <criterion type="webpage">
+        <textpattern enabled="true" name="timerName" type="contains" />
+        <textpattern enabled="true" name="pageContext" type="contains" />
+      </criterion>
+      <criterion type="webrequest">
+        <filteruripattern>
+          <stringmatchpattern text="" match="contains" />
+        </filteruripattern>
+        <filterquerypattern>
+          <stringmatchpattern text="" match="contains" />
+        </filterquerypattern>
+      </criterion>
+    </filter>
+    <autorefreshconfig unit="MINUTES" enabled="true" time="5" />
+    <designconfig descriptionalignment="CENTER" descriptionfontstyle="NORMAL" namealignment="CENTER" descriptionfontsize="8" nameshow="true" clienttheme="NIGHT" headertype="CUSTOM" namefontsize="14" descriptionshow="true" autoadjustfontsizes="false" namefontstyle="BOLD" descriptionfontcolor="128,128,128" />
+    <dashboardlayout>
+      <portletfolder relationtype="LEFT" ratio="0.95" folderid="org.eclipse.ui.internal.ViewStack@14a11c6" selectionindex="0" relatedfolderid="DashboardLayout.blankArea" portletconfigorder="e9814a05-2d47-47d9-9ffc-45147177edac">
+        <designconfig descriptionalignment="CENTER" descriptionfontstyle="NORMAL" namealignment="CENTER" inherited="false" descriptionfontsize="8" nameshow="true" headertype="CUSTOM" namefontsize="8" descriptionshow="true" namefontstyle="BOLD" descriptionfontcolor="128,128,128" />
+      </portletfolder>
+      <portletfolder relationtype="BOTTOM" ratio="0.13276836" folderid="folder" selectionindex="0" relatedfolderid="org.eclipse.ui.internal.ViewStack@14a11c6" portletconfigorder="284e5ea8-861a-4040-9f2d-554843df5b5e">
+        <designconfig descriptionalignment="CENTER" descriptionfontstyle="NORMAL" namealignment="CENTER" inherited="true" descriptionfontsize="8" nameshow="true" headertype="DEFAULT" namefontsize="10" descriptionshow="true" namefontstyle="BOLD" descriptionfontcolor="128,128,128" />
+      </portletfolder>
+      <portletfolder relationtype="RIGHT" ratio="0.29688418" folderid="org.eclipse.ui.internal.ViewStack@1375b7a" selectionindex="0" relatedfolderid="folder" portletconfigorder="6b91095e-c466-4eca-b873-d866cd5579bc">
+        <designconfig descriptionalignment="CENTER" descriptionfontstyle="NORMAL" namealignment="CENTER" inherited="true" descriptionfontsize="8" nameshow="true" headertype="DEFAULT" namefontsize="10" descriptionshow="true" namefontstyle="BOLD" descriptionfontcolor="128,128,128" />
+      </portletfolder>
+      <portletfolder relationtype="RIGHT" ratio="0.5058528" folderid="org.eclipse.ui.internal.ViewStack@16da65f" selectionindex="0" relatedfolderid="org.eclipse.ui.internal.ViewStack@1375b7a" portletconfigorder="725b282b-9161-4996-afa0-6ff6fe895304">
+        <designconfig descriptionalignment="CENTER" descriptionfontstyle="NORMAL" namealignment="CENTER" inherited="true" descriptionfontsize="8" nameshow="true" headertype="DEFAULT" namefontsize="10" descriptionshow="true" namefontstyle="BOLD" descriptionfontcolor="128,128,128" />
+      </portletfolder>
+      <portletfolder relationtype="RIGHT" ratio="0.80089486" folderid="org.eclipse.ui.internal.ViewStack@eb3145" selectionindex="0" relatedfolderid="org.eclipse.ui.internal.ViewStack@14a11c6" portletconfigorder="055f2117-e4af-4d91-8f4b-d8eeac766d34">
+        <designconfig descriptionalignment="CENTER" descriptionfontstyle="NORMAL" namealignment="CENTER" inherited="true" descriptionfontsize="8" nameshow="true" headertype="DEFAULT" namefontsize="10" descriptionshow="true" namefontstyle="BOLD" descriptionfontcolor="128,128,128" />
+      </portletfolder>
+      <portletfolder relationtype="RIGHT" ratio="0.21413577" folderid="org.eclipse.ui.internal.ViewStack@119e804" selectionindex="-1" isplaceholder="true" relatedfolderid="org.eclipse.ui.internal.ViewStack@14a11c6" portletconfigorder="">
+        <designconfig descriptionalignment="CENTER" descriptionfontstyle="NORMAL" namealignment="CENTER" inherited="true" descriptionfontsize="8" nameshow="true" headertype="DEFAULT" namefontsize="10" descriptionshow="true" namefontstyle="BOLD" descriptionfontcolor="128,128,128" />
+      </portletfolder>
+      <portletfolder relationtype="BOTTOM" ratio="0.30496454" folderid="org.eclipse.ui.internal.ViewStack@dffff0" selectionindex="0" relatedfolderid="org.eclipse.ui.internal.ViewStack@119e804" portletconfigorder="8ee6c13a-7298-4328-8167-df2cbf2589fb">
+        <designconfig descriptionalignment="CENTER" descriptionfontstyle="NORMAL" namealignment="CENTER" inherited="false" descriptionfontsize="8" nameshow="true" headertype="CUSTOM" namefontsize="20" descriptionshow="true" namefontstyle="BOLD" descriptionfontcolor="128,128,128" />
+      </portletfolder>
+    </dashboardlayout>
+    <portletconfig icon="com.dynatrace.diagnostics.sdk/chart_cust.png" usespecificautorefresh="false" usedashboardsourceforcompare="true" folderid="org.eclipse.ui.internal.ViewStack@16da65f" sessiontype="live" locationassource="true" usedashboardsource="true" sessionid="easyTravel" bgcolor="236,233,216,255" id="725b282b-9161-4996-afa0-6ff6fe895304" addfilterinfo="false" description="" lastvalue="false" name="Tenant Booking/Reports Activity" typeid="com.dynatrace.diagnostics.portlets.chart.Chart" ismaster="false" showabsolutevalues="false" locationascomparesource="false">
+      <reportconfig lines.per.table="100" print.legends="true" enabled="true" levels.per.tree="10" override="false" print.images="true" reportposition="9" />
+      <filter>
+        <criterion completepurepath="true" type="agents" mode="all">
+          <textpattern enabled="true" name="agentname" type="contains" />
+          <textpattern enabled="true" name="agenthost" type="contains" />
+        </criterion>
+        <criterion type="applications" mode="all" />
+        <criterion completepurepath="true" type="hosts" mode="all" />
+        <criterion type="timeframe">
+          <timeframe type="Last 30min" />
+        </criterion>
+        <criterion type="visits">
+          <visitidset visitsidsetsize="0" />
+        </criterion>
+        <inheritancemap />
+      </filter>
+      <autorefreshconfig unit="MINUTES" enabled="true" time="5" />
+      <sashconfig weights="684,315" displayoption="CHART" />
+      <datamodelconfig>
+        <chart maxdisplayitems="10" axis.x.title="" legendposition="Bottom" zoomable="true" showtooltips="true" charttype="StackedBarChart" resolution="Auto" isentitymarkable="false" title="" showlabels="true" yaxisalignment="0" showname="true" splitcharts="true" bounds.y.enabled="false" axis.y.show="true" subchartweights="1000" orientation="Horizontal" axis.y.title="" axis.y.title.show="true" limititems="false" axis.x.show="true" axis.x.title.show="true" logxaxis="false" showheatfield="false" showvalues="false" showtitle="false" showlegend="true">
+          <legendcomposition measure="true">
+            <pielabelcomposition measure="true" value="true" />
+          </legendcomposition>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Count" uiunit="ms" groupingvalue="" id="d95590a2-01ab-33de-b44b-e2d480348719" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Reports by Tenant [Speed Travel Agency]" sourcecolor="RGB(89,56,13,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Reports by Tenant [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Reports by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Reports by Tenant [Speed Travel Agency]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Count" uiunit="ms" groupingvalue="" id="108059a2-3729-36f0-9d1f-ad155bf18ec7" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Bookings by Tenant [Thomas Chef]" sourcecolor="RGB(122,182,235,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="count" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Bookings by Tenant [Thomas Chef]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Bookings by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Bookings by Tenant [Thomas Chef]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Count" uiunit="ms" groupingvalue="" id="fad16e46-3171-3b20-8ca2-9a58e239429d" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Bookings by Tenant [Speed Travel Agency]" sourcecolor="RGB(221,34,202,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Bookings by Tenant [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Bookings by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Bookings by Tenant [Speed Travel Agency]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Count" uiunit="ms" groupingvalue="" id="0f0784f0-468d-301a-973c-c9d18745f6ce" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Reports by Tenant [Personal Travel Inc.]" sourcecolor="RGB(118,26,178,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Reports by Tenant [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Reports by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Reports by Tenant [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="aaf28044-6cfc-34a7-8353-fdb53b89bed0" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Bookings by User [Speed Travel Agency]" sourcecolor="RGB(221,34,113,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Bookings by User [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Bookings by User" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Bookings by User [Speed Travel Agency]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="2" scale="0" visible="false" sessiontype="live" colorinheritancemode="random" aggregationtype="Count" uiunit="ms" groupingvalue="" id="b15da3de-5032-49ec-8031-7a672041e4ea" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Reports by Tenant" sourcecolor="RGB(133,71,20,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Reports by Tenant" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Retrieve Reports by Tenant" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Retrieve Reports by Tenant" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="f016db65-e322-3946-80cb-1baf3838bdd8" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Bookings by User [Personal Travel Inc.]" sourcecolor="RGB(178,134,26,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Bookings by User [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Bookings by User" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Bookings by User [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Count" uiunit="ms" groupingvalue="" id="8debd962-9771-3f7e-a9ce-a5e1a239ae9b" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Reports by Tenant [TravelNiche Ltd.]" sourcecolor="RGB(122,182,235,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="count" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Reports by Tenant [TravelNiche Ltd.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Reports by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Reports by Tenant [TravelNiche Ltd.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Count" uiunit="ms" groupingvalue="" id="a4b93d5a-b06b-3b00-ac7c-4b79c308cb2e" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Bookings by Tenant [Personal Travel Inc.]" sourcecolor="RGB(13,89,71,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Bookings by Tenant [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Bookings by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Bookings by Tenant [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Count" uiunit="ms" groupingvalue="" id="cc5e6108-06fa-38ea-874e-ee64af97c584" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Bookings by Tenant [TravelNiche Ltd.]" sourcecolor="RGB(178,178,26,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="count" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Bookings by Tenant [TravelNiche Ltd.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Bookings by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Bookings by Tenant [TravelNiche Ltd.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Count" uiunit="ms" groupingvalue="" id="30a7e291-11a5-3717-b0dd-1a34ad25db93" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Reports by Tenant [Thomas Chef]" sourcecolor="RGB(178,26,26,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="count" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Reports by Tenant [Thomas Chef]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Reports by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Reports by Tenant [Thomas Chef]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="98b3837e-5c4c-36c4-97ef-fb9237aec8f6" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Reports by User [Personal Travel Inc.]" sourcecolor="RGB(133,20,20,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Reports by User [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Reports by User" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Reports by User [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="1" scale="0" visible="false" sessiontype="live" colorinheritancemode="random" aggregationtype="Count" uiunit="ms" groupingvalue="" id="65724485-9989-465c-9c32-f5396a80874d" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Bookings by Tenant" sourcecolor="RGB(89,13,81,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Bookings by Tenant" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Retrieve Bookings by Tenant" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Retrieve Bookings by Tenant" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="fed72873-973d-39e1-abb8-2ad19c2d9d85" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Reports by User [Speed Travel Agency]" sourcecolor="RGB(122,150,235,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Reports by User [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Reports by User" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Reports by User [Speed Travel Agency]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <splitconfig splitmode="Measure" splitlayout="Vertical" />
+        </chart>
+        <table drawcolumn="-1" name="The Measure table" sortcolumn="0" structuremode="measureHierarchy" columnorder="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19">
+          <column index="0" sort="Up" forcevisible="false" hidden="false" width="292" />
+          <column index="1" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="2" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="3" sort="None" forcevisible="false" hidden="false" width="25" />
+          <column index="4" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="5" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="6" sort="None" forcevisible="false" hidden="false" width="50" />
+          <column index="7" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="8" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="9" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="10" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="11" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="12" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="13" sort="None" forcevisible="false" hidden="false" width="105" />
+          <column index="14" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="15" sort="None" forcevisible="false" hidden="false" width="50" />
+          <column index="16" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="17" sort="None" forcevisible="false" hidden="true" width="150" />
+          <column index="18" sort="None" forcevisible="false" hidden="false" width="150" />
+          <column index="19" sort="None" forcevisible="false" hidden="false" width="150" />
+        </table>
+        <heatfieldconfig smartmeasure="true" filterconfirmed="false" smartserver="true" customevents="true">
+          <incidentrules />
+        </heatfieldconfig>
+      </datamodelconfig>
+      <chartcolors />
+    </portletconfig>
+    <portletconfig icon="com.dynatrace.diagnostics.sdk/chart_cust.png" usespecificautorefresh="false" usedashboardsourceforcompare="true" folderid="org.eclipse.ui.internal.ViewStack@eb3145" sessiontype="live" locationassource="true" usedashboardsource="true" sessionid="easyTravel" bgcolor="236,233,216,255" id="055f2117-e4af-4d91-8f4b-d8eeac766d34" addfilterinfo="false" description="" lastvalue="false" name="Tenant Logins" typeid="com.dynatrace.diagnostics.portlets.chart.Chart" ismaster="false" showabsolutevalues="false" locationascomparesource="false">
+      <reportconfig lines.per.table="100" print.legends="true" enabled="true" levels.per.tree="10" override="false" print.images="true" reportposition="4" />
+      <filter>
+        <criterion completepurepath="true" type="agents" mode="all">
+          <textpattern enabled="true" name="agentname" type="contains" />
+          <textpattern enabled="true" name="agenthost" type="contains" />
+        </criterion>
+        <criterion type="applications" mode="all" />
+        <criterion completepurepath="true" type="hosts" mode="all" />
+        <criterion type="timeframe">
+          <timeframe type="Last 30min" />
+        </criterion>
+        <criterion type="visits">
+          <visitidset visitsidsetsize="0" />
+        </criterion>
+        <inheritancemap />
+      </filter>
+      <autorefreshconfig unit="MINUTES" enabled="false" time="5" />
+      <sashconfig weights="500,500" displayoption="CHART" />
+      <datamodelconfig>
+        <chart maxdisplayitems="10" axis.x.title="" legendposition="Bottom" zoomable="true" showtooltips="true" charttype="AreaChart" resolution="Auto" isentitymarkable="false" title="" showlabels="true" yaxisalignment="0" showname="true" splitcharts="false" bounds.y.enabled="false" axis.y.show="true" subchartweights="200" orientation="Horizontal" axis.y.title="" axis.y.title.show="false" limititems="false" axis.x.show="true" axis.x.title.show="false" logxaxis="false" showheatfield="false" showvalues="false" showtitle="false" showlegend="true">
+          <legendcomposition measure="true">
+            <pielabelcomposition measure="true" value="true" />
+          </legendcomposition>
+          <chartsource position="1" scale="0" visible="true" sessiontype="live" colorinheritancemode="random" aggregationtype="Count" uiunit="ms" groupingvalue="" id="123a5e88-aa0e-4b38-937b-028e951ad66a" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Logins" sourcecolor="RGB(0,105,5,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Logins" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Logins" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Logins" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <splitconfig splitmode="PerSeries" splitlayout="Horizontal" />
+        </chart>
+        <table drawcolumn="-1" name="The Measure table" sortcolumn="0" structuremode="measureHierarchy" columnorder="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19">
+          <column index="0" sort="Up" forcevisible="false" hidden="false" width="150" />
+          <column index="1" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="2" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="3" sort="None" forcevisible="false" hidden="false" width="25" />
+          <column index="4" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="5" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="6" sort="None" forcevisible="false" hidden="false" width="50" />
+          <column index="7" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="8" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="9" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="10" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="11" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="12" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="13" sort="None" forcevisible="false" hidden="false" width="105" />
+          <column index="14" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="15" sort="None" forcevisible="false" hidden="false" width="50" />
+          <column index="16" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="17" sort="None" forcevisible="false" hidden="true" width="150" />
+          <column index="18" sort="None" forcevisible="false" hidden="false" width="150" />
+          <column index="19" sort="None" forcevisible="false" hidden="false" width="150" />
+        </table>
+        <heatfieldconfig smartmeasure="true" filterconfirmed="false" smartserver="true" customevents="true">
+          <incidentrules />
+        </heatfieldconfig>
+      </datamodelconfig>
+      <chartcolors />
+    </portletconfig>
+    <portletconfig icon="com.dynatrace.diagnostics.sdk/chart_cust.png" usespecificautorefresh="false" usedashboardsourceforcompare="true" folderid="folder" sessiontype="live" locationassource="true" usedashboardsource="true" sessionid="easyTravel" bgcolor="236,233,216,255" id="284e5ea8-861a-4040-9f2d-554843df5b5e" addfilterinfo="false" description="" lastvalue="false" name="Tenant Location Activity" typeid="com.dynatrace.diagnostics.portlets.chart.Chart" ismaster="false" showabsolutevalues="false" locationascomparesource="false">
+      <reportconfig lines.per.table="100" print.legends="true" enabled="true" levels.per.tree="10" override="false" print.images="true" reportposition="7" />
+      <filter>
+        <criterion completepurepath="true" type="agents" mode="all">
+          <textpattern enabled="true" name="agentname" type="contains" />
+          <textpattern enabled="true" name="agenthost" type="contains" />
+        </criterion>
+        <criterion type="applications" mode="all" />
+        <criterion completepurepath="true" type="hosts" mode="all" />
+        <criterion type="timeframe">
+          <timeframe type="Last 30min" />
+        </criterion>
+        <criterion type="visits">
+          <visitidset visitsidsetsize="0" />
+        </criterion>
+        <inheritancemap />
+      </filter>
+      <autorefreshconfig unit="MINUTES" enabled="false" time="5" />
+      <sashconfig weights="680,319" displayoption="CHART" />
+      <datamodelconfig>
+        <chart maxdisplayitems="10" axis.x.title="" legendposition="Bottom" zoomable="true" showtooltips="true" charttype="StackedBarChart" resolution="Auto" isentitymarkable="false" title="" showlabels="true" yaxisalignment="0" showname="true" splitcharts="true" bounds.y.enabled="false" axis.y.show="true" subchartweights="1000" orientation="Horizontal" axis.y.title="" axis.y.title.show="true" limititems="false" axis.x.show="true" axis.x.title.show="true" logxaxis="false" showheatfield="false" showvalues="false" showtitle="false" showlegend="true">
+          <legendcomposition measure="true">
+            <pielabelcomposition measure="true" value="true" />
+          </legendcomposition>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="2271bca5-c144-32cf-a422-21a620133500" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Delete Location by User [Speed Travel Agency]" sourcecolor="RGB(178,178,26,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Delete Location by User [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Delete Location by User" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Delete Location by User [Speed Travel Agency]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="d942ffac-1942-3170-8a6e-b7692332b0de" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Delete Location by User [Personal Travel Inc.]" sourcecolor="RGB(133,20,121,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Delete Location by User [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Delete Location by User" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Delete Location by User [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Count" uiunit="ms" groupingvalue="" id="415aaa2e-afce-3a66-b410-0889e7250819" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Locations by Tenant [Personal Travel Inc.]" sourcecolor="RGB(39,178,26,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Locations by Tenant [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Locations by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Locations by Tenant [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="2" scale="0" visible="false" sessiontype="live" colorinheritancemode="random" aggregationtype="Count" uiunit="ms" groupingvalue="" id="0a8998f9-d6b3-46a4-ba4c-b51bc08c4106" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Locations by Tenant" sourcecolor="RGB(13,32,89,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Locations by Tenant" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Retrieve Locations by Tenant" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Retrieve Locations by Tenant" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="bfc6496c-f984-3099-be02-2449add6ac8d" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Locations by User [Speed Travel Agency]" sourcecolor="RGB(178,26,26,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Locations by User [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Locations by User" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Locations by User [Speed Travel Agency]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Count" uiunit="ms" groupingvalue="" id="28558090-6b4f-3bc6-bf9c-7734d1ff1456" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Delete Location by Tenant [Speed Travel Agency]" sourcecolor="RGB(152,229,77,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Delete Location by Tenant [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Delete Location by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Delete Location by Tenant [Speed Travel Agency]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Count" uiunit="ms" groupingvalue="" id="ae474b7d-fbe9-3af4-8572-5a8006e3fa63" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Delete Location by Tenant [Personal Travel Inc.]" sourcecolor="RGB(13,68,89,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Delete Location by Tenant [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Delete Location by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Delete Location by Tenant [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="b7cd3084-d83b-3c86-b864-d79f6ffbdd75" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Locations by User [Personal Travel Inc.]" sourcecolor="RGB(111,133,20,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Locations by User [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Locations by User" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Locations by User [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Count" uiunit="ms" groupingvalue="" id="8f3128b9-519b-38ad-9f0a-c3a7e4716e9f" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Create Location by Tenant [Speed Travel Agency]" sourcecolor="RGB(242,166,166,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Create Location by Tenant [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Create Location by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Create Location by Tenant [Speed Travel Agency]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="3" scale="0" visible="false" sessiontype="live" colorinheritancemode="random" aggregationtype="Count" uiunit="ms" groupingvalue="" id="c68f6866-feab-4549-9006-b609db0a9eae" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Create Location by Tenant" sourcecolor="RGB(166,207,242,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Create Location by Tenant" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Create Location by Tenant" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Create Location by Tenant" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Count" uiunit="ms" groupingvalue="" id="8079a627-fc7b-3a16-ba15-f149339463c7" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Create Location by Tenant [Personal Travel Inc.]" sourcecolor="RGB(176,166,242,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Create Location by Tenant [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Create Location by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Create Location by Tenant [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Count" uiunit="ms" groupingvalue="" id="421f704a-d536-39a5-8aa4-888b9763822e" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Locations by Tenant [Speed Travel Agency]" sourcecolor="RGB(133,71,20,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Locations by Tenant [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Locations by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Locations by Tenant [Speed Travel Agency]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="1" scale="0" visible="false" sessiontype="live" colorinheritancemode="random" aggregationtype="Count" uiunit="ms" groupingvalue="" id="5bbdcd21-86a7-4bd8-aaf4-614c758f1a1c" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Delete Location by Tenant" sourcecolor="RGB(89,78,13,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Delete Location by Tenant" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Delete Location by Tenant" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Delete Location by Tenant" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <splitconfig splitmode="Measure" splitlayout="Vertical" />
+        </chart>
+        <table drawcolumn="-1" name="The Measure table" sortcolumn="0" structuremode="measureHierarchy" columnorder="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19">
+          <column index="0" sort="Up" forcevisible="false" hidden="false" width="261" />
+          <column index="1" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="2" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="3" sort="None" forcevisible="false" hidden="false" width="25" />
+          <column index="4" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="5" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="6" sort="None" forcevisible="false" hidden="false" width="50" />
+          <column index="7" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="8" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="9" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="10" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="11" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="12" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="13" sort="None" forcevisible="false" hidden="false" width="105" />
+          <column index="14" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="15" sort="None" forcevisible="false" hidden="false" width="50" />
+          <column index="16" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="17" sort="None" forcevisible="false" hidden="true" width="150" />
+          <column index="18" sort="None" forcevisible="false" hidden="false" width="150" />
+          <column index="19" sort="None" forcevisible="false" hidden="false" width="150" />
+        </table>
+        <heatfieldconfig smartmeasure="true" filterconfirmed="false" smartserver="true" customevents="true">
+          <incidentrules />
+        </heatfieldconfig>
+      </datamodelconfig>
+      <chartcolors />
+    </portletconfig>
+    <portletconfig icon="com.dynatrace.diagnostics.sdk/chart_cust.png" usespecificautorefresh="false" usedashboardsourceforcompare="true" folderid="org.eclipse.ui.internal.ViewStack@14a11c6" sessiontype="live" locationassource="true" usedashboardsource="true" sessionid="easyTravel" bgcolor="236,233,216,255" id="e9814a05-2d47-47d9-9ffc-45147177edac" addfilterinfo="false" description="" lastvalue="false" name="Overall Web Response Time" typeid="com.dynatrace.diagnostics.portlets.chart.Chart" ismaster="false" showabsolutevalues="false" locationascomparesource="false">
+      <reportconfig lines.per.table="100" print.legends="true" enabled="true" levels.per.tree="10" override="false" print.images="true" reportposition="1" />
+      <filter>
+        <criterion completepurepath="true" type="agents" mode="all">
+          <textpattern enabled="true" name="agentname" type="contains" />
+          <textpattern enabled="true" name="agenthost" type="contains" />
+        </criterion>
+        <criterion type="applications" mode="all" />
+        <criterion completepurepath="true" type="hosts" mode="all" />
+        <criterion type="timeframe">
+          <timeframe type="Last 30min" />
+        </criterion>
+        <criterion type="visits">
+          <visitidset visitsidsetsize="0" />
+        </criterion>
+        <inheritancemap />
+      </filter>
+      <autorefreshconfig unit="MINUTES" enabled="true" time="5" />
+      <sashconfig weights="500,500" displayoption="CHART" />
+      <datamodelconfig>
+        <chart maxdisplayitems="10" axis.x.title="" legendposition="Bottom" zoomable="true" showtooltips="true" charttype="TrafficLightChart" resolution="Auto" isentitymarkable="false" title="" showlabels="true" yaxisalignment="0" showname="true" splitcharts="false" bounds.y.enabled="false" axis.y.show="true" subchartweights="200" orientation="Horizontal" axis.y.title="" axis.y.title.show="false" limititems="false" axis.x.show="true" axis.x.title.show="false" logxaxis="false" showheatfield="true" showvalues="false" showtitle="false" showlegend="false">
+          <legendcomposition measure="true">
+            <pielabelcomposition measure="true" value="true" />
+          </legendcomposition>
+          <chartsource position="13" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="99fbc9b5-b1df-4658-9a8f-25f5ffef0e22" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Retrieve Locations by Tenant" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Locations by Tenant" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Retrieve Locations by Tenant" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Retrieve Locations by Tenant" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="4df3a81c-a15a-361a-a310-d34fabae3297" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Retrieve Journeys by Tenant [Speed Travel Agency]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Journeys by Tenant [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Journeys by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Journeys by Tenant [Speed Travel Agency]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="aa6c8bf7-ccb6-3694-bd84-39e2acc801da" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (Time;Database;Time) [Personal Travel Inc.]" sourcecolor="RGB(0,192,192,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (Time;Database;Time) [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Web Page Requests by Tenant (Time;Database;Time)" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Web Page Requests by Tenant (Time;Database;Time) [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="number" groupingvalue="" id="64ce2db2-f69b-3de8-9502-d9a7984d5600" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (Execution Count;Database;Execution Count) [TravelNiche Ltd.]" sourcecolor="RGB(64,128,192,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="number" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (Execution Count;Database;Execution Count) [TravelNiche Ltd.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Web Page Requests by Tenant (Execution Count;Database;Execution Count)" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Web Page Requests by Tenant (Execution Count;Database;Execution Count) [TravelNiche Ltd.]" agentname="-" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="12" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Avg" uiunit="number" groupingvalue="" id="b31e4892-5d11-4a65-a556-a567de2c25f1" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (Very Slow;Threshold Violations;Count)" sourcecolor="RGB(0,192,64,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="number" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (Very Slow;Threshold Violations;Count)" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Web Page Requests by Tenant (Very Slow;Threshold Violations;Count)" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Web Page Requests by Tenant" agentname="" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="c9f626d3-c02b-3650-8614-4ca2df7356d4" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Retrieve Reports by Tenant [Personal Travel Inc.]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Reports by Tenant [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Reports by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Reports by Tenant [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="5" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="fb17ce78-7d00-408b-8948-5be507ccb92e" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Retrieve Reports by Tenant" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Reports by Tenant" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Retrieve Reports by Tenant" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Retrieve Reports by Tenant" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="1d40f31e-72e7-3665-aa1e-88e75f65617d" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (PurePath Response Time;PurePaths;PurePath Response Time) [Personal Travel Inc.]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (PurePath Response Time;PurePaths;PurePath Response Time) [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Web Page Requests by Tenant (PurePath Response Time;PurePaths;PurePath Response Time)" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Web Page Requests by Tenant (PurePath Response Time;PurePaths;PurePath Response Time) [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="4" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="790a0ef6-1426-4fd6-88a6-cf2d116744a0" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Delete Journey by Tenant" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Delete Journey by Tenant" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Delete Journey by Tenant" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Delete Journey by Tenant" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="2" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Avg" uiunit="number" groupingvalue="" id="6854dea5-2ff3-4ab7-adf0-6bb47b56b1db" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (Execution Count;Database;Execution Count)" sourcecolor="RGB(64,128,192,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="number" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (Execution Count;Database;Execution Count)" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Web Page Requests by Tenant (Execution Count;Database;Execution Count)" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Web Page Requests by Tenant" agentname="" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="84f5f2b2-6375-352d-8b4f-6ce2d8640d1b" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Create Location by Tenant [Personal Travel Inc.]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Create Location by Tenant [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Create Location by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Create Location by Tenant [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="8" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="d0e65a4d-5504-4900-a09b-ec4b0bd1a72f" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Create Location by Tenant" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Create Location by Tenant" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Create Location by Tenant" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Create Location by Tenant" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="959f3969-b878-36ca-b2c1-8d6452b0a0ca" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (PurePath Response Time;PurePaths;PurePath Response Time) [TravelNiche Ltd.]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (PurePath Response Time;PurePaths;PurePath Response Time) [TravelNiche Ltd.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Web Page Requests by Tenant (PurePath Response Time;PurePaths;PurePath Response Time)" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Web Page Requests by Tenant (PurePath Response Time;PurePaths;PurePath Response Time) [TravelNiche Ltd.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="3" scale="0" visible="true" sessiontype="live" colorinheritancemode="parent" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="21cfe951-0f10-4d5e-9876-5a710e2a4be0" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Logins" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Logins" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Logins" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Logins" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="number" groupingvalue="" id="b4fc7e02-12a2-38e4-9bb6-f99629b6e34e" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (Slow;Threshold Violations;Count) [Thomas Chef]" sourcecolor="RGB(0,192,64,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="number" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (Slow;Threshold Violations;Count) [Thomas Chef]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Web Page Requests by Tenant (Slow;Threshold Violations;Count)" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Web Page Requests by Tenant (Slow;Threshold Violations;Count) [Thomas Chef]" agentname="-" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="number" groupingvalue="" id="77bcefd2-65c8-32d3-a418-cbb7c8ca9344" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (Very Slow;Threshold Violations;Count) [Personal Travel Inc.]" sourcecolor="RGB(0,192,64,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="number" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (Very Slow;Threshold Violations;Count) [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Web Page Requests by Tenant (Very Slow;Threshold Violations;Count)" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Web Page Requests by Tenant (Very Slow;Threshold Violations;Count) [Personal Travel Inc.]" agentname="-" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="b4b06a1f-6a5a-3178-b265-3c88ec130284" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Retrieve Locations by Tenant [Speed Travel Agency]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Locations by Tenant [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Locations by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Locations by Tenant [Speed Travel Agency]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="5885d566-9a1f-3c32-93e5-b5f2f79f249a" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Retrieve Bookings by Tenant [TravelNiche Ltd.]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Bookings by Tenant [TravelNiche Ltd.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Bookings by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Bookings by Tenant [TravelNiche Ltd.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="ce8cc040-1cb7-363e-bea4-e97add3a59b3" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Retrieve Reports by Tenant [TravelNiche Ltd.]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Reports by Tenant [TravelNiche Ltd.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Reports by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Reports by Tenant [TravelNiche Ltd.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="53b2536d-ccb2-3aac-b330-ff305c5f6a08" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Delete Location by Tenant [Speed Travel Agency]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Delete Location by Tenant [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Delete Location by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Delete Location by Tenant [Speed Travel Agency]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="number" groupingvalue="" id="30392b1e-0c50-3912-97eb-5e1b129bbd55" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (Slow;Threshold Violations;Count) [TravelNiche Ltd.]" sourcecolor="RGB(0,192,64,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="number" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (Slow;Threshold Violations;Count) [TravelNiche Ltd.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Web Page Requests by Tenant (Slow;Threshold Violations;Count)" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Web Page Requests by Tenant (Slow;Threshold Violations;Count) [TravelNiche Ltd.]" agentname="-" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="number" groupingvalue="" id="9a6dd549-fb14-3d6d-9623-3f0115eb549c" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (Slow;Threshold Violations;Count) [Speed Travel Agency]" sourcecolor="RGB(0,192,64,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="number" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (Slow;Threshold Violations;Count) [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Web Page Requests by Tenant (Slow;Threshold Violations;Count)" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Web Page Requests by Tenant (Slow;Threshold Violations;Count) [Speed Travel Agency]" agentname="-" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="number" groupingvalue="" id="6e81ccdf-c50b-32ca-baf0-b22c0a31db7b" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (Slow;Threshold Violations;Count) [Personal Travel Inc.]" sourcecolor="RGB(0,192,64,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="number" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (Slow;Threshold Violations;Count) [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Web Page Requests by Tenant (Slow;Threshold Violations;Count)" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Web Page Requests by Tenant (Slow;Threshold Violations;Count) [Personal Travel Inc.]" agentname="-" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="4373a7e6-c8e3-3e8a-b1b4-1441b4735dae" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (Time;Database;Time) [TravelNiche Ltd.]" sourcecolor="RGB(0,192,192,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (Time;Database;Time) [TravelNiche Ltd.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Web Page Requests by Tenant (Time;Database;Time)" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Web Page Requests by Tenant (Time;Database;Time) [TravelNiche Ltd.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="31ce70ba-6145-35b6-9e04-f8358801daa3" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (PurePath Response Time;PurePaths;PurePath Response Time) [Thomas Chef]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (PurePath Response Time;PurePaths;PurePath Response Time) [Thomas Chef]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Web Page Requests by Tenant (PurePath Response Time;PurePaths;PurePath Response Time)" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Web Page Requests by Tenant (PurePath Response Time;PurePaths;PurePath Response Time) [Thomas Chef]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="0d9e5b6f-4361-3943-9ce2-b39cb218939e" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Retrieve Journeys by Tenant [Personal Travel Inc.]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Journeys by Tenant [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Journeys by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Journeys by Tenant [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="number" groupingvalue="" id="921638b3-ab79-3260-8155-7f083e54c1ff" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (Very Slow;Threshold Violations;Count) [TravelNiche Ltd.]" sourcecolor="RGB(0,192,64,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="number" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (Very Slow;Threshold Violations;Count) [TravelNiche Ltd.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Web Page Requests by Tenant (Very Slow;Threshold Violations;Count)" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Web Page Requests by Tenant (Very Slow;Threshold Violations;Count) [TravelNiche Ltd.]" agentname="-" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="a23ffe5f-7a57-3bd4-945f-c1e12768f42e" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Retrieve Bookings by Tenant [Personal Travel Inc.]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Bookings by Tenant [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Bookings by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Bookings by Tenant [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="number" groupingvalue="" id="9734d261-9652-3d60-b2a9-483f2bef6bf7" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (Execution Count;Database;Execution Count) [Thomas Chef]" sourcecolor="RGB(64,128,192,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="number" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (Execution Count;Database;Execution Count) [Thomas Chef]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Web Page Requests by Tenant (Execution Count;Database;Execution Count)" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Web Page Requests by Tenant (Execution Count;Database;Execution Count) [Thomas Chef]" agentname="-" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="57e10783-c235-3371-a499-7f930f04588b" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Retrieve Reports by Tenant [Speed Travel Agency]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Reports by Tenant [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Reports by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Reports by Tenant [Speed Travel Agency]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="10" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="0bdcd3ed-9614-4f6a-81e0-725bea0d39f7" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (Time;Database;Time)" sourcecolor="RGB(0,192,192,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (Time;Database;Time)" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Web Page Requests by Tenant (Time;Database;Time)" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Web Page Requests by Tenant" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="number" groupingvalue="" id="e4249c34-4ef7-38f9-8b50-b421144ffe4e" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (Very Slow;Threshold Violations;Count) [Thomas Chef]" sourcecolor="RGB(0,192,64,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="number" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (Very Slow;Threshold Violations;Count) [Thomas Chef]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Web Page Requests by Tenant (Very Slow;Threshold Violations;Count)" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Web Page Requests by Tenant (Very Slow;Threshold Violations;Count) [Thomas Chef]" agentname="-" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="11" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="110a5cff-a48c-408a-9dc0-d0ebb9d7a244" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Retrieve Journeys by Tenant" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Journeys by Tenant" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Retrieve Journeys by Tenant" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Retrieve Journeys by Tenant" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="c3806265-2444-3b4c-ab27-ef78a65bfc95" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Create Location by Tenant [Speed Travel Agency]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Create Location by Tenant [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Create Location by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Create Location by Tenant [Speed Travel Agency]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="14" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="e118a555-95b8-4e4a-89a2-072196931f05" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Create Journey by Tenant" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Create Journey by Tenant" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Create Journey by Tenant" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Create Journey by Tenant" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="number" groupingvalue="" id="b696b5c4-50f1-3dd7-9594-a7b80655779f" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (Execution Count;Database;Execution Count) [Speed Travel Agency]" sourcecolor="RGB(64,128,192,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="number" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (Execution Count;Database;Execution Count) [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Web Page Requests by Tenant (Execution Count;Database;Execution Count)" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Web Page Requests by Tenant (Execution Count;Database;Execution Count) [Speed Travel Agency]" agentname="-" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="1ea37960-198b-32c4-87db-a0bc63276ebc" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (Time;Database;Time) [Speed Travel Agency]" sourcecolor="RGB(0,192,192,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (Time;Database;Time) [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Web Page Requests by Tenant (Time;Database;Time)" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Web Page Requests by Tenant (Time;Database;Time) [Speed Travel Agency]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="09fd693f-8fde-3e4a-a334-34fb51fecbd7" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Retrieve Bookings by Tenant [Speed Travel Agency]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Bookings by Tenant [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Bookings by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Bookings by Tenant [Speed Travel Agency]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="15db8924-8a7e-374b-af3a-e3c4fc435758" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (Time;Database;Time) [Thomas Chef]" sourcecolor="RGB(0,192,192,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (Time;Database;Time) [Thomas Chef]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Web Page Requests by Tenant (Time;Database;Time)" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Web Page Requests by Tenant (Time;Database;Time) [Thomas Chef]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="cf636330-c427-3a11-8038-ea6b570e7708" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Retrieve Reports by Tenant [Thomas Chef]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Reports by Tenant [Thomas Chef]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Reports by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Reports by Tenant [Thomas Chef]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="number" groupingvalue="" id="dd5d9496-98f4-3df2-8221-3923326b231b" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (Very Slow;Threshold Violations;Count) [Speed Travel Agency]" sourcecolor="RGB(0,192,64,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="number" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (Very Slow;Threshold Violations;Count) [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Web Page Requests by Tenant (Very Slow;Threshold Violations;Count)" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Web Page Requests by Tenant (Very Slow;Threshold Violations;Count) [Speed Travel Agency]" agentname="-" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="d37fb45f-8b5c-350e-b6e1-e5e18caf64ee" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Retrieve Journeys by Tenant [TravelNiche Ltd.]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Journeys by Tenant [TravelNiche Ltd.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Journeys by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Journeys by Tenant [TravelNiche Ltd.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="373797b9-99eb-34b8-9e8d-50116ea513e4" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Delete Journey by Tenant [Personal Travel Inc.]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Delete Journey by Tenant [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Delete Journey by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Delete Journey by Tenant [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="a534990f-1c98-3fc4-9665-4d534b12ffc5" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (PurePath Response Time;PurePaths;PurePath Response Time) [Speed Travel Agency]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (PurePath Response Time;PurePaths;PurePath Response Time) [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Web Page Requests by Tenant (PurePath Response Time;PurePaths;PurePath Response Time)" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Web Page Requests by Tenant (PurePath Response Time;PurePaths;PurePath Response Time) [Speed Travel Agency]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="8ba5e10d-b7b3-3dda-b77c-a7c4aeb8ac10" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Retrieve Journeys by Tenant [Thomas Chef]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Journeys by Tenant [Thomas Chef]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Journeys by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Journeys by Tenant [Thomas Chef]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="7" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Avg" uiunit="number" groupingvalue="" id="fa332a79-fed7-443c-bd51-9507655d0ee7" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (Slow;Threshold Violations;Count)" sourcecolor="RGB(0,192,64,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="number" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (Slow;Threshold Violations;Count)" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Web Page Requests by Tenant (Slow;Threshold Violations;Count)" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Web Page Requests by Tenant" agentname="" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="1" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="45ca144b-20cd-434e-a082-c4c537905a62" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Delete Location by Tenant" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Delete Location by Tenant" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Delete Location by Tenant" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Delete Location by Tenant" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="6" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="e178dc9e-b334-4ff5-a2ab-3b9c30cce636" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Retrieve Bookings by Tenant" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Bookings by Tenant" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Retrieve Bookings by Tenant" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Retrieve Bookings by Tenant" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="153f4cea-4eb3-3ce8-8d6c-59e72e208add" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Delete Location by Tenant [Personal Travel Inc.]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Delete Location by Tenant [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Delete Location by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Delete Location by Tenant [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="number" groupingvalue="" id="3cabf685-65be-3604-840f-f4667d91d6ed" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (Execution Count;Database;Execution Count) [Personal Travel Inc.]" sourcecolor="RGB(64,128,192,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="number" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (Execution Count;Database;Execution Count) [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Web Page Requests by Tenant (Execution Count;Database;Execution Count)" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Web Page Requests by Tenant (Execution Count;Database;Execution Count) [Personal Travel Inc.]" agentname="-" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="360613a4-6e6c-3f0a-ae1c-e67e56e357a4" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Retrieve Bookings by Tenant [Thomas Chef]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Bookings by Tenant [Thomas Chef]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Bookings by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Bookings by Tenant [Thomas Chef]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="9" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="1d8f1c51-f6a2-4ac9-8473-35922c1eb291" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Web Page Requests by Tenant (PurePath Response Time;PurePaths;PurePath Response Time)" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Web Page Requests by Tenant (PurePath Response Time;PurePaths;PurePath Response Time)" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Web Page Requests by Tenant (PurePath Response Time;PurePaths;PurePath Response Time)" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Web Page Requests by Tenant" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="b55c1cb2-2c1f-389e-9e59-e37f57c80e93" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="B2B Retrieve Locations by Tenant [Personal Travel Inc.]" sourcecolor="RGB(192,0,128,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="true" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Locations by Tenant [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Locations by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Locations by Tenant [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <splitconfig splitmode="PerSeries" splitlayout="Horizontal" />
+        </chart>
+        <table drawcolumn="-1" name="The Measure table" sortcolumn="0" structuremode="measureHierarchy" columnorder="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19">
+          <column index="0" sort="Up" forcevisible="false" hidden="false" width="150" />
+          <column index="1" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="2" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="3" sort="None" forcevisible="false" hidden="false" width="25" />
+          <column index="4" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="5" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="6" sort="None" forcevisible="false" hidden="false" width="50" />
+          <column index="7" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="8" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="9" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="10" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="11" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="12" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="13" sort="None" forcevisible="false" hidden="false" width="105" />
+          <column index="14" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="15" sort="None" forcevisible="false" hidden="false" width="50" />
+          <column index="16" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="17" sort="None" forcevisible="false" hidden="true" width="150" />
+          <column index="18" sort="None" forcevisible="false" hidden="false" width="150" />
+          <column index="19" sort="None" forcevisible="false" hidden="false" width="150" />
+        </table>
+        <heatfieldconfig smartmeasure="true" filterconfirmed="false" smartserver="true" customevents="true">
+          <incidentrules />
+        </heatfieldconfig>
+      </datamodelconfig>
+      <chartcolors />
+    </portletconfig>
+    <portletconfig com.dynatrace.diagnostics.portlets.text.textportletconfig.backgroundstyle="topLeft" icon="com.dynatrace.diagnostics.sdk/default.gif" usespecificautorefresh="false" usedashboardsourceforcompare="true" folderid="org.eclipse.ui.internal.ViewStack@dffff0" locationassource="true" com.dynatrace.diagnostics.portlets.text.textportletconfig.wallpapercolor="RGB(255,255,255,255)" usedashboardsource="true" bgcolor="236,233,216,255" id="8ee6c13a-7298-4328-8167-df2cbf2589fb" addfilterinfo="false" invertcolors="true" com.dynatrace.diagnostics.portlets.text.textportletconfig.alignment="CENTER" com.dynatrace.diagnostics.portlets.text.textportletconfig.text="Shows which Tenant was active on the B2B Portal, &#xD;&#xA;i.e. how many Tenants logged in and accessed Locations, Journeys, &#xD;&#xA;Booking-History or Payment-Reports." description="" name="Tenant Activity Dashboard" typeid="com.dynatrace.diagnostics.portlets.text.Text" ismaster="false" locationascomparesource="false" com.dynatrace.diagnostics.portlets.text.textportletconfig.defaultforegroundcolor="RGB(0,0,0,255)">
+      <reportconfig lines.per.table="100" print.legends="true" enabled="false" levels.per.tree="10" override="false" print.images="true" reportposition="3" />
+      <filter>
+        <inheritancemap />
+      </filter>
+      <autorefreshconfig unit="MINUTES" enabled="false" time="5" />
+      <sashconfig weights="1,1" displayoption="CHART_AND_TABLE" />
+      <font height="10" style="NORMAL" name="Arial" />
+    </portletconfig>
+    <portletconfig icon="com.dynatrace.diagnostics.sdk/chart_cust.png" usespecificautorefresh="false" usedashboardsourceforcompare="true" folderid="org.eclipse.ui.internal.ViewStack@1375b7a" sessiontype="live" locationassource="true" usedashboardsource="true" sessionid="easyTravel" bgcolor="236,233,216,255" id="6b91095e-c466-4eca-b873-d866cd5579bc" addfilterinfo="false" description="" lastvalue="false" name="Tenant Journey Activity" typeid="com.dynatrace.diagnostics.portlets.chart.Chart" ismaster="false" showabsolutevalues="false" locationascomparesource="false">
+      <reportconfig lines.per.table="100" print.legends="true" enabled="true" levels.per.tree="10" override="false" print.images="true" reportposition="8" />
+      <filter>
+        <criterion completepurepath="true" type="agents" mode="all">
+          <textpattern enabled="true" name="agentname" type="contains" />
+          <textpattern enabled="true" name="agenthost" type="contains" />
+        </criterion>
+        <criterion type="applications" mode="all" />
+        <criterion completepurepath="true" type="hosts" mode="all" />
+        <criterion type="timeframe">
+          <timeframe type="Last 30min" />
+        </criterion>
+        <criterion type="visits">
+          <visitidset visitsidsetsize="0" />
+        </criterion>
+        <inheritancemap />
+      </filter>
+      <autorefreshconfig unit="MINUTES" enabled="false" time="5" />
+      <sashconfig weights="682,317" displayoption="CHART" />
+      <datamodelconfig>
+        <chart maxdisplayitems="10" axis.x.title="" legendposition="Bottom" zoomable="true" showtooltips="true" charttype="StackedBarChart" resolution="Auto" isentitymarkable="false" title="" showlabels="true" yaxisalignment="0" showname="true" splitcharts="true" bounds.y.enabled="false" axis.y.show="true" subchartweights="1000" orientation="Horizontal" axis.y.title="" axis.y.title.show="true" limititems="false" axis.x.show="true" axis.x.title.show="true" logxaxis="false" showheatfield="false" showvalues="false" showtitle="false" showlegend="true">
+          <legendcomposition measure="true">
+            <pielabelcomposition measure="true" value="true" />
+          </legendcomposition>
+          <chartsource position="1" scale="0" visible="false" sessiontype="live" colorinheritancemode="random" aggregationtype="Count" uiunit="ms" groupingvalue="" id="a9c66848-0ee6-4301-a32e-5c4b6d05e8a0" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Journeys by Tenant" sourcecolor="RGB(152,229,77,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Journeys by Tenant" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Retrieve Journeys by Tenant" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Retrieve Journeys by Tenant" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="549bf2a7-ae53-3109-8025-bcb3c9152a19" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Create Journey by User [Personal Travel Inc.]" sourcecolor="RGB(235,122,122,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Create Journey by User [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Create Journey by User" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Create Journey by User [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="f51fee60-3b84-3267-8a79-0995d72c2c15" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Journeys by User [Personal Travel Inc.]" sourcecolor="RGB(98,78,228,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Journeys by User [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Journeys by User" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Journeys by User [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="49d9b7e2-8861-33f5-b0a5-aa0ad199f772" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Create Journey by Tenant [Personal Travel Inc.]" sourcecolor="RGB(229,229,77,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Create Journey by Tenant [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Create Journey by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Create Journey by Tenant" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="74b64474-024b-3eb3-955a-69062e31952c" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Journeys by User [Speed Travel Agency]" sourcecolor="RGB(235,219,122,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Journeys by User [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Journeys by User" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Journeys by User [Speed Travel Agency]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Count" uiunit="ms" groupingvalue="" id="35ae2676-8437-3a5c-b2c0-a83baeff50f8" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Journeys by Tenant [Personal Travel Inc.]" sourcecolor="RGB(229,163,77,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Journeys by Tenant [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Journeys by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Journeys by Tenant [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Count" uiunit="ms" groupingvalue="" id="ad5529cb-7658-3ad9-a531-57f551883220" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Journeys by Tenant [Speed Travel Agency]" sourcecolor="RGB(77,158,229,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Journeys by Tenant [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Journeys by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Journeys by Tenant [Speed Travel Agency]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Count" uiunit="ms" groupingvalue="" id="a19621af-15e7-3bb9-9530-f7e55cffc3dc" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Journeys by Tenant [Thomas Chef]" sourcecolor="RGB(76,133,20,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="count" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Journeys by Tenant [Thomas Chef]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Journeys by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Journeys by Tenant [Thomas Chef]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="2" scale="0" visible="false" sessiontype="live" colorinheritancemode="random" aggregationtype="Count" uiunit="ms" groupingvalue="" id="0544941f-03d1-4208-bd54-695b7709be60" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Create Journey by Tenant" sourcecolor="RGB(118,26,178,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Create Journey by Tenant" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Create Journey by Tenant" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Create Journey by Tenant" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="3" scale="0" visible="false" sessiontype="live" colorinheritancemode="random" aggregationtype="Count" uiunit="ms" groupingvalue="" id="f0b81279-03c3-47d1-b48e-8c1794d3a997" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Delete Journey by Tenant" sourcecolor="RGB(133,49,20,255)" sourcetype="MEASURE" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Delete Journey by Tenant" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="B2B Delete Journey by Tenant" metrickeyid="Value" agentname="" />
+            <displaysourceinfo agenthost="" transactionname="B2B Delete Journey by Tenant" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Count" uiunit="ms" groupingvalue="" id="389a6392-416a-3976-96d4-12b7898e4550" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Retrieve Journeys by Tenant [TravelNiche Ltd.]" sourcecolor="RGB(147,177,27,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="count" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Retrieve Journeys by Tenant [TravelNiche Ltd.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Retrieve Journeys by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Retrieve Journeys by Tenant [TravelNiche Ltd.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="16e2b214-3075-332a-af5c-29930e9ec223" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Create Journey by User [Speed Travel Agency]" sourcecolor="RGB(178,156,26,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Create Journey by User [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Create Journey by User" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Create Journey by User [Speed Travel Agency]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="ms" groupingvalue="" id="df650263-dc10-3751-b797-1bd21bdd3bc4" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Create Journey by Tenant [Speed Travel Agency]" sourcecolor="RGB(147,177,27,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Create Journey by Tenant [Speed Travel Agency]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Create Journey by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Create Journey by Tenant" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Count" uiunit="ms" groupingvalue="" id="43dabaaf-3353-3cbf-a9b4-4d338cfdab8a" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="B2B Delete Journey by Tenant [Personal Travel Inc.]" sourcecolor="RGB(147,33,222,255)" sourcetype="MEASURE" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="count" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <tagtolabel />
+            <lightweightuniquemeasureidentifier keyid="B2B Delete Journey by Tenant [Personal Travel Inc.]" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="B2B Delete Journey by Tenant" metrickeyid="Value" agentname="-" />
+            <displaysourceinfo agenthost="-" transactionname="B2B Delete Journey by Tenant [Personal Travel Inc.]" agentname="-" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <splitconfig splitmode="Measure" splitlayout="Vertical" />
+        </chart>
+        <table drawcolumn="-1" name="The Measure table" sortcolumn="0" structuremode="measureHierarchy" columnorder="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19">
+          <column index="0" sort="Up" forcevisible="false" hidden="false" width="241" />
+          <column index="1" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="2" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="3" sort="None" forcevisible="false" hidden="false" width="25" />
+          <column index="4" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="5" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="6" sort="None" forcevisible="false" hidden="false" width="50" />
+          <column index="7" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="8" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="9" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="10" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="11" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="12" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="13" sort="None" forcevisible="false" hidden="false" width="105" />
+          <column index="14" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="15" sort="None" forcevisible="false" hidden="false" width="50" />
+          <column index="16" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="17" sort="None" forcevisible="false" hidden="true" width="150" />
+          <column index="18" sort="None" forcevisible="false" hidden="false" width="150" />
+          <column index="19" sort="None" forcevisible="false" hidden="false" width="150" />
+        </table>
+        <heatfieldconfig smartmeasure="true" filterconfirmed="false" smartserver="true" customevents="true">
+          <incidentrules />
+        </heatfieldconfig>
+      </datamodelconfig>
+      <chartcolors />
+    </portletconfig>
+  </dashboardconfig>
+</dynatrace>
+

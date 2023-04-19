@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="easyTravel System Plugin" default="all">
+	<description>
+		easyTravel System Plugin
+	</description>
+
+	<import file="../Distribution/ant-includes.xml" />
+
+	<property name="bundle.symbolic.name" value="easyTravel-plugin" />
+	<property name="bundle.symbolic.name.55" value="easyTravel-plugin-for-5.5.0" />
+
+	<property name="dir.root" value="../jloadtrace" />
+	<property file="${dir.root}/version.properties" />
+	<property name="build.pathpostfix" value="-${version.major}.${version.minor}" />
+	<property name="version" value="${version.major}.${version.minor}.${version.revision}.${version.buildnumber}" />
+
+	<property file="../ant.properties" />
+	<property file="ant.properties" />
+	<property file="${user.home}/ant.properties" />
+
+	<!-- "target.platform" property defined in "ant.properties" would take precedence: -->
+	<property name="target.platform" value="."/>
+
+	<!-- ================================= 
+          target: buildLibrary              
+         ================================= -->
+	<target name="all" depends="init, link, link55" unless="built" description="easyTravel System Plugin">
+		<echo>Done</echo>
+	</target>
+
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: init                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="init" unless="built">
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clean                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clean" depends="" description="clean up">
+		<delete dir="build" />
+		<delete failonerror="no">
+			<fileset dir="${dir.dist}/${bundle.symbolic.name}">
+        		<include name="*.dtp"/>
+      		</fileset>
+  		</delete>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: link                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="link" depends="init">
+		<!-- trigger a rebuild every time -->
+		<delete failonerror="no">
+			<fileset dir="${dir.dist}" includes="${bundle.symbolic.name}.dtp" />
+		</delete>
+		
+		<!-- update manifest -->
+		<replace file="META-INF/MANIFEST.MF" token="Bundle-Version: 1.0.0.qualifier" value="Bundle-Version: ${version}" />
+		
+		<!-- ensure that all the documents are at least well-formed, i.e. nobody made illegal manual changes -->
+		<xmlvalidate lenient="true">
+			<fileset dir=".">
+				<include name="dashboards/*.xml"/>
+				<include name="profiles/*.xml"/>
+				<include name="sensors/**/*.xml"/>
+			</fileset>
+		</xmlvalidate>
+		
+		<jar jarfile="${dir.dist}/${bundle.symbolic.name}.dtp" manifest="META-INF/MANIFEST.MF">
+			<fileset dir=".">
+				<include name="plugin.xml" />
+				<include name="plugin.properties" />
+				<include name="dashboards/**" />
+				<include name="profiles/**" />
+				<include name="sensors/**"/>
+				<include name="sessions/**"/>
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="link55" depends="init">
+		<!-- trigger a rebuild every time -->
+		<delete failonerror="no">
+			<fileset dir="${dir.dist}" includes="${bundle.symbolic.name.55}.dtp" />
+			<fileset dir="build" />
+		</delete>
+
+		<!-- prepare for 5.5.x profile -->
+		<mkdir dir="build" />
+		<copy file="profiles/easyTravel.profile.xml" todir="build/profiles/" />
+		<copy todir="build/dashboards/">
+			<fileset dir="dashboards"/>
+		</copy>
+		<copy file="plugin.xml" todir="build/" />
+
+		<!-- apply regexes to make them compatible with 5.5.x -->
+		<replaceregexp byline="true">
+			<regexp pattern='version="(\d.\d.\d.\d+)"' />
+			<substitution expression='version="5.5.0.0000"' />
+			<fileset dir="build">
+				<include name="**/*.xml" />
+			</fileset>
+		</replaceregexp>
+
+		<!-- don't add the baseline "session" here to not deliver it multiple times -->
+		<replaceregexp byline="true">
+			<regexp pattern='resource_type="session">' />
+			<substitution expression='resource_type="systemProfile">' />	<!-- hack: install the system profile twice as we do not have "session" in 4.0 -->
+			<fileset dir="build">
+				<include name="plugin.xml" />
+			</fileset>
+		</replaceregexp>
+		<replaceregexp byline="true">
+			<regexp pattern='resource="sessions/easyTravel-Baseline.dts"' />
+			<substitution expression='resource="profiles/easyTravel.profile.xml"' />	<!-- hack: install the system profile twice as we do not have "session" in 4.0 -->
+			<fileset dir="build">
+				<include name="plugin.xml" />
+			</fileset>
+		</replaceregexp>
+		
+		<!-- finally check that we did at least left well-formed XML with these regexes -->
+		<xmlvalidate lenient="true">
+			<fileset dir="build">
+				<exclude name="**/*.properties" />
+			</fileset>
+		</xmlvalidate>
+
+		<jar jarfile="${dir.dist}/${bundle.symbolic.name.55}.dtp" manifest="META-INF/MANIFEST.MF">
+			<fileset dir=".">
+				<!--include name="plugin.xml" /-->
+				<include name="plugin.properties" />
+				<!--include name="dashboards/**" /-->
+				<!--include name="profiles/**" /-->
+				<include name="sensors/**"/>
+				<!--include name="sessions/**"/-->
+			</fileset>
+			<fileset dir="build">
+				<include name="plugin.xml" />
+				<include name="dashboards/**" />
+				<include name="profiles/**.profile.xml" />
+			</fileset>
+		</jar>
+		
+
+		<!-- clean up afterwards to not leave the duplicated files for Eclipse to find -->
+		<delete failonerror="no">
+			<fileset dir="build" />
+		</delete>
+	</target>
+</project>

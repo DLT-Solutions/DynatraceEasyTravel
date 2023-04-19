@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ATTENTION - THIS IS AN AUTOMATICALLY GENERATED FILE -->
+<!-- Manual changes can cause severe problems and system instability -->
+<!-- Apply manual changes only if you have received explicit instructions from dynaTrace Support -->
+<?eclipse version="3.2"?>
+<plugin>
+  <extension id="com.dynatrace.easytravel.sensorpack.easyTravel_Memory_.NET" point="com.dynatrace.diagnostics.knowledgesensor">
+    <sensorpack>
+      <sensor type="dotnetheap" key="com.dynatrace.easytravel.sensorpack.easyTravel_Memory_.NET" description="easyTravel Memory .NET" userdefined="true" group="sensorpack" order="0" defaultorder="0" hint="" autoplace="false">
+        <class pattern="dotNetCommon.Report.PaymentReportPage" placed="true" match="equals" delegationsuppression="false" techtype="dotnet">
+          <method pattern=".ctor" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api=".NET Memory" inheritance="inheritedMethods" capture="active" />
+        </class>
+        <class pattern="dotNetCommon.Report.PaymentReportData" placed="true" match="equals" delegationsuppression="false" techtype="dotnet">
+          <method pattern=".ctor" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api=".NET Memory" inheritance="inheritedMethods" capture="active" />
+        </class>
+        <class pattern="dotNetB2BFrontend.JourneyService.Location" placed="true" match="equals" delegationsuppression="false" techtype="dotnet">
+          <method pattern=".ctor" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api=".NET Memory" inheritance="inheritedMethods" capture="active" />
+        </class>
+        <class pattern="dotNetB2BFrontend.JourneyService.Tenant" placed="true" match="equals" delegationsuppression="false" techtype="dotnet">
+          <method pattern=".ctor" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api=".NET Memory" inheritance="inheritedMethods" capture="active" />
+        </class>
+        <class pattern="dotNetB2BFrontend.JourneyService.Journey" placed="true" match="equals" delegationsuppression="false" techtype="dotnet">
+          <method pattern=".ctor" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api=".NET Memory" inheritance="inheritedMethods" capture="active" />
+        </class>
+        <class pattern="dotNetB2BFrontend.AuthenticationService.Tenant" placed="true" match="equals" delegationsuppression="false" techtype="dotnet">
+          <method pattern=".ctor" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api=".NET Memory" inheritance="inheritedMethods" capture="active" />
+        </class>
+        <class pattern="dotNetB2BFrontend.AuthenticationService.User" placed="true" match="equals" delegationsuppression="false" techtype="dotnet">
+          <method pattern=".ctor" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api=".NET Memory" inheritance="inheritedMethods" capture="active" />
+        </class>
+        <class pattern="dotNetB2BFrontend.JourneyService.JourneyPage" placed="true" match="equals" delegationsuppression="false" techtype="dotnet">
+          <method pattern=".ctor" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api=".NET Memory" inheritance="inheritedMethods" capture="active" />
+        </class>
+      </sensor>
+    </sensorpack>
+  </extension>
+</plugin>
+

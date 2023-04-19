@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ATTENTION - THIS IS AN AUTOMATICALLY GENERATED FILE -->
+<!-- Manual changes can cause severe problems and system instability -->
+<!-- Apply manual changes only if you have received explicit instructions from dynaTrace Support -->
+<dynatrace version="5.5.0.5203" date="4/26/13 1:20 PM">
+  <dashboardconfig memento.version="5.5.0.5203" icon="com.dynatrace.diagnostics.sdk/default_16x16.png" localizationenabled="false" sessiontype="live" locationassource="false" groupname="" authorname="cwat-dstadler" opendrilldowninnewdashboard="false" sessionid="easyTravel" autoreplacesession="false" modified="2013-04-26T13:20:32+0200" id="cd693e6f-a93c-4b2b-a918-7551290ce937" revision="0000013e-4612-bbcc-aa14-0326ebf43a04" source="server://lnz123675n02" created="2013-04-26T09:21:57+0200" description="" name="easyTravel Memory Analysis" modifiedbyname="cwat-dstadler" locationascomparesource="false">
+    <reportconfig lines.per.table="100" enabled="true" print.legends="true" orientation="portrait" pagesize="A4" formathtml="com.dynatrace.diagnostics.report.velocity.format.htmlrenderer" optimizeequalcolumns="true" type="PDF" title="" override="false" levels.per.tree="10" description="" formatpdf="com.dynatrace.diagnostics.report.velocity.format.pdfrenderer" print.images="true" />
+    <filter>
+      <criterion completepurepath="true" type="agents" mode="all">
+        <textpattern enabled="true" name="agentname" type="contains" />
+        <textpattern enabled="true" name="agenthost" type="contains" />
+      </criterion>
+      <criterion type="and" />
+      <criterion excludeexternalsubpaths="false" type="api" mode="all" />
+      <criterion type="applications" mode="all" />
+      <criterion showrendering="true" isactive="true" shownetwork="true" showjavascript="true" type="browserpathtype" />
+      <criterion timerenabled="false" pageenabled="false" type="browsersectionfilter">
+        <timername>
+          <stringmatchpattern text="" match="contains" />
+        </timername>
+        <pageurl>
+          <stringmatchpattern text="" match="contains" />
+        </pageurl>
+      </criterion>
+      <criterion type="btm" />
+      <criterion filterinterval="false" intervalend="0" type="dcrumdimension" intervalstart="0" />
+      <criterion isactive="true" analyzeserverpath="true" type="enduserpath" analyzeenduserpath="true" />
+      <criterion completepurepath="true" type="hosts" mode="all" />
+      <criterion severities="" statesmode="all" severitiesmode="all" states="" rulesmode="all" type="incident" />
+      <criterion type="or" />
+      <criterion enduser="false" type="purepaths" mode="all" />
+      <criterion showrendering="true" isactive="false" contenttypegroupsmode="all" javascripttriggersmode="all" shownetwork="true" showjavascript="true" type="riapurepathtype" requestcriterion="ALL" />
+      <criterion includemeasurename="true" includetestname="true" type="tests" teststatus="OK" />
+      <criterion enabled="false" filterbyid="false" type="threads" />
+      <criterion type="timeframe">
+        <timeframe type="Last 30min" />
+      </criterion>
+      <criterion type="visits">
+        <visitidset visitsidsetsize="0" />
+      </criterion>
+      <criterion type="webpage">
+        <textpattern enabled="true" name="timerName" type="contains" />
+        <textpattern enabled="true" name="pageContext" type="contains" />
+      </criterion>
+      <criterion type="webrequest">
+        <filteruripattern>
+          <stringmatchpattern text="" match="contains" />
+        </filteruripattern>
+        <filterquerypattern>
+          <stringmatchpattern text="" match="contains" />
+        </filterquerypattern>
+      </criterion>
+    </filter>
+    <autorefreshconfig unit="MINUTES" enabled="true" time="5" />
+    <designconfig descriptionalignment="CENTER" descriptionfontstyle="NORMAL" namealignment="CENTER" descriptionfontsize="8" nameshow="true" clienttheme="DEFAULT" headertype="CUSTOM" namefontsize="10" descriptionshow="true" autoadjustfontsizes="false" namefontstyle="BOLD" descriptionfontcolor="128,128,128" />
+    <dashboardlayout>
+      <portletfolder relationtype="LEFT" ratio="0.95" folderid="org.eclipse.ui.internal.ViewStack@121b297" selectionindex="-1" isplaceholder="true" relatedfolderid="DashboardLayout.blankArea" portletconfigorder="" />
+      <portletfolder relationtype="RIGHT" ratio="0.17849898" folderid="folder" selectionindex="0" relatedfolderid="org.eclipse.ui.internal.ViewStack@121b297" portletconfigorder="ff0888f7-40c9-4775-a4f2-95bc705520ad">
+        <designconfig descriptionalignment="CENTER" descriptionfontstyle="NORMAL" namealignment="CENTER" inherited="true" descriptionfontsize="8" nameshow="true" headertype="DEFAULT" namefontsize="10" descriptionshow="true" namefontstyle="BOLD" descriptionfontcolor="128,128,128" />
+      </portletfolder>
+      <portletfolder relationtype="BOTTOM" ratio="0.3420806" folderid="8102a25f-5cfb-444c-b624-9938d1bc2fac" selectionindex="-1" isplaceholder="true" relatedfolderid="folder" portletconfigorder="" />
+      <portletfolder relationtype="RIGHT" ratio="0.49966192" folderid="org.eclipse.ui.internal.ViewStack@722faf" selectionindex="0" relatedfolderid="8102a25f-5cfb-444c-b624-9938d1bc2fac" portletconfigorder="0a30250c-71b9-4357-89f3-2895448514a5">
+        <designconfig descriptionalignment="CENTER" descriptionfontstyle="NORMAL" namealignment="CENTER" inherited="true" descriptionfontsize="8" nameshow="true" headertype="DEFAULT" namefontsize="10" descriptionshow="true" namefontstyle="BOLD" descriptionfontcolor="128,128,128" />
+      </portletfolder>
+      <portletfolder relationtype="BOTTOM" ratio="0.4985755" folderid="org.eclipse.ui.internal.ViewStack@17b781d" selectionindex="0" relatedfolderid="org.eclipse.ui.internal.ViewStack@722faf" portletconfigorder="488613df-3c6e-4601-b91b-88be445fc990">
+        <designconfig descriptionalignment="CENTER" descriptionfontstyle="NORMAL" namealignment="CENTER" inherited="true" descriptionfontsize="8" nameshow="true" headertype="DEFAULT" namefontsize="10" descriptionshow="true" namefontstyle="BOLD" descriptionfontcolor="128,128,128" />
+      </portletfolder>
+      <portletfolder relationtype="RIGHT" ratio="0.6769627" folderid="org.eclipse.ui.internal.ViewStack@876636" selectionindex="0" relatedfolderid="org.eclipse.ui.internal.ViewStack@17b781d" portletconfigorder="b5ff2e5b-53b9-42de-b283-7f4217db4634">
+        <designconfig descriptionalignment="CENTER" descriptionfontstyle="NORMAL" namealignment="CENTER" inherited="true" descriptionfontsize="8" nameshow="true" headertype="DEFAULT" namefontsize="10" descriptionshow="true" namefontstyle="BOLD" descriptionfontcolor="128,128,128" />
+      </portletfolder>
+      <portletfolder relationtype="RIGHT" ratio="0.4993565" folderid="org.eclipse.ui.internal.ViewStack@15cc177" selectionindex="0" relatedfolderid="org.eclipse.ui.internal.ViewStack@17b781d" portletconfigorder="4a669e3d-8693-4e55-8516-4bff8259817c">
+        <designconfig descriptionalignment="CENTER" descriptionfontstyle="NORMAL" namealignment="CENTER" inherited="true" descriptionfontsize="8" nameshow="true" headertype="DEFAULT" namefontsize="10" descriptionshow="true" namefontstyle="BOLD" descriptionfontcolor="128,128,128" />
+      </portletfolder>
+    </dashboardlayout>
+    <portletconfig usespecificautorefresh="false" icon="com.dynatrace.diagnostics.sdk/default.gif" usedashboardsourceforcompare="true" folderid="org.eclipse.ui.internal.ViewStack@876636" sessiontype="live" locationassource="false" usedashboardsource="true" sessionid="easyTravel" id="b5ff2e5b-53b9-42de-b283-7f4217db4634" addfilterinfo="false" source="server://lnz123675n02" description="" lastvalue="false" name="Tomcat Sessions" typeid="com.dynatrace.diagnostics.portlets.chart.Chart" ismaster="false" showabsolutevalues="false" locationascomparesource="false">
+      <reportconfig lines.per.table="100" print.legends="true" enabled="true" optimizeequalcolumns="true" levels.per.tree="10" override="false" print.images="true" reportposition="5" />
+      <filter>
+        <criterion completepurepath="true" type="agents" mode="all">
+          <textpattern enabled="true" name="agentname" type="contains" />
+          <textpattern enabled="true" name="agenthost" type="contains" />
+        </criterion>
+        <criterion type="applications" mode="all" />
+        <criterion type="btm" />
+        <criterion completepurepath="true" type="hosts" mode="all" />
+        <criterion type="timeframe">
+          <timeframe type="Last 30min" />
+        </criterion>
+        <criterion type="visits">
+          <visitidset visitsidsetsize="0" />
+        </criterion>
+        <inheritancemap />
+      </filter>
+      <autorefreshconfig unit="MINUTES" enabled="false" time="5" />
+      <sashconfig weights="583,416" displayoption="CHART" />
+      <datamodelconfig>
+        <chart maxdisplayitems="10" axis.x.title="" legendposition="Bottom" zoomable="true" showtooltips="true" bounds.y.lower="0.0" charttype="LineChart" resolution="Auto" isentitymarkable="false" title="" showlabels="true" yaxisalignment="0" showname="true" splitcharts="false" bounds.y.enabled="true" axis.y.show="true" orientation="Horizontal" lockyaxis="true" axis.y.title="Sessions" axis.y.title.show="true" limititems="false" axis.x.show="true" axis.x.title.show="true" logxaxis="false" showheatfield="false" showvalues="false" showtitle="false" showlegend="true">
+          <legendcomposition measure="true">
+            <pielabelcomposition measure="true" value="true" />
+          </legendcomposition>
+          <chartsource position="5" scale="0" visible="false" sessiontype="live" colorinheritancemode="random" aggregationtype="Avg" uiunit="number" groupingvalue="" id="84f5c789-9eee-4068-854f-39f448805bff" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="&quot;http-bio-8080&quot;-currentThreadsBusy" sourcecolor="RGB(64,0,128,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="AgentOrMonitor" displayrate="10s" systemid="easyTravel" unit="number" measuretype="JmxMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="&quot;http-bio-8080&quot;-currentThreadsBusy" metricgroupkey="Tomcat" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="&quot;http-bio-8080&quot;-currentThreadsBusy" measuretype="JmxMeasure" metrickeyid="Custom JMX Measure" agentname="" metricsimpledisplayname="Custom JMX Measure" />
+            <displaysourceinfo agenthost="" agentname="" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="false" sessiontype="live" parentid="903f78d2-8db5-4b9d-ac67-a39dff4c5856" aggregationtype="Max" uiunit="number" groupingvalue="" id="8f7d157c-cca4-308a-b6c8-7683d7e01207" fetchmeasurecolor="false" overridesource="false" rate="10s" ratesupported="false" name="Current Thread count" sourcecolor="RGB(89,78,13,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentOrMonitor" displayrate="10s" unit="number" systemid="easyTravel" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current Thread count" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="lnz123675n02" parentkeyid="Current Thread count" measuretype="ProcessPerformanceMeasure" metrickeyid="Current Thread count" agentname="CreditCardAuthorization_easyTravel" metricsimpledisplayname="Current Thread count" />
+            <displaysourceinfo agenthost="lnz123675n02" agentname="CreditCardAuthorization_easyTravel" measureunit="number" agentgroup="CreditCardAuthorization (C++)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="2" scale="0" visible="false" sessiontype="live" colorinheritancemode="random" aggregationtype="Max" uiunit="number" groupingvalue="" id="903f78d2-8db5-4b9d-ac67-a39dff4c5856" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="false" name="Current Thread count" sourcecolor="RGB(128,128,192,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="AgentOrMonitor" displayrate="10s" systemid="easyTravel" unit="number" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current Thread count" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Current Thread count" measuretype="ProcessPerformanceMeasure" metrickeyid="Current Thread count" agentname="" metricsimpledisplayname="Current Thread count" />
+            <displaysourceinfo agenthost="" agentname="" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="number" groupingvalue="" id="955c43cf-3bc3-3894-82e6-9d145f374878" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="Tomcat - Maximum Configured Sessions" sourcecolor="RGB(90,196,82,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="number" measuretype="JmxMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Tomcat - Maximum Configured Sessions" metricgroupkey="Tomcat" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Tomcat - Maximum Configured Sessions" measuretype="JmxMeasure" metrickeyid="Custom JMX Measure" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="number" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="false" sessiontype="live" aggregationtype="Avg" uiunit="number" groupingvalue="" id="a29732f3-d9bd-3786-a85c-1d547b97fb81" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="Tomcat - Maximum Configured Sessions" sourcecolor="RGB(192,64,64,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="number" measuretype="JmxMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Tomcat - Maximum Configured Sessions" metricgroupkey="Tomcat" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Tomcat - Maximum Configured Sessions" measuretype="JmxMeasure" metrickeyid="Custom JMX Measure" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="number" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="552417c9-6588-4ff3-a4c4-32bf690eaae5" aggregationtype="Avg" uiunit="bytes" groupingvalue="" id="dee6daed-4170-3dae-b111-e060693ab54c" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="Tomcat-activeSessions" sourcecolor="RGB(77,158,229,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentOrMonitor" displayrate="10s" unit="bytes" systemid="easyTravel" measuretype="JmxMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Tomcat-activeSessions" metricgroupkey="Tomcat" collector="" systemid="easyTravel" application="" agenthost="lnz123675n02" parentkeyid="Tomcat-activeSessions" measuretype="JmxMeasure" metrickeyid="Custom JMX Data Amount Measure" agentname="CustomerFrontend_easyTravel_8080" metricsimpledisplayname="Custom JMX Data Amount Measure" />
+            <displaysourceinfo agenthost="lnz123675n02" agentname="CustomerFrontend_easyTravel_8080" measureunit="bytes" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="false" sessiontype="live" parentid="903f78d2-8db5-4b9d-ac67-a39dff4c5856" aggregationtype="Max" uiunit="number" groupingvalue="" id="e27b405b-a2ef-3cc0-8706-695a313931b8" fetchmeasurecolor="false" overridesource="false" rate="10s" ratesupported="false" name="Current Thread count" sourcecolor="RGB(122,235,208,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentOrMonitor" displayrate="10s" unit="number" systemid="easyTravel" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current Thread count" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="lnz123675n02" parentkeyid="Current Thread count" measuretype="ProcessPerformanceMeasure" metrickeyid="Current Thread count" agentname="dtwsagent" metricsimpledisplayname="Current Thread count" />
+            <displaysourceinfo agenthost="lnz123675n02" agentname="dtwsagent" measureunit="number" agentgroup="Web Server" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="12928412-57e0-4914-9362-d526a6609185" aggregationtype="Avg" uiunit="number" groupingvalue="" id="e39f76dd-7890-3902-a030-ea43ffe21eb2" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="&quot;http-bio-8080&quot;-currentThreadCount" sourcecolor="RGB(33,80,222,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentOrMonitor" displayrate="10s" unit="number" systemid="easyTravel" measuretype="JmxMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="&quot;http-bio-8080&quot;-currentThreadCount" metricgroupkey="Tomcat" collector="" systemid="easyTravel" application="" agenthost="lnz123675n02" parentkeyid="&quot;http-bio-8080&quot;-currentThreadCount" measuretype="JmxMeasure" metrickeyid="Custom JMX Measure" agentname="CustomerFrontend_easyTravel_8080" metricsimpledisplayname="Custom JMX Measure" />
+            <displaysourceinfo agenthost="lnz123675n02" agentname="CustomerFrontend_easyTravel_8080" measureunit="number" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="number" groupingvalue="" id="fad94ad2-86b7-3175-92b7-afbce9f0a273" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="Tomcat - Currently Active Sessions" sourcecolor="RGB(74,103,232,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="number" measuretype="JmxMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Tomcat - Currently Active Sessions" metricgroupkey="Tomcat" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Tomcat - Currently Active Sessions" measuretype="JmxMeasure" metrickeyid="Custom JMX Measure" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="number" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="false" sessiontype="live" parentid="79b4f6e0-59a3-4470-996b-41c3088199f0" aggregationtype="Avg" uiunit="bytes" groupingvalue="" id="009e5d1a-e89c-3fd8-b5e0-92d1bbb43185" fetchmeasurecolor="false" overridesource="false" rate="10s" ratesupported="true" name="Threading-ThreadCount" sourcecolor="RGB(133,133,20,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentOrMonitor" displayrate="10s" unit="bytes" systemid="easyTravel" measuretype="JmxMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Threading-ThreadCount" metricgroupkey="Tomcat" collector="" systemid="easyTravel" application="" agenthost="lnz123675n02" parentkeyid="Threading-ThreadCount" measuretype="JmxMeasure" metrickeyid="Custom JMX Data Amount Measure" agentname="BusinessBackend_easyTravel" metricsimpledisplayname="Custom JMX Data Amount Measure" />
+            <displaysourceinfo agenthost="lnz123675n02" agentname="BusinessBackend_easyTravel" measureunit="bytes" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="4" scale="0" visible="false" sessiontype="live" colorinheritancemode="random" aggregationtype="Avg" uiunit="number" groupingvalue="" id="12928412-57e0-4914-9362-d526a6609185" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="&quot;http-bio-8080&quot;-currentThreadCount" sourcecolor="RGB(64,0,128,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="AgentOrMonitor" displayrate="10s" systemid="easyTravel" unit="number" measuretype="JmxMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="&quot;http-bio-8080&quot;-currentThreadCount" metricgroupkey="Tomcat" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="&quot;http-bio-8080&quot;-currentThreadCount" measuretype="JmxMeasure" metrickeyid="Custom JMX Measure" agentname="" metricsimpledisplayname="Custom JMX Measure" />
+            <displaysourceinfo agenthost="" agentname="" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="79b4f6e0-59a3-4470-996b-41c3088199f0" aggregationtype="Avg" uiunit="bytes" groupingvalue="" id="1723b332-094f-3c61-b62b-64a497447d37" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="Threading-ThreadCount" sourcecolor="RGB(152,229,77,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentOrMonitor" displayrate="10s" unit="bytes" systemid="easyTravel" measuretype="JmxMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Threading-ThreadCount" metricgroupkey="Tomcat" collector="" systemid="easyTravel" application="" agenthost="lnz123675n02" parentkeyid="Threading-ThreadCount" measuretype="JmxMeasure" metrickeyid="Custom JMX Data Amount Measure" agentname="CustomerFrontend_easyTravel_8080" metricsimpledisplayname="Custom JMX Data Amount Measure" />
+            <displaysourceinfo agenthost="lnz123675n02" agentname="CustomerFrontend_easyTravel_8080" measureunit="bytes" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="903f78d2-8db5-4b9d-ac67-a39dff4c5856" aggregationtype="Max" uiunit="number" groupingvalue="" id="27ec49db-dd7e-3efb-9c4d-fadb6e108461" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current Thread count" sourcecolor="RGB(166,221,242,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentOrMonitor" displayrate="10s" unit="number" systemid="easyTravel" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current Thread count" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="lnz123675n02" parentkeyid="Current Thread count" measuretype="ProcessPerformanceMeasure" metrickeyid="Current Thread count" agentname="CustomerFrontend_easyTravel_8080" metricsimpledisplayname="Current Thread count" />
+            <displaysourceinfo agenthost="lnz123675n02" agentname="CustomerFrontend_easyTravel_8080" measureunit="number" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="false" sessiontype="live" parentid="552417c9-6588-4ff3-a4c4-32bf690eaae5" aggregationtype="Avg" uiunit="bytes" groupingvalue="" id="2e545b75-5cdf-3ca8-9e0b-91ee6b389734" fetchmeasurecolor="false" overridesource="false" rate="10s" ratesupported="true" name="Tomcat-activeSessions" sourcecolor="RGB(176,166,242,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentOrMonitor" displayrate="10s" unit="bytes" systemid="easyTravel" measuretype="JmxMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Tomcat-activeSessions" metricgroupkey="Tomcat" collector="" systemid="easyTravel" application="" agenthost="lnz123675n02" parentkeyid="Tomcat-activeSessions" measuretype="JmxMeasure" metrickeyid="Custom JMX Data Amount Measure" agentname="BusinessBackend_easyTravel" metricsimpledisplayname="Custom JMX Data Amount Measure" />
+            <displaysourceinfo agenthost="lnz123675n02" agentname="BusinessBackend_easyTravel" measureunit="bytes" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="4ed109a2-b2b3-48c0-a52c-613b467856c8" aggregationtype="Avg" uiunit="number" groupingvalue="" id="367e5002-5d0b-3292-a63c-6534a56c2c06" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="&quot;http-bio-8080&quot;-maxThreads" sourcecolor="RGB(133,20,68,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentOrMonitor" displayrate="10s" unit="number" systemid="easyTravel" measuretype="JmxMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="&quot;http-bio-8080&quot;-maxThreads" metricgroupkey="Tomcat" collector="" systemid="easyTravel" application="" agenthost="lnz123675n02" parentkeyid="&quot;http-bio-8080&quot;-maxThreads" measuretype="JmxMeasure" metrickeyid="Custom JMX Measure" agentname="CustomerFrontend_easyTravel_8080" metricsimpledisplayname="Custom JMX Measure" />
+            <displaysourceinfo agenthost="lnz123675n02" agentname="CustomerFrontend_easyTravel_8080" measureunit="number" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="false" sessiontype="live" parentid="903f78d2-8db5-4b9d-ac67-a39dff4c5856" aggregationtype="Max" uiunit="number" groupingvalue="" id="4240e945-bcc4-3150-9c97-9adf7d03ea9a" fetchmeasurecolor="false" overridesource="false" rate="10s" ratesupported="false" name="Current Thread count" sourcecolor="RGB(89,32,13,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentOrMonitor" displayrate="10s" unit="number" systemid="easyTravel" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current Thread count" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="lnz123675n02" parentkeyid="Current Thread count" measuretype="ProcessPerformanceMeasure" metrickeyid="Current Thread count" agentname="BusinessBackend_easyTravel" metricsimpledisplayname="Current Thread count" />
+            <displaysourceinfo agenthost="lnz123675n02" agentname="BusinessBackend_easyTravel" measureunit="number" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="6" scale="0" visible="false" sessiontype="live" colorinheritancemode="random" aggregationtype="Avg" uiunit="number" groupingvalue="" id="4ed109a2-b2b3-48c0-a52c-613b467856c8" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="&quot;http-bio-8080&quot;-maxThreads" sourcecolor="RGB(64,0,128,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="AgentOrMonitor" displayrate="10s" systemid="easyTravel" unit="number" measuretype="JmxMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="&quot;http-bio-8080&quot;-maxThreads" metricgroupkey="Tomcat" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="&quot;http-bio-8080&quot;-maxThreads" measuretype="JmxMeasure" metrickeyid="Custom JMX Measure" agentname="" metricsimpledisplayname="Custom JMX Measure" />
+            <displaysourceinfo agenthost="" agentname="" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="3" scale="0" visible="false" sessiontype="live" colorinheritancemode="random" aggregationtype="Avg" uiunit="bytes" groupingvalue="" id="552417c9-6588-4ff3-a4c4-32bf690eaae5" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="Tomcat-activeSessions" sourcecolor="RGB(128,192,192,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="AgentOrMonitor" displayrate="10s" systemid="easyTravel" unit="bytes" measuretype="JmxMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Tomcat-activeSessions" metricgroupkey="Tomcat" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Tomcat-activeSessions" measuretype="JmxMeasure" metrickeyid="Custom JMX Data Amount Measure" agentname="" metricsimpledisplayname="Custom JMX Data Amount Measure" />
+            <displaysourceinfo agenthost="" agentname="" measureunit="bytes" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="84f5c789-9eee-4068-854f-39f448805bff" aggregationtype="Avg" uiunit="number" groupingvalue="" id="5ef1358b-fbc2-3af4-aa2e-612c29815527" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="&quot;http-bio-8080&quot;-currentThreadsBusy" sourcecolor="RGB(133,133,20,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentOrMonitor" displayrate="10s" unit="number" systemid="easyTravel" measuretype="JmxMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="&quot;http-bio-8080&quot;-currentThreadsBusy" metricgroupkey="Tomcat" collector="" systemid="easyTravel" application="" agenthost="lnz123675n02" parentkeyid="&quot;http-bio-8080&quot;-currentThreadsBusy" measuretype="JmxMeasure" metrickeyid="Custom JMX Measure" agentname="CustomerFrontend_easyTravel_8080" metricsimpledisplayname="Custom JMX Measure" />
+            <displaysourceinfo agenthost="lnz123675n02" agentname="CustomerFrontend_easyTravel_8080" measureunit="number" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="false" sessiontype="live" aggregationtype="Avg" uiunit="number" groupingvalue="" id="69a6dba2-220b-333c-99b5-530c925934d3" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="Tomcat - Currently Active Sessions" sourcecolor="RGB(74,103,232,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="number" measuretype="JmxMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Tomcat - Currently Active Sessions" metricgroupkey="Tomcat" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Tomcat - Currently Active Sessions" measuretype="JmxMeasure" metrickeyid="Custom JMX Measure" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="number" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="1" scale="0" visible="false" sessiontype="live" colorinheritancemode="random" aggregationtype="Avg" uiunit="bytes" groupingvalue="" id="79b4f6e0-59a3-4470-996b-41c3088199f0" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="Threading-ThreadCount" sourcecolor="RGB(64,64,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="AgentOrMonitor" displayrate="10s" systemid="easyTravel" unit="bytes" measuretype="JmxMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Threading-ThreadCount" metricgroupkey="Tomcat" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Threading-ThreadCount" measuretype="JmxMeasure" metrickeyid="Custom JMX Data Amount Measure" agentname="" metricsimpledisplayname="Custom JMX Data Amount Measure" />
+            <displaysourceinfo agenthost="" agentname="" measureunit="bytes" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <splitconfig splitmode="AgentName" splitlayout="Horizontal" />
+        </chart>
+        <table drawcolumn="-1" sortcolumn="0" structuremode="measureHierarchy" columnorder="0,1,2,3,4,10,5,6,7,8,9,11,12,13,14,15,16,17,18,19">
+          <column index="0" sort="Up" forcevisible="false" hidden="false" width="407" />
+          <column index="1" sort="None" forcevisible="false" hidden="true" width="100" />
+          <column index="2" sort="None" forcevisible="false" hidden="true" width="100" />
+          <column index="3" sort="None" forcevisible="true" hidden="false" width="25" />
+          <column index="4" sort="None" forcevisible="false" hidden="true" width="100" />
+          <column index="5" sort="None" forcevisible="false" hidden="false" width="83" />
+          <column index="6" sort="None" forcevisible="false" hidden="false" width="50" />
+          <column index="7" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="8" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="9" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="10" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="11" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="12" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="13" sort="None" forcevisible="false" hidden="false" width="105" />
+          <column index="14" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="15" sort="None" forcevisible="false" hidden="false" width="50" />
+          <column index="16" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="17" sort="None" forcevisible="false" hidden="true" width="150" />
+          <column index="18" sort="None" forcevisible="false" hidden="false" width="150" />
+          <column index="19" sort="None" forcevisible="false" hidden="true" width="150" />
+        </table>
+        <heatfieldconfig smartmeasure="true" filterconfirmed="false" smartserver="true" customevents="true">
+          <incidentrules />
+        </heatfieldconfig>
+      </datamodelconfig>
+      <chartcolors />
+    </portletconfig>
+    <portletconfig usespecificautorefresh="false" icon="com.dynatrace.diagnostics.sdk/chart_mem.gif" usedashboardsourceforcompare="true" folderid="folder" sessiontype="live" locationassource="false" usedashboardsource="true" sessionid="easyTravel" id="ff0888f7-40c9-4775-a4f2-95bc705520ad" addfilterinfo="false" source="server://lnz123675n02" description="" lastvalue="false" name="JVM Heap Memory Usage" typeid="com.dynatrace.diagnostics.portlets.chart.Chart" ismaster="false" showabsolutevalues="false" locationascomparesource="false">
+      <reportconfig lines.per.table="100" print.legends="true" enabled="true" optimizeequalcolumns="true" levels.per.tree="10" override="false" print.images="true" reportposition="8" />
+      <filter>
+        <criterion completepurepath="true" type="agents" mode="all">
+          <textpattern enabled="true" name="agentname" type="contains" />
+          <textpattern enabled="true" name="agenthost" type="contains" />
+        </criterion>
+        <criterion type="applications" mode="all" />
+        <criterion type="btm" />
+        <criterion completepurepath="true" type="hosts" mode="all" />
+        <criterion type="timeframe">
+          <timeframe type="Last 30min" />
+        </criterion>
+        <criterion type="visits">
+          <visitidset visitsidsetsize="0" />
+        </criterion>
+        <inheritancemap />
+      </filter>
+      <autorefreshconfig unit="MINUTES" enabled="true" time="5" />
+      <sashconfig weights="500,500" displayoption="CHART" />
+      <datamodelconfig>
+        <chart maxdisplayitems="10" axis.x.title="" legendposition="Bottom" zoomable="true" showtooltips="true" charttype="StackedAreaChart" resolution="Auto" isentitymarkable="false" title="" showlabels="true" yaxisalignment="0" showname="true" splitcharts="true" bounds.y.enabled="false" axis.y.show="true" orientation="Horizontal" lockyaxis="false" axis.y.title="" axis.y.title.show="true" limititems="false" axis.x.show="true" axis.x.title.show="true" logxaxis="false" showheatfield="true" showvalues="false" showtitle="false" showlegend="false">
+          <legendcomposition host="true" measure="true" agent="true">
+            <pielabelcomposition host="true" measure="true" value="true" agent="true" />
+          </legendcomposition>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="8bfd81f3-e0ad-3604-8731-1ecdcc15527c" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Eden Space used" sourcecolor="RGB(255,205,205,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Eden Space used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Sun/Oracle Eden Space used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="megabytes" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="a27fad67-cb84-3555-986b-a12d48ea76c9" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Eden Space used" sourcecolor="RGB(255,205,205,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Eden Space used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="dynasprint" parentkeyid="Sun/Oracle Eden Space used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="dynasprint" measureunit="megabytes" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="1" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="aa574d30-6b90-44a0-a7cf-2572a1e3c071" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Old Gen used" sourcecolor="RGB(150,0,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" displayrate="auto" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Old Gen used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Sun/Oracle Old Gen used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="" metricsimpledisplayname="" />
+            <displaysourceinfo agenthost="" agentname="" measureunit="megabytes" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="aefcde39-f220-3e8c-99f5-6818fb557e3d" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Eden Space used" sourcecolor="RGB(255,205,205,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Eden Space used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="dstadler1" parentkeyid="Sun/Oracle Eden Space used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="dstadler1" measureunit="megabytes" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="3" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="b69c5864-4b67-437c-ad56-cee353ffb28f" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Survivor Space used" sourcecolor="RGB(255,100,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" displayrate="auto" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Survivor Space used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Sun/Oracle Survivor Space used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="" metricsimpledisplayname="" />
+            <displaysourceinfo agenthost="" agentname="" measureunit="megabytes" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="bc1e100f-69ee-32a9-8ebe-c28775838590" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Tenured Gen used" sourcecolor="RGB(200,105,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Tenured Gen used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="dynasprint" parentkeyid="Sun/Oracle Tenured Gen used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="dynasprint" measureunit="megabytes" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="c91d6bdc-6492-3266-9937-1177a9d5b5c7" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Survivor Space used" sourcecolor="RGB(255,100,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Survivor Space used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="dstadler1" parentkeyid="Sun/Oracle Survivor Space used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="dstadler1" measureunit="megabytes" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="cd4b6a13-8ce0-36ae-b9da-a585098c7bd4" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Survivor Space used" sourcecolor="RGB(255,100,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Survivor Space used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Sun/Oracle Survivor Space used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="megabytes" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="5" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="cfe709a8-734c-4848-a370-b8939c2c6485" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Free Memory" sourcecolor="RGB(155,255,155,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" displayrate="auto" systemid="easyTravel" unit="megabytes" measuretype="Measure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Free Memory" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Free Memory" measuretype="Measure" metrickeyid="Free Memory" agentname="" metricsimpledisplayname="" />
+            <displaysourceinfo agenthost="" agentname="" measureunit="megabytes" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="d2fe4cb7-22dd-334a-a82e-00b7cff24a5e" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Free Memory" sourcecolor="RGB(155,255,155,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="Measure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Free Memory" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Free Memory" measuretype="Measure" metrickeyid="Free Memory" agentname="Test" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="megabytes" agentname="Test" agentgroup="Test" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="d54a3fc6-209d-3075-9d6b-440e16802ad7" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Eden Space used" sourcecolor="RGB(255,205,205,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Eden Space used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Sun/Oracle Eden Space used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="megabytes" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="d94355e3-11fe-315d-aacc-cdae3bab9ae8" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Survivor Space used" sourcecolor="RGB(255,100,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Survivor Space used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Sun/Oracle Survivor Space used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="Test" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="megabytes" agentname="Test" agentgroup="Test" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="dc7b453c-c996-3029-b752-b758e3f86fbe" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Survivor Space used" sourcecolor="RGB(255,100,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Survivor Space used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Sun/Oracle Survivor Space used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="megabytes" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="ed52752c-591e-3341-a844-aff92a14b44e" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Old Gen used" sourcecolor="RGB(150,0,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Old Gen used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="dstadler1" parentkeyid="Sun/Oracle Old Gen used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="dstadler1" measureunit="megabytes" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="f157b20c-88d7-3393-8353-52041ac90c34" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Tenured Gen used" sourcecolor="RGB(200,105,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Tenured Gen used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Sun/Oracle Tenured Gen used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="megabytes" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="f7766ab4-ae75-31ae-b92b-42d711607688" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Survivor Space used" sourcecolor="RGB(255,100,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Survivor Space used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="dynasprint" parentkeyid="Sun/Oracle Survivor Space used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="dynasprint" measureunit="megabytes" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="0380015e-df24-3e65-b7f4-844fbafbc1ff" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Eden Space used" sourcecolor="RGB(255,205,205,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Eden Space used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="dstadler1" parentkeyid="Sun/Oracle Eden Space used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="dstadler1" measureunit="megabytes" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="0915a7fa-7c41-3dea-bc49-b8966eaec647" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Eden Space used" sourcecolor="RGB(255,205,205,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Eden Space used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Sun/Oracle Eden Space used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="megabytes" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="4" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="1512b83d-dee9-4c0d-86ef-ac3d226ad023" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Eden Space used" sourcecolor="RGB(255,205,205,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" displayrate="auto" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Eden Space used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Sun/Oracle Eden Space used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="" metricsimpledisplayname="" />
+            <displaysourceinfo agenthost="" agentname="" measureunit="megabytes" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="1b0c72e8-7d81-3af6-8bd9-d137106be89a" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Free Memory" sourcecolor="RGB(155,255,155,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="Measure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Free Memory" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="dstadler1" parentkeyid="Free Memory" measuretype="Measure" metrickeyid="Free Memory" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="dstadler1" measureunit="megabytes" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="1b15ad4f-3638-3f71-9556-38a8b9aaa784" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Eden Space used" sourcecolor="RGB(255,205,205,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Eden Space used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Sun/Oracle Eden Space used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="Test" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="megabytes" agentname="Test" agentgroup="Test" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="1ed54e40-fc48-35b0-b566-6707cf1095be" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Free Memory" sourcecolor="RGB(155,255,155,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="Measure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Free Memory" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="dynasprint" parentkeyid="Free Memory" measuretype="Measure" metrickeyid="Free Memory" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="dynasprint" measureunit="megabytes" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="246af755-0bbc-332b-98ae-25e3a5009138" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Survivor Space used" sourcecolor="RGB(255,100,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Survivor Space used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Sun/Oracle Survivor Space used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="megabytes" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="24ae7961-f5bb-3a47-befb-a2cc9b863be4" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Old Gen used" sourcecolor="RGB(150,0,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Old Gen used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="dstadler1" parentkeyid="Sun/Oracle Old Gen used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="dstadler1" measureunit="megabytes" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="28f94126-2385-31ba-926f-38ee5f2912e0" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Tenured Gen used" sourcecolor="RGB(200,105,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Tenured Gen used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Sun/Oracle Tenured Gen used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="Test" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="megabytes" agentname="Test" agentgroup="Test" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="2deb65ad-0653-3463-b60d-695e50e84722" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Eden Space used" sourcecolor="RGB(255,205,205,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Eden Space used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="dynasprint" parentkeyid="Sun/Oracle Eden Space used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="dynasprint" measureunit="megabytes" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="3346905a-cdae-3bf6-adb7-0dc89ed06f97" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Survivor Space used" sourcecolor="RGB(255,100,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Survivor Space used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="dstadler1" parentkeyid="Sun/Oracle Survivor Space used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="dstadler1" measureunit="megabytes" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="3656a770-093f-33f3-abe1-014007f6f9e4" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Survivor Space used" sourcecolor="RGB(255,100,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Survivor Space used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Sun/Oracle Survivor Space used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="megabytes" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="39a8e343-ba91-35f7-80d5-69a88ab3560e" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Free Memory" sourcecolor="RGB(155,255,155,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="Measure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Free Memory" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="dstadler1" parentkeyid="Free Memory" measuretype="Measure" metrickeyid="Free Memory" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="dstadler1" measureunit="megabytes" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="3b9bf386-df28-3608-90d9-95b45ec27aa4" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Eden Space used" sourcecolor="RGB(255,205,205,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Eden Space used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Sun/Oracle Eden Space used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="megabytes" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="3dacb2a5-7cb5-3ac2-ae17-e172e4e8e9de" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Tenured Gen used" sourcecolor="RGB(200,105,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Tenured Gen used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Sun/Oracle Tenured Gen used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="megabytes" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="420dfc6c-b9bd-3fff-94ca-e0f157a42ac8" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Tenured Gen used" sourcecolor="RGB(200,105,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Tenured Gen used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Sun/Oracle Tenured Gen used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="megabytes" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="54073f1b-4edb-3634-a3d8-029e2e1afcd3" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Free Memory" sourcecolor="RGB(155,255,155,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="Measure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Free Memory" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Free Memory" measuretype="Measure" metrickeyid="Free Memory" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="megabytes" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="5ba87a09-0c30-3507-92a0-d22b9c7350d9" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Free Memory" sourcecolor="RGB(155,255,155,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="Measure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Free Memory" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="dynasprint" parentkeyid="Free Memory" measuretype="Measure" metrickeyid="Free Memory" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="dynasprint" measureunit="megabytes" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="2" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="63737b17-9c78-4f68-8a2c-7980fa06342b" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Tenured Gen used" sourcecolor="RGB(200,105,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" displayrate="auto" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Tenured Gen used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Sun/Oracle Tenured Gen used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="" metricsimpledisplayname="" />
+            <displaysourceinfo agenthost="" agentname="" measureunit="megabytes" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="6609e2f0-9a5c-3f72-ac17-5417cf18b8a1" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Old Gen used" sourcecolor="RGB(150,0,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Old Gen used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Sun/Oracle Old Gen used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="megabytes" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="6d01feb2-1afd-38cd-8597-b121d97776bb" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Tenured Gen used" sourcecolor="RGB(200,105,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Tenured Gen used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="dynasprint" parentkeyid="Sun/Oracle Tenured Gen used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="dynasprint" measureunit="megabytes" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="74d8a3f0-a2fc-3644-97fc-b0378e52cd3f" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Free Memory" sourcecolor="RGB(155,255,155,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="Measure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Free Memory" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Free Memory" measuretype="Measure" metrickeyid="Free Memory" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="megabytes" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="75abc2d6-c9fe-3497-9029-d8570b7bd84f" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Old Gen used" sourcecolor="RGB(150,0,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Old Gen used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Sun/Oracle Old Gen used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="megabytes" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="7c93cefe-726a-3d08-9da3-6aa954b59878" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Survivor Space used" sourcecolor="RGB(255,100,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Survivor Space used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="dynasprint" parentkeyid="Sun/Oracle Survivor Space used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="dynasprint" measureunit="megabytes" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Avg" uiunit="megabytes" groupingvalue="" id="7e323691-a57f-3f89-8d0a-5f471e4d2d1c" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Sun/Oracle Tenured Gen used" sourcecolor="RGB(200,105,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="megabytes" measuretype="MemoryPoolMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Sun/Oracle Tenured Gen used" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Sun/Oracle Tenured Gen used" measuretype="MemoryPoolMeasure" metrickeyid="Memory Pool" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="megabytes" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <splitconfig splitmode="AgentGroup" splitlayout="Horizontal" />
+        </chart>
+        <table drawcolumn="-1" sortcolumn="0" structuremode="measureHierarchy" columnorder="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19">
+          <column index="0" sort="Up" forcevisible="false" hidden="false" width="150" />
+          <column index="1" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="2" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="3" sort="None" forcevisible="false" hidden="false" width="25" />
+          <column index="4" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="5" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="6" sort="None" forcevisible="false" hidden="false" width="50" />
+          <column index="7" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="8" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="9" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="10" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="11" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="12" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="13" sort="None" forcevisible="false" hidden="false" width="105" />
+          <column index="14" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="15" sort="None" forcevisible="false" hidden="false" width="50" />
+          <column index="16" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="17" sort="None" forcevisible="false" hidden="true" width="150" />
+          <column index="18" sort="None" forcevisible="false" hidden="false" width="150" />
+          <column index="19" sort="None" forcevisible="false" hidden="true" width="150" />
+        </table>
+        <heatfieldconfig smartmeasure="true" filterconfirmed="false" smartserver="true" customevents="true">
+          <incidentrules>
+            <session systemid="easyTravel" techtypes="0" datastarttime="0" latestmodification="0" lastmodifiedby="" type="live">
+              <incidentrule keyid="Application Process Out-of-Memory" />
+              <incidentrule keyid="Corrupted PurePath(s)" />
+              <incidentrule keyid="High GC Activity for Application Process" />
+              <incidentrule keyid="Application Process Unavailable (unexpected)" />
+              <incidentrule keyid="Application Process Unhealthy" />
+              <incidentrule keyid="Baseline violated" />
+              <incidentrule keyid="High Memory Usage for Application Process" />
+              <incidentrule keyid="Agent Connected" />
+              <incidentrule keyid="Timed Out PurePath(s)" />
+              <incidentrule keyid="Truncated PurePath(s)" />
+              <incidentrule keyid="High Overall Failed Transaction Rate" />
+              <incidentrule keyid="High Overall Failed Page Action Rate" />
+              <incidentrule keyid="Agent Instrumentation Disabled" />
+              <incidentrule keyid="Failure rate too high" />
+            </session>
+          </incidentrules>
+        </heatfieldconfig>
+      </datamodelconfig>
+      <chartcolors />
+    </portletconfig>
+    <portletconfig usespecificautorefresh="false" icon="com.dynatrace.diagnostics.sdk/default_16x16.png" usedashboardsourceforcompare="true" folderid="org.eclipse.ui.internal.ViewStack@722faf" sessiontype="live" locationassource="false" usedashboardsource="true" sessionid="easyTravel" id="0a30250c-71b9-4357-89f3-2895448514a5" addfilterinfo="false" source="server://lnz123675n02" description="" lastvalue="false" name="Garbage Collection Suspension Time" typeid="com.dynatrace.diagnostics.portlets.chart.Chart" ismaster="false" showabsolutevalues="false" locationascomparesource="false">
+      <reportconfig lines.per.table="100" print.legends="true" enabled="true" optimizeequalcolumns="true" levels.per.tree="10" override="false" print.images="true" reportposition="2" />
+      <filter>
+        <criterion completepurepath="true" type="agents" mode="all">
+          <textpattern enabled="true" name="agentname" type="contains" />
+          <textpattern enabled="true" name="agenthost" type="contains" />
+        </criterion>
+        <criterion type="applications" mode="all" />
+        <criterion type="btm" />
+        <criterion completepurepath="true" type="hosts" mode="all" />
+        <criterion type="timeframe">
+          <timeframe type="Last 30min" />
+        </criterion>
+        <criterion type="visits">
+          <visitidset visitsidsetsize="0" />
+        </criterion>
+        <inheritancemap />
+      </filter>
+      <autorefreshconfig unit="MINUTES" enabled="true" time="5" />
+      <sashconfig weights="500,500" displayoption="CHART" />
+      <datamodelconfig>
+        <chart maxdisplayitems="10" axis.x.title=" " legendposition="Bottom" zoomable="true" showtooltips="true" bounds.y.lower="0.0" charttype="AreaChart" resolution="Auto" isentitymarkable="false" title="" showlabels="true" yaxisalignment="60" showname="true" splitcharts="true" bounds.y.enabled="true" axis.y.show="true" orientation="Horizontal" lockyaxis="false" axis.y.title="" axis.y.title.show="true" limititems="false" axis.x.show="true" axis.x.title.show="true" logxaxis="false" showheatfield="false" showvalues="false" showtitle="false" showlegend="true">
+          <legendcomposition agent="true">
+            <pielabelcomposition unit="true" value="true" />
+          </legendcomposition>
+          <chartsource position="-1" scale="0" visible="false" sessiontype="live" parentid="97502b58-f9ed-4b2b-9bdb-da3acbdc03eb" aggregationtype="Sum" uiunit="ms" groupingvalue="" id="8136722a-e234-3ae1-80ba-07dda6378f18" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Suspension Time" sourcecolor="RGB(17,76,13,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentName" displayrate="10s" unit="ms" systemid="easyTravel" measuretype="Measure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Suspension Time" metricgroupkey="Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="Suspension Time" measuretype="Measure" metrickeyid="Suspension Time" agentname="BusinessBackend_easyTravel[1]" metricsimpledisplayname="Suspension Time" />
+            <displaysourceinfo agenthost="lnz123675n02" agentname="BusinessBackend_easyTravel[1]" measureunit="ms" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="1" scale="0" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Sum" uiunit="ms" groupingvalue="" id="97502b58-f9ed-4b2b-9bdb-da3acbdc03eb" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Suspension Time" sourcecolor="RGB(17,76,13,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="AgentName" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="Measure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Suspension Time" metricgroupkey="Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Suspension Time" measuretype="Measure" metrickeyid="Suspension Time" agentname="" metricsimpledisplayname="Suspension Time" />
+            <displaysourceinfo agenthost="" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="false" sessiontype="live" parentid="97502b58-f9ed-4b2b-9bdb-da3acbdc03eb" aggregationtype="Sum" uiunit="ms" groupingvalue="" id="d5d65e39-a318-36a5-b144-632bb3ffb8e5" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Suspension Time" sourcecolor="RGB(17,76,13,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentName" displayrate="10s" unit="ms" systemid="easyTravel" measuretype="Measure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Suspension Time" metricgroupkey="Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="Suspension Time" measuretype="Measure" metrickeyid="Suspension Time" agentname="dotNetBackend_easyTravel" metricsimpledisplayname="Suspension Time" />
+            <displaysourceinfo agenthost="lnz123675n02" agentname="dotNetBackend_easyTravel" measureunit="ms" agentgroup="Payment Backend (.NET)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="false" sessiontype="live" parentid="97502b58-f9ed-4b2b-9bdb-da3acbdc03eb" aggregationtype="Sum" uiunit="ms" groupingvalue="" id="09c807d0-cb2e-3b7c-a447-379e86e020b7" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Suspension Time" sourcecolor="RGB(17,76,13,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="AgentName" displayrate="10s" unit="ms" systemid="easyTravel" measuretype="Measure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Suspension Time" metricgroupkey="Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="Suspension Time" measuretype="Measure" metrickeyid="Suspension Time" agentname="dotNetFrontend_easyTravel" metricsimpledisplayname="Suspension Time" />
+            <displaysourceinfo agenthost="lnz123675n02" agentname="dotNetFrontend_easyTravel" measureunit="ms" agentgroup="B2B Web Frontend (.NET)" measurerate="purepath" />
+          </chartsource>
+          <splitconfig splitmode="AgentName" splitlayout="Horizontal" />
+        </chart>
+        <table drawcolumn="-1" sortcolumn="0" structuremode="measureHierarchy" columnorder="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19">
+          <column index="0" sort="Up" forcevisible="false" hidden="false" width="400" />
+          <column index="1" sort="None" forcevisible="false" hidden="true" width="100" />
+          <column index="2" sort="None" forcevisible="false" hidden="true" width="100" />
+          <column index="3" sort="None" forcevisible="false" hidden="false" width="25" />
+          <column index="4" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="5" sort="None" forcevisible="false" hidden="true" width="100" />
+          <column index="6" sort="None" forcevisible="false" hidden="false" width="50" />
+          <column index="7" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="8" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="9" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="10" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="11" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="12" sort="None" forcevisible="false" hidden="true" width="100" />
+          <column index="13" sort="None" forcevisible="false" hidden="false" width="105" />
+          <column index="14" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="15" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="16" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="17" sort="None" forcevisible="false" hidden="true" width="150" />
+          <column index="18" sort="None" forcevisible="false" hidden="true" width="150" />
+          <column index="19" sort="None" forcevisible="false" hidden="true" width="150" />
+        </table>
+        <heatfieldconfig smartmeasure="true" filterconfirmed="false" smartserver="true" customevents="true">
+          <incidentrules />
+        </heatfieldconfig>
+      </datamodelconfig>
+      <chartcolors />
+    </portletconfig>
+    <portletconfig usespecificautorefresh="false" icon="com.dynatrace.diagnostics.sdk/default.gif" usedashboardsourceforcompare="true" folderid="org.eclipse.ui.internal.ViewStack@17b781d" sessiontype="live" locationassource="false" usedashboardsource="true" sessionid="easyTravel" id="488613df-3c6e-4601-b91b-88be445fc990" addfilterinfo="false" source="server://lnz123675n02" description="" lastvalue="false" name="(Concurrent) Visits/Logins/Searches/Bookings" typeid="com.dynatrace.diagnostics.portlets.chart.Chart" ismaster="false" showabsolutevalues="false" locationascomparesource="false">
+      <reportconfig lines.per.table="100" print.legends="true" enabled="true" optimizeequalcolumns="true" levels.per.tree="10" override="false" print.images="true" reportposition="0" />
+      <filter>
+        <criterion completepurepath="true" type="agents" mode="all">
+          <textpattern enabled="true" name="agentname" type="contains" />
+          <textpattern enabled="true" name="agenthost" type="contains" />
+        </criterion>
+        <criterion type="applications" mode="all" />
+        <criterion type="btm" />
+        <criterion completepurepath="true" type="hosts" mode="all" />
+        <criterion type="timeframe">
+          <timeframe type="Last 30min" />
+        </criterion>
+        <criterion type="visits">
+          <visitidset visitsidsetsize="0" />
+        </criterion>
+        <inheritancemap />
+      </filter>
+      <autorefreshconfig unit="MINUTES" enabled="true" time="5" />
+      <sashconfig weights="500,500" displayoption="CHART" />
+      <datamodelconfig>
+        <chart maxdisplayitems="10" axis.x.title="" legendposition="Bottom" zoomable="true" showtooltips="true" bounds.y.lower="0.0" charttype="StackedBarChart" resolution="Auto" isentitymarkable="false" title="" showlabels="true" yaxisalignment="0" showname="true" splitcharts="false" bounds.y.enabled="true" axis.y.show="true" orientation="Horizontal" lockyaxis="true" axis.y.title="Visits/Conversions/UserActions" axis.y.title.show="true" limititems="false" axis.x.show="true" axis.x.title.show="true" logxaxis="false" showheatfield="false" showvalues="false" showtitle="false" showlegend="true">
+          <legendcomposition measure="true">
+            <pielabelcomposition unit="true" value="true" />
+          </legendcomposition>
+          <chartsource position="-1" scale="0" visible="false" sessiontype="live" aggregationtype="Count" uiunit="number" groupingvalue="" id="80666359-0166-3023-a332-4fb528ab800b" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="Concurrent Visits" sourcecolor="RGB(242,217,51,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="Application" displayrate="10s" systemid="easyTravel" unit="number" measuretype="EndUserVisitMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Concurrent Visits" metricgroupkey="Visits" collector="" systemid="easyTravel" application="default application" agenthost="-" parentkeyid="Concurrent Visits" measuretype="EndUserVisitMeasure" metrickeyid="Concurrent Visits" agentname="-" />
+            <displaysourceinfo agenthost="" measureunit="number" agentname="" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="2" scale="0" visible="true" sessiontype="live" colorinheritancemode="random" aggregationtype="Max" uiunit="number" groupingvalue="" id="966bb444-99c7-4a81-a456-91d3819175ec" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="Concurrent Visits" sourcecolor="RGB(0,192,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="number" measuretype="EndUserVisitMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Concurrent Visits" metricgroupkey="Visits" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Concurrent Visits" measuretype="EndUserVisitMeasure" metrickeyid="Concurrent Visits" agentname="" metricsimpledisplayname="" />
+            <displaysourceinfo agenthost="" agentname="" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="1" scale="0" visible="true" sessiontype="live" colorinheritancemode="random" aggregationtype="Count" uiunit="count" groupingvalue="" id="acfe7e07-24b3-41f5-ac96-677f446c1f2c" fetchmeasurecolor="true" overridesource="false" rate="10s" ratesupported="true" name="Visit Count" sourcecolor="RGB(0,0,255,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="count" measuretype="EndUserVisitMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Visit Count" metricgroupkey="Visits" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Visit Count" measuretype="EndUserVisitMeasure" metrickeyid="Visit Count" agentname="" metricsimpledisplayname="" />
+            <displaysourceinfo agenthost="" agentname="" measureunit="count" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="4" scale="0" visible="true" sessiontype="live" colorinheritancemode="parent" aggregationtype="Count" uiunit="ms" groupingvalue="" id="d9d69135-9dc2-42c0-a5d9-52f4c4743f99" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="easyTravel Logins" sourcecolor="RGB(0,128,128,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="count" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="easyTravel Logins" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="easyTravel Logins" measuretype="TransactionMeasure" metrickeyid="Value" agentname="" metricsimpledisplayname="" />
+            <displaysourceinfo agenthost="" transactionname="easyTravel Logins" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="6" scale="0" visible="true" sessiontype="live" colorinheritancemode="parent" aggregationtype="Count" uiunit="ms" groupingvalue="" id="e4aead90-c878-4ac1-bafd-9d479b042b52" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="easyTravel Bookings - PurePath Response Time" sourcecolor="RGB(128,0,64,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="count" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="easyTravel Bookings (PurePath Response Time;PurePaths;PurePath Response Time)" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="easyTravel Bookings (PurePath Response Time;PurePaths;PurePath Response Time)" measuretype="TransactionMeasure" metrickeyid="Value" agentname="" metricsimpledisplayname="" />
+            <displaysourceinfo agenthost="" transactionname="easyTravel Bookings" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="false" sessiontype="live" aggregationtype="Count" uiunit="count" groupingvalue="" id="fc745923-efbc-365e-8131-5702a7accefb" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="Visit Count" sourcecolor="RGB(89,89,13,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" groupingcriterion="Application" displayrate="10s" systemid="easyTravel" unit="count" measuretype="EndUserVisitMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Visit Count" metricgroupkey="Visits" collector="" systemid="easyTravel" application="easyTravel portal" agenthost="-" parentkeyid="Visit Count" measuretype="EndUserVisitMeasure" metrickeyid="Visit Count" agentname="-" />
+            <displaysourceinfo agenthost="" measureunit="count" agentname="" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="3" scale="0" visible="true" sessiontype="live" colorinheritancemode="random" aggregationtype="Sum" uiunit="number" groupingvalue="" id="3d7b9efa-d5d4-4015-83a3-756963e5b14d" fetchmeasurecolor="false" overridesource="false" rate="10s" ratesupported="true" name="Conversion Count" sourcecolor="RGB(64,0,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="number" measuretype="EndUserVisitMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Conversion Count" metricgroupkey="Visits" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Conversion Count" measuretype="EndUserVisitMeasure" metrickeyid="Conversion Count" agentname="" metricsimpledisplayname="" />
+            <displaysourceinfo agenthost="" agentname="" measureunit="number" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="5" scale="0" visible="true" sessiontype="live" colorinheritancemode="parent" aggregationtype="Count" uiunit="ms" groupingvalue="" id="496d1cc4-d5d2-4ac2-bb7b-1e4ccfbc14d5" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="true" name="easyTravel Trip Search" sourcecolor="RGB(0,64,128,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" groupingcriterion="" displayrate="10s" systemid="easyTravel" unit="count" measuretype="TransactionMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="easyTravel Trip Search" metricgroupkey="Business Transaction Results" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="easyTravel Trip Search" measuretype="TransactionMeasure" metrickeyid="Value" agentname="" metricsimpledisplayname="" />
+            <displaysourceinfo agenthost="" transactionname="easyTravel Trip Search" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <splitconfig splitmode="Measure" splitlayout="Horizontal" />
+        </chart>
+        <table drawcolumn="-1" sortcolumn="0" structuremode="measureHierarchy" columnorder="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19">
+          <column index="0" sort="Up" forcevisible="false" hidden="false" width="400" />
+          <column index="1" sort="None" forcevisible="false" hidden="true" width="100" />
+          <column index="2" sort="None" forcevisible="false" hidden="true" width="100" />
+          <column index="3" sort="None" forcevisible="false" hidden="false" width="25" />
+          <column index="4" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="5" sort="None" forcevisible="false" hidden="true" width="100" />
+          <column index="6" sort="None" forcevisible="false" hidden="false" width="50" />
+          <column index="7" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="8" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="9" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="10" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="11" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="12" sort="None" forcevisible="false" hidden="true" width="100" />
+          <column index="13" sort="None" forcevisible="false" hidden="false" width="105" />
+          <column index="14" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="15" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="16" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="17" sort="None" forcevisible="false" hidden="true" width="150" />
+          <column index="18" sort="None" forcevisible="false" hidden="true" width="150" />
+          <column index="19" sort="None" forcevisible="false" hidden="true" width="150" />
+        </table>
+        <heatfieldconfig smartmeasure="true" filterconfirmed="false" smartserver="true" customevents="true">
+          <incidentrules />
+        </heatfieldconfig>
+      </datamodelconfig>
+      <chartcolors />
+    </portletconfig>
+    <portletconfig usespecificautorefresh="false" icon="com.dynatrace.diagnostics.sdk/chart_cpu.gif" usedashboardsourceforcompare="true" folderid="org.eclipse.ui.internal.ViewStack@15cc177" sessiontype="live" locationassource="false" usedashboardsource="true" sessionid="easyTravel" id="4a669e3d-8693-4e55-8516-4bff8259817c" addfilterinfo="false" source="server://lnz123675n02" description="" lastvalue="false" name="CPU Usage" typeid="com.dynatrace.diagnostics.portlets.chart.Chart" ismaster="false" showabsolutevalues="false" locationascomparesource="false">
+      <reportconfig lines.per.table="100" print.legends="true" enabled="true" optimizeequalcolumns="true" levels.per.tree="10" override="false" print.images="true" reportposition="10" />
+      <filter>
+        <criterion completepurepath="true" type="agents" mode="all">
+          <textpattern enabled="true" name="agentname" type="contains" />
+          <textpattern enabled="true" name="agenthost" type="contains" />
+        </criterion>
+        <criterion type="applications" mode="all" />
+        <criterion type="btm" />
+        <criterion completepurepath="true" type="hosts" mode="all" />
+        <criterion type="timeframe">
+          <timeframe type="Last 30min" />
+        </criterion>
+        <criterion type="visits">
+          <visitidset visitsidsetsize="0" />
+        </criterion>
+        <inheritancemap />
+      </filter>
+      <autorefreshconfig unit="MINUTES" enabled="true" time="5" />
+      <sashconfig weights="500,500" displayoption="CHART" />
+      <datamodelconfig>
+        <chart maxdisplayitems="10" axis.x.title="" legendposition="Bottom" zoomable="true" showtooltips="true" bounds.y.lower="0.0" charttype="AreaChart" resolution="Auto" isentitymarkable="false" title="" showlabels="true" yaxisalignment="0" showname="true" splitcharts="true" bounds.y.enabled="true" axis.y.show="true" bounds.y.upper="105.0" orientation="Horizontal" lockyaxis="true" axis.y.title="" axis.y.title.show="true" limititems="false" axis.x.show="true" axis.x.title.show="true" logxaxis="false" showheatfield="false" showvalues="false" showtitle="false" showlegend="true">
+          <legendcomposition measure="true">
+            <pielabelcomposition measure="true" value="true" agent="true" />
+          </legendcomposition>
+          <chartsource position="-1" scale="0" visible="false" sessiontype="live" parentid="6cf5ed62-0041-4238-93ef-b3a43698d2ac" aggregationtype="Max" groupingcriterion2="AgentName" uiunit="percent" groupingvalue="" id="856f2482-8c5c-33f3-b5ce-c7e54bb6efa3" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(177,27,90,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" unit="percent" systemid="easyTravel" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="dotNetBackend_easyTravel" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="percent" agentname="dotNetBackend_easyTravel" agentgroup="Payment Backend (.NET)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Max" uiunit="percent" groupingcriterion2="AgentName" groupingvalue="" id="8b99f831-9fd6-3361-ab6d-3ab914df5948" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(133,133,20,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="percent" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="dynasprint" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="dynasprint" measureunit="percent" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Max" uiunit="percent" groupingcriterion2="AgentName" groupingvalue="" id="917fdb84-ef40-36c7-9b5d-d317f81559ad" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(147,177,27,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="percent" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="Browser_easyTravel" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="percent" agentname="Browser_easyTravel" agentgroup="Browser" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="false" sessiontype="live" parentid="6cf5ed62-0041-4238-93ef-b3a43698d2ac" aggregationtype="Max" groupingcriterion2="AgentName" uiunit="percent" groupingvalue="" id="923a9fc6-729f-361c-bb3c-0e43a773b807" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(17,76,13,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" unit="percent" systemid="easyTravel" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="CreditCardAuthorization_easyTravel" metricsimpledisplayname="" />
+            <displaysourceinfo agenthost="lnz123675n02" agentname="CreditCardAuthorization_easyTravel" measureunit="percent" agentgroup="CreditCardAuthorization (C++)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Max" uiunit="percent" groupingcriterion2="AgentName" groupingvalue="" id="93184ade-4b4c-302d-b273-02ce51cdc450" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(89,47,13,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="percent" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="dotNetFrontend_easyTravel" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="percent" agentname="dotNetFrontend_easyTravel" agentgroup="B2B Web Frontend (.NET)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="-2" visible="true" sessiontype="live" aggregationtype="Sum" uiunit="ms" groupingcriterion2="AgentName" groupingvalue="" id="982c2616-b55e-3570-b358-d4ae3cf79046" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Total GC Collection Time" sourcecolor="RGB(192,0,192,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="Measure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Total GC Collection Time" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Total GC Collection Time" measuretype="Measure" metrickeyid="Total GC Collection Time" agentname="Test" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="ms" agentname="Test" agentgroup="Test" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Max" uiunit="percent" groupingcriterion2="AgentName" groupingvalue="" id="99a0c1b8-ee2e-3615-9dfa-5769212e3731" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(13,54,89,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="percent" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="CreditCardAuthorization_easyTravel" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="percent" agentname="CreditCardAuthorization_easyTravel" agentgroup="CreditCardAuthorization (C++)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="6cf5ed62-0041-4238-93ef-b3a43698d2ac" aggregationtype="Max" groupingcriterion2="AgentName" uiunit="percent" groupingvalue="" id="a105917a-1f9b-3600-92a6-3d6ff98dc682" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(178,235,122,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" unit="percent" systemid="easyTravel" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="dotNetBackend_easyTravel" />
+            <displaysourceinfo agenthost="dstadler" measureunit="percent" agentname="dotNetBackend_easyTravel" agentgroup="Payment Backend (.NET)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="false" sessiontype="live" parentid="6cf5ed62-0041-4238-93ef-b3a43698d2ac" aggregationtype="Max" groupingcriterion2="AgentName" uiunit="percent" groupingvalue="" id="a53573fa-e286-35c2-80b0-2fee92c8a619" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(184,222,33,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" unit="percent" systemid="easyTravel" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="CreditCardAuthorization_easyTravel" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="percent" agentname="CreditCardAuthorization_easyTravel" agentgroup="CreditCardAuthorization (C++)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="6cf5ed62-0041-4238-93ef-b3a43698d2ac" aggregationtype="Max" groupingcriterion2="AgentName" uiunit="percent" groupingvalue="" id="a5da3da8-5028-33ca-86d2-63343da29c03" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(98,78,228,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" unit="percent" systemid="easyTravel" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="percent" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="2" scale="-2" visible="false" sessiontype="live" colorinheritancemode="parent" aggregationtype="Sum" uiunit="ms" groupingcriterion2="AgentName" groupingvalue="" id="a8889106-8f49-4dd7-9c9c-109163ffe0ec" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Total GC Collection Time" sourcecolor="RGB(192,0,192,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="Measure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Total GC Collection Time" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Total GC Collection Time" measuretype="Measure" metrickeyid="Total GC Collection Time" agentname="" metricsimpledisplayname="" />
+            <displaysourceinfo agenthost="" agentname="" measureunit="ms" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Max" uiunit="percent" groupingcriterion2="AgentName" groupingvalue="" id="ad1e685e-9c2a-3cca-8866-b6457180aaf9" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(204,242,166,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="percent" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="dynasprint" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="dynasprint" measureunit="percent" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="6cf5ed62-0041-4238-93ef-b3a43698d2ac" aggregationtype="Max" groupingcriterion2="AgentName" uiunit="percent" groupingvalue="" id="b28a3fd9-8650-328f-80c8-b1c476b8fb19" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(17,76,13,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" unit="percent" systemid="easyTravel" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="CustomerFrontend_easyTravel_8080" metricsimpledisplayname="" />
+            <displaysourceinfo agenthost="lnz123675n02" agentname="CustomerFrontend_easyTravel_8080" measureunit="percent" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Max" uiunit="percent" groupingcriterion2="AgentName" groupingvalue="" id="c4122934-245b-3c0c-a859-b54fb5fc059a" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(89,32,13,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="percent" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="dstadler1" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="CreditCardAuthorization_easyTravel" />
+            <displaysourceinfo agenthost="dstadler1" measureunit="percent" agentname="CreditCardAuthorization_easyTravel" agentgroup="CreditCardAuthorization (C++)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="false" sessiontype="live" parentid="6cf5ed62-0041-4238-93ef-b3a43698d2ac" aggregationtype="Max" groupingcriterion2="AgentName" uiunit="percent" groupingvalue="" id="cd58d0a8-e8ef-3f35-a41f-47e4a2184c14" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(242,231,166,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" unit="percent" systemid="easyTravel" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="dotNetFrontend_easyTravel" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="percent" agentname="dotNetFrontend_easyTravel" agentgroup="B2B Web Frontend (.NET)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="a8889106-8f49-4dd7-9c9c-109163ffe0ec" aggregationtype="Sum" groupingcriterion2="AgentName" uiunit="ms" groupingvalue="" id="d3b862b7-b7bd-3617-8db5-69a460f667b3" fetchmeasurecolor="true" overridesource="true" rate="10s" ratesupported="false" name="Total GC Collection Time" sourcecolor="RGB(128,64,192,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" unit="ms" systemid="easyTravel" measuretype="Measure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Total GC Collection Time" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Total GC Collection Time" measuretype="Measure" metrickeyid="Total GC Collection Time" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="ms" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="6cf5ed62-0041-4238-93ef-b3a43698d2ac" aggregationtype="Max" groupingcriterion2="AgentName" uiunit="percent" groupingvalue="" id="db432250-c1b3-3a44-b29c-424454fe660f" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(17,76,13,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" unit="percent" systemid="easyTravel" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="BusinessBackend_easyTravel" metricsimpledisplayname="" />
+            <displaysourceinfo agenthost="lnz123675n02" agentname="BusinessBackend_easyTravel" measureunit="percent" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Max" uiunit="percent" groupingcriterion2="AgentName" groupingvalue="" id="e8879899-c14f-3bab-a6f4-c861c8b22008" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(133,20,121,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="percent" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="Ant_easyTravel_runtest.xml" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="percent" agentname="Ant_easyTravel_runtest.xml" agentgroup="Test" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Max" uiunit="percent" groupingcriterion2="AgentName" groupingvalue="" id="ee945af4-ab07-3a94-bc1d-46198cde290e" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(98,78,228,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="percent" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="Test" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="percent" agentname="Test" agentgroup="Test" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="6cf5ed62-0041-4238-93ef-b3a43698d2ac" aggregationtype="Max" groupingcriterion2="AgentName" uiunit="percent" groupingvalue="" id="f2bd7a30-c03b-35ee-91d7-fda755b5180c" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(133,49,20,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" unit="percent" systemid="easyTravel" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="dstadler" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="CustomerFrontend_easyTravel_8080" />
+            <displaysourceinfo agenthost="dstadler" measureunit="percent" agentname="CustomerFrontend_easyTravel_8080" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="6cf5ed62-0041-4238-93ef-b3a43698d2ac" aggregationtype="Max" groupingcriterion2="AgentName" uiunit="percent" groupingvalue="" id="f676945a-e5a3-35e9-b30d-3c65e4ffac3e" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(19,89,13,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" unit="percent" systemid="easyTravel" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="dotNetFrontend_easyTravel" />
+            <displaysourceinfo agenthost="dstadler" measureunit="percent" agentname="dotNetFrontend_easyTravel" agentgroup="B2B Web Frontend (.NET)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Max" uiunit="percent" groupingcriterion2="AgentName" groupingvalue="" id="00b7092e-11e5-340f-a88b-fbc145962ab0" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(77,115,229,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="percent" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="Test" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="percent" agentname="Test" agentgroup="Test" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="-3" visible="true" sessiontype="live" parentid="a8889106-8f49-4dd7-9c9c-109163ffe0ec" aggregationtype="Sum" groupingcriterion2="AgentName" uiunit="ms" groupingvalue="" id="0ea086a3-2e5f-3d16-88d2-35e71cee2bb1" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Total GC Collection Time" sourcecolor="RGB(192,0,192,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" unit="ms" systemid="easyTravel" measuretype="Measure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Total GC Collection Time" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="Total GC Collection Time" measuretype="Measure" metrickeyid="Total GC Collection Time" agentname="BusinessBackend_easyTravel" metricsimpledisplayname="" />
+            <displaysourceinfo agenthost="lnz123675n02" agentname="BusinessBackend_easyTravel" measureunit="ms" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="a8889106-8f49-4dd7-9c9c-109163ffe0ec" aggregationtype="Sum" groupingcriterion2="AgentName" uiunit="ms" groupingvalue="" id="14ff6eb5-6eab-3245-b23d-b06458bc5b67" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Total GC Collection Time" sourcecolor="RGB(242,217,51,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" unit="ms" systemid="easyTravel" measuretype="Measure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Total GC Collection Time" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Total GC Collection Time" measuretype="Measure" metrickeyid="Total GC Collection Time" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="ms" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="false" sessiontype="live" parentid="6cf5ed62-0041-4238-93ef-b3a43698d2ac" aggregationtype="Max" groupingcriterion2="AgentName" uiunit="percent" groupingvalue="" id="17e00926-caa5-3b4a-a55f-01ff72ac6987" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(235,173,122,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" unit="percent" systemid="easyTravel" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="dstadler" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="CreditCardAuthorization_easyTravel" />
+            <displaysourceinfo agenthost="dstadler" measureunit="percent" agentname="CreditCardAuthorization_easyTravel" agentgroup="CreditCardAuthorization (C++)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="6cf5ed62-0041-4238-93ef-b3a43698d2ac" aggregationtype="Max" groupingcriterion2="AgentName" uiunit="percent" groupingvalue="" id="1aee0aa8-e34e-35b0-b4d0-a3530d659148" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(227,242,166,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" unit="percent" systemid="easyTravel" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="dstadler" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="dotNetFrontend_easyTravel" />
+            <displaysourceinfo agenthost="dstadler" measureunit="percent" agentname="dotNetFrontend_easyTravel" agentgroup="B2B Web Frontend (.NET)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Max" uiunit="percent" groupingcriterion2="AgentName" groupingvalue="" id="298093bc-ef6c-3c60-b3d9-4cd44474a27e" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(235,173,122,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="percent" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="dstadler1" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="dstadler1" measureunit="percent" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Sum" uiunit="ms" groupingcriterion2="AgentName" groupingvalue="" id="2c8da2cc-aa50-377e-9b60-fbc5a3d5f73b" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Total GC Collection Time" sourcecolor="RGB(192,0,192,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="Measure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Total GC Collection Time" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="dstadler1" parentkeyid="Total GC Collection Time" measuretype="Measure" metrickeyid="Total GC Collection Time" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="dstadler1" measureunit="ms" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="-2" visible="true" sessiontype="live" aggregationtype="Sum" uiunit="ms" groupingcriterion2="AgentName" groupingvalue="" id="2d53508e-2fc3-3c40-bdc9-8a974528139e" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Total GC Collection Time" sourcecolor="RGB(192,0,192,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="Measure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Total GC Collection Time" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Total GC Collection Time" measuretype="Measure" metrickeyid="Total GC Collection Time" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="ms" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="-3" visible="true" sessiontype="live" parentid="a8889106-8f49-4dd7-9c9c-109163ffe0ec" aggregationtype="Sum" groupingcriterion2="AgentName" uiunit="ms" groupingvalue="" id="2e4330b7-d0f3-3844-8172-baf02bf95493" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Total GC Collection Time" sourcecolor="RGB(192,0,192,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" unit="ms" systemid="easyTravel" measuretype="Measure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Total GC Collection Time" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="-" parentkeyid="Total GC Collection Time" measuretype="Measure" metrickeyid="Total GC Collection Time" agentname="CustomerFrontend_easyTravel_8080" metricsimpledisplayname="" />
+            <displaysourceinfo agenthost="lnz123675n02" agentname="CustomerFrontend_easyTravel_8080" measureunit="ms" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="3" scale="0" visible="true" sessiontype="live" parentid="6cf5ed62-0041-4238-93ef-b3a43698d2ac" aggregationtype="Max" groupingcriterion2="AgentName" uiunit="percent" groupingvalue="" id="30ee645f-bae8-3529-8243-db1e7f6422e5" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(13,54,89,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" unit="percent" systemid="easyTravel" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="dstadler" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="dotNetBackend_easyTravel" />
+            <displaysourceinfo agenthost="dstadler" measureunit="percent" agentname="dotNetBackend_easyTravel" agentgroup="Payment Backend (.NET)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Max" uiunit="percent" groupingcriterion2="AgentName" groupingvalue="" id="3403db5c-a0fe-3f31-84af-d13498b13249" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(33,170,222,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="percent" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="dynasprint" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="CreditCardAuthorization_easyTravel" />
+            <displaysourceinfo agenthost="dynasprint" measureunit="percent" agentname="CreditCardAuthorization_easyTravel" agentgroup="CreditCardAuthorization (C++)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="6cf5ed62-0041-4238-93ef-b3a43698d2ac" aggregationtype="Max" groupingcriterion2="AgentName" uiunit="percent" groupingvalue="" id="48c58f87-487c-39e1-9653-20a1698ed5f6" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(178,235,122,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" unit="percent" systemid="easyTravel" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="dstadler" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="dstadler" measureunit="percent" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Max" uiunit="percent" groupingcriterion2="AgentName" groupingvalue="" id="4ecf459d-47d5-310e-816d-db26e100514d" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(229,145,77,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="percent" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="percent" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="-2" visible="true" sessiontype="live" aggregationtype="Sum" uiunit="ms" groupingcriterion2="AgentName" groupingvalue="" id="5006d0da-9359-3a9d-8a4d-77771fd9d615" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Total GC Collection Time" sourcecolor="RGB(192,0,192,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="Measure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Total GC Collection Time" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="dynasprint" parentkeyid="Total GC Collection Time" measuretype="Measure" metrickeyid="Total GC Collection Time" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="dynasprint" measureunit="ms" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" parentid="6cf5ed62-0041-4238-93ef-b3a43698d2ac" aggregationtype="Max" groupingcriterion2="AgentName" uiunit="percent" groupingvalue="" id="55796c8b-1b0a-38bc-9fb0-173d39c2f844" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(178,94,26,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" unit="percent" systemid="easyTravel" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="stockhausen" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="stockhausen" measureunit="percent" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="-2" visible="true" sessiontype="live" aggregationtype="Sum" uiunit="ms" groupingcriterion2="AgentName" groupingvalue="" id="60be0a45-04d2-3e28-b129-ec0da2a9783d" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Total GC Collection Time" sourcecolor="RGB(192,0,192,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="Measure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Total GC Collection Time" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Total GC Collection Time" measuretype="Measure" metrickeyid="Total GC Collection Time" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="ms" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Sum" uiunit="ms" groupingcriterion2="AgentName" groupingvalue="" id="65d70790-b70a-3b43-a1ba-0692323b572a" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Total GC Collection Time" sourcecolor="RGB(192,0,192,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="Measure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Total GC Collection Time" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="dstadler1" parentkeyid="Total GC Collection Time" measuretype="Measure" metrickeyid="Total GC Collection Time" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="dstadler1" measureunit="ms" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Max" uiunit="percent" groupingcriterion2="AgentName" groupingvalue="" id="6899a3f5-484f-3480-b201-bf06d91aeee7" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(133,101,20,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="percent" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="CustomerFrontend_easyTravel" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="percent" agentname="CustomerFrontend_easyTravel" agentgroup="Customer Web Frontend (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="1" scale="0" visible="false" sessiontype="live" colorinheritancemode="random" aggregationtype="Max" uiunit="percent" groupingcriterion2="AgentName" groupingvalue="" id="6cf5ed62-0041-4238-93ef-b3a43698d2ac" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(0,150,0,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="false" autounit="false" sessionid="easyTravel" displayrate="auto" systemid="easyTravel" unit="percent" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="true" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="" metricsimpledisplayname="" />
+            <displaysourceinfo agenthost="" agentname="" measureunit="percent" agentgroup="&lt;all-agents&gt;" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="-2" visible="true" sessiontype="live" aggregationtype="Sum" uiunit="ms" groupingcriterion2="AgentName" groupingvalue="" id="738fe2ec-f018-3c54-9cf5-a009c8b921b6" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Total GC Collection Time" sourcecolor="RGB(192,0,192,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="ms" measuretype="Measure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Total GC Collection Time" metricgroupkey="Java Virtual Machine" collector="" systemid="easyTravel" application="" agenthost="dynasprint" parentkeyid="Total GC Collection Time" measuretype="Measure" metrickeyid="Total GC Collection Time" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="dynasprint" measureunit="ms" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Max" uiunit="percent" groupingcriterion2="AgentName" groupingvalue="" id="75941ba4-3694-3556-b4e4-5bffec65075e" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(26,107,178,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="percent" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="bootcamp2" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="dotNetBackend_easyTravel" />
+            <displaysourceinfo agenthost="bootcamp2" measureunit="percent" agentname="dotNetBackend_easyTravel" agentgroup="Payment Backend (.NET)" measurerate="purepath" />
+          </chartsource>
+          <chartsource position="-1" scale="0" visible="true" sessiontype="live" aggregationtype="Max" uiunit="percent" groupingcriterion2="AgentName" groupingvalue="" id="7e88961c-5dc2-3c06-83d7-56f3f0b1a09b" fetchmeasurecolor="false" overridesource="true" rate="10s" ratesupported="false" name="Current CPU load" sourcecolor="RGB(178,112,26,255)" sourcetype="MEASURE" fetchbaseline="false" dynamicconfig="true" autounit="false" sessionid="easyTravel" displayrate="10s" systemid="easyTravel" unit="percent" measuretype="ProcessPerformanceMeasure" fetch.dynamic.measures="false" fetchthreshold="false" autoscale="false">
+            <lightweightuniquemeasureidentifier keyid="Current CPU load" metricgroupkey="Process Performance" collector="" systemid="easyTravel" application="" agenthost="dstadler1" parentkeyid="Current CPU load" measuretype="ProcessPerformanceMeasure" metrickeyid="Current CPU load" agentname="BusinessBackend_easyTravel" />
+            <displaysourceinfo agenthost="dstadler1" measureunit="percent" agentname="BusinessBackend_easyTravel" agentgroup="Business Backend Server (Java)" measurerate="purepath" />
+          </chartsource>
+          <splitconfig splitmode="AgentName" splitlayout="Horizontal" />
+        </chart>
+        <table drawcolumn="-1" sortcolumn="0" structuremode="measureHierarchy" columnorder="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19">
+          <column index="0" sort="Up" forcevisible="false" hidden="false" width="212" />
+          <column index="1" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="2" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="3" sort="None" forcevisible="false" hidden="false" width="25" />
+          <column index="4" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="5" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="6" sort="None" forcevisible="false" hidden="false" width="50" />
+          <column index="7" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="8" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="9" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="10" sort="None" forcevisible="false" hidden="false" width="75" />
+          <column index="11" sort="None" forcevisible="false" hidden="true" width="75" />
+          <column index="12" sort="None" forcevisible="false" hidden="false" width="100" />
+          <column index="13" sort="None" forcevisible="false" hidden="false" width="105" />
+          <column index="14" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="15" sort="None" forcevisible="false" hidden="false" width="50" />
+          <column index="16" sort="None" forcevisible="false" hidden="true" width="50" />
+          <column index="17" sort="None" forcevisible="false" hidden="true" width="150" />
+          <column index="18" sort="None" forcevisible="false" hidden="false" width="150" />
+          <column index="19" sort="None" forcevisible="false" hidden="true" width="150" />
+        </table>
+        <heatfieldconfig smartmeasure="true" filterconfirmed="false" smartserver="true" customevents="true">
+          <incidentrules />
+        </heatfieldconfig>
+      </datamodelconfig>
+      <chartcolors />
+    </portletconfig>
+  </dashboardconfig>
+</dynatrace>
+

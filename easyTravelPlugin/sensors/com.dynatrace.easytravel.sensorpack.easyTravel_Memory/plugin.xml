@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ATTENTION - THIS IS AN AUTOMATICALLY GENERATED FILE -->
+<!-- Manual changes can cause severe problems and system instability -->
+<!-- Apply manual changes only if you have received explicit instructions from dynaTrace Support -->
+<?eclipse version="3.2"?>
+<plugin>
+  <extension id="com.dynatrace.easytravel.sensorpack.easyTravel_Memory" point="com.dynatrace.diagnostics.knowledgesensor">
+    <sensorpack>
+      <sensor type="heap" key="com.dynatrace.easytravel.sensorpack.easyTravel_Memory" description="easyTravel Memory" userdefined="true" group="sensorpack" order="1" defaultorder="0" hint="" autoplace="false">
+        <class pattern="org.apache.catalina.session.StandardSession" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+        <class pattern="com.dynatrace.easytravel.business.client.JourneyServiceStub" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+        <class pattern="com.dynatrace.easytravel.business.client.AuthenticationServiceStub" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+        <class pattern="com.dynatrace.easytravel.business.client.BookingServiceStub" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+        <class pattern="com.dynatrace.easytravel.frontend.beans.PromotionBean" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+        <class pattern="com.dynatrace.easytravel.frontend.beans.DataBean" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+        <class pattern="com.dynatrace.easytravel.frontend.beans.LoginBean" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+        <class pattern="com.dynatrace.easytravel.frontend.beans.FacebookBean" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+        <class pattern="com.dynatrace.easytravel.frontend.beans.PluginBean" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+        <class pattern="com.dynatrace.easytravel.frontend.beans.SearchBean" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+        <class pattern="com.dynatrace.easytravel.frontend.beans.FlyBean" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+        <class pattern="com.dynatrace.easytravel.jpa.Base" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+        <class pattern="com.dynatrace.easytravel.jpa.business.Tenant" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+        <class pattern="com.dynatrace.easytravel.jpa.business.Schedule" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+        <class pattern="com.dynatrace.easytravel.jpa.business.User" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+        <class pattern="com.dynatrace.easytravel.jpa.business.UserRole" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+        <class pattern="com.dynatrace.easytravel.jpa.business.Location" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+        <class pattern="com.dynatrace.easytravel.jpa.business.LoginHistory" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+        <class pattern="com.dynatrace.easytravel.jpa.business.Booking" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+        <class pattern="com.dynatrace.easytravel.jpa.business.Journey" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="Memory" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+        <class pattern="com.dynatrace.easytravel.AddLocationPicture$PictureLocation" placed="true" match="equals" delegationsuppression="false" techtype="java">
+          <method pattern="&lt;init&gt;" match="equals" placed="include" capturereturn="false" argsspecified="false" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="&lt;api unknown&gt;" inheritance="inheritedMethods" capture="active" />
+          <method pattern="readObject" match="equals" placed="include" capturereturn="false" argsspecified="true" overrideable="true" synctime="true" onlyinstrumentifsynchappens="false" visibility="privateType" api="&lt;api unknown&gt;" inheritance="inheritedMethods" capture="active">
+            <argument pattern="java.io.ObjectInputStream" capture="false" match="equals" />
+          </method>
+        </class>
+      </sensor>
+    </sensorpack>
+  </extension>
+</plugin>
+

@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: dotnetheap Knowledge Sensor
+Bundle-SymbolicName: com.dynatrace.easytravel.sensorpack.easyTravel_Memory_.NET;singleton:=true
+Bundle-Version: 4.0.0.2486
+Bundle-Vendor: dynaTrace Diagnostics
+Require-Bundle: com.dynatrace.diagnostics.sdk

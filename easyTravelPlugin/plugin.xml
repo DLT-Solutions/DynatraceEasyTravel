@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+   		id="easyTravelPlugin"
+         point="com.dynatrace.diagnostics.InstallerContent">
+      <metainfo
+            installer_type="resourcepack"
+            name="easyTravel DemoApps Profile and Dashboards">
+
+		 <resource
+               resource="dashboards/easyTravel Business Dashboard.dashboard.xml"
+               resource_type="dashboard">
+         </resource>
+		 <resource
+               resource="dashboards/easyTravel Business Transactions.dashboard.xml"
+               resource_type="dashboard">
+         </resource>
+		 <resource
+               resource="dashboards/easyTravel Database.dashboard.xml"
+               resource_type="dashboard">
+         </resource>
+		 <resource
+               resource="dashboards/easyTravel Memory.dashboard.xml"
+               resource_type="dashboard">
+         </resource>
+		 <resource
+               resource="dashboards/easyTravel Revenue Dashboard.dashboard.xml"
+               resource_type="dashboard">
+         </resource>
+		 <resource
+               resource="dashboards/easyTravel Overview.dashboard.xml"
+               resource_type="dashboard">
+         </resource>
+		 <resource
+               resource="dashboards/easyTravel Sales Funnel.dashboard.xml"
+               resource_type="dashboard">
+         </resource>
+		 <resource
+               resource="dashboards/easyTravel SLA Compliance.dashboard.xml"
+               resource_type="dashboard">
+         </resource>
+		 <resource
+               resource="dashboards/easyTravel SLA Details.dashboard.xml"
+               resource_type="dashboard">
+         </resource>
+		 <resource
+               resource="dashboards/easyTravel Triage.dashboard.xml"
+               resource_type="dashboard">
+         </resource>
+		 <resource
+               resource="dashboards/easyTravel Regression.dashboard.xml"
+               resource_type="dashboard">
+         </resource>
+		 <resource
+               resource="dashboards/easyTravel Tenant Activity.dashboard.xml"
+               resource_type="dashboard">
+         </resource>
+		 <resource
+               resource="dashboards/Visit Metrics.dashboard.xml"
+               resource_type="dashboard">
+         </resource>
+		 <resource
+               resource="dashboards/Landing Pages.dashboard.xml"
+               resource_type="dashboard">
+         </resource>
+		 <resource
+               resource="dashboards/easyTravel Operations Console.dashboard.xml"
+               resource_type="dashboard">
+         </resource>
+		 <resource
+               resource="dashboards/easyTravel Performance Overview.dashboard.xml"
+               resource_type="dashboard">
+         </resource>
+		 <resource
+               resource="dashboards/easyTravel Trip Analysis.dashboard.xml"
+               resource_type="dashboard">
+         </resource>
+		 <resource
+               resource="dashboards/easyTravel WebRequest Distribution.dashboard.xml"
+               resource_type="dashboard">
+         </resource>
+
+         <resource
+               resource="profiles/easyTravel.profile.xml"
+               resource_type="systemProfile">
+         </resource>
+         <resource
+               resource="sensors/com.dynatrace.easytravel.sensorpack.easyTravel_Memory/"
+               resource_type="sensorPack">
+         </resource>
+         <resource
+               resource="sensors/com.dynatrace.easytravel.sensorpack.easyTravel_Memory_.NET/"
+               resource_type="sensorPack">
+         </resource>
+
+         <resource
+               resource="sessions/easyTravel-Baseline.dts"
+               resource_type="session">
+         </resource>
+      </metainfo>
+   </extension>
+</plugin>
