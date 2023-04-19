@@ -1,0 +1,39 @@
+
+<load target="EasyTravel" extends="Default">
+
+	<locations>
+		<continent name="Europe" percent="60" />
+		<country name="Germany" percent="40" />
+	</locations>
+		
+	<browsers>
+		<browser name="Firefox 4.0" percent="20" />
+		<continent name="Europe">
+			<browser name="Firefox 4.0" percent="40" />
+		</continent>
+		<country name="Germany">
+			<browser name="Firefox 4.0" percent="90" />
+		</country>
+	</browsers>
+	
+	<visits>	
+		<visit name="bounce" percent="30" />
+		<visit name="search" percent="60" />
+		<visit name="convert" percent="10" />
+		<continent name="Europe">
+			<visit name="convert" percent="1" />
+		</continent>
+	</visits>
+	
+	<performance>
+		<continent name="Europe">
+			<latenncy value="100" />
+			<hardware speed="0.6" />
+		</continent>
+		<country name="Germany">
+			<latenncy value="200" />
+			<hardware speed="0.4" />
+		</country>
+	</performance>
+
+</load>

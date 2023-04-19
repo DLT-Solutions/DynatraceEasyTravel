@@ -1,0 +1,4 @@
+java.lang.RuntimeException: Intentionally triggered crash during login! ID(24h): 11 near/at com.dynatrace.easytravel.android.activities.LoginActivity$2.run:160
+Caused by: java.lang.RuntimeException: Intentionally triggered crash during login! ID(24h): 11
+  at com.dynatrace.easytravel.android.activities.LoginActivity$2.run(LoginActivity.java:160)
+  at java.lang.Thread.run(Thread.java:856

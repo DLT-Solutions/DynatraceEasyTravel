@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/NekoHTML/nekohtml-1.9.21.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Xerces/serializer-2.11.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Xerces/xercesImpl-2.11.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Xerces/xml-apis-2.11.0.jar"/>
+	<classpathentry kind="lib" path="resources"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/commons-demo"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-httpclient-3.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/BusinessWebserviceClient"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Google/FindBugs/jsr305-3.0.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Google/Gson/gson-2.8.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-cli-1.2.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-cli-1.2-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://commons.apache.org/cli/api-1.2/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Selenium/jna-4.1.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Google/Guava/guava-23.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jersey/jersey-client-1.19.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jersey/jersey-core-1.19.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jersey/jersey-server-1.19.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/slf4j-jdk14-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/slf4j-log4j12-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-codec-1.8.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-exec-1.1a.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-exec-1.1-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://commons.apache.org/exec/apidocs/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-pool-1.6.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-pool-1.6-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://commons.apache.org/pool/api-1.5.7/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-lang3-3.3.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Littleproxy/littleproxy-1.1.0-beta-bmp-17.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jersey/javax.ws.rs.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/jul-to-slf4j-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-classic-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-core-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Netty/netty-all-4.1.56.Final.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Axis2/lib/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="/Distribution/adk/oneagent-sdk-1.7.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Axis2/lib/axis2-metadata-1.7.9.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Axis2/lib/xml-resolver-1.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/TyrusWebsocketsClient/javax.websocket-client-api-1.1.jar" sourcepath="/ThirdPartyLibraries/TyrusWebsocketsClient/javax.websocket-client-api-1.1-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/TyrusWebsocketsClient/tyrus-standalone-client-1.15.jar"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/CustomerClient"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/jakarta.xml.ws-api-2.3.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/jakarta.annotation-api-1.3.4.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Metrics/metrics-core-4.0.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Metrics/metrics-healthchecks-4.0.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/HttpUtils/httpclient-4.5.10.jar" sourcepath="/ThirdPartyLibraries/Apache/HttpUtils/sources/httpclient-4.5.10-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/HttpUtils/httpclient-cache-4.5.10.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/HttpUtils/httpcore-4.4.12.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/HttpUtils/httpmime-4.5.10.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/jaxws-rt-2.3.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/jakarta.xml.bind-api-2.3.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/streambuffer-1.5.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/istack-commons-runtime-3.0.8.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/jakarta.xml.soap-api-1.4.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/saaj-impl-1.5.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/policy-2.7.6.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/stax-ex-1.8.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/gmbal-4.0.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/management-api-3.2.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/FastInfoset-1.2.16.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/pfl-basic-4.0.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/pfl-tf-4.0.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/txw2-2.3.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/jakarta.jws-api-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/jakarta.activation-api-1.2.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/jaxb-runtime-2.3.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Selenium/client-combined-3.141.59.jar" sourcepath="/ThirdPartyLibraries/Selenium/client-combined-3.141.59-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Selenium/selenium-server-standalone-3.141.59.jar"/>
+	<classpathentry kind="lib" path="/Distribution/openkit/openkit-3.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
