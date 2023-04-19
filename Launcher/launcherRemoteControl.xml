@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="easyTravel Configuration UI Remote Control">
+	<description>
+		easyTravel Configuration UI Remote Control for Test Automation
+	</description>
+
+	<import file="../Distribution/ant-includes.xml" />
+
+	<target name="stop" description="Shut down easyTravel">
+		<get src="http://localhost:1697/shutdown" dest="shutdown.response.txt" />
+		<delete file="shutdown.response.txt" />
+	</target>
+	
+</project>

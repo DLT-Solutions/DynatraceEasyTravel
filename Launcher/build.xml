@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Launcher" default="all">
+	<description>
+		Demo Application - Launcher
+	</description>
+
+	<import file="../Distribution/ant-includes.xml" />
+
+	<property name="jar.name" value="${jar.name.launcher}" />
+	<property name="jar.location" location="${dir.dist}/${jar.name}.jar" />
+
+	<property name="jar.name.cmd" value="com.dynatrace.easytravel.cmdlauncher" />
+	<property name="jar.location.cmd" location="${dir.dist}/${jar.name.cmd}.jar" />
+
+	<!-- all lib jars needed by this project -->
+	<path id="required.libs">
+		<path refid="lib.derby.server" />
+		<path refid="lib.commons" />
+		<path refid="lib.httputils" />
+		<path refid="lib.swt" />
+		<path refid="lib.ant" />
+		<path refid="lib.jersey" />
+		<path refid="lib.jtds" />
+		<path refid="lib.oracle" />
+		<path refid="lib.db2" />
+		<path refid="lib.mysql" />
+		<path refid="lib.cassandra" />
+		<path refid="lib.mongodb" />
+		<path refid="lib.hbase" />
+		<path refid="lib.vMotion" />
+        <path refid="lib.quartz" />
+		<path refid="lib.lightcouch" />
+		<path refid="lib.gson" />
+		<path refid="lib.axis2.client" />
+		<path refid="lib.jaxb" />
+		<path refid="lib.jax-ws" />
+		<path refid="lib.rap" />
+	</path>
+
+	<!-- all project jars needed by this project -->
+	<path id="required.projects">
+		<fileset dir="${dir.dist}">
+			<include name="${jar.name.commons}.jar"/>
+			<include name="${jar.name.couchdb.common}.jar"/>
+			<include name="${jar.name.database}.jar"/>
+			<include name="${jar.name.mongodb}.jar"/>
+			<include name="${jar.name.uemload}.jar"/>
+			<include name="${jar.name.cassandra}.jar"/>
+			<include name="${jar.name.hbase}.jar"/>
+			<include name="${jar.name.pluginservice}.jar"/>
+			<include name="${jar.name.pluginscheduler}.jar"/>
+			<include name="${jar.name.customer.client}.jar"/>
+		</fileset>
+	</path>
+
+	<!-- ================================= 
+          target: buildLibrary              
+         ================================= -->
+	<target name="all" depends="init, compile, link" unless="built" description="build easyTravel Configuration UI">
+		<echo>Done</echo>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: init                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="init" depends="" unless="built">
+		<mkdir dir="${dir.build}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clean                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clean" depends="clearBuiltProperty" description="clean up">
+		<delete dir="${dir.build}" failonerror="no" />
+		<delete file="${jar.location}" />
+		<delete file="${jar.location.cmd}" />
+
+		<!-- clean up depending projects -->
+		<ant dir="../commons-demo" inheritAll="false" target="clean" />
+		<ant dir="../PluginService" inheritAll="false" target="clean" />
+		<ant dir="../DatabaseLayer" inheritAll="false" target="clean" />
+		<ant dir="../com.dynatrace.uemload" inheritAll="false" target="clean" />
+		<ant dir="../PluginScheduler" inheritAll="false" target="clean" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clearBuiltProperty                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clearBuiltProperty" description="update without build">
+		<delete file="built.properties" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: compile                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="compile" depends="init, copyApacheHttp, copyOpenSSL, copyNginx, copyCouchDB, copyMongoDb, copyHBaseDb" unless="built">
+		<echo>Launcher</echo>
+
+		<ant dir="../commons-demo" inheritAll="false" />
+		<ant dir="../PluginService" inheritAll="false" />
+		<ant dir="../DatabaseLayer" inheritAll="false" />
+		<ant dir="../com.dynatrace.uemload" inheritAll="false" />
+		<ant dir="../PluginScheduler" inheritAll="false" />
+		<ant dir="../Rating" inheritAll="false" />
+		<ant dir="../WpBlog" inheritAll="false" />
+
+		<javac source="1.8" target="1.8" deprecation="no" nowarn="${compiler.nowarn}" destdir="${dir.build}" debug="true">
+			<src location="${dir.src}" />
+			<classpath>
+				<path refid="required.libs" />
+				<path refid="required.projects" />
+			</classpath>
+		</javac>
+	</target>
+
+    <!--
+        NOTE:
+          To make file executable, add files to the com.dynatrace.util.EasyTravelExecutables class from project
+          SECRET
+    -->
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: copyApacheHttp                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="copyApacheHttp" depends="" unless="built">
+		<echo>Copying Apache HTTP server</echo>
+		<copy todir="${dir.dist.apache}">
+			<fileset dir="${APACHE_HTTP_HOME}"/>
+		</copy>
+		<chmod dir="${dir.dist.apache}" perm="ug+x" includes="Linux*/bin/*"/>
+	</target>
+		
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: copyOpenSSL                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="copyOpenSSL" depends="" unless="built">
+		<echo>Copying OpenSSL</echo>
+		<copy todir="${dir.dist.openssl}">
+			<fileset dir="${OPENSSL_HOME}"/>
+		</copy>
+	</target>
+	<!-- - - - - - - - - - - - - - - - - -
+          target: copyNginx
+         - - - - - - - - - - - - - - - - - -->
+	<target name="copyNginx" depends="" unless="built">
+		<echo>Copying Nginx HTTP server</echo>
+		<copy todir="${dir.dist.nginx}">
+			<fileset dir="${NGINX_HOME}"/>
+		</copy>
+		<chmod dir="${dir.dist.nginx}" perm="ug+x" includes="**/*"/>
+    </target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: copyCouchDB                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="copyCouchDB" depends="" unless="built">
+		<echo>Copying CouchDB database installation</echo>
+		<copy todir="${dir.dist.couchdb}">
+			<fileset dir="${APACHE_COUCHDB_HOME}"/>
+		</copy>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: copyMongoDb                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="copyMongoDb" depends="" unless="built">
+		<echo>Copying MongoDB server</echo>
+		<copy todir="${dir.dist.mongodb}">
+			<fileset dir="${MONGODB_SERVER_HOME}" />
+			<fileset dir="${MONGODB_DATA_HOME}">
+				<exclude name="easyTravel-mongodb-db.tar.gz"/>
+			</fileset>
+		</copy>
+		<chmod dir="${dir.dist.mongodb}" perm="ug+x" includes="**/*"/>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: copyHBaseDb                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="copyHBaseDb" depends="" unless="built">
+		<echo>Copying HBase server</echo>
+		<copy todir="${dir.dist.hbase}">
+			<fileset dir="${HBASE_SERVER_HOME}"/>
+		</copy>
+		<chmod dir="${dir.dist.hbase}" perm="ug+x" includes="**/*"/>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: link                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="link" depends="compile" unless="built">
+		<delete failonerror="no">
+			<fileset file="${jar.location}" />
+			<fileset file="${jar.location.cmd}" />
+		</delete>
+
+		<!-- copy startup script for Commandline Launcher -->
+		<copy toDir="${dir.dist}">
+			<fileset file="cmdlauncher.sh"/>
+			<fileset file="cmdlauncher.cmd"/>
+			<fileset file="startCloud.sh"/>
+			<fileset file="startDistributed.cmd"/>
+			<fileset file="startDistributed.sh"/>
+		</copy>
+		<chmod dir="${dir.dist}" perm="a+x" includes="*.sh"/>
+
+		<createClasspathAttribute property="classpath" libs="required.libs" projects="required.projects" />
+
+		<mkdir dir="${dir.build}/META-INF" />
+		<manifest file="${dir.build}/META-INF/MANIFEST.MF">
+			<attribute name="Built-By" value="${user.name}" />
+			<attribute name="Bundle-Vendor" value="${version.company}" />
+			<attribute name="Bundle-Version" value="${version}" />
+			<attribute name="Implementation-Version" value="${version}" />
+
+			<attribute name="Main-Class" value="com.dynatrace.easytravel.launcher.Launcher" />
+			<attribute name="Class-Path" value="${classpath}" />
+		</manifest>
+
+		<jar jarfile="${jar.location}" manifest="${dir.build}/META-INF/MANIFEST.MF">
+			<fileset dir="${dir.build}">
+				<include name="**" />
+			</fileset>
+			<fileset dir="${dir.resources}">
+				<include name="**" />
+			</fileset>
+		</jar>
+
+		<mkdir dir="${dir.build}/META-INF" />
+		<manifest file="${dir.build}/META-INF/MANIFEST.MF">
+			<attribute name="Built-By" value="${user.name}" />
+			<attribute name="Bundle-Vendor" value="${version.company}" />
+			<attribute name="Bundle-Version" value="${version}" />
+			<attribute name="Implementation-Version" value="${version}" />
+
+			<attribute name="Main-Class" value="com.dynatrace.easytravel.launcher.CommandlineLauncher" />
+			<attribute name="Class-Path" value="${classpath}" />
+		</manifest>
+
+		<jar jarfile="${jar.location.cmd}" manifest="${dir.build}/META-INF/MANIFEST.MF">
+			<fileset dir="${dir.build}">
+				<include name="**" />
+			</fileset>
+			<fileset dir="${dir.resources}">
+				<include name="**" />
+			</fileset>
+		</jar>
+
+		<copyLibToDistribution sourcepath="required.libs" />
+
+		<echo file="built.properties" append="false">built</echo>
+	</target>
+</project>

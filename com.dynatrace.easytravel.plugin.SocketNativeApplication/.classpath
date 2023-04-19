@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="testsrc"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/commons-demo"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/JUnit/junit-4.11.jar" sourcepath="/ThirdPartyLibraries/JUnit/src/junit-4.11-sources.jar"/>
+	<classpathentry kind="lib" path="resources"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-logging-1.2.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-logging-1.2-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.beans-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.context-3.0.5.RELEASE.jar" sourcepath="C:/devtools/sources/spring/org.springframework.context-sources-3.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.core-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.asm-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.expression-3.0.5.RELEASE.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CustomerClient"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Javamail/mail.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-codec-1.8.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-lang3-3.3.2.jar"/>
+	<classpathentry kind="lib" path="/Distribution/adk/oneagent-sdk-1.7.0.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.dynatrace.easytravel.plugin.NamedPipeNativeApplication"/>
+	<classpathentry kind="lib" path="/Distribution/adk/com.dynatrace.adk.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/jul-to-slf4j-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-classic-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-core-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-io-2.6.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

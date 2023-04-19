@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="azurequeueservice" class="com.dynatrace.easytravel.AzureQueueService">
+		<property name="name" value="AzureQueueService" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Messaging/Remoting" />
+		<property name="description" value="Creadit card authentication realized via azure queues." />
+	</bean>
+	
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="azurequeueservice" />
+	</bean>
+</beans>

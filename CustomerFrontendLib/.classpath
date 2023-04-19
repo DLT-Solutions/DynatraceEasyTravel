@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/IceFaces/lib/icefaces-compat.jar" sourcepath="C:/data/libsources/ICEfaces-2.0.0-src/icefaces/core/src/main/java"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/IceFaces/lib/jsf-api.jar" sourcepath="/ThirdPartyLibraries/IceFaces/dist/ICEfaces-2.0.2-src.zip"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/commons-demo"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-httpclient-3.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CustomerClient"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina.jar" sourcepath="C:/devtools/sources/apache-tomcat-7.0.39-src.zip"/>
+	<classpathentry kind="src" path="/Launcher"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Selenium/json-20080701.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CouchDBCommon"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-cli-1.2.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-cli-1.2-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://commons.apache.org/cli/api-1.2/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Google/Guava/guava-23.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-lang3-3.3.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/jul-to-slf4j-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-classic-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-core-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Axis2/lib/axis2-kernel-1.7.9.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Metrics/metrics-core-4.0.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Metrics/metrics-json-4.0.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Metrics/metrics-servlets-4.0.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jackson/jackson-annotations-2.9.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jackson/jackson-core-2.9.9.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jackson/jackson-databind-2.9.9.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jackson/jackson-jaxrs-base-2.9.9.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jackson/jackson-jaxrs-json-provider-2.9.9.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jackson/jackson-module-jaxb-annotations-2.9.9.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/HttpUtils/httpclient-4.5.10.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/HttpUtils/httpcore-4.4.12.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

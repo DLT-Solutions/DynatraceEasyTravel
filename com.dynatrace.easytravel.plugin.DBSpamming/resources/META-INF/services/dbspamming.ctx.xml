@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<!-- bean id="dbspammingpluginlight" class="com.dynatrace.easytravel.DBSpamming">
+		<property name="name" value="DBSpamming Light" />
+		<property name="groupName" value="Database" />
+		<property name="extensionPoint" value="backend.bookingservice.booking.store.before" />
+		<property name="description" value="Plugin which causes unnecessary DB access in business backend when a booking of a journey is stored. Only a limited amount of CPU is used." />
+		<property name="mode" value="light" />
+	</bean-->
+	
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="dbspammingpluginheavy" class="com.dynatrace.easytravel.DBSpamming">
+		<property name="name" value="DBSpamming" />
+		<property name="compatibility" value="Classic" />
+		<property name="groupName" value="Database" />
+		<property name="extensionPoint" value="backend.bookingservice.booking.store.before,lifecycle.plugin.*" />
+		<property name="description" 
+			value="Plugin which causes unnecessary DB access in business backend when a booking of a journey is stored. It also reduces the number of cached entries in the hibernate cache in order to increase the number of DB Statements. Note: This Problem Pattern will require more memory than is usually available for the Business Backend process, add the following to your scenario or increase memory for Business Backend in the properties to at least 368m: &lt;setting name=&quot;config.backendJavaopts&quot; type=&quot;procedure_config&quot; value=&quot;-Xmx128m&quot;/&gt;. Also a lot of CPU is used here, on slower/less powerful machines this might use up a considerable amount of CPU time!" />
+		<property name="mode" value="heavy" />
+	</bean>
+
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<!-- bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="dbspammingpluginlight" />
+	</bean-->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="dbspammingpluginheavy" />
+	</bean>
+	
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="dbspammingauthplugin" class="com.dynatrace.easytravel.DBSpamming">
+		<property name="name" value="DBSpammingAuth" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Database" />
+		<property name="extensionPoint" value="backend.authenticationservice.authenticate.getuser,lifecycle.plugin.*" />
+		<property name="description" 
+			value="Plugin which causes unnecessary DB access in business backend when user is authenticated. It also reduces the number of cached entries in the hibernate cache in order to increase the number of DB Statements." />
+		<property name="mode" value="heavy" />
+		<property name="cache" value = "com.dynatrace.easytravel.jpa.business.User" />
+		<property name="cacheEntries" value = "1" />
+	</bean>
+	
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="dbspammingauthplugin" />
+	</bean>
+	
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="dbspammingauthwithdeploymentplugin" class="com.dynatrace.easytravel.DBSpammingWithAppDeployment">
+		<property name="name" value="DBSpammingAuthWithAppDeployment" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Database" />
+		<property name="extensionPoint" value="backend.authenticationservice.authenticate.getuser,lifecycle.plugin.*,periodic.*" />
+		<property name="description" 
+			value="Plugin causes two things: simulates upgrade of the web application (by deploying a new easyTravelMonitor.war file on business backend) and enables database spamming when user is authenticated. Database spamming is started aproximately after 1 minute after deployment. It also reduces the number of cached entries in the hibernate cache in order to increase the number of DB Statements." />
+		<property name="mode" value="heavy" />
+		<property name="cache" value = "com.dynatrace.easytravel.jpa.business.User" />
+		<property name="cacheEntries" value = "1" />
+	</bean>
+	
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="dbspammingauthwithdeploymentplugin" />
+	</bean>
+	
+</beans>

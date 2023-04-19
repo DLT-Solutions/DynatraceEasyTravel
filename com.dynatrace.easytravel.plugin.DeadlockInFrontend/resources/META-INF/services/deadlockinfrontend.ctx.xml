@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="deadlockinfrontendplugin" class="com.dynatrace.easytravel.DeadlockInFrontend">
+		<property name="name" value="DeadlockInFrontend" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Problems" />
+		<property name="extensionPoint" value="frontend.promotion.click" />
+		<property name="description" value="Causes a deadlock in the customer frontend application when the user clicks on the promotion picture in the customer frontend. You can then use dynaTrace thread dump functionality to quickly find the cause of the deadlock." />
+	</bean>
+	
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="deadlockinfrontendplugin" />
+	</bean>
+</beans>

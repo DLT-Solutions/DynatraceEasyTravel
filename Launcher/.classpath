@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/commons-demo"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Derby/lib/derbynet.jar" sourcepath="C:/devtools/source/db-derby-10.8.3.0-src/java/drda"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Derby/lib/derby.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DatabaseLayer"/>
+	<classpathentry kind="lib" path="resources"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-configuration-1.10.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-configuration.1.10-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-lang-2.6.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-lang-2.6-sources.jar">
+		<accessrules>
+			<accessrule kind="nonaccessible" pattern="org/apache/commons/lang/**"/>
+		</accessrules>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-logging-1.2.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-logging-1.2-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-codec-1.8.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-codec-1.8-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-antlr.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-apache-bcel.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-apache-bsf.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-apache-log4j.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-apache-oro.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-apache-regexp.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-apache-resolver.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-commons-logging.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-commons-net.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-contrib-0.6.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-jai.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-javamail.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-jdepend.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-jmf.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-jsch.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-junit.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-launcher.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-netrexx.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-nodeps.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-starteam.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-stylebook.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-swing.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-testutil.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-trax.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/ant-weblogic.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/jreleaseinfo-1.2.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/jsch-0.1.40.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/mail-1.4.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/org.eclipse.ant.optional.junit_3.2.100.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/svnant.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/svnClientAdapter.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/svnkit-javahl.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/svnkit.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Ant/xml-apis.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-cli-1.2.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-cli-1.2-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://commons.apache.org/cli/api-1.2/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.dynatrace.uemload"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-lang3-3.3.2.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://commons.apache.org/lang/apidocs/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Quartz/quartz-2.2.1.jar" sourcepath="/ThirdPartyLibraries/Quartz/src/quartz-2.2.1-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Quartz/quartz-jobs-2.2.1.jar" sourcepath="/ThirdPartyLibraries/Quartz/src/quartz-jobs-2.2.1-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-exec-1.1a.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-exec-1.1-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://commons.apache.org/exec/apidocs/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/ThirdPartyJDBC/mysql-connector-java-5.1.20-bin.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/PersistenceCommon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MongoLayer"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/VMware/vim25.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CassandraLayer"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/HbaseLayer"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/PluginScheduler"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CouchDBCommon"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.core-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/MongoDB/client/mongo-java-driver-3.2.2.jar" sourcepath="/ThirdPartyLibraries/MongoDB/client/src/mongo-java-driver-3.2.2-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/required/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/optional/ehcache/hibernate-ehcache-5.1.0.Final.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/optional/ehcache/ehcache-2.10.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CustomerClient"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Google/Guava/guava-23.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jersey/jersey-client-1.19.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jersey/jersey-core-1.19.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jersey/jersey-server-1.19.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jersey/jsr311-api-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/jul-to-slf4j-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-classic-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-core-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Axis2/lib/axis2-metadata-1.7.9.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Axis2/lib/xml-resolver-1.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/SWT/swt-4.11-win32-win32-x86_64/swt.jar" sourcepath="/ThirdPartyLibraries/SWT/swt-4.11-win32-win32-x86_64/src.zip"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/RAP/org.eclipse.rap.rwt_3.8.1.20190410-1451.jar" sourcepath="/ThirdPartyLibraries/RAP/org.eclipse.rap.rwt.source_3.8.1.20190410-1451.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/istack-commons-runtime-3.0.8.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/jaxb-runtime-2.3.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/jakarta.xml.bind-api-2.3.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/jakarta.xml.ws-api-2.3.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/jakarta.xml.soap-api-1.4.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jackson/jackson-core-2.9.9.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jackson/jackson-databind-2.9.9.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/FastInfoset-1.2.16.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/gmbal-4.0.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/management-api-3.2.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/pfl-basic-4.0.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/pfl-tf-4.0.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/policy-2.7.6.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/saaj-impl-1.5.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/stax-ex-1.8.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/streambuffer-1.5.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/txw2-2.3.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/jaxws-rt-2.3.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Lightcouch/lightcouch-0.2.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

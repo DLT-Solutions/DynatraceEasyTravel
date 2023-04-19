@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/commons-demo"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-cli-1.2.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-cli-1.2-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/annotations-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina-ant.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina-ha.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina-tribes.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina.jar" sourcepath="C:/devtools/source/apache-tomcat-7.0.39-src/java"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/el-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/jasper-el.jar" sourcepath="C:/devtools/apache-tomcat-7.0.6"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/jasper.jar" sourcepath="C:/devtools/sources/apache-tomcat-7.0.6-src.zip"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/jsp-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-coyote.jar" sourcepath="C:/devtools/sources/apache-tomcat-7.0.6-src.zip"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-dbcp.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-i18n-es.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-i18n-fr.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-i18n-ja.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-juli.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-util.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-lang3-3.3.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jersey/jersey-client-1.19.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jersey/jersey-core-1.19.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jersey/jersey-server-1.19.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jersey/jsr311-api-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jersey/jersey-servlet-1.19.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-classic-1.2.3.jar" sourcepath="/ThirdPartyLibraries/Logging/logback-classic-1.2.3-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-core-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/ecj-4.4.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

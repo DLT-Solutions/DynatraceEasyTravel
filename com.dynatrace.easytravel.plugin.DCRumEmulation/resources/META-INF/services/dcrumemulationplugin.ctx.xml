@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="dcRumEmulationPlugin" class="com.dynatrace.easytravel.DCRumEmulationPlugin">
+		<property name="name" value="DCRUMEmulationPlugin" />
+		<property name="compatibility" value="Classic" />
+		<property name="groupName" value="Integration" />
+		<property name="extensionPoint" value="extension.point.uem.load.dcrum" />
+		<property name="description"
+			value="This plugin generates data like an DC-RUM appliance. You can use it to show how dynaTrace leverages the capabilities of DC-RUM. Be aware that some load must be activated via the slider in the easyTravel Configuration UI to get emulated data." />
+	</bean>
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+		<property name="propertyName" value="plugins" />
+		<property name="pluginBeanName" value="dcRumEmulationPlugin" />
+	</bean>
+</beans>

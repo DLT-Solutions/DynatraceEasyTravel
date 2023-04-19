@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/commons-demo"/>
+	<classpathentry kind="lib" path="resources"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/required/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/jpa-metamodel-generator/hibernate-jpamodelgen-5.1.0.Final.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

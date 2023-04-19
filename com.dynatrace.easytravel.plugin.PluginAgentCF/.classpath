@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/commons-demo"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jersey/jersey-client-1.19.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jersey/jersey-core-1.19.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jersey/jersey-server-1.19.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-io-2.6.jar"/>
+	<classpathentry kind="output" path="build/eclipse"/>
+</classpath>

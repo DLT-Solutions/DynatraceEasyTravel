@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/annotations-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina-ant.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina-ha.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina-tribes.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/el-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/jasper-el.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/jasper.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-coyote.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-juli.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-httpclient-3.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Javamail/mail.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-fileupload-1.2.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.core-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.context-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.web-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.beans-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.asm-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.expression-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.orm-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.transaction-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.jdbc-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.web.servlet-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.aop-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/aopalliance.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/commons-demo"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/jsp-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-cli-1.2.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-cli-1.2-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-logging-1.2.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-logging-1.2-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-util.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/IceFaces/lib/jsf-api.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CustomerClient"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/IceFaces/lib/icefaces-ace.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/IceFaces/lib/icefaces-compat.jar" sourcepath="C:/data/libsources/ICEfaces-2.0.0-src/icefaces/core/src/main/java"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/IceFaces/lib/icefaces.jar" sourcepath="/ThirdPartyLibraries/IceFaces/dist/ICEfaces-2.0.2-src.zip"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/IceFaces/lib/icepush.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/IceFaces/lib/javax.annotation.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/IceFaces/lib/javax.servlet.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/IceFaces/lib/javax.servlet.jsp.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/IceFaces/lib/jsf-impl.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.dynatrace.easytravel.plugin.SlowImages"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.dynatrace.easytravel.plugin.DatabaseAccessFromFrontend"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CustomerFrontendLib"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-codec-1.8.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/ecj-4.4.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Metrics/metrics-core-4.0.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Metrics/metrics-json-4.0.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Metrics/metrics-jvm-4.0.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Metrics/metrics-servlets-4.0.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jackson/jackson-annotations-2.9.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jackson/jackson-core-2.9.9.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jackson/jackson-databind-2.9.9.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/HttpUtils/httpclient-4.5.10.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/HttpUtils/httpclient-cache-4.5.10.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/HttpUtils/httpcore-4.4.12.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/HttpUtils/httpmime-4.5.10.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

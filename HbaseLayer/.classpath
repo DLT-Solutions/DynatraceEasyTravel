@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/PersistenceCommon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/commons-demo"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/hbase-common-0.96.0-hadoop1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/hbase-hadoop1-compat-0.96.0-hadoop1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/hbase-server-0.96.0-hadoop1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/hbase-client-0.96.0-hadoop1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/hbase-examples-0.96.0-hadoop1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/hbase-protocol-0.96.0-hadoop1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/htrace-core-2.01.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/protobuf-java-2.5.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/commons-math-2.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/core-3.1.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/findbugs-annotations-1.3.9-1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/hadoop-core-1.1.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/hbase-it-0.96.0-hadoop1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/hbase-prefix-tree-0.96.0-hadoop1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/hbase-shell-0.96.0-hadoop1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/hbase-thrift-0.96.0-hadoop1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/high-scale-lib-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/jackson-jaxrs-1.8.8.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/jackson-xc-1.8.8.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/jamon-runtime-2.3.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/jasper-compiler-5.5.23.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/jasper-runtime-5.5.23.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/jettison-1.3.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/jetty-6.1.26.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/jetty-sslengine-6.1.26.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/jetty-util-6.1.26.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/jsp-2.1-6.1.14.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/jsp-api-2.1-6.1.14.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/jsr305-1.3.9.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/libthrift-0.9.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/servlet-api-2.5-6.1.14.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/xmlenc-0.52.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/zookeeper-3.4.5.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Axis2/lib/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-cli-1.2.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-cli-1.2-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://commons.apache.org/cli/api-1.2/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-configuration-1.10.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-configuration.1.10-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-digester-1.8.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-el-1.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-httpclient-3.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-logging-1.2.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-logging-1.2-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Cassandra/lib/jackson-core-asl-1.9.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Cassandra/lib/jackson-mapper-asl-1.9.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/JUnit/junit-4.11.jar" sourcepath="/ThirdPartyLibraries/JUnit/src/junit-4.11-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/stax-api-1.0.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/commons-net-1.4.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-codec-1.8.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-lang3-3.3.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Google/Guava/guava-23.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-classic-1.2.3.jar" sourcepath="/ThirdPartyLibraries/Logging/logback-classic-1.2.3-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-core-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-beanutils-1.9.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-collections-3.2.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Metrics/metrics-core-4.0.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/HttpUtils/httpclient-4.5.10.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/HttpUtils/httpclient-cache-4.5.10.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

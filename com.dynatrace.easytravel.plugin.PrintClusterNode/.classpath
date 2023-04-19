@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/commons-demo"/>
+	<classpathentry kind="lib" path="resources"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/IceFaces/lib/jsf-api.jar" sourcepath="C:/devtools/sources/ICEfaces-2.0.1-src/icefaces/core/src/main/java"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/servlet-api.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/required/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/required/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/required/javassist-3.20.0-GA.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/required/geronimo-jta_1.1_spec-1.1.1.jar"/>
+	<classpathentry kind="src" path=".apt_generated">
+		<attributes>
+			<attribute name="optional" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-lang3-3.3.2.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-lang3-3.3.2-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Derby/lib/derbyclient.jar"/>
+	<classpathentry kind="lib" path="resources"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-pool-1.6.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/commons-demo"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/ThirdPartyJDBC/db2jcc4.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/ThirdPartyJDBC/jtds-1.2.5.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/TomcatJDBC/tomcat-jdbc.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.context-3.0.5.RELEASE.jar" sourcepath="C:/devtools/sources/spring/org.springframework.context-sources-3.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.transaction-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/optional/ehcache/hibernate-ehcache-5.1.0.Final.jar" sourcepath="/ThirdPartyLibraries/Hibernate/optional/ehcache/hibernate-ehcache-5.1.0.Final-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/optional/ehcache/ehcache-2.10.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/PersistenceCommon"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.beans-3.0.5.RELEASE.jar" sourcepath="/ThirdPartyLibraries/Spring/src/org.springframework.beans-sources-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/required/hibernate-jpa-2.1-api-1.0.0.Final.jar" sourcepath="/ThirdPartyLibraries/Hibernate/required/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/required/jboss-logging-3.3.0.Final.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/required/classmate-1.3.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/required/hibernate-commons-annotations-5.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/jpa/hibernate-entitymanager-5.1.0.Final.jar" sourcepath="/ThirdPartyLibraries/Hibernate/jpa/hibernate-entitymanager-5.1.0.Final-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/required/hibernate-core-5.1.1-20160607.204525-81.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/ThirdPartyJDBC/ojdbc8.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Google/Guava/guava-23.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/slf4j-jdk14-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/slf4j-api-1.7.25-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/jul-to-slf4j-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-classic-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-core-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-collections-3.2.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
