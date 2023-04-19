@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/annotations-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina-ant.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina-ha.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina-tribes.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/el-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/jasper-el.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/jasper.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-coyote.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-juli.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-httpclient-3.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Javamail/mail.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-fileupload-1.2.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/aopalliance.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/commons-demo"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/jsp-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-cli-1.2.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-cli-1.2-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-logging-1.2.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-logging-1.2-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-util.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-codec-1.8.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/jul-to-slf4j-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-classic-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-core-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/ecj-4.4.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/commons-demo"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.context-3.0.5.RELEASE.jar" sourcepath="C:/devtools/sources/spring/org.springframework.context-sources-3.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.transaction-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.beans-3.0.5.RELEASE.jar" sourcepath="/home/mkopp/.m2/repository/org/springframework/spring-beans/3.0.5.RELEASE/spring-beans-3.0.5.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.core-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/JUnit/junit-4.11.jar" sourcepath="/ThirdPartyLibraries/JUnit/src/junit-4.11-sources.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/PersistenceCommon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DatabaseLayer"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-lang-2.6.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-lang-2.6-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://commons.apache.org/lang/api-2.5/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Cassandra/lib/libthrift-0.9.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Cassandra/lib/apache-cassandra-3.11.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Cassandra/javadriver/cassandra-driver-core-3.3.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Cassandra/javadriver/cassandra-driver-mapping-3.3.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Google/Guava/guava-23.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-lang3-3.3.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/jul-to-slf4j-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-classic-1.2.3.jar" sourcepath="/ThirdPartyLibraries/Logging/logback-classic-1.2.3-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-core-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-io-2.6.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+    - name: jnlp
+      image: registry.lab.dynatrace.org/jci/ubuntu-amd64-easytravel-builder:latest
+      imagePullPolicy: Always
+      args:
+        - "jenkins-slave"
+      resources:
+        requests:
+          cpu: "1"
+          memory: "8Gi"
+        limits:
+          cpu: "2"
+          memory: "12Gi"
+    - name: aws-cli
+      image: docker-proxy.lab.dynatrace.org/amazon/aws-cli:2.9.20@sha256:82624dceb558b76dc2005ef5b52a066c07d82b5518d0d1cf040af63e4e54436c
+      tty: true
+      command:
+        - cat
+      resources:
+        requests:
+          cpu: "0.1"
+          memory: "32Mi"
+        limits:
+          cpu: "0.5"
+          memory: "128Mi"

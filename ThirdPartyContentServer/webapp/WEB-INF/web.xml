@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  version="3.0"
+  metadata-complete="true">
+
+	<display-name>easyTravel Third Party Content Server</display-name>
+  <description>
+    dynaTrace EasyTravel demo app - demo of Third Party Content server for
+    static content.
+  </description>
+
+	<!-- SLOW DOWN LOADING OF RESOURCES -->
+	<filter>
+		<filter-name>SlowdownFilter</filter-name>
+		<filter-class>com.dynatrace.easytravel.thirdpartycontent.SlowdownFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>SlowdownFilter</filter-name>
+		<url-pattern>/static/*</url-pattern>
+	</filter-mapping>
+
+	<!-- CACHING -->
+	<filter>
+		<filter-name>CachingFilter</filter-name>
+		<filter-class>com.dynatrace.easytravel.thirdpartycontent.CachingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CachingFilter</filter-name>
+		<url-pattern>/caching/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+
+	<!-- RESOURCE REDIRECT -->
+	<filter>
+		<filter-name>ResourceRedirectFilter</filter-name>
+		<filter-class>com.dynatrace.easytravel.thirdpartycontent.ResourceRedirectFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>ResourceRedirectFilter</filter-name>
+		<url-pattern>/resource-redirect/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+
+</web-app>

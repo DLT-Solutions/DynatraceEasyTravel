@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/annotations-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina-ant.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina-ha.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina-tribes.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina.jar" sourcepath="C:/devtools/source/apache-tomcat-7.0.39-src/java"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/el-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/jasper-el.jar" sourcepath="C:/devtools/apache-tomcat-7.0.6"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/jasper.jar" sourcepath="C:/devtools/sources/apache-tomcat-7.0.6-src.zip"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/jsp-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-coyote.jar" sourcepath="C:/devtools/sources/apache-tomcat-7.0.6-src.zip"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-juli.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-httpclient-3.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Javamail/mail.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-fileupload-1.2.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DatabaseLayer"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.core-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.context-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.web-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.beans-3.0.5.RELEASE.jar" sourcepath="/ThirdPartyLibraries/Spring/src/org.springframework.beans-sources-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.asm-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.expression-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.orm-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.transaction-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.jdbc-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.web.servlet-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/org.springframework.aop-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Spring/aopalliance.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/commons-demo"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-logging-1.2.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-logging-1.2-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Axis2/lib/wsdl4j-1.6.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-util.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/TomcatJDBC/tomcat-jdbc.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-cli-1.2.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-cli-1.2-sources.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.dynatrace.easytravel.plugin.DummyNativeApplication"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.dynatrace.easytravel.plugin.DummyPaymentService"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.dynatrace.easytravel.plugin.NamedPipeNativeApplication"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.dynatrace.easytravel.plugin.DotNetPaymentService"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CassandraLayer"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/PersistenceCommon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MongoLayer"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/HbaseLayer"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.dynatrace.easytravel.plugin.DBSpamming"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.dynatrace.easytravel.plugin.WarDeployment"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/required/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/optional/ehcache/hibernate-ehcache-5.1.0.Final.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/optional/ehcache/ehcache-2.10.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-codec-1.8.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-lang3-3.3.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-classic-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-core-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/ecj-4.4.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Axis2/lib/axis2-adb-1.7.9.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Axis2/lib/axis2-kernel-1.7.9.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Axis2/lib/axis2-transport-http-1.7.9.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Axis2/lib/axis2-transport-local-1.7.9.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Axis2/lib/xmlschema-core-2.2.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/jax-ws/jakarta.jws-api-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Metrics/metrics-core-4.0.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Metrics/metrics-json-4.0.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Metrics/metrics-jvm-4.0.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Metrics/metrics-servlets-4.0.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jackson/jackson-core-2.9.9.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jackson/jackson-databind-2.9.9.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/OpenTracing/opentracing-api-0.33.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/OpenTracing/opentracing-mock-0.33.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/OpenTracing/opentracing-noop-0.33.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/OpenTracing/opentracing-util-0.33.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/OpenTelemetry/opentelemetry-api-0.16.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/OpenTelemetry/opentelemetry-context-0.16.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

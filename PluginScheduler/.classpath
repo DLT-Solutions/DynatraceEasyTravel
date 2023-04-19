@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Quartz/quartz-2.2.1.jar" sourcepath="/ThirdPartyLibraries/Quartz/src/quartz-2.2.1-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Quartz/quartz-jobs-2.2.1.jar" sourcepath="/ThirdPartyLibraries/Quartz/src/quartz-jobs-2.2.1-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/required/geronimo-jta_1.1_spec-1.1.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/commons-demo"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Google/Guava/guava-23.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/slf4j-jdk14-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-classic-1.2.3.jar" sourcepath="/ThirdPartyLibraries/Logging/logback-classic-1.2.3-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-core-1.2.3.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
