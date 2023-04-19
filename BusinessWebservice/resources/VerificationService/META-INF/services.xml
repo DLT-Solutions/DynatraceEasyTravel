@@ -1,0 +1,25 @@
+<service name="VerificationService" scope="application">
+    <description>
+        Checks whether a user is blacklisted.
+    </description>
+    <messageReceivers>
+        <messageReceiver 
+            mep="http://www.w3.org/ns/wsdl/in-only"
+    class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>
+        <messageReceiver
+            mep="http://www.w3.org/ns/wsdl/in-out"
+    class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+    </messageReceivers>
+    
+    <parameter name="ServiceObjectSupplier">org.apache.axis2.extensions.spring.receivers.SpringServletContextObjectSupplier</parameter>
+    <parameter name="SpringBeanName">springAwareVerificationService</parameter>
+    
+    <!-- parameter name="ServiceClass">com.dynatrace.easytravel.business.webservice.JourneyService</parameter-->
+    <!-- operation name="getVersion">
+    <messageReceiver  class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+    </operation-->
+    <!-- operation name="getValue">
+        <messageReceiver class="org.apache.axis2.receivers.RawXMLINOutMessageReceiver"/>
+    </operation-->
+</service>
+ 

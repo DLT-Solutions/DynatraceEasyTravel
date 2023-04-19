@@ -1,0 +1,16 @@
+<service name="ConfigurationService" scope="application">
+    <description>
+        Provides access to change the Configuration of the demo apps, uses spring to get the actual objects.
+    </description>
+    <messageReceivers>
+        <messageReceiver 
+            mep="http://www.w3.org/ns/wsdl/in-only"
+    class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>
+        <messageReceiver
+            mep="http://www.w3.org/ns/wsdl/in-out"
+    class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+    </messageReceivers>
+    
+    <parameter name="ServiceObjectSupplier">org.apache.axis2.extensions.spring.receivers.SpringServletContextObjectSupplier</parameter>
+    <parameter name="SpringBeanName">springAwareConfigurationService</parameter>
+</service>

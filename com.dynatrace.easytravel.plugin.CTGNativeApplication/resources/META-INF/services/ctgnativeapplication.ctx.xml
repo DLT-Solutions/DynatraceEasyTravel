@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="ctgnativeapplication" class="com.dynatrace.easytravel.ctg.CTGNativeApplication">
+		<property name="name" value="CTGNativeApplication" />
+		<property name="compatibility" value="Classic" />
+		<property name="groupName" value="Native Application" />
+		<property name="description" value="Dispatches the credit card verification into CICS using the CICS Transaction Gateway (CTG). This requires manual setup of the corresponding resources on the CICS side." />
+	</bean>
+	
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="ctgnativeapplication" />
+	</bean>
+</beans>

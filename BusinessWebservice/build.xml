@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Business Webservice" default="all">
+	<description>
+		Demo Application - Business Web Service
+	</description>
+
+	<import file="../Distribution/ant-includes.xml"/>
+
+	<property name="dir.webapp" location="webapp"/>
+	<property name="dir.classes" location="${dir.webapp}/WEB-INF/classes"/>
+	<property name="dir.services" location="${dir.webapp}/WEB-INF/services"/>
+	<property name="dir.modules" location="${dir.webapp}/WEB-INF/modules"/>
+	<property name="dir.include" location="${dir.webapp}/WEB-INF/include"/>
+	<property name="dir.views" location="${dir.webapp}/WEB-INF/views"/>
+
+	<!-- ================================= 
+          target: buildLibrary              
+         ================================= -->
+	<target name="all" depends="init, compile, link" unless="built" description="Diagnostics Agent">
+		<echo>Done</echo>
+	</target>
+
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: init                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="init" depends="" unless="built">
+		<mkdir dir="${dir.webapp}" />
+		<mkdir dir="${dir.modules}" />
+		<mkdir dir="${dir.services}" />
+		<mkdir dir="${dir.webapp}/WEB-INF/lib"/>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clean                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clean" depends="clearBuiltProperty" description="clean up">
+		<delete dir="${dir.webapp}"/>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clearBuiltProperty                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clearBuiltProperty" description="update without build">
+		<delete file="built.properties"/>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: compile                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="compile" depends="init" unless="built">
+		<echo>Business Webservice - Nothing to compile</echo>
+
+		<!-- Nothing to compile here because we inject the code via Spring -->
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: link                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="link" depends="compile,generate.service" unless="built">
+		<echo message="Copying axis-base code" />
+
+		<!-- copy default modules and classes -->
+		<copy toDir="${dir.classes}">
+			<fileset dir="${AXIS2_HOME}/webapp/WEB-INF/classes"/>
+		</copy>
+		<copy toDir="${dir.modules}">
+			<fileset dir="${AXIS2_HOME}/repository/modules">
+				<exclude name="soapmonitor*.mar"/>
+			</fileset>
+		</copy>
+		<copy toDir="${dir.services}">
+			<fileset dir="${AXIS2_HOME}/repository/services"/>
+		</copy>
+		<copy toDir="${dir.include}">
+			<fileset dir="${AXIS2_HOME}/webapp/WEB-INF/include"/>
+		</copy>
+		<copy toDir="${dir.views}">
+			<fileset dir="${AXIS2_HOME}/webapp/WEB-INF/views"/>
+		</copy>
+
+		<!-- copy axis2-web-administration, can be removed in the future -->
+		<copy toDir="${dir.webapp}/axis2-web">
+			<fileset dir="${AXIS2_HOME}/webapp/axis2-web"/>
+		</copy>
+
+		<!-- copy axis2-libs -->
+		<copy toDir="${dir.webapp}/WEB-INF/lib">
+			<fileset dir="${AXIS2_HOME}/lib">
+				<include name="axis2-kernel*.jar" />
+				<include name="axis2-spring*.jar" />
+				<include name="axis2-jaxws*.jar" />
+			</fileset>
+		</copy>
+
+		<!-- Creating the services.list -->
+		<path id="services.archives">
+			<fileset dir="${dir.services}">
+				<include name="*.aar" />
+			</fileset>
+		</path>
+		<pathconvert pathsep="${line.separator}" property="echo.services.archives" refid="services.archives">
+			<flattenmapper />
+		</pathconvert>
+		<echo file="${dir.services}/services.list" message="${echo.services.archives}" />
+
+		<!-- Creating the modules.list -->
+		<path id="modules.archives">
+			<fileset dir="${dir.modules}">
+				<include name="*.mar" />
+			</fileset>
+		</path>
+		<pathconvert pathsep="${line.separator}" property="echo.modules.archives" refid="modules.archives">
+			<flattenmapper />
+		</pathconvert>
+		<echo file="${dir.modules}/modules.list" message="${echo.modules.archives}" />
+
+		<!-- Copying the axis2.xml from ../conf -->
+		<echo message="Copy and adjust axis2.xml file from ${AXIS2_HOME}/conf/axis2.xml to ${dir.webapp}/WEB-INF/conf" />
+		<mkdir dir="${dir.webapp}/WEB-INF/conf" />
+		<delete file="${dir.webapp}/WEB-INF/conf/axis2.xml" />
+		<copy file="${AXIS2_HOME}/conf/axis2.xml" toDir="${dir.webapp}/WEB-INF/conf" />
+		<replace file="${dir.webapp}/WEB-INF/conf/axis2.xml"
+			token="hotdeployment&quot;>true"
+			value="hotdeployment&quot;>false"/>
+		<!-- get rid of WARNING [AxisServlet]  No transportReceiver for org.apache.axis2.transport.http.AxisServletListener found. An instance for HTTP will be configured automatically. Please update your axis2.xml file! -->
+		<replace file="${dir.webapp}/WEB-INF/conf/axis2.xml"
+			token="&lt;transportReceiver name=&quot;http&quot;">
+			<replacevalue><![CDATA[<!-- Added by build steps in BusinessWebservice! -->
+    <transportReceiver name="http" class="org.apache.axis2.transport.http.AxisServletListener"/>
+    <!-- Original Transport In -->
+    <!--transportReceiver name="http"]]></replacevalue>
+		</replace>
+		<replace file="${dir.webapp}/WEB-INF/conf/axis2.xml">
+			<replacetoken><![CDATA[<parameter name="port">8080</parameter>]]></replacetoken>
+			<replacevalue><![CDATA[<parameter name="port">8080</parameter-->]]></replacevalue>
+		</replace>
+		<replace file="${dir.webapp}/WEB-INF/conf/axis2.xml">
+			<replacetoken><![CDATA[</transportReceiver>]]></replacetoken>
+			<replacevalue><![CDATA[<!--/transportReceiver-->]]></replacevalue>
+		</replace>
+
+		<!-- adjust commons-logging.properties from axis to use JDKLogger -->
+		<replace file="${dir.classes}/commons-logging.properties"
+			token="org.apache.commons.logging.impl.Log4JLogger"
+			value="org.apache.commons.logging.impl.Jdk14Logger"/>
+
+		<echo file="${dir.webapp}/DO_NOT_EDIT_FILES_HERE.generated_content" append="false">This directory contains generated content, do not edit things here!</echo>
+
+		<!-- we are not copying stuff to directory Distribution here as these files are fetched in build of BusinessBackend and combined there --> 
+		
+		<echo file="built.properties" append="false">built</echo>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: generate.service                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="generate.service" depends="compile">
+		<!--aar them up -->
+		<jar destfile="${dir.services}/JourneyService.aar">
+			<fileset dir="${basedir}/resources/JourneyService"/>
+		</jar>
+		<jar destfile="${dir.services}/BookingService.aar">
+			<fileset dir="${basedir}/resources/BookingService"/>
+		</jar>
+		<jar destfile="${dir.services}/ConfigurationService.aar">
+			<fileset dir="${basedir}/resources/ConfigurationService"/>
+		</jar>
+		<jar destfile="${dir.services}/AuthenticationService.aar">
+			<fileset dir="${basedir}/resources/AuthenticationService"/>
+		</jar>
+		<jar destfile="${dir.services}/VerificationService.aar">
+			<fileset dir="${basedir}/resources/VerificationService"/>
+		</jar>
+	</target>
+</project>

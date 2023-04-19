@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="databaseExceedPoolThreaded" class="com.dynatrace.easytravel.database.DatabaseAccessExceedPool">
+		<property name="name" value="DatabaseAccessExceedPoolThreaded" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Database" />
+		<property name="dependencies" value="jpa" />
+		<property name="extensionPoint" value="backend.journeyservice.journey.search" />
+		<property name="description" value="On the Business Backend application, while storing a Booking execute some SQL queries in multiple threads for some time to create heavy load on the connection pool/database." />
+
+		<property name="mode" value="threaded" />
+		<property name="count" value="10" />	<!-- how many threads to start -->
+	</bean>
+
+	<bean id="databaseExceedPoolNonThreaded" class="com.dynatrace.easytravel.database.DatabaseAccessExceedPool">
+		<property name="name" value="DatabaseAccessExceedPoolNonThreaded" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Database" />
+		<property name="dependencies" value="jpa" />
+		<property name="extensionPoint" value="backend.journeyservice.journey.search" />
+		<property name="description" value="On the Business Backend application, while storing a Booking execute some SQL queries in multiple connections to see high usage of the connection pool." />
+		
+		<property name="mode" value="nonthreaded" />
+		<property name="count" value="7" />	<!-- how many entity managers to open -->
+	</bean>
+	
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="databaseExceedPoolThreaded" />
+	</bean>
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="databaseExceedPoolNonThreaded" />
+	</bean>
+</beans>

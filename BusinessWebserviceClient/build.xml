@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Business Webservice Client Interfaces" default="all">
+	<description>
+		Demo Application - Business Webservice Client Interfaces
+	</description>
+
+	<import file="../Distribution/ant-includes.xml"/>
+
+	<property name="jar.name" value="${jar.name.webservice.client}" />
+	<property name="jar.location" location="${dir.dist}/${jar.name}.jar" />
+
+	<property name="dir.generated" location="generated"/>
+	<property name="dir.build.generated" location="build/generated"/>
+
+	<!-- all lib jars needed by this project -->
+	<path id="required.libs">
+		<path refid="lib.commons" />
+		<path refid="lib.javamail" />
+		<path refid="lib.axis2.min" />
+		<path refid="lib.jaxb" />
+		<path refid="lib.jax-ws" />
+		<path refid="lib.opentracing" />
+		<path refid="lib.opentelemetry" />
+	</path>
+			
+	<!-- all project jars needed by this project -->
+	<path id="required.projects">
+		<fileset dir="${dir.dist}">
+			<include name="${jar.name.commons}.jar"/>
+			<include name="${jar.name.database}.jar"/>
+		</fileset>
+	</path>
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: all                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="all" depends="init, compile, link" unless="built" description="Diagnostics Agent">
+		<echo>Done</echo>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: init                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="init" depends="" unless="built">
+		<mkdir dir="${dir.build}" />
+		<mkdir dir="${dir.build.generated}" />
+		<mkdir dir="${dir.generated}" />
+		<mkdir dir="${dir.dist}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clean                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clean" depends="clearBuiltProperty" description="clean up">
+		<delete dir="build" />
+		<delete dir="${dir.generated}" failonerror="no" />
+		
+		<ant dir="../DatabaseLayer" inheritAll="false" target="clean"/>
+		<ant dir="../commons-demo" inheritAll="false" target="clean"/>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clearBuiltProperty                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clearBuiltProperty" description="update without build">
+		<delete file="built.properties"/>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: compile                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="compile" depends="init" unless="built">
+		<echo>Business Webservice Client</echo>
+
+		<ant dir="../DatabaseLayer" inheritAll="false" />
+		<ant dir="../commons-demo" inheritAll="false" />
+
+		<javac source="1.8" target="1.8" deprecation="no" nowarn="${compiler.nowarn}" srcdir="../BusinessBackend/src" destdir="${dir.build}" debug="true">
+			<!-- only compile the necessary pieces of BusinessBackend here... -->
+			<include name="**/*Cache.java"/>
+			<include name="**/*Service.java"/>
+			<include name="**/transferobj/*.java"/>
+			<include name="**/Configuration.java"/>
+
+			<classpath>
+				<path refid="required.libs" />
+				<path refid="required.projects" />
+				<!-- no ejb for now
+				path refid="lib.openejb"/-->
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: link                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="link" depends="compile,generate.client,compile.client" unless="built">
+		<delete failonerror="no">
+			<fileset dir="${dir.dist}" includes="${jar.name}.jar"/>
+		</delete>
+
+		<createClasspathAttribute property="classpath" libs="required.libs" projects="required.projects" />
+		
+		<mkdir dir="${dir.build}/META-INF"/>
+        <manifest file="${dir.build}/META-INF/MANIFEST.MF">
+            <attribute name="Built-By" value="${user.name}" />
+            <attribute name="Bundle-Vendor" value="${version.company}" />
+            <attribute name="Bundle-Version" value="${version}"/>
+            <attribute name="Implementation-Version" value="${version}"/>
+
+			<attribute name="Class-Path" value="${classpath}" />
+        </manifest>
+		
+		<jar jarfile="${jar.location}" manifest="${dir.build}/META-INF/MANIFEST.MF">
+			<fileset dir="${dir.build.generated}">
+				<include name="**" />
+			</fileset>
+			<fileset dir="${dir.generated}/resources">
+				<include name="**" />
+			</fileset>
+			<fileset dir="${dir.generated}">
+				<include name="*.wsdl" />
+			</fileset>
+		</jar>
+		
+		<copyLibToDistribution sourcepath="required.libs" />
+		
+		<echo file="built.properties" append="false">built</echo>
+	</target>
+	
+	<target name="generate.client" depends="compile" unless="built">
+		<echo message="Define tasks"/>
+		
+        <taskdef name="java2wsdl"
+                 classname="org.apache.ws.java2wsdl.Java2WSDLTask">
+            <classpath>
+				<path refid="lib.axis2.ant"/>
+				<path refid="lib.axis2"/>
+				<path refid="lib.commons"/>
+				<path refid="lib.javamail"/>
+                <pathelement location="resources"/>
+            </classpath>
+    	</taskdef>
+    	
+        <taskdef name="wsdl2java"
+                 classname="org.apache.axis2.tool.ant.AntCodegenTask">
+            <classpath>
+				<path refid="lib.axis2.ant"/>
+				<path refid="lib.axis2"/>                
+				<path refid="lib.commons"/>
+                <pathelement location="resources"/>
+            </classpath>
+    	</taskdef>
+
+		<echo message="Clean up"/>
+		
+		<delete dir="${dir.generated}"/>
+		<mkdir dir="${dir.generated}"/>
+		
+		<echo message="Generate WSDL, coverage-classpath: ${coverage.classpath}"/>
+		
+        <java2wsdl className="com.dynatrace.easytravel.business.webservice.JourneyService"
+                   outputLocation="${dir.generated}" 
+            		targetNamespace="http://webservice.business.easytravel.dynatrace.com/"
+            		schemaTargetNamespace="http://webservice.business.easytravel.dynatrace.com">
+            <classpath>
+                <pathelement location="${dir.build}"/>
+
+				<path location="${dir.dist}/com.dynatrace.easytravel.commons.jar"/>
+				<path location="${dir.dist}/com.dynatrace.easytravel.database.jar"/>
+            	<path location="${coverage.classpath}"/>
+            </classpath>
+        </java2wsdl>
+
+        <java2wsdl className="com.dynatrace.easytravel.business.webservice.BookingService"
+                   outputLocation="${dir.generated}" 
+            		targetNamespace="http://webservice.business.easytravel.dynatrace.com/"
+            		schemaTargetNamespace="http://webservice.business.easytravel.dynatrace.com">
+            <classpath>
+                <pathelement location="${dir.build}"/>
+
+            	<path location="${dir.dist}/com.dynatrace.easytravel.commons.jar"/>
+				<path location="${dir.dist}/com.dynatrace.easytravel.database.jar"/>
+            	<path location="${coverage.classpath}"/>
+            </classpath>
+        </java2wsdl>
+
+        <java2wsdl className="com.dynatrace.easytravel.business.webservice.ConfigurationService"
+                   outputLocation="${dir.generated}" 
+            		targetNamespace="http://webservice.business.easytravel.dynatrace.com/"
+            		schemaTargetNamespace="http://webservice.business.easytravel.dynatrace.com">
+            <classpath>
+                <pathelement location="${dir.build}"/>
+
+				<path location="${dir.dist}/com.dynatrace.easytravel.commons.jar"/>
+				<path location="${dir.dist}/com.dynatrace.easytravel.database.jar"/>
+            	<path location="${coverage.classpath}"/>
+            </classpath>
+        </java2wsdl>
+		
+		<java2wsdl className="com.dynatrace.easytravel.business.webservice.AuthenticationService"
+                   outputLocation="${dir.generated}" 
+            		targetNamespace="http://webservice.business.easytravel.dynatrace.com/"
+            		schemaTargetNamespace="http://webservice.business.easytravel.dynatrace.com">
+            <classpath>
+                <pathelement location="${dir.build}"/>
+
+				<path location="${dir.dist}/com.dynatrace.easytravel.commons.jar"/>
+				<path location="${dir.dist}/com.dynatrace.easytravel.database.jar"/>
+            	<path location="${coverage.classpath}"/>
+            </classpath>
+        </java2wsdl>
+		
+		<java2wsdl className="com.dynatrace.easytravel.business.webservice.VerificationService"
+                   outputLocation="${dir.generated}" 
+            		targetNamespace="http://webservice.business.easytravel.dynatrace.com/"
+            		schemaTargetNamespace="http://webservice.business.easytravel.dynatrace.com">
+            <classpath>
+                <pathelement location="${dir.build}"/>
+
+				<path location="${dir.dist}/com.dynatrace.easytravel.commons.jar"/>
+				<path location="${dir.dist}/com.dynatrace.easytravel.database.jar"/>
+            	<path location="${coverage.classpath}"/>
+            </classpath>
+        </java2wsdl>
+		
+		<echo message="Generating client code"/>
+		
+		<property name="namespace.mapping" value="http://util.java/xsd=com.dynatrace.java.util.xsd,http://ws.apache.org/namespaces/axis2/enum=org.apache.ws.namespaces.axis2.enums"/>
+		
+		<wsdl2java 
+			databindingname="xmlbeans" 
+			packagename="com.dynatrace.easytravel.business.client"
+		  	output="${dir.generated}" 
+			wsdlfilename="${dir.generated}/JourneyService.wsdl"
+			namespaceToPackages="${namespace.mapping}">
+		</wsdl2java>
+
+		<wsdl2java 
+			databindingname="xmlbeans" 
+			packagename="com.dynatrace.easytravel.business.client"
+		  	output="${dir.generated}" 
+			wsdlfilename="${dir.generated}/BookingService.wsdl"
+			namespaceToPackages="${namespace.mapping}">
+		</wsdl2java>
+
+		<wsdl2java 
+			databindingname="xmlbeans" 
+			packagename="com.dynatrace.easytravel.business.client"
+		  	output="${dir.generated}" 
+			wsdlfilename="${dir.generated}/ConfigurationService.wsdl"
+			namespaceToPackages="${namespace.mapping}">
+		</wsdl2java>
+
+		<wsdl2java 
+			databindingname="xmlbeans" 
+			packagename="com.dynatrace.easytravel.business.client"
+		  	output="${dir.generated}" 
+			wsdlfilename="${dir.generated}/AuthenticationService.wsdl"
+			namespaceToPackages="${namespace.mapping}">
+		</wsdl2java>
+		
+		<wsdl2java 
+			databindingname="xmlbeans" 
+			packagename="com.dynatrace.easytravel.business.client"
+		  	output="${dir.generated}" 
+			wsdlfilename="${dir.generated}/VerificationService.wsdl"
+			namespaceToPackages="${namespace.mapping}">
+		</wsdl2java>
+	</target>
+
+	<target name="compile.client" depends="init" unless="built">
+		<javac source="1.8" target="1.8" deprecation="no" nowarn="${compiler.nowarn}" 
+			srcdir="${dir.generated}" destdir="${dir.build.generated}" debug="true">
+
+			<classpath>
+				<path refid="lib.axis2"/>
+			</classpath>
+		</javac>
+	</target>
+</project>

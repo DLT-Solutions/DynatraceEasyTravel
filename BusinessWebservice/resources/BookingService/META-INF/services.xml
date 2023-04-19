@@ -1,0 +1,46 @@
+<service name="BookingService" scope="application">
+    <description>
+        Provides access to Bookings, uses spring to get the actual objects.
+    </description>
+    <messageReceivers>
+        <messageReceiver 
+            mep="http://www.w3.org/ns/wsdl/in-only"
+    class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>
+        <messageReceiver
+            mep="http://www.w3.org/ns/wsdl/in-out"
+    class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+    </messageReceivers>
+    
+    <parameter name="ServiceObjectSupplier">org.apache.axis2.extensions.spring.receivers.SpringServletContextObjectSupplier</parameter>
+    <parameter name="SpringBeanName">springAwareBookingService</parameter>
+
+	<!--  I tried to use @Transactional at the Web-Service level, but could not because of trouble with 
+		proxy/bytecode loading, there are some discussions available on the net, but nothing lead to a 
+		solution, let's revisit this later...
+		
+		serviceInterface="com.dynatrace.easytravel.business.webservice.BookingTransactionalInterface"
+
+    <parameter name="ServiceClass">com.dynatrace.easytravel.business.webservice.BookingTransactionalInterface</parameter>
+    <parameter name="serviceInterface">com.dynatrace.easytravel.business.webservice.BookingTransactionalInterface</parameter>
+	<serviceInterface>com.dynatrace.easytravel.business.webservice.BookingTransactionalInterface</serviceInterface>
+	 -->
+    
+    <!-- parameter name="ServiceClass">com.dynatrace.easytravel.business.webservice.JourneyService</parameter-->
+    <!-- operation name="getVersion">
+    <messageReceiver  class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+    </operation-->
+    <!-- operation name="getValue">
+        <messageReceiver class="org.apache.axis2.receivers.RawXMLINOutMessageReceiver"/>
+    </operation-->
+    
+    <!--  Use the following to combine multiple services in one group
+<serviceGroup>
+    <service name=service1>
+        ......
+    <service>
+    <service name=service2>
+        ..........
+    </service>
+</serviceGroup>    
+     -->
+</service>

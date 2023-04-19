@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Business Backend" default="all">
+	<description>
+		Demo Application - Business Backend
+	</description>
+
+	<import file="../Distribution/ant-includes.xml" />
+
+	<property name="jar.name" value="${jar.name.business}" />
+	<property name="jar.location" location="${dir.dist}/${jar.name}.jar" />
+	
+	<property name="dir.webapp" location="webapp" />
+	<property name="dist.webapp" location="${dir.dist}/business/webapp" />
+
+	<!-- all lib jars needed by this project -->
+	<path id="required.libs">
+
+		<path refid="lib.commons" />
+		<path refid="lib.hibernate" />
+		<path refid="lib.tomcat" />
+		<path refid="lib.spring" />
+		<path refid="lib.axis2" />
+		<path refid="lib.jaxb" />
+		<path refid="lib.jax-ws" />
+		<path refid="lib.tomcat.jdbc" />
+		<!-- no ejb for now
+		path refid="lib.openejb" /-->
+		<path refid="lib.metrics" />
+		<path refid="lib.opentracing" />
+		<path refid="lib.opentelemetry" />
+				
+		<!-- runtime dependency, not required for compiling -->
+		<path refid="lib.javamail" />
+	</path>
+
+	<!-- all project jars needed by this project -->
+	<path id="required.projects">
+		<fileset dir="${dir.dist}">
+			<include name="${jar.name.commons}.jar"/>
+			<include name="${jar.name.database}.jar"/>
+			<include name="${jar.name.cassandra}.jar"/>
+			<include name="${jar.name.mongodb}.jar"/>
+			<include name="${jar.name.hbase}.jar"/>
+		</fileset>
+	</path>
+
+	<!-- ================================= 
+          target: buildLibrary              
+         ================================= -->
+	<target name="all" depends="init, compile, link" unless="built" description="Diagnostics Agent">
+		<echo>Done</echo>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: init                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="init" depends="" unless="built">
+		<mkdir dir="${dir.build}" />
+		<mkdir dir="${dir.webapp}" />
+		<mkdir dir="${dist.webapp}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clean                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clean" depends="clearBuiltProperty" description="clean up">
+		<delete dir="${dir.build}" failonerror="no" />
+		<delete dir="build" />
+
+		<!-- AXIS app which is built from scratch and put in place -->
+		<delete dir="${dir.webapp}" />
+		<delete dir="${dist.webapp}" />
+		<delete dir="${dir.dist}/business" />
+
+		<ant dir="../commons-demo" inheritAll="false" target="clean" />
+		<ant dir="../PersistenceCommon" inheritAll="false" target="clean" />
+		<ant dir="../CassandraLayer" inheritAll="false" target="clean" />
+		<ant dir="../MongoLayer" inheritAll="false" target="clean" />
+		<ant dir="../HbaseLayer" inheritAll="false" target="clean" />
+		<ant dir="../DatabaseLayer" inheritAll="false" target="clean" />
+		<ant dir="../BusinessWebservice" inheritAll="false" target="clean" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clearBuiltProperty                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clearBuiltProperty" description="update without build">
+		<delete file="built.properties" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: compile                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="compile" depends="init" unless="built">
+		<echo>Business Backend</echo>
+
+		<ant dir="../commons-demo" inheritAll="false" />
+		<ant dir="../PersistenceCommon" inheritAll="false" />
+		<ant dir="../CassandraLayer" inheritAll="false" />
+		<ant dir="../MongoLayer" inheritAll="false" />
+		<ant dir="../DatabaseLayer" inheritAll="false" />
+		<ant dir="../HbaseLayer" inheritAll="false" />
+		<ant dir="../BusinessWebservice" inheritAll="false" />
+
+		<javac source="1.8" target="1.8" deprecation="no" nowarn="${compiler.nowarn}" destdir="${dir.build}" debug="true">
+			<src location="${dir.src}" />
+			<classpath>
+				<path refid="required.libs"/>
+				<path refid="required.projects" />
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: link                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="link" depends="compile" unless="built">
+		<echo message="Copying axis in place" />
+
+		<copy toDir="${dir.webapp}">
+			<fileset dir="../BusinessWebservice/webapp" />
+		</copy>
+
+		<!-- put our web.xml in place -->
+		<copy toDir="${dir.webapp}/WEB-INF">
+			<fileset dir="${dir.resources}/WEB-INF" />
+		</copy>
+		
+		<delete file="${dir.webapp}/WEB-INF/spring/root-context-war.xml"/>
+		<delete file="${dir.webapp}/WEB-INF/spring/root-context-war-jpa.xml"/>
+		
+		<!-- TODO: should we copy resources/** into webapp/..., especially the spring config? -->
+		<copy toDir="${dist.webapp}">
+			<fileset dir="webapp" />
+		</copy>
+		
+		<delete failonerror="no">
+			<fileset dir="${dir.dist}" includes="${jar.name}.jar" />
+		</delete>
+		
+		<createClasspathAttribute property="classpath" libs="required.libs" projects="required.projects" />
+		
+		<mkdir dir="${dir.build}/META-INF" />
+		<manifest file="${dir.build}/META-INF/MANIFEST.MF">
+			<attribute name="Built-By" value="${user.name}" />
+			<attribute name="Bundle-Vendor" value="${version.company}" />
+			<attribute name="Bundle-Version" value="${version}" />
+			<attribute name="Implementation-Version" value="${version}" />
+
+			<attribute name="Main-Class" value="com.dynatrace.easytravel.business.RunTomcat" />
+			<attribute name="Plugin-Path" value="../plugins-backend ../plugins-shared" /> <!-- the ../business is necessary to find spring configuration files inside the web-app! -->
+			<attribute name="Class-Path" value="${classpath}" />
+		</manifest>
+
+		<jar jarfile="${jar.location}" manifest="${dir.build}/META-INF/MANIFEST.MF">
+			<fileset dir="${dir.build}">
+				<include name="**" />
+			</fileset>
+			<fileset dir="${dir.resources}">
+				<include name="**" />
+				<exclude name="commons-logging.properties" />
+				<exclude name="logging.properties" />
+
+				<!-- do not include these in the jar-file, rather load them from the plugin-classpath above
+				in order to have them outside of the jar-file to give people easier access to them -->
+				<exclude name="**/spring/**" />
+				<exclude name="web.xml" />
+			</fileset>
+		</jar>
+
+		<copyLibToDistribution sourcepath="required.libs" />
+		
+		<echo file="built.properties" append="false">built</echo>
+	</target>
+	
+	<target name="prepare-war" description="">		
+		<path id="required.projects.libs">
+			<path refid="lib.derby.client" />
+			<path refid="lib.spring" />
+			<path refid="lib.hibernate" />
+			<path refid="lib.axis2" />
+			<path refid="lib.jaxb" />
+			<path refid="lib.jax-ws" />
+			<path refid="lib.jackson" />
+			<!-- database layer-->
+			<path refid="lib.hibernate.ehcache" />
+			<path refid="lib.logging" />
+			<path refid="lib.javamail" />
+			
+			<!-- commons demo -->
+			<path refid="lib.commons" />
+			<path refid="lib.hibernate" />			
+			<path refid="lib.guava" />
+			<path refid="lib.jersey" />
+			<path refid="lib.mvel" />
+			<path refid="lib.metrics" />
+            <path refid="lib.mongodb" />
+            <path refid="lib.httputils" />
+            <!-- opentracing -->
+            <path refid="lib.opentracing" />
+			<!-- opentelemetry -->
+			<path refid="lib.opentelemetry" />
+        </path>
+		<copyLibToWebAppLibDirectory sourcepath="required.projects.libs" webappdir="${dir.webapp}"/>
+		
+		<copy toDir="${dir.webapp}/WEB-INF/lib">
+			<fileset file="${dir.dist}/${jar.name.database}.jar" />
+			<fileset file="${dir.dist}/${jar.name.commons}.jar" />
+			<fileset file="${dir.dist}/${jar.name.business}.jar" />
+			<fileset file="${dir.dist}/${jar.name.persistence.common}.jar" />
+			<fileset file="${dir.dist}/plugins-backend/com.dynatrace.easytravel.plugin.dummynativeapplication.jar" />
+			<fileset file="${dir.dist}/plugins-backend/com.dynatrace.easytravel.plugin.dummypaymentservice.jar" />
+			<fileset file="${dir.dist}/plugins-backend/com.dynatrace.easytravel.plugin.loginerror.jar" />
+			<fileset file="${dir.dist}/plugins-backend/com.dynatrace.easytravel.plugin.cpuload.jar" />
+			<fileset file="${dir.dist}/plugins-backend/com.dynatrace.easytravel.plugin.databasecleanup.jar" />
+			<fileset file="${dir.dist}/plugins-backend/com.dynatrace.easytravel.plugin.DBSlowdown.jar" />
+			<fileset file="${dir.dist}/plugins-backend/com.dynatrace.easytravel.plugin.disablehibernatecache.jar" />
+			<fileset file="${dir.dist}/plugins-shared/com.dynatrace.easytravel.plugin.exceptionspamming.jar" />
+			<fileset file="${dir.dist}/plugins-backend/com.dynatrace.easytravel.plugin.fetchsizetoosmall.jar" />
+			<fileset file="${dir.dist}/plugins-backend/com.dynatrace.easytravel.plugin.journeyhttp500.jar" />
+			<fileset file="${dir.dist}/plugins-backend/com.dynatrace.easytravel.plugin.journeyupdate.jar" />
+			<fileset file="${dir.dist}/plugins-backend/com.dynatrace.easytravel.plugin.largememoryleak.jar" />
+			<fileset file="${dir.dist}/plugins-backend/com.dynatrace.easytravel.plugin.slowauthentication.jar" />
+			<fileset file="${dir.dist}/plugins-backend/com.dynatrace.easytravel.plugin.slowauthentication.jar" />
+			<fileset file="${dir.dist}/plugins-backend/com.dynatrace.easytravel.plugin.hostemulation.jar" />
+            <fileset file="${dir.dist}/com.dynatrace.easytravel.mongodb.jar" />
+		</copy>
+						
+		<copy toDir="${dir.webapp}/WEB-INF/lib">
+			<fileset dir="${AXIS2_HOME}/lib">
+				<include name="axis2-kernel*.jar" />
+				<include name="axis2-spring*.jar" />
+				<include name="axis2-jaxws*.jar" />
+			</fileset>
+		</copy>
+				
+		<mkdir dir="${dir.webapp}/WEB-INF/classes" />
+		<copy toDir="${dir.webapp}/WEB-INF/classes">
+			<fileset file="../commons-demo/resources/easyTravel*.properties" />
+			<fileset file="../commons-demo/resources/logback.xml" />
+		</copy>	
+		<!-- add console appender to the root logger -->
+		<replace file="${dir.webapp}/WEB-INF/classes/logback.xml">
+			<replacetoken><![CDATA[<root level="warn"/>]]></replacetoken>
+			<replacevalue><![CDATA[<root level="warn"><appender-ref ref="CONSOLE" /></root>]]></replacevalue>
+		</replace>
+		<!-- restore config file from template -->
+		<copy file="../commons-demo/resources/easyTravelWarConfig.properties.template" tofile="${dir.webapp}/WEB-INF/classes/easyTravelWarConfig.properties"/>
+
+	</target>
+		
+	<target name="copy-tomcat-jdbc" unless="${skip-tomcat-jdbc}">		
+		<copyLibToWebAppLibDirectory sourcepath="lib.tomcat.jdbc" webappdir="${dir.webapp}"/>
+	</target>
+	
+	<target name="war-cloudfoundry">
+		<property name="skip-tomcat-jdbc" value="true" />
+		<antcall target="war" />
+	</target>
+	
+	<target name="war" description="" depends="prepare-war">
+		<antcall target="copy-tomcat-jdbc"/>
+		<!--replace root-context.xml from normal installation with the one destined for war file -->
+		<copy file="${dir.resources}/WEB-INF/spring/root-context-war.xml" tofile="${dir.webapp}/WEB-INF/spring/root-context.xml" overwrite="true"/>
+		<war destfile="${dir.dist}/business/backend.war">
+			<fileset dir="webapp" />
+		</war>
+		<!-- clean up -->
+		<delete file="${dir.webapp}/WEB-INF/classes/easyTravelWarConfig.properties" />
+		<delete file="${dir.webapp}/WEB-INF/classes/logback.xml" />
+	</target>
+	
+	<target name="war-jpa" description="" depends="prepare-war">
+		<antcall target="copy-tomcat-jdbc"/>
+		<!--replace root-context.xml from normal installation with the one destined for war file -->
+		<copy file="${dir.resources}/WEB-INF/spring/root-context-war-jpa.xml" tofile="${dir.webapp}/WEB-INF/spring/root-context.xml" overwrite="true"/>
+		<war destfile="${dir.dist}/business/backend.war">
+			<fileset dir="webapp" />
+		</war>
+		<!-- clean up -->
+		<delete file="${dir.webapp}/WEB-INF/classes/easyTravelWarConfig.properties" />
+		<delete file="${dir.webapp}/WEB-INF/classes/logback.xml" />
+	</target>
+	
+	<target name="deploy-to-tomcat" depends="war">
+		<clean-tomcat-logs tomcat.home="${tomcat.home.business}"/>
+		<delete dir="${tomcat.home.business}/webapps/business" failonerror="true"/>
+		<copy todir="${tomcat.home.business}/webapps" file="${dir.dist}/business/backend.war"></copy>
+	</target>	
+		
+</project>

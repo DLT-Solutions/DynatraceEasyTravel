@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="databasePoolContention" class="com.dynatrace.easytravel.database.DatabaseAccessPoolContention">
+		<property name="name" value="DatabaseAccessPoolContention" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Database" />
+		<property name="dependencies" value="jpa" />
+		<property name="extensionPoint" value="backend.journeyservice.location.search" />
+		<property name="description" value="On the Business Backend application, while searching Locations, executes a stored procedure that contends a db-pool for a few secondes. The effect in dynaTrace will be that you see high database calls of a stored procedure which allows to show database related use cases. The database call will be done asyncronously and will show a database time of 2 seconds." />
+
+		<!-- time which the call is delayed -->
+		<property name="sleepTime" value="2000" />
+		<!-- should the call to the database be made asyncronous -->
+		<property name="startAsync" value="true" />
+	</bean>
+
+	<bean id="databasePoolContentionSync" class="com.dynatrace.easytravel.database.DatabaseAccessPoolContention">
+		<property name="name" value="DatabaseAccessPoolContentionSync" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Database" />
+		<property name="dependencies" value="jpa" />
+		<property name="extensionPoint" value="backend.journeyservice.location.search" />
+		<property name="description" value="On the Business Backend application, while searching Locations, executes a stored procedure that contends a db-pool for a few secondes. The effect in dynaTrace will be that you see high database calls of a stored procedure which allows to show database related use cases. This will do the call syncronously as part of the transaction and will cause a database delay of 500 milliseconds." />
+
+		<!-- time which the call is delayed -->
+		<property name="sleepTime" value="500" />
+		<!-- should the call to the database be made asyncronous -->
+		<property name="startAsync" value="false" />
+	</bean>
+	
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="databasePoolContention" />
+	</bean>
+
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="databasePoolContentionSync" />
+	</bean>
+</beans>

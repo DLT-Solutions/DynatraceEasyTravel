@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="alternativedeadlockinfrontendplugin" class="com.dynatrace.easytravel.AlternativeDeadlockInFrontend">
+		<property name="name" value="DeadlockInFrontendJavaConcurrent" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Problems" />
+		<property name="extensionPoint" value="frontend.promotion.click" />
+		<property name="description" value="Triggers a deadlock in the customer frontend application when the user clicks on the promotion picture in the customer frontend. Uses classes from the java.util.concurrent package introduced in Java 1.5." />
+	</bean>
+	
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="alternativedeadlockinfrontendplugin" />
+	</bean>
+</beans>

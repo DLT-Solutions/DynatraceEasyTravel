@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Cassandra Layer" default="all">
+	<description>
+		Demo Application - Cassandra Layer
+	</description>
+
+	<import file="../Distribution/ant-includes.xml" />
+
+	<property name="jar.name" value="${jar.name.cassandra}" />
+	<property name="jar.location" location="${dir.dist}/${jar.name}.jar" />
+	
+	<!-- all lib jars needed by this project -->
+	<path id="required.libs">
+		<path refid="lib.cassandra" />
+		<path refid="lib.cassandrajavadriver" />
+		<path refid="lib.logging" />
+		<path refid="lib.commons" />
+	</path>
+
+	<!-- all project jars needed by this project -->
+	<path id="required.projects" >
+		<fileset dir="${dir.dist}">
+			<include name="${jar.name.commons}.jar"/>
+			<include name="${jar.name.persistence.common}.jar"/>
+		</fileset>
+	</path>
+	
+	<!-- ================================= 
+          target: buildLibrary              
+         ================================= -->
+	<target name="all" depends="init, compile, link" unless="built" description="Cassandra Layer">
+		<echo>Done</echo>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: init                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="init" depends="" unless="built">
+		<mkdir dir="${dir.build}" />
+		<mkdir dir="${dir.dist}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clean                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clean" depends="clearBuiltProperty" description="clean up">
+		<delete dir="${dir.build}" failonerror="no" />
+		<delete file="${jar.location}" />
+		<delete file="derby.log" />
+
+		<ant dir="../commons-demo" inheritAll="false" target="clean" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clearBuiltProperty                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clearBuiltProperty" description="update without build">
+		<delete file="built.properties" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: compile                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="compile" depends="init,copyCassandraCfg,copySigarBin" unless="built">
+		<ant dir="../commons-demo" inheritAll="false" />
+
+		<javac source="1.8" target="1.8" deprecation="no" nowarn="${compiler.nowarn}" destdir="${dir.build}" debug="true">
+			<src location="${dir.src}" />
+			<classpath>
+				<path refid="required.libs" />
+				<path refid="required.projects" />
+			</classpath>
+		</javac>
+	</target>
+	
+	<target name="copyCassandraCfg" depends="" unless="built">
+		<echo>Copying Cassandra cfg</echo>
+		<copy todir="${dir.dist.cassandra}">
+		    <fileset dir="${CASSANDRA_HOME}/conf"/>
+		</copy>
+	</target>
+	
+	<target name="copySigarBin">
+		<echo>Copying sigar-bin</echo>
+		<copy todir="${dir.dist.cassandra}/sigar-bin">
+			<fileset dir="${CASSANDRA_HOME}/lib/sigar-bin"/>
+		</copy>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: link                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="link" depends="compile" unless="built">
+		<delete failonerror="no">
+			<fileset dir="${dir.dist}" includes="${jar.name}.jar" />
+		</delete>
+
+		<createClasspathAttribute property="classpath" libs="required.libs" projects="required.projects" />
+
+		<mkdir dir="${dir.build}/META-INF" />
+		<manifest file="${dir.build}/META-INF/MANIFEST.MF">
+			<attribute name="Built-By" value="${user.name}" />
+			<attribute name="Bundle-Vendor" value="${version.company}" />
+			<attribute name="Bundle-Version" value="${version}" />
+			<attribute name="Implementation-Version" value="${version}" />
+			<attribute name="Class-Path" value="${classpath}" />
+			<attribute name="Main-Class" value="org.apache.cassandra.service.CassandraDaemon" />
+		</manifest>
+
+		<jar jarfile="${jar.location}" manifest="${dir.build}/META-INF/MANIFEST.MF">
+			<fileset dir="${dir.build}">
+				<include name="**" />
+			</fileset>
+		</jar>
+
+		<copyLibToDistribution sourcepath="required.libs" />
+		
+		<echo file="built.properties" append="false">built</echo>
+	</target>
+	
+</project>

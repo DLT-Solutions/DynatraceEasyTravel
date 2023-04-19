@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="databasePluginHeavy" class="com.dynatrace.easytravel.database.QueryLocations">
+		<property name="name" value="DatabaseAccessFromFrontendHeavy" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Database" />
+		<!-- plugin now also works for cassandra: property name="dependencies" value="jpa" /-->
+		<property name="extensionPoint" value="frontend.dataprovider.journey.search,lifecycle.plugin.disable" />
+		<property name="description" value="Causes an 'architecture problem' by causing the customer frontend application to directly perform SQL queries against the database whenever a search is done, which 'by design' only the business backend application should do. Also uses a non-connection pool connection which is displayed differently in the Database Dashlet. Look for class 'QueryLocations' in the PurePath. Note: This plugin puts a heavy load on CPU as well, not suited for live demos!" />
+		<property name="mode" value="heavy" />
+	</bean>
+
+	<bean id="databasePluginLight" class="com.dynatrace.easytravel.database.QueryLocations">
+		<property name="name" value="DatabaseAccessFromFrontend" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Database" />
+		<property name="dependencies" value="jpa" />
+		<property name="extensionPoint" value="frontend.dataprovider.journey.search,lifecycle.plugin.disable" />
+		<property name="description" value="Causes an 'architecture problem' by causing the customer frontend application to directly perform SQL queries against the database whenever a search is done, which 'by design' only the business backend application should do. Also uses a non-connection pool connection which is displayed differently in the Database Dashlet. Look for class 'QueryLocations' in the PurePath." />
+		<property name="mode" value="light" />
+		<!-- the query needs to return a list of Locations! -->
+		<property name="lightQuery" value="select b from Location b where lower(b.name) like '%' || :name || '%' order by b.name desc" />
+	</bean>	
+
+	<bean id="databasePluginRandom" class="com.dynatrace.easytravel.database.QueryLocations">
+		<property name="name" value="RandomSQLStatements" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Database" />
+		<property name="dependencies" value="jpa" />
+		<property name="extensionPoint" value="frontend.dataprovider.journey.search,lifecycle.plugin.disable" />
+		<property name="description" value="Causes two 'architecture problems' by causing the customer frontend application to directly perform ever-changing SQL queries against the database whenever a search is done, 'by design' only the business backend application should do SQLs and prepared statements should be used for performing SQLs with bind-variables. Also uses a non-connection pool connection which is displayed differently in the Database Dashlet. Look for class 'QueryLocations' in the PurePath. NOTE: This will currently make Customer Frontend go out of memory quickly because of of how hibernate caching is configured!" />
+		<property name="mode" value="random" />
+		<!-- the query needs to return a list of Locations! -->
+		<property name="lightQuery" value="select b from Location b where lower(b.name) like '%' || :name || '%' order by b.name desc" />
+	</bean>	
+
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="databasePluginHeavy" />
+	</bean>
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="databasePluginLight" />
+	</bean>
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="databasePluginRandom" />
+	</bean>
+</beans>
