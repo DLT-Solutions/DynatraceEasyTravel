@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration defaulthash="a294d5c9001ad1e16c15ecdf2499ff71">
+    <job-scheduling-data>
+        <schedule>
+            <job>
+                <name>DummyJob</name>
+                <group>DummyGroup</group>
+                <description>Run dummy job</description>
+                <job-class>com.dynatrace.easytravel.pluginscheduler.DummyJob</job-class>
+                <durability>true</durability>
+                <recover>false</recover>
+            </job>
+
+            <job>
+                <name>ScenarioJob</name>
+                <group>Scenario</group>
+                <description>Scenario job definition</description>
+                <job-class>com.dynatrace.easytravel.pluginscheduler.DummyJob</job-class>
+                <durability>true</durability>
+                <recover>false</recover>
+            </job>
+
+            <trigger>
+                <cron>
+                    <name>DummyJobTrigger</name>
+                    <job-name>DummyJob</job-name>
+                    <job-group>DummyGroup</job-group>
+                    <cron-expression>0/1 * * * * ?</cron-expression>
+                </cron>
+            </trigger>
+
+            <trigger>
+                <cron>
+                    <name>ScenarioJobTrigger</name>
+                    <job-name>ScenarioJob</job-name>
+                    <job-group>Scenario</job-group>
+                    <cron-expression>0/2 * * * * ?</cron-expression>
+                </cron>
+            </trigger>
+        </schedule>
+    </job-scheduling-data>
+<TechnologyProperties>
+<DotNet>false</DotNet>
+</TechnologyProperties>
+<UIAvailabilityProperties>
+<UIProblemPatterns>true</UIProblemPatterns>
+</UIAvailabilityProperties>
+<group title="UEM">
+<scenario compatibility="Both" enabled="true" title="Standard">
+<description>Backend application monitoring shows "all green", but how can you monitor how well visitors to your websites are served?
+
+Use this scenario to simulate visitors to your website from all over the world with varying response times depending on geographical location. Let dynaTrace show you from where visitors come to your site and how satisified they will be.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization"/>
+<procedure id="business backend">
+<setting name="ThirdPartyContent" type="plugin" value="on"/>
+<setting name="ThirdPartyAdvertisements" type="plugin" value="on"/>
+</procedure>
+<procedure id="payment backend"/>
+<procedure id="customer frontend"/>
+<procedure id="b2b frontend"/>
+<procedure id="third party server"/>
+<procedure compatibility="Classic" id="webserver agent control"/>
+<procedure id="apache_httpd"/>
+<procedure compatibility="Classic" id="host agent control"/>
+</scenario>
+<scenario compatibility="Classic" enabled="true" title="UEM Only">
+<description>You need to know about the user experience of your customers? How long does it take to load a page for your end users? Which browsers, tablets or smartphones are your customers using for accessing your page and which impact has the performance to your conversion rate?
+
+Use this scenario for an UEM Only setup. No Java and .NET Agents are used, only the web server agents and UEM is running.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization">
+<setting name="config.creditCardAuthorizationAgent" type="procedure_config" value="none"/>
+</procedure>
+<procedure id="business backend">
+<setting name="ThirdPartyContent" type="plugin" value="on"/>
+<setting name="ThirdPartyAdvertisements" type="plugin" value="on"/>
+<setting name="JavascriptTagging" type="plugin" value="on"/>
+<setting name="config.backendAgent" type="procedure_config" value="none"/>
+</procedure>
+<procedure id="payment backend">
+<setting name="config.paymentBackendEnvArgs" type="procedure_config" value="COR_ENABLE_PROFILING=0x0"/>
+</procedure>
+<procedure id="customer frontend">
+<setting name="config.frontendAgent" type="procedure_config" value="none"/>
+</procedure>
+<procedure id="b2b frontend">
+<setting name="config.b2bFrontendEnvArgs" type="procedure_config" value="COR_ENABLE_PROFILING=0x0"/>
+</procedure>
+<procedure id="third party server"/>
+<procedure compatibility="Classic" id="webserver agent control"/>
+<procedure id="apache_httpd"/>
+<procedure compatibility="Classic" id="host agent control"/>
+<setting name="JavascriptTagging" type="plugin" value="on"/>
+</scenario>
+<scenario compatibility="Both" enabled="true" title="Lightweight">
+<description>Backend application monitoring shows "all green", but how can you monitor how well visitors to your websites are served?
+
+Use this scenario when running on machines with low processing power and memory to simulate visitors to your website from all over the world with varying response times depending on geographical location. Let dynaTrace show you from where visitors come to your site and how satisified they will be.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization"/>
+<procedure id="business backend"/>
+<procedure id="payment backend"/>
+<procedure id="customer frontend"/>
+<procedure id="b2b frontend"/>
+<procedure compatibility="Classic" id="webserver agent control"/>
+<procedure id="apache_httpd"/>
+<procedure compatibility="Classic" id="host agent control"/>
+</scenario>
+<scenario compatibility="Classic" enabled="true" title="Proxy Injection via Apache Web Server">
+<description>With this scenario UEM can be tested on web sites where dynaTrace UEM is not installed yet. An apache web server is started, which acts as a proxy injecting the JavaScript agent. Further a browser is started with corresponding proxy settings.
+
+This scenario supports browsers using the system proxy configuration (e.g. Internet Explorer or Chrome).</description>
+<procedure compatibility="Classic" id="webserver agent control"/>
+<procedure id="apache_httpd"/>
+<procedure id="browser"/>
+</scenario>
+<scenario compatibility="Classic" enabled="true" title="Baselining Demo">
+<description>How do you distinguish between variations in load or response time which are ok compared to high response times which are a problem. Just looking at averages does not work in this case.
+
+Use this scenario to show how dynaTrace uses baselining technology to alert when things start behaving incorrectly. In this scenario the "SlowUserLogin" problem pattern will get activated 12 minutes after startup of the Businessbackend, staying on for 3 minute (repeating this sequence in an endless loop). We expect some "Failure Rates" baselining incidents.
+
+The problem pattern "JourneyUpdateSlow" and "DisableHibernateCache" will be activated 15 minutes after start, staying on for 5 minutes (repeating this sequence in an endless loop).  We expect some "Response Time" and "Slow Response Time" baselining incidents.
+
+Be aware that this scenario consumes significantly more memory than the default UEM scenario. Thus, the B2B frontend is disabled by default.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization"/>
+<procedure id="business backend">
+<setting name="JourneyUpdateSlow" stayoffduration="900" stayonduration="300" type="plugin" value="off"/>
+<setting name="DisableHibernateCache" stayoffduration="900" stayonduration="300" type="plugin" value="off"/>
+<setting name="LoginProblems" stayoffduration="720" stayonduration="180" type="plugin" value="off"/>
+<setting name="ThirdPartyContent" type="plugin" value="on"/>
+<setting name="ThirdPartyAdvertisements" type="plugin" value="on"/>
+<setting name="config.backendJavaopts" type="procedure_config" value="-Xmx256m"/>
+</procedure>
+<procedure id="payment backend"/>
+<procedure id="customer frontend">
+<setting name="config.frontendJavaopts" type="procedure_config" value="-Xmx416m"/>
+</procedure>
+<procedure id="b2b frontend">
+<setting name="enabled" value="off"/>
+</procedure>
+<procedure id="third party server"/>
+<procedure compatibility="Classic" id="webserver agent control"/>
+<procedure id="apache_httpd"/>
+<procedure compatibility="Classic" id="host agent control"/>
+<setting name="config.baseLoadDefault" type="scenario_config" value="30"/>
+<setting name="config.baseLoadB2BRatio" type="scenario_config" value="0.2"/>
+<setting name="config.baseLoadCustomerRatio" type="scenario_config" value="1.0"/>
+<setting name="config.baseLoadMobileRatio" type="scenario_config" value="0.3"/>
+</scenario>
+</group>
+<group title="Production">
+<scenario compatibility="Both" enabled="true" title="Standard">
+<description>Business is running fine, users are visiting the web site and are booking trips and everything seems to be ok? Are you sure? Or are some of your users actually heading off to other sites because they are dissatisfied?
+
+Choose this scenario to run the demo application with its default settings to show how dynaTrace gives you a quick overview of an application and how you can monitor its health.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization"/>
+<procedure id="business backend"/>
+<procedure id="payment backend"/>
+<procedure id="customer frontend"/>
+<procedure id="b2b frontend"/>
+<procedure compatibility="Classic" id="host agent control"/>
+</scenario>
+<scenario compatibility="Both" enabled="true" title="Baselining Demo">
+<description>How do you distinguish between variations in load or response time which are ok compared to high response times which are a problem. Just looking at averages does not work in this case.
+
+Use this scenario to show how dynaTrace uses baselining technology to alert when things start behaving incorrectly. In this scenario the "SlowUserLogin" problem pattern will get activated 12 minutes after startup of the Businessbackend, staying on for 3 minute (repeating this sequence in an endless loop). We expect some "Failure Rates" baselining incidents.
+
+The problem pattern "JourneyUpdateSlow" and "DisableHibernateCache" will be activated 15 minutes after start, staying on for 5 minutes (repeating this sequence in an endless loop).  We expect some "Response Time" and "Slow Response Time" baselining incidents.
+
+Be aware that this scenario consumes significantly more memory than the default UEM scenario. Thus, the B2B frontend is disabled by default.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization"/>
+<procedure id="business backend">
+<setting name="JourneyUpdateSlow" stayoffduration="900" stayonduration="300" type="plugin" value="off"/>
+<setting name="DisableHibernateCache" stayoffduration="900" stayonduration="300" type="plugin" value="off"/>
+<setting name="LoginProblems" stayoffduration="720" stayonduration="180" type="plugin" value="off"/>
+<setting name="ThirdPartyContent" type="plugin" value="on"/>
+<setting name="ThirdPartyAdvertisements" type="plugin" value="on"/>
+<setting name="config.backendJavaopts" type="procedure_config" value="-Xmx256m"/>
+</procedure>
+<procedure id="payment backend"/>
+<procedure id="customer frontend">
+<setting name="config.frontendJavaopts" type="procedure_config" value="-Xmx416m"/>
+</procedure>
+<procedure id="b2b frontend">
+<setting name="enabled" value="off"/>
+</procedure>
+<procedure id="third party server"/>
+<procedure compatibility="Classic" id="webserver agent control"/>
+<procedure id="apache_httpd"/>
+<procedure compatibility="Classic" id="host agent control"/>
+<setting name="config.baseLoadDefault" type="scenario_config" value="30"/>
+<setting name="config.baseLoadB2BRatio" type="scenario_config" value="0.2"/>
+<setting name="config.baseLoadCustomerRatio" type="scenario_config" value="1.0"/>
+<setting name="config.baseLoadMobileRatio" type="scenario_config" value="0.3"/>
+</scenario>
+<scenario compatibility="Both" enabled="true" title="Update Regression">
+<description>Your development just finished the next release and you are going to put this into test/production. How do you find out if there are regressions? In performance or functionality?
+
+Start this scenario and explore how dynaTrace visualizes problem patterns for you.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization"/>
+<procedure id="business backend">
+<setting name="DatabaseAccessFromFrontend" type="plugin" value="on"/>
+<setting name="MissingServletError404" type="plugin" value="on"/>
+<setting name="DBSpamming" type="plugin" value="on"/>
+<setting name="SmallMemoryLeak" type="plugin" value="on"/>
+</procedure>
+<procedure id="payment backend"/>
+<procedure id="customer frontend"/>
+<procedure id="b2b frontend"/>
+<procedure compatibility="Classic" id="host agent control"/>
+</scenario>
+<scenario compatibility="Both" enabled="true" title="Black Friday">
+<description>There are days during the year where load is exceptionally high on your servers. How do you find out if your server is able to cope?
+
+Run this scenario to bring the application to its limits and see how dynaTrace allows you to drill down to the root problems.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization"/>
+<procedure id="business backend"/>
+<procedure id="payment backend"/>
+<procedure id="customer frontend"/>
+<procedure id="b2b frontend"/>
+<procedure id="ant">
+<setting name="title" value="Canoo Load Test (Ant)"/>
+<setting name="file" value="canoo/runtest.xml"/>
+<setting name="target" value="run"/>
+<setting name="recurrence" value="0"/>
+<setting name="recurrenceIntervalSeconds" value="15"/>
+<setting name="instances" value="3"/>
+<setting name="startIntervalSeconds" value="10"/>
+<setting name="fork" value="true"/>
+<setting name="wt.config.resultpath" type="property" value="C:\\Users\\cwpl-rorzecho\\.dynaTrace\\easyTravel 2.0.0\\easyTravel\\tests\\canoo"/>
+<setting name="wt.headless" type="property" value="true"/>
+<setting name="wt.groovyTests.skip" type="property" value="true"/>
+<setting name="wt.junitLikeReports.skip" type="property" value="true"/>
+<setting name="reallyFly" type="property" value="true"/>
+<setting name="~wt.htmlReports.skip" type="property" value="true"/>
+<setting name="wt.config.saveresponse" type="property" value="false"/>
+<setting name="distdir" type="property" value="D:\\APMNG\\easyTravel\\eT\\Distribution\\dist"/>
+</procedure>
+<procedure compatibility="Classic" id="host agent control"/>
+</scenario>
+<scenario compatibility="Both" enabled="true" title="Best Practices">
+<description>Users are visiting the web site from all over the world and want to book trips. Is everything running fine in your application? Use this scenario in combination with the DemoStoryBoard to walk through the most important use-cases.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization"/>
+<procedure id="business backend">
+<setting name="BookingErrorAsHttp500" type="plugin" value="on"/>
+<setting name="GarbageCollectionEvery10Seconds" type="plugin" value="on"/>
+<setting name="UseLocationCache" type="plugin" value="on"/>
+<setting name="TravellersOptionBox" type="plugin" value="on"/>
+</procedure>
+<procedure id="payment backend"/>
+<procedure id="customer frontend"/>
+<procedure id="b2b frontend"/>
+<procedure compatibility="Classic" id="webserver agent control"/>
+<procedure id="apache_httpd"/>
+<procedure compatibility="Classic" id="host agent control"/>
+</scenario>
+<scenario compatibility="Both" enabled="true" title="Cassandra">
+<description>Find out whether introducing a Cassandra solution can make a competitive advantage for your company. This easyTravel Cassandra scenario reveals the benefits.</description>
+<procedure id="cassandra"/>
+<procedure id="cassandra"/>
+<procedure id="cassandra"/>
+<procedure id="database content creator">
+<setting name="persistenceMode" value="cassandra"/>
+</procedure>
+<procedure id="credit card authorization"/>
+<procedure id="business backend">
+<setting name="persistenceMode" value="cassandra"/>
+</procedure>
+<procedure id="payment backend"/>
+<procedure id="customer frontend">
+<setting name="persistenceMode" value="cassandra"/>
+</procedure>
+<procedure id="b2b frontend"/>
+<procedure compatibility="Classic" id="host agent control"/>
+</scenario>
+<scenario compatibility="Both" enabled="true" title="MongoDB">
+<description>Find out whether introducing a MongoDB solution can make a competitive advantage for your company. This easyTravel MongoDB scenario reveals the benefits.</description>
+<procedure id="mongodb"/>
+<procedure id="database content creator">
+<setting name="persistenceMode" value="mongodb"/>
+</procedure>
+<procedure id="credit card authorization"/>
+<procedure id="business backend">
+<setting name="persistenceMode" value="mongodb"/>
+</procedure>
+<procedure id="payment backend"/>
+<procedure id="customer frontend">
+<setting name="persistenceMode" value="mongodb"/>
+</procedure>
+<procedure id="b2b frontend"/>
+<procedure compatibility="Classic" id="host agent control"/>
+</scenario>
+<scenario compatibility="Both" enabled="false" title="HBase">
+<description>Find out whether HBase is the appropriate datastore for the purposes of your company. HBase is an open source, non-relational, distributed database modeled after Google's BigTable. Among other big companies, Facebook uses HBase for its Messaging Platform.
+
+Attention: You need to manually start the HBase datastore as it is not started by the scenario.</description>
+<procedure id="hbase"/>
+<procedure id="database content creator">
+<setting name="persistenceMode" value="hbase"/>
+</procedure>
+<procedure id="credit card authorization"/>
+<procedure id="business backend">
+<setting name="persistenceMode" value="hbase"/>
+<setting name="config.backendJavaopts" type="procedure_config" value="-Xmx192m"/>
+</procedure>
+<procedure id="payment backend"/>
+<procedure id="customer frontend">
+<setting name="persistenceMode" value="hbase"/>
+</procedure>
+<procedure id="b2b frontend"/>
+<procedure compatibility="Classic" id="host agent control"/>
+</scenario>
+<scenario compatibility="Both" enabled="true" title="Messaging">
+<description>Your application is heavily relying on Queuing services? Are your service providers telling you they do not see the messages on the receiving end, but your developers assure you that they are sending the correct data? Are you concerned about the size of messages going back and forth?
+
+Run this scenario to use JMS messaging to get additional 'Hot Deals' whenever searches are performed. Use the Messaging Dashlet to get an overview of how much data you send on which queue and Drill Down to see the actual data that was sent.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization"/>
+<procedure id="business backend">
+<setting name="HotDealServerJMS" type="plugin" value="on"/>
+<setting name="HotDealClientJMS" type="plugin" value="on"/>
+</procedure>
+<procedure id="payment backend"/>
+<procedure id="customer frontend"/>
+<procedure id="b2b frontend"/>
+</scenario>
+<scenario compatibility="Both" enabled="true" title="Remoting">
+<description>Your application is heavily using RMI to call remote procedures? Are you struggling to find out why the call never reaches the server? Are you concerned about the number of remote invocations?
+
+Use this scenario to enable Java RMI remoting to get additional 'Hot Deals' whenever searches are performed. Use the Remoting Dashlet to get an overview of the remoting usage in your application.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization"/>
+<procedure id="business backend">
+<setting name="HotDealServerRMI" type="plugin" value="on"/>
+<setting name="HotDealClientRMI" type="plugin" value="on"/>
+</procedure>
+<procedure id="payment backend"/>
+<procedure id="customer frontend"/>
+<procedure id="b2b frontend"/>
+</scenario>
+<scenario compatibility="Both" enabled="true" title="DC-RUM">
+<description>You want to integrate dynaTrace with a DC-RUM appliance and want to know how it works. Using this scenario you can easily emulate a DC-RUM appliance by easyTravel.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization"/>
+<procedure id="business backend">
+<setting name="DCRUMEmulationPlugin" type="plugin" value="on"/>
+</procedure>
+<procedure id="payment backend"/>
+<procedure id="customer frontend"/>
+<procedure id="b2b frontend"/>
+<procedure compatibility="Classic" id="host agent control"/>
+</scenario>
+</group>
+<group title="Test Center">
+<scenario compatibility="Classic" enabled="true" title="Performance Regression">
+<description>Users are complaining about unbearable slowness? Is it a real problem or just their network connection. Is it making you feel comfortable to rely on users calling you instead of heading off to visit some other site?
+
+Enable some performance problems in different areas here which shows how dynaTrace can visualize slow transactions before the user even knows it.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization"/>
+<procedure id="business backend">
+<setting name="DBSpamming" type="plugin" value="on"/>
+</procedure>
+<procedure id="payment backend"/>
+<procedure id="customer frontend"/>
+<procedure id="b2b frontend"/>
+</scenario>
+<scenario compatibility="Classic" enabled="true" title="Running out of Memory">
+<description>Your application is slowly using more and more memory and nobody can figure out? Your only remedy is to restart the application with downtime and user complaints following en-suite?
+
+This scenario causes a small memory leak in the business backend application and allows to show how dynaTrace can track memory usage over time and how the sophisticated compare functionality allows to drill down to the root cause quickly.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization"/>
+<procedure id="business backend">
+<setting name="SmallMemoryLeak" type="plugin" value="on"/>
+</procedure>
+<procedure id="payment backend"/>
+<procedure id="customer frontend"/>
+<procedure id="b2b frontend"/>
+</scenario>
+<scenario compatibility="Classic" enabled="true" title="Increasing Load">
+<description>In your work as QA manager, you get questions like 'How much load can we put onto the system? Can you give us numbers?'. How do you find out where scalability reaches its limit and throughput actually decreases if you further increase the load?
+
+See how your servers cope with an increasing number of visits. This scenario will ramp up load over time to make the web application busier, until scalability limits are reached. Open the Dashboard 'easyTravel Performance Overview' and the 'Analyze WebRequests' item in Start Center under 'Analyze Performance' and watch and analyze by comparing performance related numbers like throughput, response time and other metrics over time.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization"/>
+<procedure id="business backend">
+<setting name="EnableCaching" type="plugin" value="on"/>
+</procedure>
+<procedure id="payment backend"/>
+<procedure id="customer frontend"/>
+<procedure id="b2b frontend"/>
+</scenario>
+<scenario compatibility="Classic" enabled="false" title="Scalability Flaws">
+<description>When you started everything was fine? Your servers happily coped with the load the few users caused. But with more users things quickly become 'complicated, more transactions, more load. The system seems to be at it's limit, but CPU and I/O are not maxed out? Looks like you have poor scalability in your application. So where do you begin? How do you investigate where scalability is lost?
+
+Run the load tests included in this scenario to investigate the scalability problems of the demo application in dynaTrace.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization"/>
+<procedure id="business backend"/>
+<procedure id="payment backend"/>
+<procedure id="customer frontend"/>
+<procedure id="b2b frontend"/>
+</scenario>
+</group>
+<group title="Development Team">
+<scenario compatibility="Classic" enabled="true" title="Unit/Integration Testing">
+<description>You have unit tests and would like to quickly see how they behave? Overall execution time of the unit test suite decreased significantly, but which actual code change caused it?
+
+See how unit test results and timings are automatically recorded, combined, reported, alerted and aggregated using the Development Team Edition features in dynaTrace.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization"/>
+<procedure id="business backend"/>
+<procedure id="payment backend"/>
+<procedure id="customer frontend"/>
+<procedure id="b2b frontend"/>
+<procedure id="ant">
+<setting name="title" value="JUnit Tests (Ant)"/>
+<setting name="file" value="test/runtest.xml"/>
+<setting name="target" value="runAllWithSession"/>
+<setting name="recurrence" value="1"/>
+<setting name="instrumentation" value="on"/>
+<setting name="fork" value="true"/>
+<setting name="test.report" type="property" value="C:\\Users\\cwpl-rorzecho\\.dynaTrace\\easyTravel 2.0.0\\easyTravel\\tests\\junit"/>
+<setting name="test.build.number" type="property" value="C:\\Users\\cwpl-rorzecho\\.dynaTrace\\easyTravel 2.0.0\\easyTravel\\tests\\junit/build.number"/>
+</procedure>
+</scenario>
+<scenario compatibility="Classic" enabled="true" title="Functional Website Testing">
+<description>You think it too much hassle to do functional testing of your web application? Think again how hard it is to fix issues when users are already hitting the site! Wouldn't it be nice to "know" that the Website will still work after the latest fixes?
+
+This scenario executes a set of functional web tests and shows how dynaTrace will not only alert you on broken tests, but also when tests run slower than expected. Where dynaTrace even learns itself, what "expected" is!</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization"/>
+<procedure id="business backend">
+<setting name="DatabaseCleanup" type="plugin" value="off"/>
+</procedure>
+<procedure id="payment backend"/>
+<procedure id="customer frontend"/>
+<procedure id="b2b frontend"/>
+<procedure id="ant">
+<setting name="title" value="Run WebDriver Tests 10 Times (Ant)-ie"/>
+<setting name="file" value="selenium/runtest.xml"/>
+<setting name="target" value="runAllTests10Times"/>
+<setting name="recurrence" value="1"/>
+<setting name="fork" value="true"/>
+<setting name="test.report" type="property" value="C:\\Users\\cwpl-rorzecho\\.dynaTrace\\easyTravel 2.0.0\\easyTravel\\tests\\selenium"/>
+<setting name="webdriver.browser.default" type="property" value="ie"/>
+<setting name="enabled" value="on"/>
+</procedure>
+<procedure id="ant">
+<setting name="title" value="Run WebDriver Tests 10 Times (Ant)-ff"/>
+<setting name="file" value="selenium/runtest.xml"/>
+<setting name="target" value="runAllTests10Times"/>
+<setting name="recurrence" value="1"/>
+<setting name="fork" value="true"/>
+<setting name="test.report" type="property" value="C:\\Users\\cwpl-rorzecho\\.dynaTrace\\easyTravel 2.0.0\\easyTravel\\tests\\selenium"/>
+<setting name="webdriver.browser.default" type="property" value="ff"/>
+<setting name="enabled" value="off"/>
+</procedure>
+</scenario>
+<scenario compatibility="Classic" enabled="true" title="Load Test Recording">
+<description>Do you record your application performance while handling a certain load? Can you predict the behavior of your system when deploying to the production environment? A diary to look-up your progress on scalability can be priceless when your task is to give a comprehensive report about scalability progress.
+
+Make sure "Continuous transaction storage" is turned off in the dT-Server settings (chapter "Storage"). Session recording is started/stopped as part of the scenario here.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization"/>
+<procedure id="business backend">
+<setting name="EnableCaching" type="plugin" value="on"/>
+</procedure>
+<procedure id="payment backend"/>
+<procedure id="customer frontend"/>
+<procedure id="b2b frontend"/>
+<procedure id="ant">
+<setting name="title" value="Load Testing Helper"/>
+<setting name="target" value="StartDummyJUnit"/>
+<setting name="file" value="test/runtest.xml"/>
+<setting name="recurrence" value="1"/>
+<setting name="instrumentation" value="on"/>
+<setting name="fork" value="true"/>
+<setting name="test.report" type="property" value="C:\\Users\\cwpl-rorzecho\\.dynaTrace\\easyTravel 2.0.0\\easyTravel\\tests\\junit"/>
+</procedure>
+<setting name="file" value="test/runtest.xml"/>
+</scenario>
+<scenario compatibility="Classic" enabled="true" title="Who broke the build?">
+<description>How does your development team handle the blame-game? Tests are failing, but how do you find out for sure where to look and who to talk to?
+
+Run this scenario to see how dynaTrace can collect various attributes related to test runs and thus will allow you to see, which change by whom is to blame.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization"/>
+<procedure id="business backend">
+<setting name="DBSpamming" type="plugin" value="on"/>
+<setting name="WPOPagePlugin" type="plugin" value="on"/>
+<setting name="DatabaseCleanup" type="plugin" value="off"/>
+</procedure>
+<procedure id="payment backend"/>
+<procedure id="customer frontend"/>
+<procedure id="b2b frontend"/>
+<procedure id="ant">
+<setting name="title" value="Run WebDriver Tests (Ant)-ie"/>
+<setting name="file" value="selenium/runtest.xml"/>
+<setting name="target" value="runAllTestsOnce"/>
+<setting name="recurrence" value="1"/>
+<setting name="fork" value="true"/>
+<setting name="test.report" type="property" value="C:\\Users\\cwpl-rorzecho\\.dynaTrace\\easyTravel 2.0.0\\easyTravel\\tests\\selenium"/>
+<setting name="webdriver.browser.default" type="property" value="ie"/>
+<setting name="enabled" value="on"/>
+</procedure>
+<procedure id="ant">
+<setting name="title" value="Run WebDriver Tests (Ant)-ff"/>
+<setting name="file" value="selenium/runtest.xml"/>
+<setting name="target" value="runAllTestsOnce"/>
+<setting name="recurrence" value="1"/>
+<setting name="fork" value="true"/>
+<setting name="test.report" type="property" value="C:\\Users\\cwpl-rorzecho\\.dynaTrace\\easyTravel 2.0.0\\easyTravel\\tests\\selenium"/>
+<setting name="webdriver.browser.default" type="property" value="ff"/>
+<setting name="enabled" value="off"/>
+</procedure>
+</scenario>
+<scenario compatibility="Classic" enabled="true" title="Performance Regression">
+<description>You did a hard days work to get the release done. Now it only needs to pass some final tests before shipping and earning money can begin. But wait, the performance test shows a big drop in transaction throughput, how can that be? And why didn't we see that earlier?
+
+Use this scenario to see how dynaTrace helps you to run performance tests regularly and how to monitor their execution time automatically to inform you about degradations as soon as they are introduced.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="credit card authorization"/>
+<procedure id="business backend">
+<setting name="DBSpamming" type="plugin" value="on"/>
+</procedure>
+<procedure id="payment backend"/>
+<procedure id="customer frontend"/>
+<procedure id="b2b frontend"/>
+</scenario>
+</group>
+<group title="Mainframe">
+<scenario compatibility="Classic" enabled="true" title="Credit Card Verification via WebSphere MQ">
+<description>This scenario uses Websphere MQ for credit card verification. This can either be handled by using a WebSphere MessageBroker message flow or a CICS transaction server.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="business backend">
+<setting name="WSMQNativeApplication" type="plugin" value="on"/>
+<setting name="DummyPaymentService" type="plugin" value="on"/>
+<setting name="NamedPipeNativeApplication" type="plugin" value="off"/>
+<setting name="SocketNativeApplication" type="plugin" value="off"/>
+<setting name="DotNetPaymentService" type="plugin" value="off"/>
+<setting name="DatabaseCleanup" type="plugin" value="off"/>
+</procedure>
+<procedure id="customer frontend"/>
+</scenario>
+<scenario compatibility="Classic" enabled="true" title="Credit Card Verification via CICS Transaction Gateway">
+<description>This scenario uses CTG for credit card verification. CTG is used to send a request to a CICS transaction server.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="business backend">
+<setting name="CTGNativeApplication" type="plugin" value="on"/>
+<setting name="DummyPaymentService" type="plugin" value="on"/>
+<setting name="NamedPipeNativeApplication" type="plugin" value="off"/>
+<setting name="SocketNativeApplication" type="plugin" value="off"/>
+<setting name="DotNetPaymentService" type="plugin" value="off"/>
+<setting name="DatabaseCleanup" type="plugin" value="off"/>
+</procedure>
+<procedure id="customer frontend"/>
+</scenario>
+<scenario compatibility="Classic" enabled="true" title="Credit Card Verification via IMS">
+<description>This scenario uses IMS for credit card verification. The request is sent using the IBM IMS TM Resource Adapter.</description>
+<procedure id="inprocess DBMS"/>
+<procedure id="database content creator"/>
+<procedure id="business backend">
+<setting name="IMSNativeApplication" type="plugin" value="on"/>
+<setting name="DummyPaymentService" type="plugin" value="on"/>
+<setting name="NamedPipeNativeApplication" type="plugin" value="off"/>
+<setting name="SocketNativeApplication" type="plugin" value="off"/>
+<setting name="DotNetPaymentService" type="plugin" value="off"/>
+<setting name="DatabaseCleanup" type="plugin" value="off"/>
+</procedure>
+<procedure id="customer frontend"/>
+</scenario>
+</group>
+</configuration>

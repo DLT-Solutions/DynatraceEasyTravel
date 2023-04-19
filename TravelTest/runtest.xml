@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Tests that are executed to show CI as part of easyTravel demo application" default="all">
+	<description>
+		Tests that are executed to show CI as part of easyTravel demo application
+	</description>
+
+	<property file="./build.properties" />
+	<property name="dir.build" value="build/ant"/>
+
+    <!-- set this here or via system properties when starting ant!
+    Sample content:
+	-agentpath:C:\Program Files (x86)\dynaTrace\dynaTrace 4.0.0\agent\lib\dtagent.dll=name=Ant_easyTravel,server=localhost,wait=5
+	-->
+	<property name="dtagent" value="" />
+
+	<condition property="report" value="${test.report}" else="report">
+		<isset property="test.report" />
+	</condition>
+
+	<!-- all lib jars needed by this project -->
+	<path id="required.libs">
+		<pathelement location="../lib/*"/>
+	</path>
+
+	<!-- all project jars needed by this project -->
+	<path id="required.projects">
+		<fileset dir="..">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="../plugins-frontend"> <!--also include the frontend plugins -->
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="../plugins-backend"> <!--also include the frontend plugins -->
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="../plugins-shared"> <!--also include the shared plugins -->
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	<path id="path.additional">
+		<path location="../resources" />
+	</path>
+
+	<dirname property="dir.buildnumber" file="${test.build.number}"/>
+
+	<!-- Setting defaults for Test Automation -->
+	<property name="dtVersionMajor" value="2" />
+	<property name="dtVersionMinor" value="3" />
+	<property name="dtVersionRevision" value="0" />
+	<property name="dtVersionMilestone" value="Milestone 2" />
+
+	<tstamp>
+		<format property="NOW_SEC" pattern="yyMMddHHmmss"/>
+	</tstamp>
+
+	<property name="dtAgentGroup" value="Test" />
+	<property name="dtTestCategory" value="unit" />
+	<!-- <property name="dtPlatform" value="Windows" /> -->
+
+	<property name="dynatrace.profile" value="easyTravel" />
+	<property name="dynatrace.server.proto" value="http" />
+	<property name="dynatrace.server.url" value="${dynatrace.server.proto}://${dynatrace.server.name}:${dynatrace.server.port}" />
+	<property name="dtProfile" value="${dynatrace.profile}" />
+	<property name="customerFrontendHost" value="localhost" />
+	<property name="customerFrontendPort" value="8080" />
+	<property name="paymentBackendHost" value="localhost" />
+	<property name="paymentBackendPort" value="9001" />
+
+    <!-- Import the dynaTrace Automation Tasks -->
+	<property name="dtBaseDir" value="../lib/dynaTrace" />
+	<import file="${dtBaseDir}/dtTaskDefs.xml"/>
+
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+	  <classpath>
+	    <pathelement location="../lib/ant-contrib-0.6.jar"/>
+	  </classpath>
+	</taskdef>
+
+	<!-- =================================
+          target: buildLibrary
+         ================================= -->
+	<target name="all" depends="init, test" description="Run tests">
+		<echo>Done</echo>
+	</target>
+
+	<!-- Prepares the test environment, runs the tests and creates a report -->
+	<target name="runAllWithSession" depends="init,StartRecording,UnitTestNoFail,PerfTestNoFail,StopRecording">
+	</target>
+	<target name="runAllWithoutSession" depends="init,UnitTestNoFail,PerfTestNoFail">
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+	          target: init
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="init">
+		<echo message="Calling dynaTrace REST services at ${dynatrace.server.url}, using system profile ${dynatrace.profile}" />
+		<echo message="Customer Frontend at ${customerFrontendHost}:${customerFrontendPort}" />
+		<echo message="Payment Backend at ${paymentBackendHost}:${paymentBackendPort}" />
+
+		<mkdir dir="${dir.buildnumber}"/>
+		<buildnumber file="${test.build.number}"/>
+		<echo message="Using buildnumber: ${build.number}, stored in file: ${test.build.number}"/>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+	          target: clean
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clean" depends="" description="clean up">
+		<delete dir="report" />
+	</target>
+
+	<!-- Run all UNIT TESTS - use SetTestInformation to demo the "traditional" way of CI Integration
+	    Run the tests, but don't fail here in order to do other steps above
+		we can fail later on the properties test.error and test.failure, see target "test" -->
+	<target name="UnitTestNoFail" depends="init">
+		<mkdir dir="${report}"/>
+
+		<!--  DtStartTest - add parameter "platform="${dtPlatform}"" id needed-->
+		<DtStartTest
+		  versionMajor="${dtVersionMajor}"
+		  versionMinor="${dtVersionMinor}"
+		  versionRevision="${dtVersionRevision}"
+		  versionMilestone="${dtVersionMilestone}"
+		  versionBuild="${build.number}"
+		  marker="integrationMarker"
+		  profilename="${dynatrace.profile}"
+		  username="${dynatrace.server.user}" password="${dynatrace.server.pass}" serverurl="${dynatrace.server.url}"
+		  category="unit" testrunname="TestRun1" >
+		  <customproperty key="testset" value="alltests" />
+		  <customproperty key="subversion_id" value="${NOW_SEC}" />
+		  <customproperty key="committer" value="hans, peter, martin" />
+		</DtStartTest>
+
+		<echo message="Set Test Information  for profile '${dynatrace.profile}' with subversion_id: ${NOW_SEC} with testrunID ''${dtTestrunID}''" />
+
+		<junit printsummary="on"
+			errorproperty="test.error"
+			failureproperty="test.failure"
+			timeout="60000"
+			showoutput="on"
+			outputtoformatters="on"
+			fork="on"
+			tempdir="${user.home}/.dynaTrace/easyTravel 2.0.0/easyTravel/tmp"
+			>
+			<jvmarg value="${dtagent},optionTestRunIdJava=${dtTestrunID}"/>
+			<syspropertyset>
+				<propertyref prefix="dynatrace.server" />
+			</syspropertyset>
+			<sysproperty key="customerFrontendHost" value="${customerFrontendHost}" />
+			<sysproperty key="customerFrontendPort" value="${customerFrontendPort}" />
+			<sysproperty key="b2bFrontendHost" value="${b2bFrontendHost}" />
+			<sysproperty key="b2bFrontendPort" value="${b2bFrontendPort}" />
+
+			<!-- don't overwrite files in the config-directory here while running tests! -->
+			<sysproperty key="com.dynatrace.easytravel.home.dir.correction" value="easyTravelTest"/>
+
+			<assertions/>
+			<formatter type="xml" />
+			<batchtest todir="${report}">
+				<fileset dir="${dir.build}">
+					<include name="**/*Test.class"/>
+					<exclude name="**/JourneyUpdateTest.class"/>
+					<exclude name="**/jpa/*Test.class"/>
+					<exclude name="**/html/*Test.class"/>
+					<exclude name="**/spring/*Test.class"/>
+					<exclude name="**/DtVersionDetectorTest.class"/>
+					<exclude name="**/DtSSLHelperTest.class"/>
+				</fileset>
+			</batchtest>
+			<classpath>
+				<path refid="required.libs" />
+				<path refid="required.projects" />
+				<path refid="path.additional" />
+
+				<path location="${dir.build}" />
+			</classpath>
+		</junit>
+
+		<junitreport todir="${report}">
+			<fileset dir="${report}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="${report}" />
+		</junitreport>
+
+		<echo message="JUnit Test Results ${report}\index.html" />
+
+		<!-- <DtEndTest testrunID="${dtTestrunID}" debug="true" /> -->
+	</target>
+
+	<!-- Run all PERFORMANCE-UNIT TESTS - use Start and EndTest instead of SetTestInformation - also requires us to pass the Test Run Id to the JUnit Process
+	    Run the tests, but don't fail here in order to do other steps above
+		we can fail later on the properties test.error and test.failure, see target "test" -->
+	<target name="PerfTestNoFail" depends="init">
+		<mkdir dir="${report}"/>
+
+		<!--  We start a new Testrun in dynaTrace and use the TestRunId to tag the tests executed by JUnit
+		 - add parameter "platform="${dtPlatform}"" if needed to override default behavior of platform detection by agent -->
+		<DtStartTest versionMajor="${dtVersionMajor}"
+		  versionMinor="${dtVersionMinor}"
+		  versionRevision="${dtVersionRevision}"
+		  versionMilestone="${dtVersionMilestone}"
+		  versionBuild="${build.number}"
+		  marker="integrationMarker"
+		  profilename="${dynatrace.profile}"
+		  username="${dynatrace.server.user}" password="${dynatrace.server.pass}" serverurl="${dynatrace.server.url}"
+		  category="performance" testrunname="PerfTests${build.number}" debug="true">
+		  <customproperty key="testset" value="alltests" />
+		  <customproperty key="subversion_id" value="${NOW_SEC}" />
+		  <customproperty key="committer" value="hans, peter, martin" />
+		</DtStartTest>
+		<echo message="Started new Test in dynaTrace with testId: ${dtTestrunID}" />
+
+		<junit printsummary="on"
+			errorproperty="test.error"
+			failureproperty="test.failure"
+			timeout="60000"
+			showoutput="on"
+			outputtoformatters="on"
+			fork="on"
+			tempdir="${user.home}/.dynaTrace/easyTravel 2.0.0/easyTravel/tmp"
+			>
+			<jvmarg value="${dtagent},optionTestRunIdJava=${dtTestrunID}"/>
+			<syspropertyset>
+				<propertyref prefix="dynatrace.server" />
+			</syspropertyset>
+			<sysproperty key="customerFrontendHost" value="${customerFrontendHost}" />
+			<sysproperty key="customerFrontendPort" value="${customerFrontendPort}" />
+			<sysproperty key="b2bFrontendHost" value="${b2bFrontendHost}" />
+			<sysproperty key="b2bFrontendPort" value="${b2bFrontendPort}" />
+
+			<!-- don't overwrite files in the config-directory here while running tests! -->
+			<sysproperty key="com.dynatrace.easytravel.home.dir.correction" value="easyTravelTest"/>
+
+			<assertions/>
+			<formatter type="xml" />
+			<batchtest todir="${report}">
+				<fileset dir="${dir.build}">
+					<include name="**/JourneyUpdateTest.class"/>
+					<include name="**/jpa/*Test.class"/>
+					<include name="**/spring/*Test.class"/>
+					<exclude name="**/*Plugin*.class"/>
+					<exclude name="**/html/*Test.class"/>
+					<exclude name="**/database/*Test.class"/>
+					<exclude name="**/DtVersionDetectorTest.class"/>
+					<exclude name="**/DtSSLHelperTest.class"/>
+				</fileset>
+			</batchtest>
+			<classpath>
+				<path refid="required.libs" />
+				<path refid="required.projects" />
+				<path refid="path.additional" />
+
+				<path location="${dir.build}" />
+			</classpath>
+		</junit>
+
+		<junitreport todir="${report}">
+			<fileset dir="${report}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="${report}" />
+		</junitreport>
+
+		<echo message="JUnit Test Results ${report}\index.html" />
+
+	</target>
+
+
+	<!-- - - - - - - - - - - - - - - - - -
+          target: test
+         - - - - - - - - - - - - - - - - - -->
+	<target name="test" depends="init,UnitTestNoFail,PerfTestNoFail" description="Execute tests and create test report.">
+
+		<fail if="test.error" message="Error in unit tests"/>
+		<fail if="test.failure" message="Failure in unit tests"/>
+	</target>
+
+
+	<!-- Retrieves the number of Connected Agents
+		Then queries the agent information for the first connected agent and the first CustomerFrontend agent
+		The requested information is stored in Ant Properties that can later be used by other tasks, e.g.: DtMemoryDump to identify the agent
+	 -->
+	<target name="GetAgentInfo">
+		<DtGetAgentInfo agentCountProperty="AgentCount" />
+		<echo message="Connected Agents: ${AgentCount}"></echo>
+
+		<DtGetAgentInfo agentNameProperty="AgentName" agentHostNameProperty="AgentHost" agentProcessIdProperty="AgentProcessId" infoForAgentByIndex="0" />
+		<echo message="First Agent: ${AgentName} - ${AgentHost} - ${AgentProcessId}"></echo>
+
+		<DtGetAgentInfo agentNameProperty="AgentName" agentHostNameProperty="AgentHost" agentProcessIdProperty="AgentProcessId" infoForAgentByName="CustomerFrontend_easyTravel" />
+		<echo message="First CustomerFrontend: ${AgentName} - ${AgentHost} - ${AgentProcessId}"></echo>
+	</target>
+
+	<!-- Takes a Memory and Thread Dump from a specific agent
+		We call GetAgentInfo first that retrieves the Agent Information for which the dump gets created
+	-->
+	<target name="TakeMemoryAndThreadDumps" depends="GetAgentInfo" >
+		<DtMemoryDump memoryDumpNameProperty="MemoryDumpName" profileName="easyTravel" agentName="${AgentName}" hostName="${AgentHost}" processId="${AgentProcessId}" />
+		<echo message="Created Memory Dump: ${MemoryDumpName}" />
+
+		<DtThreadDump threadDumpNameProperty="ThreadDumpName" agentName="${AgentName}" hostName="${AgentHost}" processId="${AgentProcessId}" />
+		<echo message="Created Thread Dump: ${ThreadDumpName}" />
+	</target>
+
+	<!-- Start Recording a new dynaTrace Session
+		The actual session name will be stored in the Ant Property "SessionName" which can later be used as input for other tasks, e.g.: ReanalyzeSession
+	-->
+	<target name="StartRecording" depends="init">
+		<trycatch>
+			<try>
+				<DtStartRecording username="${dynatrace.server.user}"
+				password="${dynatrace.server.pass}"
+				serverurl="${dynatrace.server.url}"
+				profileName="${dynatrace.profile}"
+				sessionNameProperty="SessionName"
+				sessionName="${dynatrace.profile}__UnitTests_Build_${build.number}"
+				sessionDescription="This Session is triggered by an Ant Task"  />
+        		<echo message="Start Recording SessionName: ${SessionName}" level="info" />
+			</try>
+			<catch>
+				<echo message="Could not start session recording. ATTENTION: You can ignore this error message if continuous session recording is activated on the dynaTrace server." level="info"/>
+			</catch>
+		</trycatch>
+	</target>
+
+	<!-- Start Recording a new dynaTrace Session
+		The actual session name will be stored in the Ant Property "SessionName" which can later be used as input for other tasks, e.g.: ReanalyzeSession
+	-->
+	<target name="StartLoadtestRecording">
+		<mkdir dir="${dir.buildnumber}"/>
+		<buildnumber file="${test.build.number}"/>
+
+		<trycatch>
+			<try>
+				<DtStartRecording profileName="${dynatrace.profile}" sessionNameProperty="SessionName" sessionName="${dynatrace.profile}_Loadtest_Build_${build.number}" sessionDescription="This Session is triggered by an Ant Task"  />
+        		<echo message="Start Recording SessionName: ${SessionName}" />
+			</try>
+			<catch>
+				<echo message="Could not start session recording. ATTENTION: You can ignore this error message if continuous session recording is activated on the dynaTrace server." />
+			</catch>
+		</trycatch>
+	</target>
+
+
+	<!-- Starting a dummy Junit test to get an entry for tagged web requests in the TA dashlet.
+		-->
+	<target name="LoadTestTrafficGenerator">
+		<mkdir dir="${report}"/>
+		<echo message="Setting test informations (version: ${dtVersionMajor}.${dtVersionMinor}.${dtVersionRevision}.${build.number} milestone: ${dtVersionMilestone} testrun: ${dtTestRunName})" />
+
+		<trycatch>
+			<try>
+        		<echo message="Starting load test generator" />
+				<!-- pseudo Junit call to get loadtest result -->
+				<junit printsummary="on"
+					errorproperty="test.error"
+					failureproperty="test.failure"
+					timeout="60000"
+					showoutput="on"
+					outputtoformatters="on"
+					fork="on"
+					tempdir="${user.home}/.dynaTrace/easyTravel 2.0.0/easyTravel/tmp"
+					>
+					<jvmarg value="${dtagent}"/>
+					<syspropertyset>
+						<propertyref prefix="dynatrace.server" />
+					</syspropertyset>
+					<sysproperty key="customerFrontendHost" value="${customerFrontendHost}" />
+					<sysproperty key="customerFrontendPort" value="${customerFrontendPort}" />
+					<sysproperty key="b2bFrontendHost" value="${b2bFrontendHost}" />
+					<sysproperty key="b2bFrontendPort" value="${b2bFrontendPort}" />
+
+					<!-- don't overwrite files in the config-directory here while running tests! -->
+					<sysproperty key="com.dynatrace.easytravel.home.dir.correction" value="easyTravelTest"/>
+
+					<formatter type="xml" />
+					<batchtest todir="${report}">
+						<fileset dir="${dir.build}">
+							<include name="**/spring/*Test.class"/>
+						</fileset>
+					</batchtest>
+					<classpath>
+						<path refid="required.libs" />
+						<path refid="required.projects" />
+						<path refid="path.additional" />
+
+						<path location="${dir.build}" />
+					</classpath>
+				</junit>
+			</try>
+			<catch>
+				<echo message="Could not start session recording. ATTENTION: You can ignore this error message if continuous session recording is activated on the dynaTrace server." />
+			</catch>
+		</trycatch>
+	</target>
+
+	<target name="LoadTest" depends="StartLoadtestRecording,LoadTestTrafficGenerator,StopRecording"></target>
+
+	<!-- Stops current recording
+		The actual session name will be stored in the Ant Property "SessionName" which can later be used as input for other tasks, e.g.: ReanalyzeSession
+	-->
+	<target name="StopRecording">
+		<trycatch>
+			<try>
+				<!-- The sleep is in there so that you can manually create some purepaths in the meantime that end up in the session -->
+				<sleep seconds="10"/>
+
+				<DtStopRecording
+				username="${dynatrace.server.user}"
+				password="${dynatrace.server.pass}"
+				serverurl="${dynatrace.server.url}"
+				profileName="${dynatrace.profile}"
+				sessionNameProperty="SessionName" />
+				<echo message="Stopped Recording SessionName: ${SessionName}" />
+			</try>
+			<catch>
+				<echo message="Could not stop session recording. ATTENTION: You can ignore this error message if continuous session recording is activated on the dynaTrace server." />
+			</catch>
+		</trycatch>
+    </target>
+
+	<!-- Stops current recording and also reanalizes the session
+		In this case the System Profile name comes from the global dtProfile Property
+	-->
+	<target name="StopRecordingWithReanalyze">
+		<trycatch>
+			<try>
+				<!-- The sleep is in there so that you can manually create some purepaths in the meantime that end up in the session -->
+				<sleep seconds="10"/>
+
+				<DtStopRecording
+				username="${dynatrace.server.user}"
+				password="${dynatrace.server.pass}"
+				serverurl="${dynatrace.server.url}"
+				doReanalyzeSession="true"
+				reanalyzeStatusProperty="ReanalyzeStatus" />
+				<echo message="Stopped Recording SessionName and reanalized: ${SessionName} - ${ReanalyzeStatus}" />
+			</try>
+			<catch>
+				<echo message="Could not stop session recording. ATTENTION: You can ignore this error message if continuous session recording is activated on the dynaTrace server." />
+			</catch>
+		</trycatch>
+    </target>
+
+	<!-- Reanalyzes a specific dynaTrace Session
+		We use the value stored in the SessionName property which falls set by StopRecording
+	-->
+	<target name="ReanalyzeSession">
+		<DtReanalyzeSession sessionName="${SessionName}" reanalyzeStatusProperty="ReanalyzeStatus" reanalyzeSessionTimeout="60000" reanalyzeSessionPollingInterval="5000" />
+
+		<echo message="Reanalyze finished? ${ReanalyzeStatus}" />
+	</target>
+
+	<!-- Combines the calls to Start/Stop and Reanalyze -->
+	<target name="StartStopRecordingAndReanalyze" depends="StartRecording,StopRecording,ReanalyzeSession" >
+	</target>
+
+	<!-- Combines the calls to Start and StopWithReanalyze -->
+	<target name="StartStopInclReanalyze" depends="StartRecording,StopRecordingWithReanalyze" >
+	</target>
+
+	<target name="DashboardReporting">
+		<!-- Queries a single dashboard and puts the result out to an XML File using XSLT to transform it to HTML -->
+		<!--DtReport dashboardname="Test" source="live:easyTravel" createHtml="true" xmlToFile="./results/report.xml"/-->
+
+		<!-- Creates a dashboard report for every transaction or webrequest that is on the iterator dashborad
+			outputs all files in the report directory
+			an overview page is created to navigate through all result files
+		 -->
+		<!--DtReport dashboardname="RulesDashboard" iteratorDashboard="TransactionDashboard" source="live:easyTravel" createHtml="true" reportDir="./results"/-->
+
+		<!-- Make sure that - when using Business Transactions on the Iterator or Data Dashboard to reanalyze stored sessions before running the report
+		    Either us DtReanalyzeSession or specify the reanalyzeSession="true" property for DtReport
+		-->
+
+		<!-- Generate a normal HTML Report -->
+		<DtReport username="${dynatrace.server.user}" password="${dynatrace.server.pass}" serverurl="${dynatrace.server.url}" dashboardname="easyTravel Browser Summary Reporting" createhtml="true" xmltofile="${test.report}/dynatrace_report.xml" source="stored:${SessionName}" />
+	</target>
+
+</project>

@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Tests for the easyTravel demo application" default="all">
+	<description>
+		Tests for the easyTravel demo application
+	</description>
+
+	<!-- determine platform/window system at runtime -->
+	<condition property="platform.ws" value="cocoa">
+		<os family="mac" />
+	</condition>
+	<condition property="platform.ws" value="win32">
+		<os family="windows" />
+	</condition>
+	<condition property="platform.ws" value="gtk">
+		<os family="unix" />
+	</condition>
+
+	<condition property="platform.os" value="macosx">
+		<os family="mac" />
+	</condition>
+	<condition property="platform.os" value="win32">
+		<os family="windows" />
+	</condition>
+	<condition property="platform.os" value="linux">
+		<os family="unix" />
+	</condition>
+
+	<condition property="platform.arch" value="x86">
+		<not>
+			<or>
+				<os arch="x86_64"/>
+				<os arch="amd64"/>
+				<os arch="ia64"/>
+			</or>
+		</not>
+	</condition>
+	<condition property="platform.arch" value="x86_64">
+		<or>
+			<os arch="x86_64"/>
+			<os arch="amd64"/>
+			<os arch="ia64"/>
+		</or>
+	</condition>
+
+	<condition property="is.windows" value="true">
+		<os family="windows" />
+	</condition>
+
+	<echo message="Detected OS: ${platform.os}, Window-System: ${platform.ws} and Arch: ${platform.arch}, running on ${os.name} as ${user.name} home is at ${user.home}, running ant ${ant.version} from ${ant.home}, running Java ${ant.java.version} from ${java.home}"/>
+
+	<import file="../Distribution/ant-includes.xml"/>
+
+	<property name="dir.test.deploy" location="${dir.dist}/test"/>
+
+	<condition property="report" value="${junitHtmlReportDir}" else="report">
+		<isset property="junitHtmlReportDir" />
+	</condition>
+	<condition property="integrationReport" value="${integrationHtmlReportDir}" else="integrationReport">
+		<isset property="integrationHtmlReportDir" />
+	</condition>
+
+	<!-- packages that we want to exclude from coverage-instrumentation to minimize effect of coverage testing -->
+	<property name="jacoco.excludes" value="org.*:junit.*:net.sf.*:net.sourceforge.*:com.dumbster.*:com.codahale.*:com.dynatrace.diagnostics.automation.*:javax.*:sun.*:serp.*:$Proxy*:$java.lang.*:com.steadystate.*:com.gargoylesoftware.*:antlr.*:com.sun.*:com.ibm.*:oracle.*:com.mysql.*:javassist.*:edu.*:com.icesoft.*:schemaorg_apache_xmlbeans.*:com.dynatrace.webautomation.*:com.yahooo.*:*$$EnhancerByMockitoWithCGLIB$$*:*$$_javassist_*:com.dynatrace.installer.*:com.dynatrace.util.*:com.google.common.*:me.prettyprint.cassandra.*:*EnhancerByCGLIB*"/>
+	<property name="code.coverage.file" value="../TravelTest/jacoco"/>
+
+	<!-- all lib jars needed by this project -->
+	<path id="required.libs">
+		<path refid="lib.commons" />
+		<path refid="lib.guava" />
+		<path refid="lib.tomcat" />
+		<path refid="lib.tomcat.jdbc" />
+		<path refid="lib.spring" />
+		<path refid="lib.axis2" />
+		<path refid="lib.jaxb" />
+		<path refid="lib.hibernate" />
+		<path refid="lib.hamcrest" />
+		<path refid="lib.junit" />
+		<path refid="lib.htmlunit" />
+		<path refid="lib.jersey" />
+		<path refid="lib.adk" />
+		<path refid="lib.rap" />
+		<path refid="lib.easymock" />
+		<path refid="lib.icefaces" />
+		<path refid="lib.jsf-api" />
+		<path refid="lib.hazelcast" />
+		<path refid="lib.mockito" />
+		<path refid="lib.gson" />
+		<path refid="lib.lightcouch" />
+		<path refid="lib.artemis" />
+		<path refid="lib.netty" />
+		<path refid="lib.ctg" />
+		<path refid="lib.selenium" />
+		<path refid="lib.cassandra" />
+		<path refid="lib.quartz" />
+		<path refid="lib.metrics" />
+	</path>
+
+	<path id="buildonly.libs">
+		<path refid="lib.wsmq" />
+	</path>
+
+	<!-- all project jars needed by this project -->
+	<path id="required.projects">
+		<fileset dir="${dir.dist}">
+			<!-- include all jar-files as they all contain code that should be unit tested -->
+			<include name="*.jar"/>
+
+			<!-- include all plugins here to avoid having to add each new one that we use in tests -->
+			<include name="plugins-backend/*"/>
+			<include name="plugins-frontend/*"/>
+			<include name="plugins-shared/*"/>
+
+			<!-- some integration tests use the code of the Selenium tests -->
+			<include name="selenium/*.jar"/>
+			<exclude name="selenium/*-srcs.jar"/>
+		</fileset>
+		<path location="${dir.dist}/customer/webapp/WEB-INF/classes"/>
+	</path>
+
+	<path id="lib.jacoco">
+		<fileset dir="../ThirdPartyLibraries/JaCoCo">
+			<include name="org.jacoco*.jar" />
+			<include name="asm*.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.test">
+		<path refid="required.libs" />
+		<path refid="required.projects" />
+		
+		<!-- specify normal SWT library here manually as last item in order
+			to avoid getting other swt-flavours in via lib/swt.jar or lib/*rwt*.jar -->
+		<path refid="lib.swt" />
+		<path location="${dir.build}" />
+	</path>
+	<!-- =================================
+          target: buildLibrary
+         ================================= -->
+	<target name="all" depends="init, compile, packageStopAllProcedures, test" description="Build and run tests">
+		<echo>Done</echo>
+	</target>
+
+	<target name="build" depends="init, compile, packageStopAllProcedures" description="Build only">
+		<echo>Done</echo>
+	</target>
+
+	<target name="init.windows" if="is.windows">
+		<property name="platformtestexcludes" value="SocketNativeApplicationIntegrationTest"/>
+	</target>
+
+	<target name="init.unix" unless="is.windows">
+		<property name="platformtestexcludes" value="NoTestIsExcludedHere"/>
+	</target>
+
+
+	<!-- - - - - - - - - - - - - - - - - -
+	          target: init
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="init" depends="init.windows,init.unix">
+		<mkdir dir="${dir.build}" />
+		<mkdir dir="${dir.dist}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+	          target: clean
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clean" depends="" description="clean up">
+		<delete dir="build" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+          target: compile
+         - - - - - - - - - - - - - - - - - -->
+	<target name="compile" depends="init">
+		<echo>Compile unit tests</echo>
+
+		<!-- compile plugins where we compile unit test against -->
+		<ant dir="../com.dynatrace.easytravel.plugin.DatabaseAccessExceedPool" inheritAll="false" />
+		<ant dir="../com.dynatrace.easytravel.plugin.DatabaseAccessFromFrontend" inheritAll="false" />
+		<ant dir="../com.dynatrace.easytravel.plugin.DatabaseAccessPoolContention" inheritAll="false" />
+		<ant dir="../com.dynatrace.easytravel.plugin.DatabaseReducePoolSize" inheritAll="false" />
+		<ant dir="../com.dynatrace.easytravel.plugin.DatabaseCleanup" inheritAll="false" />
+		<ant dir="../com.dynatrace.easytravel.plugin.DotNetPaymentService" inheritAll="false" />
+		<ant dir="../com.dynatrace.easytravel.plugin.LargeMemoryLeak" inheritAll="false" />
+		<ant dir="../com.dynatrace.easytravel.plugin.SlowUserLogin" inheritAll="false" />
+		<ant dir="../com.dynatrace.easytravel.plugin.SlowAuthentication" inheritAll="false" />
+		<ant dir="../com.dynatrace.easytravel.plugin.TravellersHttp500" inheritAll="false" />
+		<ant dir="../com.dynatrace.easytravel.plugin.DBSpamming" inheritAll="false" />
+		<ant dir="../com.dynatrace.easytravel.plugin.WarDeployment" inheritAll="false" />
+		<ant dir="../com.dynatrace.easytravel.plugin.WPOPagePlugin" inheritAll="false" />
+        <ant dir="../com.dynatrace.easytravel.plugin.SlowApacheWebserver" inheritAll="false" />
+        <ant dir="../com.dynatrace.easytravel.plugin.NamedPipeNativeApplication" inheritAll="false" />
+        <ant dir="../com.dynatrace.easytravel.plugin.SocketNativeApplication" inheritAll="false" />
+        <ant dir="../com.dynatrace.easytravel.plugin.HostEmulation" inheritAll="false" />
+
+		<!-- compile additional features -->
+		<ant dir="../SeleniumTest" inheritAll="false" />
+
+		<!-- include test-sources from plugins -->
+		<javac source="1.8" target="1.8" deprecation="no" nowarn="${compiler.nowarn}" destdir="${dir.build}" debug="true">
+			<src location="../com.dynatrace.easytravel.plugin.NamedPipeNativeApplication/testsrc"/>
+			<classpath>
+				<path refid="required.libs" />
+				<path refid="buildonly.libs" />
+				<path refid="required.projects" />
+			</classpath>
+		</javac>
+		<javac source="1.8" target="1.8" deprecation="no" nowarn="${compiler.nowarn}" destdir="${dir.build}" debug="true">
+			<src location="../com.dynatrace.easytravel.plugin.SocketNativeApplication/testsrc"/>
+			<classpath>
+				<path refid="required.libs" />
+				<path refid="buildonly.libs" />
+				<path refid="required.projects" />
+			</classpath>
+		</javac>
+		<javac source="1.8" target="1.8" deprecation="no" nowarn="${compiler.nowarn}" destdir="${dir.build}" debug="true">
+			<src location="${dir.src}"/>
+			<classpath>
+				<path refid="required.libs" />
+				<path refid="buildonly.libs" />
+				<path refid="required.projects" />
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+          target: test
+         - - - - - - - - - - - - - - - - - -->
+	<target name="jacocotask" depends="">
+		<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+			<classpath refid="lib.jacoco"/>
+		</taskdef>
+	</target>
+
+	<target name="test" depends="compile,jacocotask" description="Execute tests and create test report." xmlns:jacoco="antlib:org.jacoco.ant">
+		<delete dir="../TravelTest">
+			<include name="*.exec"/>
+		</delete>
+		<delete dir="${report}"/>
+		<mkdir dir="${report}"/>
+
+		<antcall target="runtest"/>
+	</target>
+
+	<target name="cleanTestArea" depends="init">
+		<echo message="Removing files in test-area at ${user.home}/.dynaTrace/easyTravel 2.0.0/easyTravelTest"/>
+		<delete dir="${user.home}/.dynaTrace/easyTravel 2.0.0/easyTravelTest"/>
+		<echo message="Removing files in test-area at ${user.home}/.dynaTrace/easyTravel 2.0.0/easyTravelUnitTest"/>
+		<delete dir="${user.home}/.dynaTrace/easyTravel 2.0.0/easyTravelUnitTest"/>
+	</target>
+
+	<!--  watch -n 10 'grep "<testcase " /workspaces/easyTravel/TravelTest/report/*Test.xml 2> /dev/null | wc' -->
+	<target name="runtest" depends="compile,jacocotask,cleanTestArea" description="Execute tests and create test report." xmlns:jacoco="antlib:org.jacoco.ant">
+		<!-- set this outside when calling Ant in order to run specific tests -->
+		<!--<property name="testpattern" value="SimulatorTest"/> -->
+		<property name="testpattern" value="*Test"/>
+		
+		<echo message="Running unit tests with pattern ${testpattern}"/>
+
+		<jacoco:coverage excludes="${jacoco.excludes}" destfile="${code.coverage.file}.junit.exec">
+			<junit printsummary="withOutAndErr"
+				failureproperty="test.failed"
+				timeout="1800000"
+				showoutput="on"
+				outputtoformatters="on"
+				fork="on"
+				dir="${basedir}"
+				>
+				<assertions/>
+				<!-- use the same Xmx as we use in the applications to make sure that things work with this amount of memory -->
+				<jvmarg value="-Xmx384m"/>
+				
+				<!-- if you need to generate a heap dump on out of memory error, use the line below instead the one above 
+					(https://www.baeldung.com/java-heap-dump-capture) -->
+				<!--<jvmarg line="-Xmx384m -XX:+HeapDumpOnOutOfMemoryError"/>-->
+
+				<!-- jvmarg value="-agentpath:C:\dynatrace\dynaWatchAgent\agent\lib\dtagent.dll=name=easyTravelTests,server=dynata.emea.cpwr.corp,wait=5" /-->
+				<!-- jvmarg value="-agentpath:C:\dynatrace\dynaWatchAgent\agent\downloads\5.5.0.5217\native\windows-x86-32\dtagentcore.dll=name=easyTravelTests,server=dynata.emea.cpwr.corp,wait=5" /-->
+
+				<!-- don't overwrite files in the config-directory here while running tests! -->
+				<sysproperty key="com.dynatrace.easytravel.home.dir.correction" value="easyTravelTest"/>
+
+				<formatter type="xml" />
+				<batchtest todir="${report}">
+					<fileset dir="${dir.build}">
+						<include name="**/${testpattern}.class"/>
+
+						<!-- only work in Integration tests -->
+						<exclude name="**/html/*Test.class"/>
+						<exclude name="**/integration/**/*Test.class"/>
+						<exclude name="**/NamedPipeTest.class"/>
+						<exclude name="**/SocketTest.class"/>
+
+						<!-- exclude things that do not work on this platform -->
+						<exclude name="**/${platformtestexcludes}.class"/>
+					</fileset>
+				</batchtest>
+				<classpath>
+					<path refid="lib.test" />
+				</classpath>
+			</junit>
+		</jacoco:coverage>
+
+		<junitreport todir="${report}">
+			<fileset dir="${report}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="${report}" />
+		</junitreport>
+
+		<echo message="JUnit Test Results ${report}\index.html" />
+
+		<antcall target="testcoveragereport"/>
+
+		<!--  this causes Sonar to fail on buildmaster as port 9000 is always blocked: antcall target="stopAll"/-->
+
+		<failBuildOnlyDevLocalIfTestsFailed failureproperty="${test.failed}" testtype="unit"/>
+	</target>
+
+	<target name="integrationTest" depends="compile,jacocotask,cleanTestArea" description="Run integration tests which start easyTravel" xmlns:jacoco="antlib:org.jacoco.ant">
+		<!--ant dir="../Distribution" inheritAll="false" /-->
+
+		<delete dir="${integrationReport}" includes="*.xml"/>
+		<delete dir="${integrationReport}" includes="**/*.html"/>
+		<delete dir="${integrationReport}" includes="**/*.txt"/>
+		<mkdir dir="${integrationReport}"/>
+
+		<!-- start special set of tests which start up parts of easyTravel and then run integration-style tests -->
+		<jacoco:coverage excludes="${jacoco.excludes}" destfile="${code.coverage.file}.integration.exec">
+			<junit printsummary="on"
+				failureproperty="itest.failed"
+				timeout="10800000"
+				showoutput="on"
+				outputtoformatters="on"
+				fork="on"
+				dir="${basedir}"
+				>
+				<assertions/>
+
+				<!-- use the same Xmx as we use in the applications to make sure that things work with this amount of memory -->
+				<jvmarg value="-Xmx384m"/>
+
+				<!-- pass in jacoco excludes in a system property as well so we can forward it to nested executions of easyTravel Launcher! -->
+				<sysproperty key="jacoco.excludes" value="${jacoco.excludes}"/>
+
+				<!-- don't overwrite files in the config-directory here while running tests! -->
+				<sysproperty key="com.dynatrace.easytravel.home.dir.correction" value="easyTravelTest"/>
+
+				<formatter type="xml" />
+				<batchtest todir="${integrationReport}">
+					<fileset dir="${dir.build}">
+						<include name="**/integration/*Test.class"/>
+
+						<!-- exclude things that do not work on this platform -->
+						<exclude name="**/${platformtestexcludes}.class"/>
+
+						<!-- exclude sub-tests which are executed as part of SpringIntegrationTest -->
+						<exclude name="**/integration/spring/*Test.class"/>
+
+						<exclude name="**/${testexcludepattern}.class"/>
+					</fileset>
+				</batchtest>
+				<classpath>
+					<path refid="lib.test" />
+				</classpath>
+			</junit>
+		</jacoco:coverage>
+
+		<junitreport todir="${integrationReport}">
+			<fileset dir="${integrationReport}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="${integrationReport}" />
+		</junitreport>
+
+		<echo message="Integration Test Results ${integrationReport}\index.html" />
+
+		<antcall target="testcoveragereport"/>
+
+		<antcall target="stopAll"/>
+
+		<failBuildOnlyDevLocalIfTestsFailed failureproperty="${test.failed}" testtype="integration"/>
+	</target>
+
+	<target name="stableIntegrationTest" depends="compile,jacocotask,cleanTestArea" description="Run integration tests which start easyTravel" xmlns:jacoco="antlib:org.jacoco.ant">
+		<!--ant dir="../Distribution" inheritAll="false" /-->
+
+		<delete dir="${integrationReport}" includes="*.xml"/>
+		<delete dir="${integrationReport}" includes="**/*.html"/>
+		<delete dir="${integrationReport}" includes="**/*.txt"/>
+		<mkdir dir="${integrationReport}"/>
+
+		<!-- start special set of tests which start up parts of easyTravel and then run integration-style tests -->
+		<jacoco:coverage excludes="${jacoco.excludes}" destfile="${code.coverage.file}.integration.exec">
+			<junit printsummary="on"
+				failureproperty="itest.failed"
+				timeout="10800000"
+				showoutput="on"
+				outputtoformatters="on"
+				fork="on"
+				dir="${basedir}"
+				>
+				<assertions/>
+
+				<!-- use the same Xmx as we use in the applications to make sure that things work with this amount of memory -->
+				<jvmarg value="-Xmx384m"/>
+
+				<!-- pass in jacoco excludes in a system property as well so we can forward it to nested executions of easyTravel Launcher! -->
+				<sysproperty key="jacoco.excludes" value="${jacoco.excludes}"/>
+
+				<!-- don't overwrite files in the config-directory here while running tests! -->
+				<sysproperty key="com.dynatrace.easytravel.home.dir.correction" value="easyTravelTest"/>
+
+				<formatter type="xml" />
+				<batchtest todir="${integrationReport}">
+					<fileset dir="${dir.build}">
+						<include name="**/integration/*Test.class"/>
+
+						<!-- exclude things that do not work on this platform -->
+						<exclude name="**/${platformtestexcludes}.class"/>
+
+						<!-- exclude sub-tests which are executed as part of SpringIntegrationTest -->
+						<exclude name="**/integration/spring/*Test.class"/>
+
+						<exclude name="**/${testexcludepattern}.class"/>
+
+						<!-- exclude PHP integration test, this only works on Linux now that we removed the Scenario on Windows -->
+						<exclude name="**/PHPIntegrationTest.class"/>
+
+						<!-- exclude any integration test which proved to be unstable for some reason -->
+						<exclude name="**/PluginsIntegrationTest.class"/>
+						<exclude name="**/SeleniumIntegrationTest.class"/>
+						<exclude name="**/WebLauncherIntegrationTest.class"/>	<!-- APM-3612 -->
+						<exclude name="**/BrowserProcedureIntegrationTest.class"/>
+						<exclude name="**/HbaseIntegrationTest.class"/>
+					</fileset>
+				</batchtest>
+				<classpath>
+					<path refid="lib.test" />
+				</classpath>
+			</junit>
+		</jacoco:coverage>
+
+		<junitreport todir="${integrationReport}">
+			<fileset dir="${integrationReport}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="${integrationReport}" />
+		</junitreport>
+
+		<echo message="Integration Test Results ${integrationReport}\index.html" />
+
+		<antcall target="testcoveragereport"/>
+
+		<antcall target="stopAll"/>
+
+		<failBuildOnlyDevLocalIfTestsFailed failureproperty="${test.failed}" testtype="stableIntegration"/>
+	</target>
+
+	<target name="stopAll" depends="packageStopAllProcedures">
+		<!-- Ensure that all procedures and executables are stopped -->
+		<java jar="${stopall.jar.location}" fork="true" maxmemory="20m" failonerror="true"/>
+	</target>
+
+	<target name="testcoveragereport" depends="jacocotask" description="create test-report" xmlns:jacoco="antlib:org.jacoco.ant">
+		<delete dir="coverage"/>
+		<mkdir dir="coverage"/>
+
+		<echo message="Computing coverage report from *.exec files in ../TravelTest"/>
+
+		<jacoco:report>
+	        <executiondata>
+	            <fileset dir="../TravelTest">
+	        		<include name="*.exec"/>
+	            </fileset>
+	        </executiondata>
+
+	        <structure name="easyTravel">
+	            <classfiles>
+	        		<fileset dir="..">
+	        			<!-- here we include all class-files in order to be able to exlcude ones that we do not want to include in coverage testing -->
+	        			<include name="**/build/ant/**/*.class"/>
+
+	        			<!-- exclude test code and generated code -->
+	        			<exclude name="Distribution/dist/test/build/ant/**"/>
+	        			<exclude name="TravelTest/build/ant/**"/>
+	        			<exclude name="AmazonAMIUpdater/build/ant/**"/>
+	        			<exclude name="**/build/ant/schemaorg*/**"/>
+	        			<exclude name="**/build/ant/org/w3c/**"/>
+	        			<exclude name="**/build/ant/org/xmlsoap/**"/>
+	        			<exclude name="tools/installer/**"/>
+	        			<exclude name="**/build/ant/com/dynatrace/easytravel/ims/data/**"/> <!-- generated -->
+	        			<exclude name="commons-demo/build/ant/com/dynatrace/easytravel/json/**"/>	<!-- third party code -->
+	        			<exclude name="prod/**"/> <!-- installer copied in from trunk-classic -->
+	        			<exclude name="HBaseLayer/build/ant/org/apache/hadoop/fs/**"/>	<!-- modified slightly, but not included in coverage measuring -->
+	        		</fileset>
+	        		<!--path location="${dir.dist}/customer/webapp/WEB-INF/classes"/-->
+	            </classfiles>
+	            <sourcefiles encoding="UTF-8">
+					<dirset dir="..">
+						<include name="**/src"/>
+						<exclude name="TravelTest/**"/>
+					</dirset>
+	            </sourcefiles>
+	        </structure>
+
+	        <html destdir="coverage"/>
+			<xml destfile="coverage/coverage.xml"/>
+		</jacoco:report>
+
+		<echo message="Coverage Results coverage\index.html, coverage/coverage.xml, coverage/coverage-emma.xml" />
+	</target>
+
+	<target name="deploy" depends="compile,init,packageStopAllProcedures" description="Package and deploy the tests that we want to deliver to show CI as part of easyTravel">
+		<mkdir dir="${dir.test.deploy}"/>
+
+		<!-- copy some more stuff -->
+		<copy todir="${dir.test.deploy}">
+			<fileset dir=".">
+				<include name="runtest.xml"/>
+				<include name="build.properties"/>
+
+				<!-- Test Helpers -->
+				<include name="${dir.build}/**/database/**"/>
+				<exclude name="${dir.build}/**/database/DatabaseAccessExceedPoolTest.class"/>
+				<exclude name="${dir.build}/**/database/DatabaseAccessFromFrontendTest.class"/>
+				<exclude name="${dir.build}/**/database/DatabaseAccessPoolContentionTest.class"/>
+				<exclude name="${dir.build}/**/database/DatabaseReducePoolSizeTest.class"/>
+				<exclude name="${dir.build}/**/database/DatabaseCleanupTest.class"/>
+				<include name="${dir.build}/**/MiscConstants.class"/>
+
+				<!-- choose some test sources -->
+				<include name="${dir.build}/**/config/**"/>
+				<include name="${dir.build}/**/jpa/**"/>
+				<exclude name="${dir.build}/**/jpa/JpaDatabaseAccessTest*"/>
+				<exclude name="${dir.build}/**/jpa/HibernateCacheTest*"/>
+				<include name="${dir.build}/**/util/**"/>
+				<include name="${dir.build}/**/utils/**"/>
+				<include name="${dir.build}/**/spring/**"/>
+				<include name="${dir.build}/**/plugin/**"/>
+			</fileset>
+		</copy>
+
+		<copyLibToDistribution sourcepath="required.libs" />
+	</target>
+
+	<!-- all lib jars needed by this project -->
+	<path id="stopall.required.libs">
+		<path refid="lib.commons" />
+		<path refid="lib.junit" />
+	</path>
+
+	<!-- all project jars needed by this project -->
+	<path id="stopall.required.projects">
+		<fileset dir="${dir.dist}">
+			<include name="${jar.name.commons}.jar"/>
+			<include name="${jar.name.launcher}.jar"/>
+		</fileset>
+	</path>
+
+	<property name="stopall.jar.name" value="com.dynatrace.easytravel.stopallprocedures" />
+	<property name="stopall.jar.location" location="${dir.dist}/${stopall.jar.name}.jar" />
+
+	<target name="packageStopAllProcedures" depends="compile">
+		<!-- package the StopAll application into a jar-file to make it easy to execute -->
+		<createClasspathAttribute property="classpath" libs="stopall.required.libs" projects="stopall.required.projects" />
+
+		<mkdir dir="${dir.build}/META-INF" />
+		<manifest file="${dir.build}/META-INF/MANIFEST.MF">
+			<attribute name="Built-By" value="${user.name}" />
+			<attribute name="Bundle-Vendor" value="${version.company}" />
+			<attribute name="Bundle-Version" value="${version}" />
+			<attribute name="Implementation-Version" value="${version}" />
+
+			<attribute name="Main-Class" value="com.dynatrace.easytravel.StopAllProcedures" />
+			<attribute name="Class-Path" value="${classpath}" />
+		</manifest>
+
+		<jar jarfile="${stopall.jar.location}" manifest="${dir.build}/META-INF/MANIFEST.MF">
+			<fileset dir="${dir.build}">
+				<include name="**/IntegrationTestBase*.class" />
+				<include name="**/StopAllProcedures*.class" />
+				<include name="**/utils/TestHelpers*.class" />
+			</fileset>
+		</jar>
+
+		<copyLibToDistribution sourcepath="stopall.required.libs" />
+	</target>
+
+</project>

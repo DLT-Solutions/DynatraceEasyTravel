@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/jasper-compiler-5.5.23.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/HBase/server/lib/jasper-runtime-5.5.23.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/annotations-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina-ant.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina-ha.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina-tribes.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/catalina.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/el-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/jasper-el.jar" sourcepath="C:/devtools/apache-tomcat-7.0.6"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/jasper.jar" sourcepath="C:/devtools/sources/apache-tomcat-7.0.6-src.zip"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/jsp-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-coyote.jar" sourcepath="C:/devtools/sources/apache-tomcat-7.0.6-src.zip"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-juli.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-httpclient-3.1.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-lang3-3.3.2.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/commons-demo"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-logging-1.2.jar" sourcepath="/ThirdPartyLibraries/Apache/Commons/src/commons-logging-1.2-sources.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/tomcat-util.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-codec-1.8.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Launcher"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Hibernate/required/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Google/Guava/guava-23.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/jul-to-slf4j-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-classic-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Logging/logback-core-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Commons/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/ecj-4.4.2.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Apache/Tomcat7/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/RAP/org.eclipse.rap.rwt_3.8.1.20190410-1451.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Metrics/metrics-core-4.0.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Metrics/metrics-json-4.0.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Metrics/metrics-servlets-4.0.7.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jackson/jackson-annotations-2.9.0.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jackson/jackson-core-2.9.9.jar"/>
+	<classpathentry kind="lib" path="/ThirdPartyLibraries/Jackson/jackson-databind-2.9.9.3.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

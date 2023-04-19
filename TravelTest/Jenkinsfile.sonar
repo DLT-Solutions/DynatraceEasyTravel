@@ -1,0 +1,102 @@
+#!groovy
+import static com.dynatrace.jci.Utils.cancelQueueItems
+
+/***
+ * Init section
+ */
+
+def versionParts = params.versionET ? params.versionET.tokenize('.') : [2,0,0,999]// Expects x.x.x.ETBuildNumber
+final String buildNumber = versionParts.remove(3)
+
+final String buildVersion = versionParts.join('.') + ".${buildNumber}"
+final String antProperties = " -Dversion.buildnumber=${buildNumber} " +
+        generateProperties("-D%s=%s", versionParts as String[], ["version.major", "version.minor", "version.revision"])
+final String gradleVersionProperties = " -PversionBuildnumber=${buildNumber} -Pversion=${buildVersion} " +
+        generateProperties("-P%s=%s", versionParts as String[], ["versionMajor", "versionMinor", "versionRevision"])
+final String BRANCH_JOB_NAME = "DemoApps/easytravel-sonar/${BRANCH_NAME.replaceAll('/', '%2F')}" // Config path where we trigger pending build cleanup
+
+currentBuild.displayName += " - ${buildVersion}"
+
+// Cancel any previously scheduled jobs as we're executing on schedule
+// with possibly multiple triggers containing different params
+cancelQueueItems(BRANCH_JOB_NAME)
+
+/**
+ * CI script build : build EasyTravel, build Unit Tests, run Sonar analysis
+ */
+pipeline {
+    agent {
+        kubernetes {
+            label "easytravel-sonar"
+            yamlFile '../.ci/docker.yaml'
+            idleMinutes 15
+        }
+    }
+    // Pass the parameters and enable scheduling
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        disableConcurrentBuilds()
+        scheduleBuilds(cron: [spec: "* 23 * * *", userBoost: true])
+    }
+    parameters {
+        string(name: "versionET", defaultValue: '2.0.0.999', description: "ET Version for use in the sonar build\nDefault is 999.")
+        string(name: "runType", defaultValue: 'regular', description: "Used to differentiate trigger types.")
+    }
+    environment {
+        GROUP_ID = 'com.dynatrace.easytravel'
+        JAVA_HOME = "${env.JAVA_HOME_11}"
+        ANT_ARGS = "-autoproxy -verbose"
+        ANT_OPTS = "-Xmx2048m"
+        GRADLE_ARGS = "-i --stacktrace" // --debug"
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                // Clean before build
+                cleanWs()
+                // We need to explicitly checkout from SCM here
+                checkout scm
+
+                sh getAntBuildCommand('all', antProperties)
+                sh getAntBuildCommand('copyAngularFromArtifactorySrc', antProperties)
+                sh getAntBuildCommand('copySourceCode', antProperties)
+            }
+        }
+        stage('Build Unit Tests') {
+            steps {
+                sh getAntBuildCommand('buildTest', antProperties)
+            }
+        }
+        stage('SonarQube') {
+            environment {
+                VERSION = "${version}"
+            }
+            steps {
+                sh getGradleBuildCommand('sonarRunner', gradleVersionProperties)
+            }
+        }
+    }
+    post {
+        failure {
+            emailext(recipientProviders: [culprits()], subject: '$DEFAULT_SUBJECT', mimeType: 'text/html', body: '${SCRIPT, template = "managed:cluster-email.groovy"}', to: 'rafal.psciuk@dynatrace.com')
+        }
+    }
+}
+
+static String getAntBuildCommand(String target, String antProperties) {
+    return '/opt/apache-ant-1.7.1/bin/ant -file Distribution/build.xml ' + target + antProperties
+}
+
+static String getGradleBuildCommand(String target, String versionProperties) {
+    return './TravelTest/gradlew ' + " -b ./TravelTest/build.gradle " + target +
+            versionProperties + ' -i -s'
+}
+static String generateProperties(String template, String[] versionParts, List<String> propertiesNames) {
+    StringBuilder builder = new StringBuilder()
+    for (int i = 0; i < propertiesNames.size(); i++) {
+        builder.append(String.format(template, propertiesNames[i], versionParts[i])).append(" ")
+    }
+    return builder.toString()
+}
+

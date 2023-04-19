@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Invoke sonar-runner" default="sonar" basedir=".">
+	<description>
+		Tests for the easyTravel demo application
+	</description>
+
+	<!-- import required.libs and buildonly.libs -->
+	<import file="build.xml" />
+
+	<path id="sonar.libs">
+		<fileset dir="../ThirdPartyLibraries/Sonar">
+			<include name="sonar-ant-task-2.3.jar" />
+		</fileset>
+	</path>
+	
+	<!-- Add the Sonar task -->
+	<taskdef uri="antlib:org.sonar.ant" resource="org/sonar/ant/antlib.xml">
+		<classpath refid="sonar.libs" />
+	</taskdef>
+
+	<property name="sonar.jdbc.url" value="jdbc:postgresql://sonar-ruxit.dynatrace.vmta/sonar45" />
+	<property name="sonar.jdbc.driverClassName" value="org.postgresql.Driver" />
+	<property name="sonar.jdbc.username" value="sonar" />
+	<property name="sonar.jdbc.password" value="" /> <!-- specify this via properties! -->
+	
+	<property name="sonar.login" value="analysis" />
+	<property name="sonar.password" value="" /> <!-- specify this via properties! -->
+	
+	<property name="sonar.projectKey" value="easyTravel" />
+	<property name="sonar.projectName" value="easyTravel" />
+	<property name="sonar.language" value="java" />
+	<property name="sonar.dynamicAnalysis" value="reuseReports" />
+	<property name="sonar.sourceEncoding" value="UTF-8" />
+	<property name="sonar.projectVersion" value="${version}" />
+
+	<!-- exclude package which contains imported code, we won't fix warnings in there, but should move to a third party lib in the future -->
+	<property name="sonar.exclusions" value="com/dynatrace/easytravel/json/*,com/dynatrace/easytravel/ims/data/*,org/apache/axis2/databinding/utils/*,**/CassandraTestDriver*" />
+
+	<!-- surefire will become junit in some version of Sonar -->
+	<property name="sonar.surefire.reportsPath" value="report" />
+	<property name="sonar.junit.reportsPath" value="report" />
+	<property name="sonar.java.coveragePlugin" value="jacoco" />
+	
+	<!-- see task mergecoverage below for where we create this file -->
+	<property name="sonar.jacoco.reportPath" value="merged.exec" />
+	<!-- integration-tests: property name="sonar.jacoco.itReportPath" value="merged.exec" /-->
+	
+	<!-- use this is Sonar fails after an interrupted analysis:
+	property name="sonar.forceAnalysis" value="true" /-->
+	
+	<property name="sonar.findbugs.timeout" value="1200000" />
+	<property name="sonar.sources" value="build/src.sonar" />
+	<property name="sonar.libraries" value="./../BusinessWebserviceClient/build/generated,./../Distribution/dist/com.dynatrace.easytravel.business.webservice.client.jar" />
+	<property name="sonar.tests" value="./../TravelTest/src,./../TravelTest/build/testsrc.sonar" />
+	
+
+	<property name="sonar.host.url" value="SECRET" />
+
+	<target name="mergecoverage" depends="jacocotask" description="Merge JaCoCo code coverage data into one file" xmlns:jacoco="antlib:org.jacoco.ant">
+		<jacoco:merge destfile="${sonar.jacoco.reportPath}">
+			<fileset dir=".">
+				<include name="*.exec"/>
+			</fileset>
+		</jacoco:merge>
+	</target>
+
+	<!-- Add the target -->
+	<target name="sonar" depends="mergecoverage">
+		<echo message="Running Sonar analysis" />
+
+		<!-- because of http://stackoverflow.com/questions/20455791/empty-analysis-of-projects-after-upgrade-to-sonarqube-4-0 
+			we have to copy sources/testsrc into the TravelTest-directory before invoking the sonar-runner
+		-->
+		<delete dir="build/src.sonar"/>
+		<copy toDir="build/src.sonar">
+			<fileset dir="..">
+				<include name="*/src/**"/>
+
+				<!-- don't include test-sources -->						
+				<exclude name="TravelTest/src/**" />
+                <exclude name="IntrospectionTest/src/**"/>
+				
+				<!-- duplicated sources ? com/dynatrace/easytravel/rmi/RmiConnectionSocket.java -->
+				<exclude name="com.dynatrace.easytravel.plugin.HotDealClient/src/**" />		
+				
+				<!-- uninteresting sources -->				
+				<exclude name="AmazonAMIUpdater/src/**" />
+				<exclude name="Axis2Patch/src/**" />
+				<exclude name="WpBlog/src/**" />
+				<exclude name="SampleFrontend/src/**"/>
+			</fileset>
+		</copy>
+
+		<delete dir="build/testsrc.sonar"/>
+		<copy toDir="build/testsrc.sonar">
+			<fileset dir="..">
+				<include name="*/testsrc/**" />
+				<include name="*/test/**" />
+				
+				<!-- exclude uninteresting tests -->
+				<exclude name="AmazonAMIUpdater/test/**" />
+				<exclude name="Axis2Patch/test/**" />
+			</fileset>
+		</copy>
+
+		<!-- The workDir directory is used by Sonar to store temporary files
+		workDir="."  
+		-->
+		<!-- We tried to update to sonar-ant-task-2.1.jar, but it does not support the sources/libraries settings
+			that we do below, so would require some more changes...
+			 -->
+		<sonar:sonar xmlns:sonar="antlib:org.sonar.ant">
+			
+			<!--<property key="sonar.findbugs.timeout" value="1200000" />-->
+
+			<!-- source directories (required) -->
+			<!--<sources>
+				<path >
+					<dirset dir="build/src.sonar">
+						<include name="*/src" />
+					</dirset>
+				</path>
+			</sources>-->
+
+			<!-- list of properties (optional) -->
+
+			<!-- test source directories (optional) -->
+			<!--<tests>
+				<path>
+					<dirset dir="..">
+						<include name="TravelTest/src" />
+						<include name="TravelTest/build/testsrc.sonar/*/*" />
+					</dirset>
+				</path>
+			</tests>-->
+
+			<!-- binaries directories, which contain for example the compiled Java bytecode (optional) -->
+			<!--<binaries>
+				<path>
+					<dirset dir="..">
+						<include name="*/build/ant" />
+						
+						<exclude name="TravelTest/build/ant" />
+						<exclude name="BusinessEJB/build/ant" />
+						<exclude name="AmazonAMIUpdater/build/ant" />
+						<exclude name="Axis2Patch/build/ant" />
+						<exclude name="SampleFrontend/build/ant" />						
+					</dirset>
+				</path>
+			</binaries>-->
+
+			<!-- path to libraries (optional). These libraries are for example used by the Java Findbugs plugin -->
+			<!--<libraries>
+				<path refid="required.libs" />
+				<path refid="buildonly.libs" />-->
+				
+				<!-- additional things that are referenced somehow -->
+				<!--<path refid="lib.cassandra" />
+				<path refid="lib.hector" />
+				<path refid="lib.mvel" />
+				<path refid="lib.hibernate.ehcache" />
+				<path refid="lib.swt" />
+				<path refid="lib.derby.server" />
+				<path refid="lib.derby.client" />
+				<path refid="lib.ant" />
+				<path refid="lib.mongodb" />
+				<path refid="lib.hbase" />
+				<path refid="lib.vMotion" />
+				<path refid="lib.ims" />-->
+				
+				<!-- include generated code as third-party code to not analyze it for violations/coverage -->
+				<!--<path>
+					<dirset dir="../BusinessWebserviceClient/build/generated"></dirset>
+					<fileset dir="../Distribution/dist/">-->
+					<!-- some classes are only in the resulting jar-file, e.g. org/xmlsoap/schemas/soap/encoding/impl/NCNameImpl.class ?! -->
+			<!--			<include name="com.dynatrace.easytravel.business.webservice.client.jar" />
+					</fileset>
+				</path>
+			</libraries>-->
+		</sonar:sonar>
+	</target>
+</project>

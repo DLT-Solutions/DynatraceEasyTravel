@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd	
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd	
+			http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+
+
+
+
+	<bean id="testDB" class="com.dynatrace.easytravel.persistence.TestDatabase">
+		<constructor-arg>
+			<value>testDb</value>
+		</constructor-arg>
+	</bean>
+
+	<bean id="persistenceBootstrap"
+		class="com.dynatrace.easytravel.persistence.PersistenceBootstrap">
+		<constructor-arg>
+			<ref bean="testDB" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="persistenceAccess" factory-bean="persistenceBootstrap"
+		factory-method="getInitializedDatabase">
+		<constructor-arg index="0" value="0" />
+		<constructor-arg index="1">
+			<util:constant static-field="java.util.concurrent.TimeUnit.SECONDS" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="databaseAccessFactory" class="com.dynatrace.easytravel.persistence.DataAccessFactory" />
+	
+  	<bean id="databaseAccess" factory-bean="databaseAccessFactory" factory-method="newInstance">
+  		<constructor-arg index="0" ref="persistenceAccess"/>
+  	</bean>
+
+  	<bean id="locationCache" class="com.dynatrace.easytravel.business.cache.LocationCache">
+  		<property name="databaseAccess" ref="databaseAccess"/>
+  	</bean>
+
+</beans>

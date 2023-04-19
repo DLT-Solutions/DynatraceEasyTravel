@@ -1,0 +1,24 @@
+{
+  "p.mysql": [
+   {
+    "credentials": {
+     "hostname": "10.0.8.5",
+     "jdbcUrl": "jdbc:mysql://vcaphost/vcapservice",
+     "name": "service_instance_db",
+     "password": "vcappassword",
+     "port": 3306,
+     "uri": "mysql://ec465aa9e12e44aca91f620620d08ddd:clkiasthi4i9wtty@10.0.8.5:3306/service_instance_db?reconnect=true",
+     "username": "vcapusername"
+   },
+    "label": "p.mysql",
+    "name": "easyTravel-Business",
+    "plan": "db-small",
+    "provider": null,
+    "syslog_drain_url": null,
+    "tags": [
+     "mysql"
+    ],
+    "volume_mounts": []
+   }
+  ]
+}

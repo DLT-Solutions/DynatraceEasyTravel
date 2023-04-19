@@ -1,0 +1,74 @@
+Test log
+--------
+Launcher:
+-Dhibernate.cache.use_second_level_cache=false
+-Dhibernate.cache.use_query_cache=false
+
+BookingTestDriver:
+-Dplugin.enable.DummyPaymentService=true
+-Dplugin.enable.DotNetPaymentService=false
+-Dplugin.enable.DummyNativeApplication=true
+-Dplugin.enable.NamedPipeNativeApplication=false
+-Dplugin.enable.NamedPipeNativeApplication.NET=false
+-Dplugin.enable.SimpleMemoryCache=false
+
+threadCount=16
+
+14:30 start
+
+2011-03-07 14:31;6973
+2011-03-07 14:32;6968
+2011-03-07 14:33;7159
+
+TURN ON
+-Dhibernate.cache.use_second_level_cache=true
+
+14:36 start
+
+2011-03-07 14:37;6459
+2011-03-07 14:38;7213
+2011-03-07 14:39;7248
+2011-03-07 14:40;7272
+
+TURN ON
+-Dhibernate.cache.use_query_cache=true
+
+14:45 start
+
+2011-03-07 14:46;6597
+2011-03-07 14:47;7136
+2011-03-07 14:48;7038
+2011-03-07 14:49;7104
+
+TURN ON
+-Dplugin.enable.SimpleMemoryCache=true
+
+14:56 start
+
+2011-03-07 14:56;6903
+2011-03-07 14:57;7170
+2011-03-07 14:58;7214
+2011-03-07 14:59;7010
+2011-03-07 15:00;7180
+
+
+15:04
+
+threadCount=8
+
+2011-03-07 15:05;7211
+2011-03-07 15:06;7362
+2011-03-07 15:07;7326
+
+threadCount=4
+
+15:09
+
+2011-03-07 15:10;6569
+2011-03-07 15:11;6614
+2011-03-07 15:12;6572
+
+
+
+select substr(char(bookingdate),1,16), count(*) from booking
+group by substr(char(bookingdate),1,16)

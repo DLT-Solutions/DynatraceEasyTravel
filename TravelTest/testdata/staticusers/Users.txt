@@ -1,0 +1,3 @@
+james,James Smith,None,james,1
+sato,Yoshida Sato,Silver,sato,1
+aleksandra,Aleksandra Kucharska,Platinum,aleksandra,1
