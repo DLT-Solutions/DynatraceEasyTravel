@@ -1,0 +1,85 @@
+<<<<<<< HEAD
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="ThirdPartyLibs" default="retrieve">
+
+    <!-- Uncomment this to skip updating thirdparty libs
+    <property name="skip_libs_update" value="true"/>    
+     -->
+	
+	<import file="../Distribution/ant-includes.xml" />
+    <property file="../Distribution/publishing/gradle.properties" />
+    
+	<property name="thirdPartyLibsModule" value="dynatrace-easytravel-thirdpartylibs" />
+
+    <target name="retrieve" description="retrieve" unless="skip_libs_update">
+    	<ivy:settings /> <!-- needed so that ivysettings.xml is used-->
+    	<ivy:retrieve organisation="com.dynatrace.easytravel" module="${thirdPartyLibsModule}" revision="${libsDownloadVersion}" inline="true" pattern="${basedir}/[artifact].[ext]"/>
+    	<echo> Unzip dynatrace-easytravel-thirdpartylibs.zip </echo>
+    	<unzip src="${basedir}/${thirdPartyLibsModule}.zip" dest="${basedir}" overwrite="false"/>
+     	<echo> Delete ${basedir}/dynatrace-easytravel-thirdpartylibs.zip" </echo>
+     	<delete file="${basedir}/${thirdPartyLibsModule}.zip"/>
+    </target>
+
+	<target name="clean" unless="skip_libs_update">
+		<delete includeemptydirs="true">
+    		<fileset dir=".">
+    			<exclude name="*.gradle" />
+                <exclude name="*.classpath" />
+                <exclude name="*.pmd" />
+                <exclude name="*.project" />
+                <exclude name=".settings" />
+    			<exclude name="build.xml" />
+    			<exclude name="ivysettings.xml" />
+    			<exclude name="gradle.properties" />
+                <exclude name="WhereAreThirdPartyLibs.txt" />
+                <exclude name="UsedThirdPartyLibraries.xlsx" />
+    		</fileset>
+  		</delete>
+	</target>
+	
+    <target name="cleanIvyCache">
+		<ivy:cleancache />
+	</target>
+
+=======
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="ThirdPartyLibs" default="retrieve">
+
+    <!-- Uncomment this to skip updating thirdparty libs -->
+    <!--property name="skip_libs_update" value="true"/-->    
+
+	
+	<import file="../Distribution/ant-includes.xml" />
+    <property file="../Distribution/publishing/gradle.properties" />
+    
+	<property name="thirdPartyLibsModule" value="dynatrace-easytravel-thirdpartylibs" />
+
+    <target name="retrieve" description="retrieve" unless="skip_libs_update">
+    	<ivy:settings /> <!-- needed so that ivysettings.xml is used-->
+    	<ivy:retrieve organisation="com.dynatrace.easytravel" module="${thirdPartyLibsModule}" revision="${libsDownloadVersion}" inline="true" pattern="${basedir}/[artifact].[ext]"/>
+    	<echo> Unzip dynatrace-easytravel-thirdpartylibs.zip </echo>
+    	<unzip src="${basedir}/${thirdPartyLibsModule}.zip" dest="${basedir}" overwrite="false"/>
+     	<echo> Delete ${basedir}/dynatrace-easytravel-thirdpartylibs.zip" </echo>
+     	<delete file="${basedir}/${thirdPartyLibsModule}.zip"/>
+    </target>
+
+	<target name="clean" unless="skip_libs_update">
+		<delete includeemptydirs="true">
+    		<fileset dir=".">
+    			<exclude name="*.gradle" />
+                <exclude name="*.classpath" />
+                <exclude name="*.pmd" />
+                <exclude name="*.project" />
+                <exclude name=".settings" />
+    			<exclude name="build.xml" />
+    			<exclude name="ivysettings.xml" />
+    			<exclude name="gradle.properties" />
+                <exclude name="WhereAreThirdPartyLibs.txt" />
+                <exclude name="UsedThirdPartyLibraries.xlsx" />
+    		</fileset>
+  		</delete>
+	</target>
+    	
+    <target name="cleanIvyCache">
+		<ivy:cleancache />
+	</target>
+>>>>>>> feature/APM-165507-new-SWT-after-rebase
+</project>
