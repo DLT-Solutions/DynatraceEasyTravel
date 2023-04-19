@@ -1,0 +1,4 @@
+1. Clone SECRET
+2. Checkout main branch
+3. Build by running gradlew jar in public directory (gradlew sourceJar to build sources)
+4. Copy jar files from build/libs to Distribution/openkit in easytravel repo

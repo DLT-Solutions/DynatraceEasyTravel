@@ -1,0 +1,7 @@
+---
+applications:
+- name: easytravel-content-creator
+  path: easyTravel-database-content-creator.jar
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git
+  services:
+    - easyTravel-Business

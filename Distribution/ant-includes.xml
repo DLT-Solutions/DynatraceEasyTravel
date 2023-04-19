@@ -1,0 +1,836 @@
+<project name="ant-includes">
+	<!--  
+	this file defines some properties that are used in all build.xml files 
+	-->
+
+	<property name="dir.thirdparty" value="../ThirdPartyLibraries" />
+
+	<property name="dir.src" value="./src" />
+	<property name="dir.build" value="build/ant" />
+	<property name="dir.projectsroot" value=".." />
+	<property name="dir.dotNET" value="../dotNET" />
+	<property name="dir.root" value="../Distribution" />
+	<property name="dir.commons" value="../commons-demo" />
+	<property name="dir.lib" value="lib" />
+	<property name="dir.resources" value="resources" />
+	<property name="dir.dist" location="${dir.root}/dist" />
+	<property name="dir.dist.src" location="${dir.root}/src" />
+	<property name="dir.dist.lib" location="${dir.dist}/${dir.lib}" />
+	<property name="dir.dist.resources" location="${dir.dist}/${dir.resources}" />
+	<property name="dir.dist.apache" location="${dir.dist}/apache2.4" />
+	<property name="dir.dist.nginx" location="${dir.dist}/nginx" />
+	<property name="dir.dist.couchdb" location="${dir.dist}/couchdb" />
+	<property name="dir.dist.cassandra" location="${dir.dist}/cassandra" />
+	<property name="dir.dist.mongodb" location="${dir.dist}/mongodb" />
+	<property name="dir.dist.hbase" location="${dir.dist}/hbase" />
+	<property name="dir.dist.openssl" location="${dir.dist}/openssl" />
+	<property name="dir.dist.chrome" location="${dir.dist}/chrome" />
+
+	<property name="dir.dist.php" location="${dir.dist}/php" />
+	<property name="dir.dist.mysql" location="${dir.dist}/mysql" />
+	<property name="dir.dist.rating" location="${dir.dist.apache}/htdocs/rating" />
+	<property name="dir.dist.wpblog" location="${dir.dist.apache}/htdocs/blog" />
+
+	<property name="dir.customer" location="../CustomerFrontend" />
+	<property name="dir.customer.apps" location="${dir.customer}/webapp/apps" />
+	<property name="dir.customer.classes" location="${dir.customer}/webapp/WEB-INF/classes" />
+	<property name="dir.customer.rest" location="../CustomerFrontendREST" />
+	<property name="dir.thirdpartycontent.classes" location="../ThirdPartyContentServer/webapp/WEB-INF/classes" />
+	<property name="file.commons.easyTravel.properties" location="${dir.commons}/${dir.resources}/easyTravel.properties" />
+	<property name="file.commons.easyTravel.config.properties" location="${dir.commons}/${dir.resources}/easyTravelConfig.properties" />
+	<property name="file.commons.easyTravel.build.properties" location="${dir.commons}/${dir.resources}/easyTravelBuild.properties" />
+	<property name="jboss.home" value="C:/devtools/jboss-6.0.0.Final" />	
+	<property name="coverage.classpath" value=""/>	<!-- allow to set path to emma or clover via ant-property -->
+	
+	<property name="tomcat.home" location="d:/work/apache-tomcat-7.0.39/" />
+	<property name="tomcat.home.business" value="${tomcat.home}" />
+	<property name="tomcat.home.frontend" value="${tomcat.home}-frontend" />
+
+	<!-- Handling of built.properties -->
+	<property file="built.properties" />
+
+	<!--
+	<property file="../ant.properties" />
+	<property file="ant.properties" />
+	<property file="${user.home}/ant.properties" />
+	-->
+
+	<property file="${file.commons.easyTravel.properties}" />
+	<property file="${file.commons.easyTravel.build.properties}" />
+	<property file="../Distribution/platform.properties" />
+
+	<property name="build.pathpostfix" value="-${version.major}.${version.minor}" />
+	<property name="version" value="${version.major}.${version.minor}.${version.revision}.${version.buildnumber}" />
+
+	<property name="compiler.nowarn" value="false" />
+
+	<property name="jar.name.business" value="com.dynatrace.easytravel.business.backend" />
+	<property name="jar.name.commons" value="com.dynatrace.easytravel.commons" />
+	<property name="jar.name.customer.client" value="com.dynatrace.easytravel.customer.client" />
+	<property name="jar.name.database" value="com.dynatrace.easytravel.database" />
+	<property name="jar.name.cassandra" value="com.dynatrace.easytravel.cassandra" />
+	<property name="jar.name.mongodb" value="com.dynatrace.easytravel.mongodb" />
+	<property name="jar.name.hbase" value="com.dynatrace.easytravel.hbase" />
+	<property name="jar.name.persistence.common" value="com.dynatrace.easytravel.persistence.common" />	
+	<property name="jar.name.couchdb.common" value="com.dynatrace.easytravel.couchdb.common" />	
+	<property name="jar.name.webservice.client" value="com.dynatrace.easytravel.business.webservice.client" />
+	<property name="jar.name.weblauncher" value="com.dynatrace.easytravel.weblauncher" />
+	<property name="jar.name.launcher" value="com.dynatrace.easytravel.launcher" />
+	<property name="jar.name.uemload" value="uemload" />
+	<property name="jar.name.pluginservice" value="com.dynatrace.easytravel.pluginservice" />
+	<property name="jar.name.pluginscheduler" value="com.dynatrace.easytravel.pluginscheduler" />
+	<property name="jar.name.webappdeployment" value="plugins-backend/com.dynatrace.easytravel.plugin.wardeployment" />
+
+	<property name="third.party.libs.root" value="../ThirdPartyLibraries" />
+
+	<!-- - - - - - - - - - - - - - - - - - -   
+	Third party libraries
+	 - - - - - - - - - - - - - - - - - - -->
+	<property name="COMMONS_HOME" value="${third.party.libs.root}/Apache/Commons" />
+	<property name="HTTP_UTILS_HOME" value="${third.party.libs.root}/Apache/HttpUtils" />
+	<property name="HIBERNATE_HOME" value="${third.party.libs.root}/Hibernate" />
+	<property name="DERBY_HOME" value="${third.party.libs.root}/Apache/Derby" />
+	<property name="THIRD_PARTY_JDBC_HOME" value="${third.party.libs.root}/ThirdPartyJDBC" />
+	<property name="TOMCAT_HOME" value="${third.party.libs.root}/Apache/Tomcat7" />
+	<property name="TOMCAT_JDBC_HOME" value="${third.party.libs.root}/Apache/TomcatJDBC" />
+	<property name="XERCES_HOME" value="${third.party.libs.root}/Apache/Xerces" />
+	<!-- no ejb for now
+	property name="OPENEJB_HOME" value="${third.party.libs.root}/Apache/OpenEJB"/-->
+	<property name="SPRING_HOME" value="${third.party.libs.root}/Spring" />
+	<property name="AXIS2_HOME" value="${third.party.libs.root}/Apache/Axis2" />
+	<property name="JAVAMAIL_HOME" value="${third.party.libs.root}/Javamail" />
+	<property name="JUNIT_HOME" value="${third.party.libs.root}/JUnit" />
+	<property name="SELENIUM_HOME" value="${third.party.libs.root}/Selenium" />
+	<property name="SELENIUM_DYNATRACE_HOME" value="${dir.dist}/selenium" />
+	<property name="LIGHTCOUCH_HOME" value="${third.party.libs.root}/Lightcouch" />
+	<property name="ADK_HOME" value="../Distribution/adk" />
+	<property name="OPEN_KIT_HOME" value="../Distribution/openkit" />
+	<property name="SWT_ROOT" value="${third.party.libs.root}/SWT" />
+	<property name="SWT_HOME" value="${SWT_ROOT}/swt-4.11-${platform.ws}-${platform.os}-${platform.arch}" />
+	<property name="SWT_WIN_64" value="${SWT_ROOT}/swt-4.11-win32-win32-x86_64" />
+	<property name="SWT_LIN_64" value="${SWT_ROOT}/swt-4.11-gtk-linux-x86_64" />
+	<property name="LOGGING_HOME" value="${third.party.libs.root}/Logging" />
+	<property name="MVEL_HOME" value="${third.party.libs.root}/Codehaus/MVEL" />
+	<property name="HAZELCAST_HOME" value="${third.party.libs.root}/Hazelcast/hazelcast-1.9.1/lib" />
+	<property name="ANT_HOME" value="${third.party.libs.root}/Apache/Ant" />
+	<property name="ICEFACES_HOME" value="${third.party.libs.root}/IceFaces/lib" />
+	<property name="HTMLUNIT_HOME" value="${third.party.libs.root}/HtmlUnit" />
+	<property name="CANOO_HOME" value="${third.party.libs.root}/CanooWebTest" />
+
+	<property name="CASSANDRA_HOME" value="${third.party.libs.root}/Apache/Cassandra" />
+	<property name="CASSANDRA_JAVADRIVER_HOME" value="${third.party.libs.root}/Apache/Cassandra/javadriver" />
+	<property name="MONGODB_CLIENT_HOME" value="${third.party.libs.root}/MongoDB/client" />
+	<property name="MONGODB_DATA_HOME" value="${third.party.libs.root}/MongoDB/data" />
+	<property name="HBASE_SERVER_HOME" value="${third.party.libs.root}/HBase/server" />
+	<property name="MONGODB_SERVER_HOME" value="${third.party.libs.root}/MongoDB/server" />
+	<property name="RAP_HOME" value="${third.party.libs.root}/RAP" />
+	<property name="JERSEY_HOME" value="${third.party.libs.root}/Jersey" />
+	<property name="JACKSON_HOME" value="${third.party.libs.root}/Jackson" />
+	<property name="NEKOHTML_HOME" value="${third.party.libs.root}/NekoHTML" />
+	<property name="ARTEMIS_HOME" value="${third.party.libs.root}/Apache/Artemis" />
+	<property name="APACHE_HTTP_HOME" value="${third.party.libs.root}/Apache/ApacheHTTP" />
+	<property name="APACHE_COUCHDB_HOME" value="${third.party.libs.root}/Apache/CouchDB" />
+	<property name="NGINX_HOME" value="${third.party.libs.root}/Nginx" />
+	<property name="EASYMOCK_HOME" value="${third.party.libs.root}/EasyMock" />
+	<property name="MOCKITO_HOME" value="${third.party.libs.root}/Mockito" />
+	<property name="HAMCREST_HOME" value="${third.party.libs.root}/Hamcrest" />
+	<property name="WSMQ_HOME" value="${third.party.libs.root}/WebSphereMQ" />
+	<property name="CTG_HOME" value="${third.party.libs.root}/CTG" />
+	<property name="IMS_HOME" value="${third.party.libs.root}/IMS" />
+	<property name="GUAVA_HOME" value="${third.party.libs.root}/Google/Guava" />
+	<property name="PHP_HOME" value="${third.party.libs.root}/php8.1" />
+	<property name="MYSQL_HOME" value="${third.party.libs.root}/mysql-5.6.19" />
+	<property name="VMWARE_HOME" value="${third.party.libs.root}/VMware" />
+    <property name="QUARTZ_HOME" value="${third.party.libs.root}/Quartz" />
+    <property name="JSTL_HOME" value="${third.party.libs.root}/Jsp" />
+    <property name="METRICS_HOME" value="${third.party.libs.root}/Metrics" />
+	<property name="GSON_HOME" value="${third.party.libs.root}/Google/Gson" />
+	<property name="OPENSSL_HOME" value="${third.party.libs.root}/OpenSSL" />
+	<property name="LITTLEPROXY_HOME" value="${third.party.libs.root}/Littleproxy" />
+	<property name="NETTY_HOME" value="${third.party.libs.root}/Netty" />
+	<property name="TYRUS_WS_HOME" value="${third.party.libs.root}/TyrusWebsocketsClient" />
+	<property name="JAXWS_HOME" value="${third.party.libs.root}/jax-ws" />
+	<property name="AZURE_SB_HOME" value="${third.party.libs.root}/AzureServiceBus" />
+	<property name="OPENTRACING_HOME" value="${third.party.libs.root}/OpenTracing" />
+	<property name="OPENTELEMETRY_HOME" value="${third.party.libs.root}/OpenTelemetry" />
+
+	<path id="lib.commons">
+		<fileset dir="${COMMONS_HOME}">
+			<include name="commons-logging*.jar" />
+			<include name="commons-io*.jar" />
+			<include name="commons-lang*.jar" />
+			<include name="commons-codec*.jar" />
+			<include name="commons-configuration*.jar" />
+			<include name="commons-httpclient*.jar" />
+			<include name="commons-fileupload*.jar" />
+			<include name="commons-collections*.jar" />
+			<include name="commons-pool*.jar" />
+			<include name="commons-exec*.jar" />
+			<include name="commons-cli*.jar" />
+			<include name="commons-beanutils-1.9.3.jar" />
+		</fileset>
+	</path>
+	
+	<path id="lib.netty">
+		<fileset dir="${NETTY_HOME}">
+			<include name="netty*.jar" />
+		</fileset>
+	</path>
+	
+	<path id="lib.opentracing">
+		<fileset dir="${OPENTRACING_HOME}">
+			<include name="opentracing*.jar" />
+		</fileset>
+	</path>
+	
+	<path id="lib.opentelemetry">
+		<fileset dir="${OPENTELEMETRY_HOME}">
+			<include name="opentelemetry*.jar" />
+		</fileset>
+	</path>
+	
+	<path id="lib.guava">
+		<fileset dir="${GUAVA_HOME}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.httputils">
+		<fileset dir="${HTTP_UTILS_HOME}">
+			<include name="http*.jar" />
+		</fileset>
+
+		<!-- store additional libs only once -->
+		<fileset dir="${COMMONS_HOME}">
+			<include name="commons-codec*.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.hibernate">
+		<!-- list directories in separate fileset to allow to copy them all into one directory -->
+		<fileset dir="${HIBERNATE_HOME}/required">
+			<include name="hibernate*.jar" /> <!--TODO: check if we can remove some jars from here, or merge it with other filset-->
+			<include name="jboss-logging-3.3.0.Final.jar"/>
+			<include name="classmate-1.3.0.jar"/>			
+			<exclude name="**/*-sources.jar" />
+		</fileset>
+		<fileset dir="${HIBERNATE_HOME}/jpa">
+			<include name="*.jar" />
+			<exclude name="**/*-sources.jar" />
+		</fileset>
+		<fileset dir="${HIBERNATE_HOME}/required">
+			<include name="antlr*.jar" />
+			<include name="dom4j*.jar" />
+			<include name="javassist*.jar" />
+			<include name="geronimo-jta*.jar" />			
+			<exclude name="**/*-sources.jar" />
+		</fileset>
+	</path>
+	
+	<path id="lib.artemis">
+		<fileset dir="${ARTEMIS_HOME}">
+			<include name="artemis-*.jar" />
+			<include name="geronimo-*.jar" />
+			<include name="jboss-logging-3.3.1.Final.jar" />
+			<include name="jgroups-3.6.13.Final.jar" />
+			<include name="johnzon-core-0.9.5.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.hibernatetools">
+		<fileset dir="${HIBERNATE_HOME}/tools">
+			<include name="hibernate-tools*.jar" />
+			<include name="freemarker*.jar" />
+			<include name="log4j-*.jar" />
+			<exclude name="**/*-sources.jar" />
+		</fileset>
+		<path refid="lib.hibernate" />
+		<path refid="lib.logging" />
+		<path refid="lib.commons" />
+	</path>
+
+	<path id="lib.hibernate.modelgen">
+		<fileset dir="${HIBERNATE_HOME}/jpa-metamodel-generator">
+			<include name="hibernate-jpamodelgen*.jar" />
+			<exclude name="**/*-sources.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.hibernate.ehcache">
+		<fileset dir="${HIBERNATE_HOME}/optional/ehcache">
+			<include name="ehcache*.jar" />
+			<include name="hibernate*.jar" />
+			<exclude name="**/*-sources.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.derby.client">
+		<fileset dir="${DERBY_HOME}/lib">
+			<include name="derbyclient.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.derby.server">
+		<fileset dir="${DERBY_HOME}/lib">
+			<include name="derby.jar" />
+			<include name="derbynet.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.jtds">
+		<fileset dir="${THIRD_PARTY_JDBC_HOME}">
+			<include name="jtds*.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.oracle">
+		<fileset dir="${THIRD_PARTY_JDBC_HOME}">
+			<include name="ojdbc*.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.db2">
+		<fileset dir="${THIRD_PARTY_JDBC_HOME}">
+			<include name="db2*.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.mysql">
+		<fileset dir="${THIRD_PARTY_JDBC_HOME}">
+			<include name="mysql*.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.tomcat">
+		<fileset dir="${TOMCAT_HOME}">
+			<include name="*.jar" />
+			
+			<!-- exclude some jars which we do not need to reduce distribution size and class loading/startup times -->
+			<exclude name="catalina-ant.jar" />
+			<exclude name="catalina-ha.jar" />
+			<exclude name="catalina-tribes.jar" />
+			<exclude name="tomcat-i18n*.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.tomcat.jdbc">
+		<fileset dir="${TOMCAT_JDBC_HOME}">
+			<include name="tomcat-jdbc.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.xerces">
+		<fileset dir="${XERCES_HOME}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	
+	<path id="lib.azuresb">
+		<fileset dir="${AZURE_SB_HOME}">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ARTEMIS_HOME}">
+			<include name="geronimo-jms*.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.easymock">
+		<fileset dir="${EASYMOCK_HOME}">
+			<include name="*.jar" />
+			
+			<exclude name="*-sources.jar" />
+		</fileset>
+	</path>
+	
+	<path id="lib.mockito">
+		<fileset dir="${MOCKITO_HOME}">
+			<include name="*.jar" />
+			
+			<exclude name="*-sources.jar" />
+		</fileset>
+	</path>
+	
+	<path id="lib.hamcrest">
+		<fileset dir="${HAMCREST_HOME}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<!-- no ejb for now
+    path id="lib.openejb">
+        <fileset dir="${OPENEJB_HOME}/lib">
+        	<include name="*.jar"/>
+        </fileset>
+    </path-->
+
+	<path id="lib.spring">
+		<fileset dir="${SPRING_HOME}">
+			<include name="*.core-*.jar" />
+			<include name="*.context-*.jar" />
+			<include name="*.web-*.jar" />
+			<include name="*.beans-*.jar" />
+			<include name="*.asm-*.jar" />
+			<include name="*.expression-*.jar" />
+			<include name="*.orm-*.jar" />
+			<include name="*.transaction-*.jar" />
+			<include name="*.jdbc-*.jar" />
+			<include name="*.web.servlet-*.jar" />
+			<include name="*.aop-*.jar" />
+			<include name="*.test-*.jar" />
+			<include name="aopalliance.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.mvel">
+		<fileset dir="${MVEL_HOME}">
+			<include name="mvel2-2.0.19.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.hazelcast">
+		<fileset dir="${HAZELCAST_HOME}">
+			<include name="hazelcast-1.9.1.jar" />
+		</fileset>
+	</path>
+
+
+	<path id="lib.javamail">
+		<fileset dir="${JAVAMAIL_HOME}">
+			<include name="mail.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.junit">
+		<fileset dir="${JUNIT_HOME}">
+			<include name="junit*.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.selenium">
+		<fileset dir="${SELENIUM_HOME}">
+			<include name="**/*.jar" />
+			<exclude name="src/*.jar" />
+		</fileset>
+		<!-- Selenium requires Gson now -->
+		<fileset dir="${GSON_HOME}">
+			<include name="**/*.jar" />
+			<exclude name="src/*.jar" />
+		</fileset>
+	</path>
+	
+	<path id="lib.littleproxy">
+		<fileset dir="${LITTLEPROXY_HOME}">
+			<include name="**/*.jar" />
+			<exclude name="**/netty*.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="lib.dynatrace.selenium">
+		<fileset dir="${SELENIUM_DYNATRACE_HOME}">
+			<include name="**/*easytravel.selenium.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.json">
+		<fileset dir="${SELENIUM_HOME}">
+			<include name="**/json*.jar" />
+			<exclude name="*-srcs.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.gson">
+		<fileset dir="${GSON_HOME}">
+			<include name="**/gson*.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.lightcouch">
+		<fileset dir="${LIGHTCOUCH_HOME}">
+			<include name="**/lightcouch*.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.axis2">
+		<fileset dir="${AXIS2_HOME}/lib">
+			<include name="axiom*.jar" />
+			<include name="axis2-adb*.jar" />
+			<include name="axis2-kernel*.jar" />
+			<include name="axis2-transport*.jar" />
+			<include name="neethi*.jar" />
+			<include name="woden*.jar" />
+			<include name="wsdl4j*.jar" />
+			<include name="xmlschema*.jar" />
+
+			<include name="axis2-xmlbeans*.jar" />
+			<include name="xmlbeans*.jar" />
+			<include name="axiom-api*.jar" />
+			<include name="axiom-impl*.jar" />
+			<include name="activation-1.1.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.axis2.client">
+		<fileset dir="${AXIS2_HOME}/lib">
+			<include name="axis2-kernel*.jar" />
+			<include name="axiom-api*.jar" />
+			<include name="axiom-impl*.jar" />
+			<include name="axis2-transport*.jar" />
+			<include name="axis2-adb*.jar" />
+			<include name="axis2-jaxws*.jar" />
+			<include name="axis2-metadata*.jar" />
+			<include name="axis2-xmlbeans*.jar" />
+			<include name="xmlbeans*.jar" />
+			<include name="neethi*.jar" />
+			<include name="woden*.jar" />
+			<include name="wsdl4j*.jar" />
+			<include name="xmlschema*.jar" />
+			<include name="xml-resolver*.jar" />
+			<include name="activation-1.1.jar" /> 			
+		</fileset>
+		<fileset dir="${HTTP_UTILS_HOME}">
+			<include name="httpcore*.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.axis2.ant">
+		<fileset dir="${AXIS2_HOME}/lib">
+			<include name="axis2-ant-plugin*.jar" />
+			<include name="axis2-java2wsd*.jar" />
+			<include name="axis2-codegen*.jar" />
+			<include name="xmlschema*.jar" />
+			<include name="jsr311-api*.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.axis2.min">
+		<fileset dir="${AXIS2_HOME}/lib">
+			<include name="axis2-kernel*.jar" />
+			<include name="axiom-api*.jar" />
+			<include name="axis2-xmlbeans*.jar" />
+		</fileset>
+	</path>
+	
+	<path id="lib.jaxb">
+		<fileset dir="${JAXWS_HOME}">
+			<include name="jaxb-runtime-2.3.2.jar" />
+			<include name="jakarta.xml.bind-api-2.3.2.jar" />
+			<include name="istack-commons-runtime-3.0.8.jar" />
+		</fileset>
+	</path>
+	
+	<path id="lib.jax-ws">
+		<fileset dir="${JAXWS_HOME}">
+			<include name="jakarta.jws-api-1.1.1.jar" />
+			<include name="jakarta.xml.ws-api-2.3.2.jar" />
+			<include name="jaxws-rt-2.3.2.jar" />
+			<include name="jakarta.xml.soap-api-1.4.1.jar" />	
+			<include name="jakarta.activation-api-1.2.1.jar" />
+			<include name="streambuffer-1.5.7.jar" />
+			<include name="saaj-impl-1.5.1.jar" />
+			<include name="policy-2.7.6.jar" />
+			<include name="stax-ex-1.8.1.jar" />
+			<include name="gmbal-4.0.0.jar" />
+			<include name="management-api-3.2.1.jar" />
+			<include name="FastInfoset-1.2.16.jar" />
+			<include name="pfl-basic-4.0.1.jar" />
+			<include name="pfl-tf-4.0.1.jar" />
+			<include name="txw2-2.3.2.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.adk">
+		<fileset dir="${ADK_HOME}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.openkit">
+		<fileset dir="${OPEN_KIT_HOME}">
+			<include name="*.jar" />
+			<exclude name="**/*-sources.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.swt">
+		<fileset dir="${SWT_HOME}">
+			<include name="swt.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.logging"> <!-- default: slf4j for JDK logging -->
+		<fileset dir="${LOGGING_HOME}">
+			<include name="*.jar" />
+			<exclude name="*-sources.jar" />
+			<exclude name="slf4j-jdk14*.jar" />
+			<exclude name="slf4j-log4j*.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.ant">
+		<fileset dir="${ANT_HOME}">
+			<!-- TODO: which other parts of Ant do we need? -->
+			<include name="ant.jar" />
+			<include name="ant-*.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.htmlunit">
+		<fileset dir="${HTMLUNIT_HOME}">
+			<include name="*.jar" />
+		</fileset>
+		
+		<!--  reuse other things that HtmlUnit requires from their original location -->
+		<path refid="lib.xerces"/>
+		<path refid="lib.httputils"/>		
+		<path refid="lib.nekohtml"/>		
+	</path>
+
+	<path id="lib.rap">
+		<fileset dir="${RAP_HOME}">
+			<include name="*.jar" />
+			<exclude name="*source*.jar"/>
+		</fileset>
+	</path>
+
+	<path id="lib.jersey">
+		<fileset dir="${JERSEY_HOME}">
+			<include name="*.jar" />
+			<exclude name="*-sources.jar"/>
+			<exclude name="javax*.jar"/>
+			<exclude name="jackson*.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="lib.jackson">
+		<fileset dir="${JACKSON_HOME}">
+			<include name="*.jar" />
+			<exclude name="*-sources.jar"/>
+		</fileset>
+	</path>
+
+	<path id="lib.nekohtml">
+		<fileset dir="${NEKOHTML_HOME}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	
+	<path id="lib.servlet-api">
+		<fileset dir="${TOMCAT_HOME}">
+			<include name="servlet-api.jar" />
+		</fileset>
+	</path>
+
+	<path id="lib.jsf-api">
+		<fileset dir="${ICEFACES_HOME}">
+			<include name="jsf-api.jar" />
+		</fileset>
+	</path>
+	
+	<path id="lib.icefaces">
+        <fileset dir="${ICEFACES_HOME}">
+            <include name="icefaces-compat.jar"/>
+        </fileset>
+    </path>
+
+    <path id="lib.hector">
+        <fileset dir="${HECTOR_HOME}">
+        	<include name="*hector-core*.jar"/>
+        	<include name="perf4j*.jar"/>
+        </fileset>
+    </path>
+	
+    <path id="lib.cassandra">
+        <fileset dir="${CASSANDRA_HOME}/lib">
+			<include name="*.jar"/>
+			<exclude name="*-sources*.jar"/>
+			<exclude name="guava*.jar"/>
+        	<exclude name="cassandra-driver-core-3.0.1-shaded.jar"/>
+        	<exclude name="*asl-1.9.2.jar"/>
+        	<exclude name="slf4j-*.jar"/>
+        	<exclude name="logback-*.jar"/>
+        	<exclude name="netty*.jar"/>
+        	<exclude name="jackson*.jar"/>
+         </fileset>
+    </path>
+	
+	<path id="lib.cassandrajavadriver">
+        <fileset dir="${CASSANDRA_JAVADRIVER_HOME}">
+			<include name="*.jar"/>
+			<exclude name="*-sources*.jar"/>
+			<exclude name="guava*.jar"/>	        	
+         </fileset>
+    </path>
+
+    <path id="lib.mongodb">
+        <fileset dir="${MONGODB_CLIENT_HOME}">
+			<include name="*.jar"/>
+         </fileset>
+    </path>
+	
+    <path id="lib.hbase">
+    	<fileset dir="${HBASE_SERVER_HOME}/lib">
+    		<include name="*.jar"/>
+			<exclude name="slf4j-*-1.6.4.jar" />
+    		<exclude name="jersey*.jar" />
+    		<exclude name="commons-beanutils-1.7.0.jar" />
+    		<exclude name="jackson*.jar"/>
+		</fileset>
+    </path>
+	
+    <path id="lib.wsmq">
+        <fileset dir="${WSMQ_HOME}">
+			<include name="com.ibm.*.jar"/>
+        	<include name="connector.jar"/>
+        	<include name="jta.jar"/>
+        	<include name="dhbcore.jar"/>
+        	<include name="jms.jar"/>
+        </fileset>
+    </path>
+    <path id="lib.ctg">
+        <fileset dir="${CTG_HOME}">
+        	<include name="ctgclient800.jar"/>
+        </fileset>
+    </path>
+    <path id="lib.ims">
+        <fileset dir="${IMS_HOME}">
+        	<include name="websphere_apis.jar"/>
+        	<include name="imsico.jar"/>
+        	<include name="j2ee.jar"/>
+        </fileset>
+    </path>
+
+    <path id="lib.vMotion">
+        <fileset dir="${VMWARE_HOME}">
+            <include name="vim25.jar"/>
+        </fileset>
+    </path>
+
+    <path id="lib.quartz">
+        <fileset dir="${QUARTZ_HOME}">
+            <include name="quartz-2.2.1.jar"/>
+            <include name="quartz-jobs-2.2.1.jar"/>
+        </fileset>
+    </path>
+
+    <path id="lib.jstl">
+        <fileset dir="${JSTL_HOME}">
+            <include name="jstl-1.2.jar"/>
+        </fileset>
+    </path>
+
+	<path id="lib.metrics">
+		<fileset dir="${METRICS_HOME}">
+			<include name="*.jar" />
+			<exclude name="**/*-sources.jar" />
+		</fileset>
+	</path>
+	
+	<path id="lib.tyrus.ws.client">
+		<fileset dir="${TYRUS_WS_HOME}">
+			<include name="*.jar" />
+			<exclude name="**/*-sources.jar" />
+		</fileset>
+	</path>
+
+	<macrodef name="createClasspathAttribute" description="Create a classpath attribute string out of the projects libraries and set it to the specified property">
+		<attribute name="property" />
+		<attribute name="libs" />
+		<attribute name="projects" />
+
+		<sequential>
+			<!-- create lib classpath -->
+			<pathconvert property="createClasspathAttribute.libs" pathsep=" " dirsep="/">
+				<path refid="@{libs}" />
+				<chainedmapper>
+					<!-- remove prepending directories -->
+					<flattenmapper />
+					<!-- prepend main lib directory -->
+					<globmapper from="*" to="${dir.lib}/*" />
+				</chainedmapper>
+			</pathconvert>
+
+			<!-- create project classpath -->
+			<pathconvert property="createClasspathAttribute.projects" pathsep=" " dirsep="/">
+				<path refid="@{projects}" />
+				<!-- remove prepending directories -->
+				<flattenmapper />
+			</pathconvert>
+
+			<!-- concatenate whole classpath -->
+			<property name="@{property}" value="${createClasspathAttribute.projects} ${createClasspathAttribute.libs}" />
+
+		</sequential>
+	</macrodef>
+
+	<macrodef name="copyLibToDistribution" description="Copy the jars in the specified path id to the distribution lib directory">
+		<attribute name="sourcepath" />
+
+		<sequential>
+			<mkdir dir="${dir.dist.lib}" />
+
+			<copy todir="${dir.dist.lib}" flatten="true" failonerror="true">
+				<path refid="@{sourcepath}" />
+			</copy>
+		</sequential>
+	</macrodef>
+	
+	<macrodef name="copyLibToWebAppLibDirectory" description="Copy the jars in the specified path id to the lib directory for specific web app">
+		<attribute name="sourcepath" />
+		<attribute name="webappdir" />
+		
+		<sequential>
+			<mkdir dir="@{webappdir}/WEB-INF/lib" />
+
+			<copy todir="@{webappdir}/WEB-INF/lib" flatten="true" failonerror="true">
+				<path refid="@{sourcepath}" />
+			</copy>
+		</sequential>
+	</macrodef>
+
+	
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: failBuildOnlyDevLocalIfTestsFailed
+          copied from trunk\non-prod\qa.util\ant-scripts\utilities.xml
+
+          Usage:
+          <failBuildOnlyDevLocalIfTestsFailed failureproperty="${test.failed}" />
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="failBuildOnlyDevLocalIfTestsFailed">
+        <attribute name="failureproperty" />
+        <attribute name="testtype" />
+        <sequential>
+        	<echo>failureproperty: @{failureproperty}, buildservertests: ${buildservertests}, testtype: @{testtype}</echo>
+			<fail message="Tests failed: @{testtype}. Please check log and/or reports.">
+				<condition>
+					<and>
+						<not>
+							<istrue value="${buildservertests}"/>
+						</not>
+		    			<istrue value="@{failureproperty}"/>
+					</and>
+				</condition>
+			</fail>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="echo-fileset">
+        <attribute name="filesetref" />
+        <sequential>
+	        <pathconvert property="pathes" refid="@{filesetref}"/>
+	        <echo message="Pathes: ${pathes}"/>
+        </sequential>
+    </macrodef>
+	
+	<macrodef name="clean-tomcat-logs">
+		<attribute name="tomcat.home" />
+		<sequential>
+			<delete dir="@{tomcat.home}/logs" failonerror="false"/>
+		</sequential>
+	</macrodef>
+
+	<!-- ivy taks definition -->
+	<path id="ivy.lib.path">
+    	<fileset dir="../Distribution/ivy" includes="*.jar"/>
+	</path>
+		
+</project>
