@@ -1,0 +1,65 @@
+<html>
+	<head><title>TestPlugin123</title></head>
+	<body>
+		<h3>This is the #{name}</h3>
+		<div style="float: right"><img src="sitelogo.png" /></div>
+		<ul>
+			<li><a href="/">Go back</a></li>
+			<li><a href="test1.css">test1.css</a></li>
+			<li><a href="test1.js">test1.js</a></li>
+			<li><a href="test2.js">test2.js</a></li>
+			<li><a href="sitelogo.png">sitelogo.png</a></li>
+			<li><a href="test1.html">test1.html: Show this page again</a></li>
+			<li><a href="execute?firstName=Klaus Maria&lastName=Brandauer">Execute the plugin</a></li>
+		</ul>		
+		
+		<!--  testing some multi-line if statements with nested variables -->
+		
+		#{if (scriptInjection) 
+			<p>Script injection is <strong style="color:red">#{scriptInjection}</strong>
+			<br/><a href="execute?scriptInjection=false">Turn it off!</a></p>
+		}
+		#{if (!scriptInjection) 
+			<p>Script injection is <strong style="color:green">#{scriptInjection}</strong>
+			<br/><a href="execute?scriptInjection=true">Turn it on!</a></p>
+		}
+		
+		<form action="execute" method="post">
+		
+			<input type="hidden" name="default.showFooter" value="false" >
+			<input type="hidden" name="default.scriptInjection" value="false">
+		
+			<table>
+				<tr>
+					<td>First Name: </td>
+					<td><input type="text" name="firstName" value="#{firstName}"/></td>
+				</tr>
+				<tr>
+					<td>Last Name:</td>
+					<td><input type="text" name="lastName" value="#{lastName}"/></td>
+				</tr>
+				<tr>
+					<td>Age: </td>
+					<td><input type="text" name="age" value="#{age}"></td>
+				</tr>
+				<tr>
+					<td>Script Injection:</td>
+					<td><input type="checkbox" name="scriptInjection" value="true" #{if (scriptInjection) checked="checked"}></td>
+				</tr>
+				<tr>
+					<td>Show Footer:</td>
+					<td><input type="checkbox" name="showFooter" value="true" #{if (showFooter) checked="checked"}></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Execute the plugin" ></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Execute the plugin and show other page" name="showResultPage"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Execute the plugin and download a file" name="downloadFile"></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="EnableCachingPlugin" class="com.dynatrace.easytravel.EnableCaching">
+		<property name="name" value="EnableCaching" />
+		<property name="compatibility" value="Classic" />
+		<property name="groupName" value="Http Errors" />
+		<property name="extensionPoint" value="frontend.resource.caching" />
+		<property name="description" value="This Plugin enables browser-side caching of resources of type HTML, JS, CSS and PNG. Note: To disable the plugin properly you have to clear the cache of your browser." />
+	</bean>
+	
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="EnableCachingPlugin" />
+	</bean>
+</beans>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="causegarbagecollectionplugin" class="com.dynatrace.easytravel.GarbageCollectionTrigger">
+		<property name="name" value="GarbageCollectionEvery10Seconds" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Memory" />
+		<property name="extensionPoint" value="backend.journeyservice.location.search.*" />
+		<property name="description" value="Causes a manual full garbage collection on the Business Backend process when searching for journeys. The GC is triggered every 10 seconds." />
+	</bean>
+	
+	<bean id="memoryleakwithgc" class="com.dynatrace.easytravel.LocationSearchCache">
+		<property name="name" value="MemoryLeakWithGC" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Memory" />
+		<property name="extensionPoint" value="backend.journeyservice.location.search.*,lifecycle.plugin.*" />
+		<property name="description" value="Causes memory leak and a manual full garbage collection on the Business Backend process when searching for journeys." />
+	</bean>
+
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="causegarbagecollectionplugin" />
+	</bean>
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="memoryleakwithgc" />
+	</bean>
+</beans>

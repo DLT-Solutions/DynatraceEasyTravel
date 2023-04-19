@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="findJourneysSqlServerQueryOverride" class="com.dynatrace.easytravel.FindJourneysSqlServerQueryOverride">
+		<property name="name" value="FindJourneysSqlServerQueryOverride" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Database" />
+		<property name="description" value="This plugin uses a very expensive stored procedure (sp_findJourneys) to fetch journeys. The procedure has to be created manually before the plugin can be used. The SQL source file (sp_findJourneys.sql) is located in the plugin's JAR file root. Note: This is usually only available when running easyTravel against SQL Server." />
+	</bean>
+		
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="findJourneysSqlServerQueryOverride" />
+	</bean>	
+</beans>

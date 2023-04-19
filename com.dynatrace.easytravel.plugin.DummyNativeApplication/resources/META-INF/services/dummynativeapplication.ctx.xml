@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="dummynativeapplication" class="com.dynatrace.easytravel.DummyNativeApplication">
+		<property name="name" value="DummyNativeApplication" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Native Application" />
+		<property name="description" value="Simulates the 'validation' of the entered credit card number when a booking is stored but does not actually call the native (C++) application. Any string consisting of only digits will match. Use this plugin if you don't have the C++ application available. Remember to disable the plugin 'NamedPipeNativeApplication' as well in this case." />
+	</bean>
+	
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="dummynativeapplication" />
+	</bean>
+</beans>

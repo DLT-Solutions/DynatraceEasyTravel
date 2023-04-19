@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="dotnetpaymentservice" class="com.dynatrace.easytravel.DotNetPaymentService">
+		<property name="name" value="DotNetPaymentService" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="PaymentService" />
+		<property name="description" value="If enabled, the .NET Payment Backend is called when a booking is made. This plugin is enabled if .NET is available and disabled on installations where .NET is not availalbe, e.g. Unix. Usually this plugin is configured via the bootplugins in the properties." />
+	</bean>
+	
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="dotnetpaymentservice" />
+	</bean>
+</beans>

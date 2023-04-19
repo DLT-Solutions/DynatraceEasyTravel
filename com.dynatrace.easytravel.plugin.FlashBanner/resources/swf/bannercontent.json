@@ -1,0 +1,43 @@
+[
+	{
+		"name" : "Paris",
+		"price" : "$190",
+		"permlink" : "/result.jsf?dest=Paris&from=&to="
+	},
+	{
+		"name" : "New York",
+		"price" : "$490",
+		"permlink" : "/result.jsf?dest=New+York&from=&to="
+	},
+	{
+		"name" : "London",
+		"price" : "$249",
+		"permlink" : "/result.jsf?dest=London&from=&to="
+	},
+	{
+		"name" : "Anaheim",
+		"price" : "$999",
+		"permlink" : "/result.jsf?dest=Anaheim&from=&to="
+	},
+	{
+		"name" : "Washington",
+		"price" : "$549",
+		"permlink" : "/result.jsf?dest=Washington&from=&to="
+	},
+	{
+		"name" : "Orlando",
+		"price" : "$299",
+		"permlink" : "/result.jsf?dest=Orlando&from=&to="
+	},
+	{
+		"name" : "Linz",
+		"price" : "$699",
+		"permlink" : "/result.jsf?dest=HongKong&from=&to="
+	},
+	{
+		"name" : "Berlin",
+		"price" : "$399",
+		"permlink" : "/result.jsf?dest=Berlin&from=&to="
+	}
+
+]

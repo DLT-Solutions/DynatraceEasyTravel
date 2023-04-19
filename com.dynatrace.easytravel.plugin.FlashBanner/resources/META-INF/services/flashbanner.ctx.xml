@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="FlashBanner" class="com.dynatrace.easytravel.FlashBanner">
+		<property name="name" value="FlashBanner" />
+		<property name="compatibility" value="Classic" />
+		<property name="groupName" value="UI related plugin" />
+		<property name="extensionPoint" value="frontend.page.*" />
+		<property name="description" value="Plugin to include a flash banner. This plugin demonstrates dynaTrace's capabilities to track flash content using the JavaScript ADK. Remember to disable the 'Error in Flash Content' and 'Slow page action in Flash' plugins if this plugin is enabled." />
+	</bean>
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="FlashWithError" class="com.dynatrace.easytravel.FlashWithError">
+		<property name="name" value="ErrorInFlashContent" />
+		<property name="compatibility" value="Classic" />
+		<property name="groupName" value="UI related plugin" />
+		<property name="extensionPoint" value="frontend.page.*" />
+		<property name="description" value="Plugin to include a flash banner that produces an error every few page requestse. This plugin helps demonstrating dynaTrace's capabilities to track flash content using the JavaScript ADK. Remember to disable the 'Flash Banner' and 'Slow page action in Flash' plugins if this plugin is enabled." />
+	</bean>
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="FlashSlowPageAction" class="com.dynatrace.easytravel.FlashSlowPageAction">
+		<property name="name" value="SlowPageActionInFlash" />
+		<property name="compatibility" value="Classic" />
+		<property name="groupName" value="UI related plugin" />
+		<property name="extensionPoint" value="frontend.page.*" />
+		<property name="description" value="Plugin to include a flash banner that causes a significant delay to the loading of the page. This plugin helps demonstrating dynaTrace's capabilities to track flash content using the JavaScript ADK. Remember to disable the 'Error in Flash Content' and 'Flash Banner' plugins if this plugin is enabled." />
+	</bean>
+
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="FlashBanner" />
+	</bean>
+
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="FlashWithError" />
+	</bean>
+
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+  	    <property name="propertyName" value="plugins" />
+	    <property name="pluginBeanName" value="FlashSlowPageAction" />
+	</bean>
+</beans>

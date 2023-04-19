@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Dummy Plugin for Payment Service" default="all">
+	<description>
+		Demo Application - Dummy Plugin for Payment Service
+	</description>
+
+	<import file="../Distribution/ant-includes.xml" />
+
+	<property name="plugin.type" value="plugins-backend" />
+	<property name="jar.name" value="com.dynatrace.easytravel.plugin.dummypaymentservice" />
+	<property name="jar.location" location="${dir.dist}/${plugin.type}/${jar.name}.jar" />
+
+	<!-- all lib jars needed by this project -->
+	<path id="required.libs">
+		<path refid="lib.commons" />
+	</path>
+
+	<!-- all project jars needed by this project -->
+	<path id="required.projects">
+		<fileset dir="${dir.dist}">
+			<include name="${jar.name.commons}.jar"/>
+		</fileset>
+	</path>
+
+	<!-- ================================= 
+          target: buildLibrary              
+         ================================= -->
+	<target name="all" depends="init, compile, link" unless="built" description="Database Layer">
+		<echo>Done</echo>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: init                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="init" depends="" unless="built">
+		<mkdir dir="${dir.build}" />
+		<mkdir dir="${dir.dist}/${plugin.type}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clean                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clean" depends="clearBuiltProperty" description="clean up">
+		<delete dir="${dir.build}" failonerror="no" />
+		<delete file="${jar.location}" />
+
+		<ant dir="../commons-demo" inheritAll="false" target="clean" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clearBuiltProperty                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clearBuiltProperty" description="update without build">
+		<delete file="built.properties" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: compile                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="compile" depends="init" unless="built">
+		<echo>Dummy plugin for Native Application</echo>
+
+		<ant dir="../commons-demo" inheritAll="false" />
+
+		<javac source="1.8" target="1.8" deprecation="no" nowarn="${compiler.nowarn}" destdir="${dir.build}" debug="true">
+			<src location="${dir.src}" />
+			<classpath>
+				<path refid="required.libs" />
+				<path refid="required.projects" />
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: link                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="link" depends="compile" unless="built">
+		<delete failonerror="no">
+			<fileset file="${jar.location}" />
+		</delete>
+
+		<createClasspathAttribute property="classpath" libs="required.libs" projects="required.projects" />
+		
+		<mkdir dir="${dir.build}/META-INF" />
+		<manifest file="${dir.build}/META-INF/MANIFEST.MF">
+			<attribute name="Built-By" value="${user.name}" />
+			<attribute name="Bundle-Vendor" value="${version.company}" />
+			<attribute name="Bundle-Version" value="${version}" />
+			<attribute name="Implementation-Version" value="${version}" />
+
+			<attribute name="Class-Path" value="${classpath}" />
+		</manifest>
+
+		<jar jarfile="${jar.location}" manifest="${dir.build}/META-INF/MANIFEST.MF">
+			<fileset dir="${dir.build}">
+				<include name="**" />
+			</fileset>
+			<fileset dir="resources">
+				<include name="**" />
+			</fileset>
+		</jar>
+
+		<copyLibToDistribution sourcepath="required.libs" />
+		
+		<echo file="built.properties" append="false">built</echo>
+	</target>
+</project>

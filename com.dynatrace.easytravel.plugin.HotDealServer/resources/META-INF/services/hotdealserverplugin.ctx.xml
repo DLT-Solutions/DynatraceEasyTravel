@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Definition of the class which implements the interface for this plugin -->
+	<bean id="hotDealServerJms" class="com.dynatrace.easytravel.HotDealServer">
+		<property name="name" value="HotDealServerJMS" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Messaging/Remoting" />
+		<property name="extensionPoint" value="backend.journeyservice.location.search.before,lifecycle.plugin.*" />
+		<property name="description" value="This plugin provides hot deals by using JMS. The HotDealClientJMS plugin requests these deals and displays them on the search page. ATTENTION: In order to work both the HotDealServerJMS plugin and the HotDealClientJMS plugin must be activated." />
+		<property name="mode" value="JMS" />
+		<property name="databaseAccess" ref="databaseAccess"/>
+		<property name="port" value="5446" />
+	</bean>
+	<bean id="hotDealServerRmi" class="com.dynatrace.easytravel.HotDealServer">
+		<property name="name" value="HotDealServerRMI" />
+		<property name="compatibility" value="Both" />
+		<property name="groupName" value="Messaging/Remoting" />
+		<property name="extensionPoint" value="backend.journeyservice.location.search.before,lifecycle.plugin.*" />
+		<property name="description" value="This plugin provides hot deals by using RMI. The HotDealClientRMI plugin requests these deals and displays them on the search page. ATTENTION: In order to work both the HotDealServerRMI plugin and the HotDealClientRMI plugin must be activated." />
+		<property name="mode" value="RMI" />
+		<property name="databaseAccess" ref="databaseAccess"/>
+		<property name="port" value="11230" />
+	</bean>
+
+	<!-- inject the plugin as generic plugin so we get called from various places -->
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+		<property name="propertyName" value="plugins" />
+		<property name="pluginBeanName" value="hotDealServerJms" />
+	</bean>
+	<bean class="com.dynatrace.easytravel.spring.PluginBeanFactoryPostProcessor">
+		<property name="extensionBeanName" value="pluginHolder" />
+		<property name="propertyName" value="plugins" />
+		<property name="pluginBeanName" value="hotDealServerRmi" />
+	</bean>
+	
+</beans>
